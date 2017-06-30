@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <style name="MyTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+
+        <item name="android:colorPrimary">@color/UIPink</item>
+        <item name="android:colorPrimaryDark">#eb0339</item>
+        <item name="android:colorAccent">@color/UIBlue</item>
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+
+        <item name="android:navigationBarColor">@color/UIBlue</item>
+        <item name="colorPrimary">@color/UIPink</item>
+        <item name="colorAccent">@color/UIBlue</item>
+
+    </style>
+
+
+
+    <style name="OnyxP" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:colorPrimary">@color/DarkWhite_ish</item>
+        <item name="android:colorPrimaryDark">#080808</item>
+        <item name="android:colorAccent">#48f586</item>
+        <item name ="android:textColor">@color/UIDarkPink</item>
+
+
+        <item name="android:navigationBarColor">@color/UIDarkPink</item>
+        <item name="android:textColorPrimary">@color/UIDarkText</item>
+
+
+    </style>
+
+
+
+
+    <style name="OnyxB" parent="Theme.AppCompat.NoActionBar">
+
+        <item name="android:colorPrimary">@color/DarkWhite_ish</item>
+        <item name="android:colorPrimaryDark">@color/DarkWhite_ish</item>
+        <item name="android:colorAccent">#f18944</item>
+        <item name ="android:textColor">@color/UIDarkBlue</item>
+
+
+        <item name="android:navigationBarColor">@color/UIDarkBlue</item>
+
+
+    </style>
+
+    <style name="Onyx" parent="@android:style/Theme.Material">
+
+        <item name="android:colorPrimary">@color/DarkWhite_ish</item>
+        <item name="android:colorPrimaryDark">@color/DarkWhite_ish</item>
+        <item name ="android:textColor">@color/UIDarkBlue</item>
+        <item name = "android:textColorPrimary">@color/UIDarkText</item>
+        <item name = "android:textColorSecondary">@color/UIDarkText</item>
+
+
+        <item name="android:navigationBarColor">@color/UIDarkBlue</item>
+
+    </style>
+
+
+    <style name="Material" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/UIMaterialPink</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDarkPink</item>
+        <item name="android:colorAccent">@color/UIMaterialGreen</item>
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+
+        <item name="android:navigationBarColor">@color/UIMaterialLightGreen</item>
+        <item name="colorPrimary">@color/UIMaterialPink</item>
+        <item name="colorAccent">@color/UIMaterialLightGreen</item>
+
+        <item name="android:textColorPrimary">@color/UIDarkOnyx</item>
+        <item name="android:textColorPrimaryInverse">@color/Peach</item>
+        <item name="android:textColorSecondary">@color/Non_Important_Text</item>
+        <item name="android:textColorSecondaryInverse">@color/Peach_Pressed</item>
+
+    </style>
+    <style name="Material2" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/UIMaterialBlue</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDarkBlue</item>
+        <item name="android:colorAccent">@color/UIMaterialDeepOrange</item>
+
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+        <item name="android:navigationBarColor">@color/UIMaterialDeepOrange</item>
+        <item name="colorAccent">@color/UIMaterialDeepOrange</item>
+        <item name="colorPrimary">@color/UIMaterialBlue</item>
+
+
+        <item name="android:textColorPrimary">@color/UIDarkOnyx</item>
+        <item name="android:textColorPrimaryInverse">@color/Peach</item>
+        <item name="android:textColorSecondary">@color/Non_Important_Text</item>
+        <item name="android:textColorSecondaryInverse">@color/Peach_Pressed</item>
+
+    </style>
+
+    <style name="Material3" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/UIMaterialPurple</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDarkPurple</item>
+        <item name="android:colorAccent">@color/UIMaterialDeepYellow</item>
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+        <item name="android:navigationBarColor">@color/UIMaterialDeepYellow</item>
+        <item name="colorPrimary">@color/UIMaterialPurple</item>
+        <item name="colorAccent">@color/UIMaterialDeepYellow</item>
+
+        <item name="android:textColorPrimary">@color/UIDarkOnyx</item>
+        <item name="android:textColorPrimaryInverse">@color/Peach</item>
+        <item name="android:textColorSecondary">@color/Non_Important_Text</item>
+        <item name="android:textColorSecondaryInverse">@color/Peach_Pressed</item>
+
+    </style>
+
+    <style name="Material4" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/UIMaterialOrange</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDarkOrange</item>
+        <item name="android:colorAccent">@color/UIMaterialGreen</item>
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+
+        <item name="android:navigationBarColor">@color/UIMaterialGreen</item>
+        <item name="colorPrimary">@color/UIMaterialOrange</item>
+        <item name="colorAccent">@color/UIMaterialGreen</item>
+
+        <item name="android:textColorPrimary">@color/UIDarkOnyx</item>
+        <item name="android:textColorPrimaryInverse">@color/Peach</item>
+        <item name="android:textColorSecondary">@color/Non_Important_Text</item>
+        <item name="android:textColorSecondaryInverse">@color/Peach_Pressed</item>
+
+
+    </style>
+
+    <style name="Material5" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <item name="android:colorPrimary">@color/UIMaterialDeepGreen</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDeepDarkGreen</item>
+        <item name="android:colorAccent">@color/UIMaterialRed</item>
+        <item name="android:textColor">@color/UIDarkOnyx</item>
+
+        <item name="android:navigationBarColor">@color/UIMaterialRed</item>
+        <item name="colorPrimary">@color/UIMaterialDeepGreen</item>
+        <item name="colorAccent">@color/UIMaterialRed</item>
+
+        <item name="android:textColorPrimary">@color/UIDarkOnyx</item>
+        <item name="android:textColorPrimaryInverse">@color/Peach</item>
+        <item name="android:textColorSecondary">@color/Non_Important_Text</item>
+        <item name="android:textColorSecondaryInverse">@color/Peach_Pressed</item>
+
+
+    </style>
+
+    <style name="pearl_button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:background">@drawable/regular_selector</item>
+
+
+    </style>
+
+
+
+
+
+    <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"
+        ><item name="android:elevation">0dp</item>
+    </style>
+
+    <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Dark"
+
+        ><item name="android:elevation">0dp</item>
+    </style>
+</resources>

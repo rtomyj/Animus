@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/side_nav"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+
+
+    android:background="?android:selectableItemBackground"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="6"
+            android:gravity="center_vertical"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/all_screens"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:gravity="left|center_vertical"
+                android:paddingLeft="60dp"
+                android:paddingTop="3dp"
+                android:text="TextView"
+                android:textColor="#333"
+                android:textSize="18sp"
+                tools:ignore="RtlSymmetry" />
+        </LinearLayout>
+
+        <Space
+            android:layout_width="15dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:id="@+id/amount"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="2"
+            android:clickable="false"
+            android:gravity="center"
+            android:paddingTop="9dp"
+                android:textColor="#333"
+            android:text="0"
+            android:textSize="18sp" />
+    </LinearLayout>
+
+</LinearLayout>

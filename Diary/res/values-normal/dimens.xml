@@ -1,0 +1,18 @@
+<resources>
+
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="sideMargin">5dp</dimen>
+    <dimen name="divider_height">3dp</dimen>
+
+
+    <!-- cardview dimensions. -->
+    <dimen name="list_parent_side_padding">12dp</dimen>
+    <dimen name="list_parent_vertical_padding">6dp</dimen>>
+    <dimen name="card_elevation">2dp</dimen>>
+    <dimen name="card_radius">4dp</dimen>
+
+
+
+    <!-- ListView  dimensions. -->
+    <dimen name="listview_vertical_padding">4dp</dimen>
+</resources>

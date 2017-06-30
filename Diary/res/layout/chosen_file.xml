@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White_ish"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:id="@+id/info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/UIPink"
+                android:elevation="4dp"
+                android:paddingTop="12dp"
+                android:paddingBottom="12dp"
+                android:paddingLeft="30dp"
+                android:layout_marginBottom="15dp"
+                android:paddingRight="30dp"
+                android:gravity="top"
+                android:orientation="vertical" >
+
+
+                        <HorizontalScrollView
+                            android:id="@+id/tags"
+                            android:layout_width="fill_parent"
+                            android:layout_height="wrap_content"
+
+                            android:paddingBottom="10dp"
+                            android:scrollbarStyle="outsideOverlay" >
+
+                            <LinearLayout
+                                android:id="@+id/entryTags"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:gravity="fill_horizontal|center|start"
+                                android:isScrollContainer="true"
+                                android:onClick="tagsClicked"
+                                android:orientation="horizontal"
+                                android:paddingLeft="0dp"
+                                android:paddingRight="5dp"
+
+                                android:background="?android:selectableItemBackground"
+                                android:paddingStart="0dp"
+                                android:paddingEnd="5dp"
+                                android:scrollbarStyle="outsideOverlay"
+                                android:textColor="@color/UIPurple"
+                                android:textStyle="bold" >
+                            </LinearLayout>
+                        </HorizontalScrollView>
+                        <TextView
+                            android:id="@+id/date"
+                            android:layout_width="fill_parent"
+                            android:layout_height="fill_parent"
+                            android:clickable="true"
+                            android:focusable="true"
+                            android:gravity="top"
+                            android:maxLines="2"
+                            android:onClick="changeTime"
+                            android:paddingBottom="8dp"
+                            android:textColor="@color/Peach"
+                            android:textSize="14sp" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingBottom="8dp"
+                            android:id="@+id/relationships"
+                            android:baselineAligned="false"
+                            android:orientation="horizontal" >
+
+                            <TextView
+                                android:id="@+id/relationship"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:gravity="start"
+                                android:singleLine="true"
+                                android:text="Relationship"
+                                android:textColor="@color/Peach"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/occupation"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:gravity="start"
+                                android:paddingRight="5dp"
+                                android:paddingEnd="5dp"
+                                android:singleLine="true"
+                                android:text="occupation"
+                                android:textColor="@color/Peach"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/location"
+                                android:layout_width="fill_parent"
+                                android:layout_height="wrap_content"
+                                android:gravity="end|center_vertical"
+                                android:layout_marginLeft="60dp"
+                                android:singleLine="true"
+                                android:text="---"
+                                android:textColor="@color/Peach"
+                                android:textSize="14sp" />
+                        </LinearLayout>
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/content"
+                    android:background="@color/Peach"
+                    android:layout_marginLeft="5dp"
+                android:elevation="2dp"
+                    android:layout_marginRight="5dp"
+
+
+                android:paddingLeft="16dp"
+                android:paddingRight="16dp"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:orientation="vertical" >
+
+                <ViewSwitcher
+                    android:id="@+id/ChangeText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:id="@+id/text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:autoLink="all"
+                        android:lineSpacingExtra="3dp"
+                        android:minLines="7"
+                        android:scrollbarStyle="outsideOverlay"
+                        android:scrollbars="vertical"
+                        android:padding="10dp"
+                        android:textColor="#333"
+                        android:textColorLink="@color/UIPink"
+                        android:textIsSelectable="true"
+                        android:textSize="14sp" />
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:focusable="true"
+                        android:freezesText="true"
+                        android:gravity="left|top"
+                        android:hint="@string/new_entry_hint"
+                        android:inputType="textCapSentences|textMultiLine"
+                        android:lineSpacingExtra="3dp"
+                        android:padding="10dp"
+                        android:minLines="7"
+                        android:textColor="#333"
+                        android:background="#00000000"
+                        android:scrollbarStyle="outsideOverlay"
+                        android:textSize="14sp" >
+                    </EditText>
+                </ViewSwitcher>
+            </LinearLayout>
+<LinearLayout
+        android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="180dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+        android:elevation="2dp"
+                android:gravity="center_vertical"
+                android:layout_marginTop="15dp" >
+                
+                    <ImageButton
+                        android:id="@+id/imageButton1"
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:background="@drawable/round_plus_button_note"
+                        android:onClick="addPic"
+                        android:elevation="6dp"
+                        android:scaleType="fitXY"
+                        android:src="@drawable/camera" />
+            <HorizontalScrollView
+                android:id="@+id/scrollingWithImageWithinEntry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:scrollbarStyle="outsideOverlay" >
+
+                <LinearLayout
+                    android:id="@+id/layoutWithPWithinEntry"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="bottom"
+                    android:minHeight="80dp"
+                    android:orientation="horizontal" >
+                </LinearLayout>
+            </HorizontalScrollView>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/UIBlue"
+            android:id="@+id/markup"
+            android:gravity="center_vertical"
+            android:elevation="4dp"
+            android:orientation="vertical" >
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_height="wrap_content">
+                <Button
+                    android:id="@+id/mood"
+                    android:layout_width="75dp"
+                    android:layout_height="30dp"
+                    android:background="?android:selectableItemBackground"
+                    android:text="Mood"
+                    android:gravity="center"
+
+                    android:textColor="@color/Peach"
+                    android:onClick="moodButtonClicked"
+                    android:textSize="22sp" />
+
+                <Button
+                    android:id="@+id/tag_button"
+                    android:layout_width="75dp"
+                    android:layout_height="30dp"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_marginLeft="15dp"
+
+                    android:text="@string/add_tag"
+                    android:gravity="center"
+                    android:textColor="@color/Peach"
+                    android:onClick="newTag"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/add_like_button"
+                    android:layout_width="75dp"
+                    android:layout_height="30dp"
+                    android:background="?android:selectableItemBackground"
+                    android:text="☆"
+                    android:gravity="top|center_horizontal"
+                    android:layout_marginLeft="15dp"
+
+                    android:textColor="@color/Peach"
+                    android:onClick="favoriteSelectedFile"
+                    android:textSize="22sp" />
+
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="7" >
+
+                <TextView
+                    android:id="@+id/charCount"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:layout_marginRight="5dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/Peach"
+                    android:layout_weight="2"
+                    android:textSize="16sp"
+                    android:text="C:  0" />
+                <ViewSwitcher
+                    android:id="@+id/ChangeButtons"
+                    android:layout_width="0dp"
+                    android:layout_weight="3"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp" >
+
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal" >
+                <Button
+                    android:id="@+id/button2"
+                    style="@style/pearl_button"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:background="?android:selectableItemBackground"
+                    android:onClick="boldButtonClicked"
+                    android:layout_width="0dp"
+                    android:text="B"
+                    android:textColor="@color/Peach"
+                    android:layout_weight="1"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <Button
+                    android:id="@+id/button3"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:onClick="italicButtonClicked"
+                    android:text="I"
+                    android:textColor="@color/Peach"
+                    android:textSize="16sp"
+                    android:textStyle="italic" />
+
+                <Button
+                    android:id="@+id/button4"
+                    android:layout_height="35dp"
+                    android:layout_marginRight="5dp"
+                    android:layout_width="0dp"
+                    android:background="?android:selectableItemBackground"
+                    android:layout_weight="1"
+                    android:onClick="underlineButtonClicked"
+                    android:text="U"
+                    android:textColor="@color/Peach"
+                    android:textSize="16sp" />
+
+                </LinearLayout>
+                </ViewSwitcher>
+
+                <TextView
+                    android:id="@+id/wordCount"
+                    android:layout_width="0dp"
+                    android:layout_height="fill_parent"
+                    android:gravity="center_vertical|right"
+                    android:textColor="@color/Peach"
+                    android:paddingRight="10dp"
+                    android:layout_weight="2"
+                    android:textSize="16sp"
+                    android:text="W:  0" />
+            </LinearLayout>
+</LinearLayout>
+            </LinearLayout>
+
+
+</LinearLayout>

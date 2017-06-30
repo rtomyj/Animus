@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Erinnerungen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="entries">Einträge</string>
+    <string name="calendar_view">Kalender</string>
+    <string name="favorite_entries">Favoriten</string>
+    <string name="pic_entries">Bilder</string>
+    <string name="home">Zuhause</string>
+    <string name="entry">Neuer Eintrag</string>
+    <string name="address_book">Menschen</string>
+    <string name="tags">Etikett</string>
+    <string name="bugs_button">Bugs, Tipps, Anregungen</string>
+    <string name="take_picture">Bild Aufnehmen</string>
+    <string name="choose_photo">Wählen Sie Foto</string>
+
+    <string-array name="months">
+        <item>Januar</item>
+        <item>Februar</item>
+        <item>März</item>
+        <item>April</item>
+        <item>Mai</item>
+        <item>Juni</item>
+        <item>Juli</item>
+        <item>August</item>
+        <item>September</item>
+        <item>Oktober</item>
+        <item>November</item>
+        <item>Dezember</item>
+    </string-array>
+
+    <string name="email">Als E-Mail</string>
+    <string name="delete_entry_dialog">löschen? Sind Sie sicher?</string>
+    <string name="delete_confirmation">löschen</string>
+    <string name="delelte_dialog_message">Alle Daten werden gelöscht, wenn Sie weiterhin&#8230;</string>
+    <string name="edit_tags_dialog_title">Wählen Sie einen etikett Sie löschen möchten.</string>
+    <string name="cancel">Stornieren</string>
+    <string name="tags_">Etikett: </string>
+    <string name="yes">Ja</string>
+    <string name="no">Nicht</string>
+
+    <string-array name="navigation_titles">
+        <item>Einträge</item>
+        <item>Konzept</item>
+        <item>Bilder</item>
+        <item>Etikett</item>
+        <item>Favorite</item>
+    </string-array>
+
+    <string name="open">öffnen</string>
+    <string name="close">schließen</string>
+
+    <string-array name="weekdays">
+        <item></item>
+        <item>Sonntag</item>
+        <item>Montag</item>
+        <item>Dienstag</item>
+        <item>Mittwoch</item>
+        <item>Donnerstag</item>
+        <item>Freitag</item>
+        <item>Samstag</item>
+    </string-array>
+
+    <string name="about">über</string>
+    <string name="general">General</string>
+    <string name="allow_fullscreen">Vollbild zulassen</string>
+    <string name="notifications">Benachrichtigungen</string>
+    <string name="old_recording">Alte Aufnahme</string>
+    <string name="new_recording">Neue Aufnahme</string>
+    <string name="share">Aktie</string>
+    <string name="new_pic">Neues Bild</string>
+    <string name="new_entry">Neuer Eintrag</string>
+    <string name="edit">Bearbeiten</string>
+    <string name="done">Fertig</string>
+    <string name="new_note">Neuer Anmerkung</string>
+    <string name="note_hint">Beginnen Sie Ihre Notiz.</string>
+    <string name="personal">Persönlich</string>
+    <string name="relationship">Beziehung</string>
+    <string name="occupation">Beruf</string>
+    <string name="work_question_dialog">Wo sehen Sie derzeit arbeiten?</string>
+    <string name="relationship_question_dialog">Wer sind Sie aus?</string>
+    <string name="help">Hilfe</string>
+    <string name="recording">Aufnahme&#8230;</string>
+    <string name="stop_recording">Stopp</string>
+    <string name="dismiss">Entlassen</string>
+    <string name="no_tags_toast">Es sind keine Einträge mit Etikett.</string>
+    <string name="no_photos_toast">Keine Dateien Bildquellen verwendet.</string>
+    <string name="notes">Aufzeichnungen</string>
+    <string name="time">Zeit</string>
+    <string name="statuses">Status</string>
+    <string name="status_setting_explanation">Alle Einsendungen werden Ihre Beziehungen, um das Schreiben zu vereinfachen Erfahrung.</string>
+    <string name="full_setting_explanation">\"Neuer Eintrag\" wird als Vollbild zu gehen.</string>
+    <string name="single">Single</string>
+    <string name="unemployed">Arbeitslos</string>
+    <string name="change_time_of_notification">Ändern</string>
+    <string name="delete_pic">Löschen ausgewählte Bild?</string>
+    <string name="delete_pic_confirmation">Diese Aktion kann nicht rückgängig gemacht werden&#8230;</string>
+    <string name="alph_sort">Alphabetisch Sortieren</string>
+    <string name="value_sort">Sortieren Numerisch</string>
+    <string name="re_record">Datensatz erneut</string>
+
+    <string-array name="abrev_weekdays">
+        <item>Son</item>
+        <item>Mon</item>
+        <item>Die</item>
+        <item>Mit</item>
+        <item>Don</item>
+        <item>Fre</item>
+        <item>Sam</item>
+    </string-array>
+
+    <string name="entries_welcome">Ihr Tagebuch ist derzeit leer. Klicken Sie auf das + um einen Eintrag hinzufügen.</string>
+    <string name="location_setting_title">Location-Einträge</string>
+    <string name="location_setting_info">App für Ihren aktuellen Standort ping.</string>
+    <string name="intro_dialog_dismiss_button">Ehrfürchtig! Lassen Sie mich loslegen.</string>
+    <string name="welcome">Herzlich Willkommen!</string>
+    <string name="welcome_subtext">Mit dieser App können Sie Ihr Leben Momente aufnehmen.</string>
+    <string name="intro_entries">Nie aus der Reichweite, kann das Telefon und sogar Tablet-Momente Ihres Lebens zu hosten. \nWeitere Moment ist zu flüchtig, und keine Erfahrung vergessen.</string>
+    <string name="intro_notes">• Schuldverschreibungen erleichtern das Sammeln einfache Informationen, wie ein Lebensmittelgeschäft oder lästige Pflicht Liste.</string>
+    <string name="intro_pics">• Fotos können helfen, Dinge sagen, Worte können es nicht. Können unbegrenzt viele Bilder sagen.</string>
+    <string name="intro_tags">• Etiketts organisieren Einträge in ähnliche Ereignisse und Schlüsselwörter. Tag zwei verschiedene Einträge, um sie zu verbinden.</string>
+    <string name="intro_location">• Standorte bringt einige Kontextbewusstsein, um Ihre Eingaben. Schalten Sie in den Einstellungen-Funktion auf, und Sie werden immer wissen, wo Sie waren.</string>
+    <string name="intro_rate">Vergessen Sie nicht, die App bewerten.</string>
+    <string name="favs">Favoriten</string>
+    <string name="locations">Standorte</string>
+    <string name="share_dialog_title">Wählen Sie Sharing-Verfahren...</string>
+    <string name="share_dialog_neutral_button">Vorherige</string>
+    <string name="illegal_character">Illegale Charakter...</string>
+    <string name="add_tag">+  Etikett</string>
+    <string name="tag_hint_new_entry">Hinzufügen von Tags erfordert Enter-Taste für jeden Wert.</string>
+    <string name="added">zusätzlich</string>
+    <string name="beta">Deutsch ist derzeit in der Beta</string>
+    <string name="analytics_key">UA-48310537-1</string>
+    <string name="feedback">Rückkopplung</string>
+    <string name="feedback_error">Fehler mit dem Standard-Mail-Client...</string>
+    <string name="tags_hint_1">Etikett/Betrag</string>
+    <string name="tags_hint_2">Letzter Eintrag mit etikett</string>
+    <string name="untitled">(Untitled)</string>
+    <string name="text">(kein text)</string>
+    <string name="password">Passwort</string>
+    <string name="password_explanation">Ein Passwort wird helfen, Ihre Daten sicher.</string>
+    <string name="password_edit">Passwort bearbeiten</string>
+    <string name="contacts">Kontakt Vorschläge</string>
+    <string name="contacts_suggestions">Ermöglicht den zugriff auf kontakte für etikett-vorschläge.</string>
+    <string name="enter_password">Geben Sie das Passwort</string>
+    <string name="wrong">Falsches Passwort</string>
+    <string name="reached_attempts_1_min">Erreicht 4 Versuche. Versuchen Sie es erneut in 1 Minute...</string>
+    <string name="enter_new_password">Wählen Sie neue Passwort</string>
+    <string name="re_enter_password">Passwort erneut eingeben</string>
+    <string name="selection">Wählen Sie</string>
+
+    <string-array name="months_abrev">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mär</item>
+        <item>Apr</item>
+        <item>Mai</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Okt</item>
+        <item>Nov</item>
+        <item>Dez</item>
+    </string-array>
+
+    <string name="ok">Ok</string>
+    <string name="new_tag">Geben Sie den neuen etikett</string>
+    <string name="rename_file_dialog">Geben Sie den neuen Namen der Einreise</string>
+    <string name="modify_date">Datum Ändern</string>
+    <string name="rename_files">Dateien Umbenennen</string>
+    <string name="add">ergänzend</string>
+    <string name="file_exists_err">Datei existiert</string>
+    <string name="network_err">NO INTERNET</string>
+    <string name="general_err">Fehler</string>
+    <string name="favs_welcome">Es wurden keine Einträge Favorit markiert ;-(</string>
+
+    <!--
+    changed strings
+    changed the order of privacy and tags in "privacy_topics" and took out the rest of the stuff. Also, changed up the "hel
+    p_privacy" string.
+    -->
+    <string name="help_tags">Mit Tags können Sie immer wieder besuchen letzten Einträge in einer Brise. Wenn es ein Thema, scheint 
+immer kommen in Ihren Angaben, können Sie sie mit einem Stichwort zu verknüpfen. Dieses Schlüsselwort, oder Tag, Wille 
+dann helfen die Anwendung Link-Einträge zusammen.</string>
+    <string name="help_privacy">Die Informationen, die Sie in dieser App speichern, liegt bei Ihnen. Ich glaube nicht, und können Ihre Einträge nicht gelesen 
+. Android 4.0 und höher keine Anzeigen. Alles unter das tut. Ansonsten gibt es Analytics läuft, um herauszufinden, 
+neue und bestehende User und die Zeit, die sie verwenden, eine bestimmte Tätigkeit. Außerdem werden Systemabsturz Protokolle XML Referenzen zu liefern. Diese Referenzen sind nur Dateinamen 
+und Etikett-Namen und wird in die Ermittlung, was die App abstürzt NDO NICHT unterstützen. \ n \ 
+setzen sensetive Informationen 
+in Etikett und Entry-Namen, wenn Sie nicht wollen, um in die Gefahr der mich liest sie laufen. Der Körper der Einträge und Notizen sind 100% sicher.</string>
+    <string name="help_usage"></string>
+    <string name="help_notes_and_entries"></string>
+
+    <string-array name="privacy_topics">
+        <item>Vertraulichkeit</item>
+        <item>Etikett</item>
+    </string-array>
+
+    <string name="num_lines">Zeilennummer</string>
+    <string name="num_lines_summary">Dargestellten Linien beim Scrollen durch Einträge.</string>
+    <string name="theme">Thema</string>
+    <string name="theme_summary">Die Palette für die App.</string>
+    <string name="UI">UI</string>
+    <string name="font_size">Schriftgröße</string>
+    <string name="font_size_summary">Haupt-UI-Elemente werden auf den aktuellen Wert zu halten. Rest wird entsprechend anpassen.</string>
+    <string name="system_font">Systemschrift</string>
+    <string name="information">App Info</string>
+
+    <string-array name="lines">
+        <item>zwei</item>
+        <item>drei</item>
+        <item>vier</item>
+        <item>fünf</item>
+    </string-array>
+    <string-array name="theme">
+        <item>Default</item>
+        <item>Dunkel</item>
+        <item>Material</item>
+        <item>Material 2</item>
+        <item>Material 3</item>
+        <item>Material 4</item>
+    </string-array>
+
+    <string name="credits">Credits/Danksagungen</string>
+    <string name="no_sd">Keine SD-Karte gefunden</string>
+    <string name="data">Daten</string>
+    <string name="about_me_text">Danke für die Unterstützung. Verwenden Sie die folgenden Tasten, um mir helfen, die App besser zu machen oder nach Updates folgen. \n\n</string>
+    <string name="dbx_disconnect">Dropbox-Konto verbunden getrennt</string>
+    <string name="dbx_sync">Dropbox Sicherungskopie</string>
+    <string name="dbx_sync_description">Nimmt eine bestehende Dropbox-Konto und sichert Einträge als TXT-Dateien und wird für Quergeräteunterstützung in der Zukunft zu ermöglichen.*</string>
+    <string name="sd_backup">SD Sicherungskopie</string>
+    <string name="sd_backup_description">Speichert Einträge als TXT-Dateien auf SD-Karte montiert.</string>
+    <string name="backup_and_restore">Sicherungskopie &amp; wiederherstellen</string>
+    <string name="sync">Sync</string>
+    <string name="dbx_warning">*Bearbeiten von Dateinamen in Dropbox könnte Probleme mit Tags und andere App-Features verursachen.</string>
+    <string name="the_dev">Entwickler</string>
+    <string name="name">Die Namen Javi</string>
+    <string name="me_info">Ich bin ein Vollzeit-Student und habe einen Vollzeit-Job. Wünschte, ich könnte mehr Code, aber was willst du tun?&lt;br/>&lt;br/>Ich liebe Technik und Phantasie UI-Design. Die folgenden sind meine persönlichen Social Media-Konten. Wenn Sie meine Arbeit mögen, und folgen!&lt;br/>&lt;br/>
+ &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
+    <string name="donate">Spenden</string>
+    <string name="donation_err">Err reich Google Play...</string>
+    <string name="new_entry_hint">Körper der eintrag</string>
+    <string name="entry_header">Titel</string>
+    <string name="tag_hint">Etikett...</string>
+    <string name="donation_explanation">Spenden sind nur für diejenigen, die gerne die Anwendung und haben einige Kleingeld. 
+Es gibt keine Vergünstigungen auch immer. Es wird mich in der Entwicklungshilfe, indem es mir Ausrüstung zu kaufen. \n\nDies keineswegs aktiviert ein \&apos;Für\&apos; version. Alle zukünftigen Updates werden die gleichen Eigenschaften und kostenlos, unabhängig, wenn Sie nicht spenden.</string>
+    <string name="base">Basis Spende</string>
+    <string name="second">Zweite Tier</string>
+    <string name="third">Dritte Tier</string>
+    <string name="god">Gott Tier</string>
+
+</resources>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp"
+    android:id="@+id/parent"
+    style="@style/pearl_button"
+              android:orientation="vertical"
+              android:elevation="2dp"
+    >
+
+    <LinearLayout
+        android:paddingBottom="5dp"
+        android:paddingTop="5dp"
+        android:layout_width="match_parent"
+        android:background="?android:selectableItemBackground"
+        android:layout_height="match_parent"
+        android:descendantFocusability="blocksDescendants"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:text="Default"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="2dp"
+            android:maxLines="3"
+            android:minLines="3"
+            android:paddingLeft="15dp"
+            android:textColor="#666"
+            android:paddingTop="5dp"
+            android:text="The quick brown fox jumps over the lazy dog?! \n1234567890"
+            android:textSize="14sp" />
+
+    </LinearLayout>
+</LinearLayout>

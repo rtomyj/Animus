@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/file_frag" xmlns:file_frag="http://schemas.android.com/apk/res-auto"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+ file_frag:cardCornerRadius="@dimen/card_radius"
+
+    file_frag:cardUseCompatPadding="true"
+    android:elevation="@dimen/card_elevation"
+    android:foreground="?android:selectableItemBackground"
+file_frag:cardBackgroundColor="@color/Peach"
+    android:orientation="vertical"
+    >
+
+    <LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:id="@+id/card_view"
+    android:paddingLeft="@dimen/list_parent_side_padding"
+    android:paddingRight="@dimen/list_parent_side_padding"
+    android:paddingTop="@dimen/list_parent_vertical_padding"
+    android:paddingBottom="@dimen/list_parent_vertical_padding"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="5"
+            android:clickable="false"
+            android:gravity="top"
+            android:orientation="horizontal"
+            android:paddingRight="15dp"
+            android:paddingEnd="15dp" >
+
+            <TextView
+                android:id="@+id/file_month"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:gravity="top"
+                android:paddingRight="5dp"
+                android:paddingEnd="5dp"
+                android:text="Month"
+                android:textColor="#333"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/file_day"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:gravity="top"
+                android:paddingEnd="5dp"
+                android:paddingRight="5dp"
+                android:text="Day"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:textColor="@color/UIBlue"
+                tools:ignore="HardcodedText" />
+
+            <TextView
+                android:id="@+id/file_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:text="time"
+                android:textColor="#333"
+                android:textSize="14sp"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="0dp"
+            android:layout_height="fill_parent"
+            android:layout_weight="6"
+            android:clickable="false"
+            android:gravity="end|center_vertical"
+            android:text="TextView"
+            android:textColor="@color/UIBlue"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="false"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/summary_of_entry"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:clickable="false"
+            android:gravity="start|top"
+            android:maxLines="3"
+            android:minLines="3"
+            android:paddingLeft="5dp"
+            android:paddingRight="5dp"
+            android:text="Summary of entry"
+            android:textColor="#333"
+            android:lineSpacingExtra="2dp"
+            android:paddingTop="4dp"
+            android:paddingBottom="4dp"
+            android:textSize="14sp" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="bottom"
+            android:gravity="bottom" >
+
+            <LinearLayout
+                android:id="@+id/tags_file_adapter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:gravity="start|center_vertical"
+                android:orientation="horizontal" >
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/fav"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:onClick="favoriteSelectedFile"
+                android:text="☆"
+    android:background="?android:selectableItemBackground"
+                android:textSize="28sp" />
+
+            <TextView
+                android:id="@+id/menu"
+                android:layout_width="35dp"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:gravity="center"
+                android:onClick="dropDownMenuForSelectedFile"
+                android:background="?android:selectableItemBackground"
+                android:text="⋮"
+                android:textSize="28sp" />
+        </LinearLayout>
+    </LinearLayout>
+    </LinearLayout>
+
+</android.support.v7.widget.CardView>

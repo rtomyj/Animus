@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:id="@+id/parent"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/UIPink"
+              android:orientation="vertical" >
+
+
+    <ViewSwitcher
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:id="@+id/viewSwitcher">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="60dp"
+                android:text="Animus"
+                android:id="@+id/textView"
+                android:textSize="44sp"
+                android:textColor="@color/Peach"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Elegance In Writing"
+                android:textSize="22sp"
+                android:textColor="@color/Peach"
+                android:id="@+id/textView6"/>
+        </LinearLayout>
+
+    </ViewSwitcher>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:background="@color/UIBlue"
+        android:layout_height="wrap_content">
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="previous"
+            android:background="?android:selectableItemBackground"
+            android:textColor="@color/Peach"
+            android:text="Previous"
+            android:id="@+id/button"/>
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            />
+
+        <Button
+            android:layout_width="wrap_content"
+            android:background="?android:selectableItemBackground"
+            android:layout_height="wrap_content"
+            android:onClick="next"
+            android:text="Next"
+            android:textColor="@color/Peach"
+            android:id="@+id/button11"/>
+    </LinearLayout>
+</LinearLayout>

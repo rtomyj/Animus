@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="Credits"
+        android:textColor="#333"
+        android:textSize="22sp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="35dp"
+                android:lineSpacingExtra="2dp"
+                android:layout_marginLeft="35dp"
+                android:textSize="14sp"
+                android:textColor="#333"
+                android:text="Fonts\nhttp://www.1001freefonts.com/ 
+         \n\n
+• Ubuntu-Light by Dalton Maag\n
+• Mercato-Light by Manfred Klein\n
+• Bendable by Aenigma Fonts\n
+• Share TechMono - Regular by Botio Nikoltchev\n
+• Plain &amp; Simply Fat by GreyWolf Webworks\n
+• Marck Script - Regular  by Denis Masharov\n
+• Typewriters Substitute by Manfred Klein\n
+• Rothenburg Decorative by Dieter Steffmann\n
+• Day Roman by Apostrophic Labs\n
+• Monoglyceride by Tepid Monkey\n
+• Always Forever by Brittney Murphy \n
+• Marker Felt by Dieter Steffmann\n
+• Girl Next Door by Vanessa Bays\n
+\n
+UI/coding/planning and everything else by Javi Gomez" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:baselineAligned="false"
+    android:layout_width="fill_parent"
+    android:layout_height="52dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@drawable/white_transparent_roundedcorner"
+    android:orientation="horizontal" >
+
+    <LinearLayout
+        android:id="@+id/logo"
+        android:layout_width="150dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:clickable="true"
+        android:background="?android:selectableItemBackground">
+
+        <ImageView
+            android:id="@+id/imageView1"
+            android:layout_width="match_parent"
+            android:clickable="false"
+            android:layout_height="45dp"
+            android:src="@drawable/app_icon" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+            android:background="@color/UIMaterialPink" >
+
+        <ImageButton
+            android:id="@+id/new_entry"
+            android:layout_width="75dp"
+            android:layout_height="match_parent"
+            android:background="?android:selectableItemBackground"
+            android:clickable="true"
+            android:src="@drawable/white_add_new" />
+    </LinearLayout>
+
+</LinearLayout>

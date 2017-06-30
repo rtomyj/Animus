@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/White_ish"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/month_and_year"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/UIPink"
+        android:paddingBottom="2dp"
+                        android:paddingLeft="60dp"
+        android:paddingTop="5dp"
+        android:textColor="@color/Peach"
+        android:elevation="4dp"
+        android:textSize="14sp" />
+
+    <ListView
+        android:id="@+id/selected_tag_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false"
+                        android:divider="#00000000"
+                            android:dividerHeight="3dp"
+        android:paddingBottom="5dp"
+                            android:paddingLeft="8dp"
+                            android:paddingRight="8dp"
+        android:paddingTop="5dp"
+        android:saveEnabled="true"
+        android:scrollbarStyle="outsideOverlay" >
+    </ListView>
+
+</LinearLayout>

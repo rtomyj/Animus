@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/general" >
+
+        <Preference android:title="Data"
+            android:summary="Manage info stored on app." >
+            <intent android:action="com.diary.data" />
+        </Preference>
+        <com.AnimusSubActivities.CustomPreference
+            android:defaultValue="false"
+            android:key="Password"
+            android:summary="@string/password_explanation"
+            android:title="@string/password" />
+        <ListPreference
+            android:defaultValue="false"
+            android:title="Reset"
+            android:summary="Resets tags. Defaults to having 0 tags."
+            android:entries="@array/reset_tags"
+            android:entryValues="@array/reset_tags_values"
+            android:key="Reset"
+            />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/personal" >
+        <com.AnimusSubActivities.CustomPreference
+            android:defaultValue="false"
+            android:key="Statuses"
+            android:summary="@string/status_setting_explanation"
+            android:title="@string/statuses" />
+
+        <EditTextPreference
+            android:defaultValue="@string/single"
+            android:dependency="Statuses"
+            android:dialogTitle="@string/relationship_question_dialog"
+            android:key="Relationship"
+            android:persistent="true"
+            android:summary="@string/single"
+            android:title="@string/relationship" />
+        <EditTextPreference
+            android:defaultValue="@string/unemployed"
+            android:dependency="Statuses"
+            android:dialogTitle="@string/work_question_dialog"
+            android:key="Occupation"
+            android:persistent="true"
+            android:summary="@string/unemployed"
+            android:title="@string/occupation" >
+        </EditTextPreference>
+
+
+        <com.AnimusSubActivities.CustomPreference
+            android:defaultValue="false"
+            android:key="GPS"
+            android:summary="@string/location_setting_info"
+            android:title="@string/location_setting_title" />
+        <com.AnimusSubActivities.CustomPreference
+            android:defaultValue="false"
+            android:key="Contacts"
+            android:summary="@string/contacts_suggestions"
+            android:title="@string/contacts" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/UI" >
+        <ListPreference
+            android:defaultValue="Default"
+            android:entries="@array/theme"
+            android:entryValues="@array/theme_values"
+            android:key="Theme"
+            android:summary="@string/theme_summary"
+            android:title="@string/theme" >
+        </ListPreference>
+        <ListPreference
+            android:defaultValue="3"
+            android:entries="@array/lines"
+            android:entryValues="@array/lines_values"
+            android:key="LineNum"
+            android:summary="@string/num_lines_summary"
+            android:title="@string/num_lines" >
+        </ListPreference>
+        <Preference android:title="@string/system_font"
+            android:summary="Change the font of entries and certain other UI elements.">
+            <intent android:action="com.diary.fonts" />
+        </Preference>
+        <ListPreference
+            android:defaultValue="14"
+            android:entries="@array/text_size"
+            android:entryValues="@array/text_size_values"
+            android:key="TextSize"
+            android:summary="@string/font_size_summary"
+            android:title="@string/font_size" >
+        </ListPreference>
+
+
+
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/information">
+        <Preference android:title="@string/about"
+            android:summary="social media links, version history, feedback, credits, etc." >
+            <intent android:action="com.diary.about_me" />
+        </Preference>
+        <Preference android:title="@string/help"
+            android:summary="Information on privacy and other key app features.">
+
+            <intent android:action="com.diary.help" />
+        </Preference>
+    </PreferenceCategory>
+
+</PreferenceScreen>

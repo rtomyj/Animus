@@ -1,0 +1,252 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="action_settings">Configuración</string>
+    <string name="address_book">Personas</string>
+    <string name="app_name">Animus</string>
+    <string name="bugs_button">Bugs, Consejos, sugerencias</string>
+    <string name="calendar_view">calendario</string>
+    <string name="cancel">Cancelar</string>
+    <string name="choose_photo">Elegir Un Foto</string>
+    <string name="close">Concluir</string>
+    <string name="delelte_dialog_message">Se borrarán todos los datos si sigui&#8230;</string>
+    <string name="delete_confirmation">Invalidar</string>
+    <string name="delete_entry_dialog">¿Invalidar? Esta seguro?</string>
+    <string name="edit_tags_dialog_title">Seleccione una etiqueta que desea invalidar.</string>
+    <string name="email">Enviar Por Correo Electrónico</string>
+    <string name="entries">Entradas</string>
+    <string name="entry">Nueva Entrada</string>
+    <string name="favorite_entries">Favoritos</string>
+    <string name="home">Interior</string>
+    <string name="no">No</string>
+    <string name="pic_entries">Imágenes</string>
+    <string name="tags">Etiquetas</string>
+    <string name="tags_">Etiquetas:</string>
+    <string name="take_picture">Tomar Foto</string>
+    <string name="yes">Si</string>
+    <string name="general">General</string>
+
+    <string-array name="months">
+        <item>enero</item>
+        <item>febrero</item>
+        <item>marzo</item>
+        <item>abril</item>
+        <item>mayo</item>
+        <item>junio</item>
+        <item>julio</item>
+        <item>agosto</item>
+        <item>septiembre</item>
+        <item>octubre</item>
+        <item>noviembre</item>
+        <item>diciembre</item>
+    </string-array>
+
+    <string name="allow_fullscreen">Permitir Pantalla Completa</string>
+    <string name="notifications">Notificación</string>
+    <string name="about">Sobre La Aplicación</string>
+
+    <string-array name="navigation_titles">
+        <item>Entradas</item>
+        <item>Notas</item>
+        <item>Imágenes</item>
+        <item>Etiquetas</item>
+        <item>Favoritos</item>
+    </string-array>
+    <string-array name="weekdays">
+        <item></item>
+        <item>domingo</item>
+        <item>lunes</item>
+        <item>martes</item>
+        <item>miércoles</item>
+        <item>jueves</item>
+        <item>viernes</item>
+        <item>sábado</item>
+    </string-array>
+
+    <string name="old_recording">Grabación Anterior</string>
+    <string name="new_recording">Nueva Grabación</string>
+    <string name="share">Compartir</string>
+    <string name="new_pic">Nueva Imagen</string>
+    <string name="new_entry">Nueva Entrada</string>
+    <string name="edit">Editar</string>
+    <string name="done">Hecho</string>
+    <string name="open">Abrir</string>
+    <string name="new_note">Nueva Nota</string>
+    <string name="note_hint">Comience a escribir su nota.</string>
+    <string name="personal">Personal</string>
+    <string name="relationship">Relación</string>
+    <string name="occupation">Ocupación</string>
+    <string name="work_question_dialog">¿Dónde trabajas actualmente?</string>
+    <string name="relationship_question_dialog">¿Con quién sales?</string>
+    <string name="help">Ayuda</string>
+    <string name="recording">Grabación&#8230;</string>
+    <string name="stop_recording">Detener la grabación</string>
+    <string name="dismiss">Despedir</string>
+    <string name="no_tags_toast">No hay entradas con etiquetas.</string>
+    <string name="no_photos_toast">No hay entradas que usan fuentes de imagen.</string>
+    <string name="notes">Notas</string>
+    <string name="time">Hora</string>
+    <string name="statuses">Estatus</string>
+    <string name="status_setting_explanation">Todas las entradas van a tener sus relaciones para simplificar la experiencia.</string>
+    <string name="full_setting_explanation">\"Nueva Entrada\" será completa.</string>
+    <string name="single">Soltero</string>
+    <string name="unemployed">Desempleados</string>
+    <string name="change_time_of_notification">Change</string>
+    <string name="delete_pic">¿Invalidir la imagen seleccionada?</string>
+    <string name="delete_pic_confirmation">La acción no se puede deshacer&#8230;</string>
+    <string name="alph_sort">Sort Alphebitically</string>
+    <string name="value_sort">Ordenar Numéricamente</string>
+    <string name="re_record">Volver a grabar</string>
+
+    <string-array name="abrev_weekdays">
+        <item>dom</item>
+        <item>lun</item>
+        <item>mar</item>
+        <item>mié</item>
+        <item>jue</item>
+        <item>vie</item>
+        <item>sáb</item>
+    </string-array>
+
+    <string name="entries_welcome">Su diario está actualmente vacía. Empuje el + botón para hacer una entrada.</string>
+    <string name="location_setting_title">Permitir Ubicación</string>
+    <string name="location_setting_info">App será un ping de tu ubicación actual.</string>
+    <string name="intro_dialog_dismiss_button">Bueno! Permítame iniciarlo.</string>
+    <string name="welcome">¡Bienvenido!</string>
+    <string name="welcome_subtext">Con este app puede grabar sus experiencias.</string>
+    <string name="intro_entries">Nunca fuera de alcance, el teléfono y la tableta aún pueden alojar sus momentos de la vida. \nNingún momento es demasiado fugaz, y ninguna experiencia olvidado.</string>
+    <string name="intro_notes">• Notas facilitarán la recopilación de información tan simple como una lista de compras o tarea.</string>
+    <string name="intro_pics">• Las fotos pueden ayudar a decir palabras de cosas no puede. Número ilimitado de imágenes pueden decir mucho.</string>
+    <string name="intro_tags">• Etiquetas organiza las entradas en los acontecimientos y palabras clave similares. Etiquetas dos entradas diferentes para vincularlos.</string>
+    <string name="intro_location">• Ubicaciones trae algo de conciencia contextual de las entradas. Gire función en los ajustes y que siempre sabe dónde estabas.</string>
+    <string name="intro_rate">No te olvides de votar la aplicación.</string>
+    <string name="favs">Favoritos</string>
+    <string name="locations">Ubicaciones</string>
+    <string name="share_dialog_title">Seleccione el método de reparto...</string>
+    <string name="share_dialog_neutral_button">Detrás</string>
+    <string name="illegal_character">Carácter ilegal...</string>
+    <string name="add_tag">+  Etiqueta</string>
+    <string name="tag_hint_new_entry">Adición de etiquetas requiere tecla enter para cada valor.</string>
+    <string name="added">sumado</string>
+    <string name="beta">Española se encuentra actualmente en fase beta. Por favor enviar sus comentarios.</string>
+    <string name="analytics_key">UA-48310537-1</string>
+    <string name="feedback">Realimentación</string>
+    <string name="feedback_error">Error con el cliente de correo electrónico predeterminado...</string>
+    <string name="tags_hint_1">Etiqueta/Cantidad</string>
+    <string name="tags_hint_2">Última entrada con etiqueta</string>
+    <string name="untitled">(Intitulado)</string>
+    <string name="text">(no texto)</string>
+    <string name="password">Contraseña</string>
+    <string name="password_explanation">Una contraseña le ayudará a mantener su información segura.</string>
+    <string name="password_edit">Edite contraseña</string>
+    <string name="contacts">Contacto Sugerencia</string>
+    <string name="contacts_suggestions">Permitir el acceso a los contactos para sugerencias de etiquetas.</string>
+    <string name="enter_password">Introduce el password</string>
+    <string name="wrong">Contraseña incorrecta</string>
+    <string name="reached_attempts_1_min">Alcanzado 4 intentos. Inténtelo de nuevo en 1 minuto...</string>
+    <string name="enter_new_password">Seleccione nueva contraseña</string>
+    <string name="re_enter_password">Vuelva a escribir la contraseña</string>
+    <string name="selection">Seleccione</string>
+
+    <string-array name="months_abrev">
+        <item>ene</item>
+        <item>feb</item>
+        <item>mar</item>
+        <item>abr</item>
+        <item>may</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>ago</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>dic</item>
+    </string-array>
+
+    <string name="ok">Bueno</string>
+    <string name="new_tag">Escriba la nueva etiqueta</string>
+    <string name="rename_file_dialog">Introduzca el nuevo nombre de la entrada</string>
+    <string name="modify_date">Modificar Fecha</string>
+    <string name="rename_files">Cambiar Nombre del Archivo</string>
+    <string name="add">Agregar</string>
+    <string name="file_exists_err">El archivo existe</string>
+    <string name="network_err">NO INTERNET</string>
+    <string name="general_err">Error</string>
+    <string name="favs_welcome">No hay entradas se han favorecido ;-(</string>
+
+    <!--
+    changed strings
+    changed the order of privacy and tags in "privacy_topics" and took out the rest of the stuff. Also, changed up the "hel
+    p_privacy" string.
+    -->
+    <string name="help_tags">Con las etiquetas siempre se puede volver a las entradas antiguas de una brisa. Si hay un tema que parece 
+venir siempre en sus entradas, puede asociarlos con una palabra clave. Esta palabra clave o etiqueta, voluntad 
+luego ayudar al enlace de la aplicación entradas juntas.</string>
+    <string name="help_privacy">La información almacenada en esta aplicación es suya. Yo no lo hago y no puedo leer tus entradas 
+. Android 4.0 y superior no tienen anuncios. Cualquier cosa por debajo que hace. De lo contrario hay análisis que se ejecutan para averiguar 
+nuevos y antiguos usuarios y la cantidad de tiempo que utilizan una determinada actividad. Además, los registros de errores del sistema proporcionarán referencias XML. Estas referencias son sólo nombres de archivo 
+y los nombres de etiquetas y ayudarán en la localización de lo que hace que la aplicación se bloquee. \ n \ nNo 
+poner la información sensetive 
+en las etiquetas y nombres de entrada si usted no desea ejecutar en el riesgo de mi lectura. El cuerpo de las entradas y las notas son 100% seguras.</string>
+    <string name="help_usage"></string>
+    <string name="help_notes_and_entries"></string>
+
+    <string-array name="privacy_topics">
+        <item>Confidencialidad</item>
+        <item>Etiquetas</item>
+    </string-array>
+
+    <string name="num_lines">Número de línea</string>
+    <string name="num_lines_summary">Líneas muestran al desplazarse por las entradas.</string>
+    <string name="theme">Tema</string>
+    <string name="theme_summary">La gama de colores de la aplicación.</string>
+    <string name="UI">UI</string>
+    <string name="font_size">tamaño de La Letra</string>
+    <string name="font_size_summary">Principales elementos de interfaz de usuario se adherirá a valor actual. Resto ajustará en consecuencia.</string>
+    <string name="system_font">Tipo de Letra</string>
+    <string name="information">App Info</string>
+
+    <string-array name="lines">
+        <item>Dos</item>
+        <item>Tres</item>
+        <item>Cuatro</item>
+        <item>Cinco</item>
+    </string-array>
+    <string-array name="theme">
+        <item>Por defecto</item>
+        <item>Negro</item>
+        <item>Material</item>
+        <item>Material 2</item>
+        <item>Material 3</item>
+        <item>Material 4</item>
+    </string-array>
+
+    <string name="credits">Créditos/Agradecimientos</string>
+    <string name="no_sd">No hay tarjeta SD encontrado</string>
+    <string name="data">Datos</string>
+    <string name="about_me_text">Gracias por el apoyo. Utilice los siguientes botones para ayudarme a hacer mejor la aplicación o seguir las actualizaciones. \n\n</string>
+    <string name="dbx_disconnect">Cuenta de dropbox asociado desconectado</string>
+    <string name="dbx_sync">Dropbox Copia de Seguridad</string>
+    <string name="dbx_sync_description">Toma una cuenta Dropbox existente y copias de seguridad de las entradas como archivos txt y permitirá la compatibilidad con dispositivos cruz en el futuro.*</string>
+    <string name="sd_backup">SD Copia de Seguridad</string>
+    <string name="sd_backup_description">Guarda las entradas como archivos txt en la tarjeta SD montada.</string>
+    <string name="backup_and_restore">Copia de Seguridad &amp; Restaurar</string>
+    <string name="sync">Sincronización</string>
+    <string name="dbx_warning">*Edición de nombres de archivo en Dropbox podrían causar problemas con las etiquetas y otras características de la aplicación.</string>
+    <string name="the_dev">El Desarrollador</string>
+    <string name="name">El nombres\' Javi</string>
+    <string name="me_info">Soy un estudiante de tiempo completo y tener un trabajo a tiempo completo. Ojalá que yo pudiera codificar más, pero lo que vas a hacer?&lt;br/>&lt;br/>Me encanta la tecnología y el diseño de interfaz de usuario elegante. Los siguientes son mis cuentas de redes sociales personales. Si te gusta mi trabajo, vaya y siga!&lt;br/>&lt;br/>
+ &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
+    <string name="donate">Donar</string>
+    <string name="donation_err">Errar llegar Google Play...</string>
+    <string name="new_entry_hint">Cuerpo de entrada</string>
+    <string name="entry_header">Título</string>
+    <string name="tag_hint">Etiqueta...</string>
+    <string name="donation_explanation">Las donaciones son sólo para aquellos de ustedes que les gusta la aplicación y tener algo de dinero extra. 
+No hay ventajas de ningún tipo. Se me va a ayudar en el desarrollo por lo que me permite comprar equipo.\n\nEsto de ninguna manera activa un \&apos;pro\&apos; versión. Todas las actualizaciones futuras tendrán las mismas características y de forma gratuita sin importar si usted no dona.</string>
+    <string name="base">Base Nivel</string>
+    <string name="second">Segundo Nivel</string>
+    <string name="third">Tercer Nivel</string>
+    <string name="god">Dios Nivel</string>
+
+</resources>

@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+      xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/settings"
+        android:onClick="settingsClicked"
+        android:orderInCategory="9"
+        app:showAsAction="never"
+        android:title="@string/action_settings"/>
+
+
+    <item
+        android:id="@+id/new_note"
+        android:icon="@drawable/white_note"
+        android:onClick="newNote"
+        android:orderInCategory="5"
+        app:showAsAction="never"
+        android:title="@string/new_note"/>
+    <item
+        android:id="@+id/feedback"
+        android:onClick="feedback"
+        android:orderInCategory="10"
+        app:showAsAction="never"
+        android:title="@string/feedback"/>
+    <item
+        android:id="@+id/donation"
+        android:onClick="donation"
+        android:orderInCategory="30"
+        app:showAsAction="never"
+        android:title="@string/donate"/>
+
+</menu>

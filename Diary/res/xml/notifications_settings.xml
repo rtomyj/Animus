@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+    <PreferenceCategory
+        android:title="Custom"
+        android:key="category">
+       	<SwitchPreference
+       	    android:title="Consistant Notification"
+       	    android:summary="Notification will always be on the Notification center for easy and fast action."
+       	    />
+       	
+       	<SwitchPreference 
+       	    android:title="Custom Message"
+       	    android:key="Custom Message"
+       	    android:summary="Edit the unique message of your notification? "
+       	    android:defaultValue="false"/>
+       	<EditTextPreference 
+       	    android:title="Tap to Edit Message."
+       	    android:key="customMessage"
+       	    android:dependency="Custom Message"
+       	    android:defaultValue="Record your experiences, update your journal."
+       	    android:persistent="true"
+       	    android:dialogTitle="Costomize your notification."/>
+       	</PreferenceCategory>
+</PreferenceScreen>

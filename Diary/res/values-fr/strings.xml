@@ -1,0 +1,256 @@
+<resources>
+
+    <string name="app_name">Souvenirs</string>
+    <string name="action_settings">Paramètres</string>
+    <string name="entries">Entrées</string>
+    <string name="calendar_view">Calendrier</string>
+    <string name="favorite_entries">Favoris</string>
+    <string name="pic_entries">Photos</string>
+    <string name="home">Principal</string>
+    <string name="entry">Nouvelle Entrée</string>
+    <string name="address_book">Personnes</string>
+    <string name="tags">Balises</string>
+    <string name="bugs_button">Bugs, Conseils, Suggestions</string>
+    <string name="take_picture">Prendre une Photo</string>
+    <string name="choose_photo">Choisissez Photo</string>
+
+    <string-array name="months">
+        <item>janvier</item>
+        <item>février</item>
+        <item>mars</item>
+        <item>avril</item>
+        <item>mai</item>
+        <item>juin</item>
+        <item>juillet</item>
+        <item>août</item>
+        <item>septembre</item>
+        <item>octobre</item>
+        <item>novembre</item>
+        <item>décembre</item>
+    </string-array>
+
+    <string name="email">Envoyer par email</string>
+    <string name="delete_entry_dialog">Effacer? Etes-vous sûr?</string>
+    <string name="delete_confirmation">Effacer</string>
+    <string name="delelte_dialog_message">Toutes les données seront effacées si vous continuez ...</string>
+    <string name="edit_tags_dialog_title">Sélectionner un balese que vous souhaitez supprimer.</string>
+    <string name="cancel">Annuler</string>
+    <string name="tags_">Baleses: </string>
+    <string name="yes">Oui</string>
+    <string name="no">Non</string>
+
+    <string-array name="navigation_titles">
+        <item>Entrées</item>
+        <item>Notes</item>
+        <item>Photos</item>
+        <item>Balises</item>
+        <item>Favoris</item>
+    </string-array>
+
+    <string name="open">Ouvrir</string>
+    <string name="close">Fermer</string>
+
+    <string-array name="weekdays">
+        <item></item>
+        <item>dimanche</item>
+        <item>lundi</item>
+        <item>mardi</item>
+        <item>mercredi</item>
+        <item>jeudi</item>
+        <item>vendredi</item>
+        <item>samedi</item>
+    </string-array>
+
+    <string name="about">Sur</string>
+    <string name="general">Général</string>
+    <string name="allow_fullscreen">Autoriser Plein Écran</string>
+    <string name="notifications">Notifications</string>
+    <string name="old_recording">Ancien Enregistrement</string>
+    <string name="new_recording">Nouveau Enregistrement</string>
+    <string name="share">Part</string>
+    <string name="new_pic">Nouvelle Image</string>
+    <string name="new_entry">Nouvelle Entrée</string>
+    <string name="edit">Modifier</string>
+    <string name="done">Fini</string>
+    <string name="new_note">Nouvelle Note</string>
+    <string name="note_hint">Commencez à taper votre billet.</string>
+    <string name="personal">Personnel</string>
+    <string name="relationship">Relations</string>
+    <string name="occupation">La Profession</string>
+    <string name="work_question_dialog">Où travaillez-vous actuellement?</string>
+    <string name="relationship_question_dialog">Qui êtes-vous fréquentez?</string>
+    <string name="help">Aider</string>
+
+    <!-- change the following two in the other xml String files -->
+
+    <string name="recording">Enregistrement&#8230;</string>
+    <string name="stop_recording">Arrêter</string>
+    <string name="dismiss">Rejeter</string>
+    <string name="no_tags_toast">Il n\'y a pas d\'entrées avec des balises.</string>
+    <string name="no_photos_toast">Aucun ont utilisé des sources d\'image.</string>
+    <string name="notes">Notes</string>
+    <string name="time">Fois</string>
+    <string name="statuses">Statuts</string>
+    <string name="status_setting_explanation">Toutes les inscriptions devront vos relations pour simplifier l\'expérience de l\'écriture.</string>
+    <string name="full_setting_explanation">\"Nouvelle Entrée\" écran le plein écran.</string>
+    <string name="single">Célibataire</string>
+    <string name="unemployed">Sans Emploi</string>
+    <string name="change_time_of_notification">Changer</string>
+    <string name="delete_pic">Effacer l\'image sélectionnée?</string>
+    <string name="delete_pic_confirmation">Action ne peut être annulée&#8230;</string>
+    <string name="alph_sort">Sorte alphabétique</string>
+    <string name="value_sort">Sorte Numériquement</string>
+    <string name="re_record">Re-enregistrement</string>
+
+    <string-array name="abrev_weekdays">
+        <item>dim</item>
+        <item>lun</item>
+        <item>mar</item>
+        <item>mer</item>
+        <item>jeu</item>
+        <item>ven</item>
+        <item>sam</item>
+    </string-array>
+
+    <string name="entries_welcome">Votre journal est actuellement vide. Cliquez sur le + ajouter une entrée.</string>
+    <string name="location_setting_title">Lieu Entrées</string>
+    <string name="location_setting_info">L\'application vous demander votre localisation actuelle.</string>
+    <string name="intro_dialog_dismiss_button">Excellent! Permettez-moi de faire pour commencer.</string>
+    <string name="welcome">Salut!</string>
+    <string name="welcome_subtext">Avec cette application, vous pouvez enregistrer vos expériences.</string>
+    <string name="intro_entries">Jamais hors de portée, votre téléphone et même comprimé peuvent accueillir vos moments de vie. \nA aucun moment est trop éphémère, et aucune expérience oublié.</string>
+    <string name="intro_notes">• Les billets seront faciliter la collecte d\'informations simple comme une liste d\'épicerie ou corvée.</string>
+    <string name="intro_pics">• Les photos peuvent aider à dire des choses mots ne peuvent pas. Photos illimités peuvent dire beaucoup.</string>
+    <string name="intro_tags">• Balises organise entrées en événements et des mots-clés similaires. Marquer deux entrées différentes pour les relier.</string>
+    <string name="intro_location">• Endroits apporte une certaine conscience contextuelle à vos entrées. Tournez fonctionnalité dans les paramètres et vous saurez toujours où vous étiez.</string>
+    <string name="intro_rate">N\'oubliez pas de noter l\'application.</string>
+    <string name="favs">Favoris</string>
+    <string name="locations">Lieux</string>
+    <string name="share_dialog_title">Sélectionnez la méthode de partage...</string>
+    <string name="share_dialog_neutral_button">arrière</string>
+    <string name="illegal_character">Caractère illégal...</string>
+    <string name="add_tag">+  Balise</string>
+    <string name="tag_hint_new_entry">Ajout de balises nécessite touche entrée pour chaque valeur.</string>
+    <string name="added">ajoutée</string>
+    <string name="analytics_key">UA-48310537-1</string>
+    <string name="feedback">Information en retour</string>
+    <string name="feedback_error">Erreur avec le client de messagerie par défaut...</string>
+    <string name="tags_hint_1">Balise / Montant</string>
+    <string name="tags_hint_2">Première entrée avec balise</string>
+    <string name="untitled">(Pas de Nom)</string>
+    <string name="text">(aucun texte)</string>
+    <string name="password">Mot de Passe</string>
+    <string name="password_explanation">Un mot de passe vous aidera à protéger vos informations.</string>
+    <string name="password_edit">Modifier mot de passe</string>
+    <string name="contacts">Contactez Suggestion</string>
+    <string name="contacts_suggestions">Autoriser l\'accès aux contacts pour balise suggestions.</string>
+    <string name="enter_password">Entrez le mot de passe</string>
+    <string name="wrong">Mot de passe incorrect</string>
+    <string name="reached_attempts_1_min">Atteint 4 tentatives. Essayez à nouveau en 1 minute...</string>
+    <string name="enter_new_password">Sélectionnez nouveau mot de passe</string>
+    <string name="re_enter_password">Re-entrer le mot de passe</string>
+    <string name="selection">Sélectionnez</string>
+
+    <string-array name="months_abrev">
+        <item>jan</item>
+        <item>fév</item>
+        <item>mar</item>
+        <item>avr</item>
+        <item>mai</item>
+        <item>juin</item>
+        <item>juil</item>
+        <item>aoû</item>
+        <item>sep</item>
+        <item>oct</item>
+        <item>nov</item>
+        <item>déc</item>
+    </string-array>
+
+    <string name="ok">Bien</string>
+    <string name="new_tag">Entrez un nouveau balise</string>
+    <string name="rename_file_dialog">Entrez le nouveau nom de l\'entrée</string>
+    <string name="modify_date">Date de Modifier</string>
+    <string name="rename_files">Renommer des Fichiers</string>
+    <string name="add">Ajouter</string>
+    <string name="file_exists_err">Le dossier existe</string>
+    <string name="network_err">PAS D\'INTERNET</string>
+    <string name="general_err">Erreur</string>
+    <string name="favs_welcome">Aucune entrée n\'a été en favoris ;-(</string>
+
+    <!--
+    changed strings
+    changed the order of privacy and tags in "privacy_topics" and took out the rest of the stuff. Also, changed up the "hel
+    p_privacy" string.
+    -->
+
+    <string name="help_tags">Avec les étiquettes, vous pouvez toujours revoir les entrées passées dans une brise. S\'il ya un sujet qui semble 
+à venir toujours dans vos entrées, vous pouvez les associer à un mot-clé. Ce mot-clé ou mot-clé, la volonté 
+alors aider le lien de l\'application ainsi que les entrées.</string>
+    <string name="help_privacy">Les informations que vous stockez dans cette application est le vôtre. Je ne sais pas et ne peux pas lire vos entrées 
+. Android 4.0 et ci-dessus n\'ont pas annonces. Tout en dessous qui le fait. Sinon, il ya l\'analyse en cours d\'exécution à savoir 
+nouveaux et aux anciens utilisateurs et la quantité de temps qu\'ils utilisent une activité particulière. En outre, les journaux de crash système livrera références XML. Ces références ne sont que des noms de fichiers 
+et les noms de balises et aideront à repérer ce qui provoque l\'application à planter. \ n \ n PAS 
+mettre des informations sensetive 
+dans les balises et les noms d\'entrée si vous ne voulez pas courir dans le risque de me les lire. Le corps d\'entrées et les notes sont sûrs à 100%.</string>
+    <string name="help_usage"></string>
+    <string name="help_notes_and_entries"></string>
+
+    <string-array name="privacy_topics">
+        <item>Confidentialité</item>
+        <item>Balises</item>
+    </string-array>
+
+    <string name="num_lines">Numéro de ligne</string>
+    <string name="num_lines_summary">Lignes s\'affichent lorsque vous faites défiler les entrées.</string>
+    <string name="theme">Thème</string>
+    <string name="theme_summary">La palette de l\'application.</string>
+    <string name="UI">UI</string>
+    <string name="font_size">Taille de la police</string>
+    <string name="font_size_summary">Main UI Elements adhérer à la valeur actuelle. Reste ajustera en conséquence.</string>
+    <string name="system_font">Système Lettre</string>
+    <string name="information">L\'application D\'info</string>
+
+    <string-array name="lines">
+        <item>deux</item>
+        <item>Trois</item>
+        <item>Quatre</item>
+        <item>Cinq</item>
+    </string-array>
+    <string-array name="theme">
+        <item>Par Défaut</item>
+        <item>Noir</item>
+        <item>Material</item>
+        <item>Material 2</item>
+        <item>Material 3</item>
+        <item>Material 4</item>
+    </string-array>
+
+    <string name="credits">Crédits/Remerciements</string>
+    <string name="no_sd">Pas de carte SD trouvé</string>
+    <string name="data">Données</string>
+    <string name="about_me_text">Merci pour le soutien. Utilisez les boutons suivants pour m\'aider à faire l\'application plus ou de suivre les mises à jour. \n\n</string>
+    <string name="dbx_disconnect">Compte associé déconnecté</string>
+    <string name="dbx_sync">Dropbox sauvegarde</string>
+    <string name="dbx_sync_description">Prend un compte Dropbox existant et sauvegarde les entrées sous forme de fichiers txt et permettra d\'appui des unités d\'une à l\'avenir.*</string>
+    <string name="sd_backup">SD sauvegarde</string>
+    <string name="sd_backup_description">Enregistre les entrées sous forme de fichiers txt sur ​​la carte SD montée.</string>
+    <string name="backup_and_restore">Sauvegarde &amp; restaurer</string>
+    <string name="sync">Synchroniser</string>
+    <string name="dbx_warning">*Les noms de fichiers d\'édition dans Dropbox peuvent causer des problèmes avec des étiquettes et d\'autres caractéristiques d\'applications.</string>
+    <string name="the_dev">Le Développeur</string>
+    <string name="name">Les noms Javi</string>
+    <string name="me_info">Je suis un étudiant à temps plein et un emploi à temps plein. Souhaite que je pourrais coder plus, mais ce que tu vas faire?&lt;br/>&lt;br/>J\'aime la technologie et de la conception de l\'interface utilisateur de fantaisie. Ce qui suit sont mes comptes de médias sociaux personnels. Si vous aimez mon travail, aller et suivre!&lt;br/>&lt;br/>
+ &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
+    <string name="donate">Donner</string>
+    <string name="donation_err">Tromper atteindre Google Play...</string>
+    <string name="new_entry_hint">Corps d\'entrée</string>
+    <string name="entry_header">Titre</string>
+    <string name="tag_hint">Etiquette...</string>
+    <string name="donation_explanation">Les dons ne sont que pour ceux d\'entre vous qui aiment l\'application et avoir un peu d\'argent. 
+Il n\'y a pas d\'avantages que ce soit. Il m\'aidera dans le développement en me permettant d\'acheter du matériel. \n\nCela ne signifie active un \&apos;pro\&apos; version. Toutes les mises à jour futures auront les mêmes caractéristiques et gratuitement, peu importe si vous donnez pas.</string>
+    <string name="base">Niveau de Base</string>
+    <string name="second">Deuxième Niveau</string>
+    <string name="third">Troisième Niveau</string>
+    <string name="god">Dieu Tier</string>
+
+</resources>

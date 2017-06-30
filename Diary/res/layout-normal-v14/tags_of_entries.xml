@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/tag_list"
+    style="@style/pearl_button"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+                                    xmlns:tag_list="http://schemas.android.com/apk/res-auto"
+                                    tag_list:cardCornerRadius="4dp"
+    android:orientation="vertical" >
+        <LinearLayout
+        
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:elevation="2dp"
+    android:background="?android:selectableItemBackground"
+    android:paddingBottom="8dp"
+    android:paddingTop="8dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="false"
+                android:gravity="center"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/tag"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:clickable="false"
+                    android:text="This is a tag"
+                    android:textColor="@color/UIPurple"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+
+                <TextView
+                    android:id="@+id/number_of_tags"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:clickable="false"
+                    android:gravity="right"
+                    android:text="number"
+                    android:textColor="#111"
+                    android:textSize="14sp"
+                    tools:ignore="HardcodedText" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/example_of_entry_with_tag"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:clickable="false"
+                android:lineSpacingExtra="3dp"
+                android:maxLines="3"
+                android:minLines="3"
+                android:paddingLeft="10dp"
+                android:paddingBottom="4dp"
+                android:paddingTop="4dp"
+                android:paddingRight="10dp"
+                android:text="Some entry with this as a tag"
+                android:textSize="14sp"
+                android:textColor="#333"
+                tools:ignore="HardcodedText" />
+        </LinearLayout>
+    </LinearLayout>
+
+    </LinearLayout>
+</android.support.v7.widget.CardView>

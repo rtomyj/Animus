@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/testL"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center"
+    android:orientation="horizontal"
+    
+        style="@style/pearl_button" >
+
+    <ImageButton
+        android:id="@+id/imageButton2"
+        style="@style/pearl_button"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+        android:src="@drawable/previous"
+        android:onClick="replay" />
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent" />
+
+    <ImageSwitcher
+        android:id="@+id/playPause"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent" >
+
+
+        <ImageButton
+            android:id="@+id/imageButton1"
+            style="@style/pearl_button"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:onClick="playAudio"
+            android:src="@drawable/play"
+            tools:ignore="ContentDescription" />
+
+        <ImageButton
+            android:id="@+id/pause"
+            style="@style/pearl_button"
+            android:layout_width="80dp"
+            android:layout_height="60dp"
+            android:onClick="pauseAudio"
+            android:src="@drawable/pause"
+            tools:ignore="ContentDescription" />
+
+    </ImageSwitcher>
+
+    <Space
+        android:layout_width="10dp"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>

@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<lint>
+    <issue id="ContentDescription">
+        <ignore path="res/layout-large/new_entry.xml" />
+    </issue>
+    <issue id="HardcodedText">
+        <ignore path="res/layout-large/new_entry.xml" />
+    </issue>
+    <issue id="MissingTranslation">
+        <ignore path="res/values/strings.xml" />
+    </issue>
+    <issue id="NewApi" severity="ignore" />
+    <issue id="RtlSymmetry">
+        <ignore path="res/layout-large-land-v14/pic_adapter.xml" />
+        <ignore path="res/layout-large-v14/about_me.xml" />
+        <ignore path="res/layout-large-v14/chosen_file.xml" />
+        <ignore path="res/layout-large-v14/entries.xml" />
+        <ignore path="res/layout-large-v14/files_of_notes.xml" />
+        <ignore path="res/layout-large-v14/help_topics.xml" />
+        <ignore path="res/layout-large-v14/new_entry.xml" />
+        <ignore path="res/layout-large-v14/pic_adapter.xml" />
+        <ignore path="res/layout-large-v14/side_nav.xml" />
+        <ignore path="res/layout-normal-land-v14/chosen_file.xml" />
+        <ignore path="res/layout-normal-land-v14/entries.xml" />
+        <ignore path="res/layout-normal-land-v14/favs.xml" />
+        <ignore path="res/layout-normal-land-v14/new_entry.xml" />
+        <ignore path="res/layout-normal-land-v14/pic_adapter.xml" />
+        <ignore path="res/layout-normal-land-v14/selected_tag.xml" />
+        <ignore path="res/layout-normal-v14/about_me.xml" />
+        <ignore path="res/layout-normal-v14/chosen_file.xml" />
+        <ignore path="res/layout-normal-v14/entries.xml" />
+        <ignore path="res/layout-normal-v14/favs.xml" />
+        <ignore path="res/layout-normal-v14/files_of_entries.xml" />
+        <ignore path="res/layout-normal-v14/files_of_notes.xml" />
+        <ignore path="res/layout-normal-v14/help_topics.xml" />
+        <ignore path="res/layout-normal-v14/new_entry.xml" />
+        <ignore path="res/layout-normal-v14/pic_adapter.xml" />
+        <ignore path="res/layout-normal-v14/selected_tag.xml" />
+        <ignore path="res/layout-normal-v14/tags_of_entries.xml" />
+        <ignore path="res/layout/fonts_adapter.xml" />
+        <ignore path="res/layout/sync.xml" />
+        <ignore path="res/layout/transcommu.xml" />
+    </issue>
+    <issue id="ScrollViewSize">
+        <ignore path="res/layout-large-v14/new_entry.xml" />
+    </issue>
+</lint>

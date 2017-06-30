@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="History"
+        android:textColor="#333"
+        android:textSize="22sp" />
+
+    <ScrollView
+        android:id="@+id/scrollView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="35dp"
+            android:layout_marginLeft="35dp"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/textView1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:textColor="#333"
+                android:lineSpacingExtra="2dp"
+                android:textSize="14sp"
+                android:focusable="true"
+                android:linksClickable="true"
+                
+                android:text=", 2016 (2.3)
+                \n• AppCompat support. Now older devices can get the amazing UI that newer devices get.
+                \n• Updated both NewEntry.class and ChosenFile.class for a better experience. Primary picture takes center stage, floating action button for easy access and refinements to the bottom bar for a less cluttered experience.
+                \n• Permission checks set up. App prompts you for access of your device data and features. ^_^
+                \n• Floating action button around the app.
+                \n• Simplified explanations of app features and ads.
+                \n• Lint checks. Warnings and errors corrected that should in theory make things more optimized and faster.
+                \n• Proguard support. Now the app takes less disk space and uses only select classes from third party libraries. Obfuscation also in place. Whoop no snooping on my code!
+                \n• New side navigation using non outdated code!. Its pretty and has NEW.FRICKING.ICONS... Very proud of them actually. Their my babies ^;__;^
+                \n• You can now change the theme and it'll restart the activity AND update the theme. This means that you don't have to force close the app to change the theme!
+                \n• New RecyclerView. Recycling is good for the app it helps it make less junk that slows it down. No one likes tripping on a rouge garbage banana peel....
+                \n• Fixes an issue that caused app from miscounting the number of notes, entries, and pictures.
+                \n• Fixes an issue where app crashed while taking pictures.
+                \n• !Fixed! App updates lists whenever new entries are added without having to restart app.
+                \n\nMarch 24, 2016 (2.2.3)
+                \n• Updates to themes. New colors and combinations that take color theory into consideration.
+                \n• Fixes an issue where sometimes entries would not show up.
+                \n• Fixes some inconsistencies on ChosenEntry screen.
+                \n• Fixes date not displaying when viewing all entries.
+                \n• Fixes text size inconsistencies.
+                \n• Fixes crash in ChosenFile when user clicks the faves button
+                \n• Fixes crash on Tags activity when wrongly casting a LinearLayout to a CardLayout.
+                \n• Fixes crash with CardLayout and dark themes.
+                \n\nFebruary 22, 2016 (2.2.2)
+                \n• Bug fixes.
+                \n\nFebruary 21, 2016 (2.2.1)
+                \n• Bug fixes.
+                \n\n January 25, 2016 (2.2)
+                \n• UI has been changed a bit to further conform to Material design. New Animations and different look for views including cardviews.
+                \n• Password fixes. More reliable.
+                \n• File consolidation option to get tags and entries working together.
+                \n• Bug fixes and optimizations. (Geeky) Less objects created, meaning that there is less RAM used and less cycles of
+processing time. There are also less files shrinking app size.(\\Geeky).
+                \n• New prettier app icon.
+                \n\nNovember 22, 2015 (2.1.2)
+                \n• Fixed crash on home screen.
+                \n• Reset all files while keeping settings.
+                \n• Thinning of app. Removed junk, optimized code and other bug fixes.
+                \n• Some localization fixes.
+                \n\nNovember 5, 2015 (2.1.1)
+                \n• Fixed a bug where app would crash when changing the date.
+                \n\nOctober 27, 2015 (2.1)
+                \n• Favorites now display no matter from what activity you initiate from.
+                \n• Onyx theme now split into two. Onyx P and Onyx B. Click them to find out whats new.
+                \n• New photo view for pictures within entries screen. Its really neat.
+                \n• Entries now support moods. Cute little emojis everywhere!
+                \n• Improvements to themes.
+                \n• Improvements to scrolling.
+                \n• Consistent UI between Tablet and Phone.
+                \n• More reliant IAP.
+                \n• Other bug fixes and performance improvements. Also new app icon ^_^ and Marshmellow support.
+                \n-- Note:: Dropbox backup has been disabled and will be re-enabled ASAP...
+                \n\nApril 15, 2015 (2.0.3)
+				\n• Smaller pictures no longer show up as a pixalated mess. 4k and bigger images are now supported.
+                \n• Notes are now sorted by date.
+                \n• Location of scroll is preserved in notes and pictures. Saves time and resources and its convinient.
+                \n• Fixed a number of crashes.
+                \n• Performance improvements.
+                \n\nApril 7, 2015 (2.0.2)
+                \n• Making more changes and fixes for Lollipop on phones. Making it nice and pretty then moving to tablets.
+                \n• Photo improvements. Now photos stay in cache when multitasking in photos view and the app uses smaller versions of photos when bigger ones arent needed to save on memory. Photos in entries also look nicer.
+                \n• Added more handwriting fonts.
+                \n• Bug fixes.
+                \n\n
+March 18, 2015 (2.0.1)
+                \n• Bug fixes. Ooops!
+\n\nMarch 18, 2015 (2.0)
+                \n• Memories is now Animus. Same crunchy taste with less calories. For real doe, its a re-branding.
+                \n• Material design. Its very pretty!
+\n• Bug fixes and hella optimizations... Hella.
+\n• Option to remove ads
+\n\nOctober 6, 2014 (1.4.3)
+\n• Fixed crash involving themes and personal text size.
+\n• Fixed start-up crash effecting some.
+\n• Fixed an issue with theme and tablets.
+\n\nOctober 2, 2014 (1.4.2)
+\nUI
+\n• More tablet refinements.
+\n• Easier to start new entry.
+\n• Easier to add photos.
+\nPhotos
+\n• New photo viewer.
+\nCode
+\n• RAM usage improvements.
+\n• Bloat removed (faster and more responsive).
+\nOther
+\n• Ads are now enabled on all android versions.
+\nBugs
+\n• App no longer crashes for some when using Favorites screen.\n\n
+September 18, 2014 (1.4.1)
+\n• Fixes issues with tablets.\n\n
+September 18, 2014 (1.4)
+\n• Dropbox backup. To enable go under settings and \&apos;Data\&apos;.
+\n• Fonts galore! Change the font of the app to further personalize.
+\n• Some nice animations added.
+\n• Bug fixes and optimizations.
+\n• Donations enabled.\n\n
+August 16, 2014 (1.3.2)
+\n• Fixed a crash effecting tablets
+\n• Slight UI Tweaks for tablets. Flatter and prettier (more to come).\n\n
+August 12, 2014 (1.3.1)\n
+• Bug fixes and improvements\n
+• Improved widget layout\n
+• UI Tweaks for phones. Cleaner and more colorful. Who doesn't love a little color?\n\n"
+
+                android:textColorLink="@color/UIPink" />
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

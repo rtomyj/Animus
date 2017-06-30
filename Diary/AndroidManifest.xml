@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest package="com.rtomyj.Diary"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:versionCode="02030000"
+          android:versionName="2.3">
+
+    <uses-sdk
+        android:maxSdkVersion="23"/>
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true"
+        android:smallScreens="true"
+        android:xlargeScreens="true"/>
+
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false"/>
+
+    <uses-permission
+        android:name="android.permission.CAMERA"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.READ_CONTACTS"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        android:required="false"/>
+    <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES"/>
+    <uses-permission
+        android:name="android.permission.RECORD_AUDIO"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.INTERNET"
+        android:required="false"/>
+    <uses-permission
+        android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:required="false"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission
+        android:name="com.android.vending.BILLING"
+        android:required="false"/>
+
+
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="true"
+        android:icon="@drawable/app_icon"
+        android:label="@string/app_name"
+        android:theme="@style/MyTheme">
+        <meta-data
+            android:name="com.google.android.backup.api_key"
+            android:value="AEdPqrEAAAAIEE656lfMMQqT86aIaFBt_lrQvF8n02pxSIdGIA"/>
+        <meta-data
+            android:name="com.google.android.gms.version"
+            android:value="@integer/google_play_services_version"/>
+        <meta-data
+            android:name="com.google.android.maps.v2.API_KEY"
+            android:value="AIzaSyB792yPQCwgwG__zEYoPjjrjWdJqn8GMew"/>
+
+
+
+        <activity
+            android:name="com.AnimusMainActivities.SplashScreen"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:noHistory="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusMainActivities.Domus"
+            android:configChanges="orientation"
+            android:label="@string/entries">
+            <intent-filter>
+                <action android:name="com.diary.entries"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.default_searchable"
+                android:value=".Search"/>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.Notes"
+            android:configChanges="orientation"
+            android:label="@string/notes"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.notes"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.ChosenFile"
+            android:configChanges="orientation"
+            android:parentActivityName="com.AnimusMainActivities.Domus"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.diary.chosen_file"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.ChosenTag"
+            android:configChanges="orientation"
+            android:label="All Entries"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.selectedtag"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusMainActivities.PicEntries"
+            android:configChanges="orientation"
+            android:label="@string/pic_entries"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.entries_w_pic"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.AnimusMainActivities.Domus"/>
+        </activity>
+        <activity
+            android:name="com.AnimusMainActivities.Tags"
+            android:configChanges="orientation"
+            android:label="@string/tags"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.tags"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+
+            </intent-filter>
+
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.AnimusMainActivities.Domus"/>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.FavesActivity"
+            android:configChanges="orientation"
+            android:label="@string/favs"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.favs"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.AnimusMainActivities.Domus"/>
+        </activity>
+        <activity
+            android:name="com.AnimusMainActivities.NewEntry"
+            android:configChanges="orientation"
+            android:label="@string/new_entry"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.diary.new_entry"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.NewNote"
+            android:configChanges="orientation"
+            android:label="@string/new_note"
+            android:parentActivityName="com.AnimusMainActivities.Domus"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="com.diary.new_note"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.MainSettingsFrag"
+            android:configChanges="orientation"
+            android:label="@string/action_settings"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.main_settings_stub"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.NotificationSettingActivity"
+            android:configChanges="orientation"
+            android:label="Notification Settings"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.notification_settings"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.AboutMeActivity"
+            android:configChanges="orientation"
+            android:label="@string/about"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.about_me"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.UserHelpActivity"
+            android:configChanges="orientation"
+            android:label="@string/help"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.help"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.UtilityClasses.Debug"
+            android:configChanges="orientation"
+            android:label="Javi"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.files"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.Passcode"
+            android:configChanges="orientation"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.diary.passcode"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.PhotoViewer"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.diary.photo_viewer"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.PasswordSet"
+            android:configChanges="orientation"
+            android:label="@string/password"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.diary.passcode_set"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+
+        <receiver
+            android:name="com.AnimusSubActivities.Widget"
+            android:label="@string/app_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_provider"/>
+        </receiver>
+
+        <activity android:name=".Search">
+            <intent-filter>
+                <action android:name="android.intent.action.SEARCH"/>
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW"/>
+            </intent-filter>
+
+            <meta-data
+                android:name="android.app.searchable"
+                android:resource="@xml/searchable"/>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.Data"
+            android:configChanges="orientation"
+            android:label="Data"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.data"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.FontSelectionActivity"
+            android:configChanges="orientation"
+            android:label="Custom Font"
+            android:parentActivityName="com.AnimusMainActivities.Domus">
+            <intent-filter>
+                <action android:name="com.diary.fonts"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.ChosenNote"
+            android:configChanges="orientation"
+            android:parentActivityName="com.AnimusSubActivities.Notes">
+            <intent-filter>
+                <action android:name="com.diary.chosen_note"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.AnimusSubActivities.TestActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="com.diary.test"/>
+
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
