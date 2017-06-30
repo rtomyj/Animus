@@ -1,2 +1,2 @@
 # Animus
-Android Dairy Application
+Currently working on simplifying and unifying project structure.
