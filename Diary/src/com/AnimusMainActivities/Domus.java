@@ -61,6 +61,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Domus extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainActivity{
+	/*
+	created by Javi
+
+	 */
     // Views for class
 	private ViewSwitcher greetingContextVS;
 	private AdView ad = null;
