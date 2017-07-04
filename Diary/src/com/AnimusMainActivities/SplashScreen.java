@@ -1,6 +1,7 @@
 package com.AnimusMainActivities;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -26,6 +27,9 @@ public class SplashScreen extends Activity {
 
 	private String password;
 	private boolean checkPasscode = false;
+
+
+
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

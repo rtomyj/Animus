@@ -81,9 +81,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         private CardView cardView;
 
 
-        ViewHolder(View v) {
-            super(v);
-            parent = v;
+        ViewHolder(View parent) {
+            super(parent);
             summaryTV = (TextView) parent.findViewById(R.id.summary_of_entry);
             titleTV = (TextView) parent.findViewById((R.id.title));
             timeTV = (TextView) parent.findViewById(R.id.file_year);

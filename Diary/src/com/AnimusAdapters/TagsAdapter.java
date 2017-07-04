@@ -7,6 +7,7 @@ import android.graphics.Typeface;
 import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
+import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,13 +17,14 @@ import android.widget.ArrayAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.UtilityClasses.AnimusLauncherMethods;
 import com.rtomyj.Diary.R;
 
 import java.io.DataInputStream;
 import java.io.File;
 import java.util.ArrayList;
 
-public class TagsAdapter extends ArrayAdapter<String> {
+public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	private Context context;
 	private ArrayList<String> tagsArr = new ArrayList();
 	private ArrayList<Integer> tagAmountArr = new ArrayList();
@@ -40,126 +42,91 @@ public class TagsAdapter extends ArrayAdapter<String> {
 	private File entryFile;
 	private DataInputStream br;
 
-	public TagsAdapter(Context c, ArrayList<String> temp,
-			ArrayList<Integer> temp2, ArrayList<String> fileNames) {
-		super(c, R.layout.tags_of_entries, temp);
-		this.context = c;
+	public TagsAdapter(Context context, ArrayList<String> tagsArr, ArrayList<Integer> tagAmountArr, ArrayList<String> fileNames) {
+		this.context = context;
 		//this.fileNames = fileNames;
 
 		// this makes two seperate arraylists... waste o ram.
 		this.fileNames.addAll(fileNames);
-		tagsArr.addAll(temp);
-		tagAmountArr.addAll(temp2);
+		this.tagsArr.addAll(tagsArr);
+		this.tagAmountArr.addAll(tagAmountArr);
 
-
-		sp = PreferenceManager.getDefaultSharedPreferences(c);
+		sp = PreferenceManager.getDefaultSharedPreferences(this.context);
 
 
 		fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
 
 		if (fontStyle.contains("DEFAULT") != true)
-			typeface = Typeface.createFromAsset(c.getAssets(), "fonts/"
-				+ fontStyle);
+			typeface = Typeface.createFromAsset(this.context.getAssets(), "fonts/" + fontStyle);
 
 	}
 
-	
-	 
-	  private class ViewHolder {
-			private TextView tagTV;
-			private TextView amountTV;
-			private TextView summaryTV;
-		  	private CardView parentLL;
 
-			private ViewHolder(View rowView) {
+	/*
+ holds a limited amount of UI objects. When the recycler view needs to get new objects, old ones are recycled from here.
+ Otherwise the views are used again by the LayoutManager
+  */
+	static class ViewHolder extends RecyclerView.ViewHolder{
+		private TextView tagTV;
+		private TextView amountTV;
+		private TextView summaryTV;
+		private CardView parentLL;
 
-
-				summaryTV = (TextView) rowView
-						.findViewById(R.id.example_of_entry_with_tag);
-				tagTV = (TextView) rowView.findViewById(R.id.tag);
-				amountTV = (TextView) rowView.findViewById(R.id.number_of_tags);
-				parentLL = (CardView) rowView.findViewById(R.id.tag_list);
-
-
-			
-				 textSize = Float.parseFloat(sp.getString("TextSize", "14"));
-				if (sp.getString("Theme", "Default").contains("Onyx")) {
-
-					if ((context.getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-						LinearLayout infoLL = (LinearLayout) rowView
-								.findViewById(R.id.info);
-
-						if (Build.VERSION.SDK_INT > 15)
-							infoLL.setBackground(context.getResources().getDrawable(
-									R.drawable.onyx_selector));
-						else
-							infoLL.setBackgroundDrawable(context.getResources().getDrawable(
-									R.drawable.onyx_selector));
-					}
-
-					tagTV.setTextColor(context.getResources().getColor(R.color.UIDarkPurple));
-					if (Build.VERSION.SDK_INT > 15)
-						parentLL.setBackground(context.getResources().getDrawable(
-								R.drawable.onyx_selector));
-					else
-						parentLL.setBackgroundDrawable(context.getResources().getDrawable(
-								R.drawable.onyx_selector));
-
-					amountTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
-					summaryTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
-
-				}
-
-				summaryTV.setTextSize(textSize);
-				tagTV.setTextSize(textSize + (float) 2);
-				amountTV.setTextSize(textSize + (float) 2);
-
-
-
-
-				if (fontStyle.contains("DEFAULT") != true) {
-
-					tagTV.setTypeface(typeface);
-					amountTV.setTypeface(typeface);
-					summaryTV.setTypeface(typeface);
-				}
-
-			    
-			  
-			}
+		ViewHolder(View parent) {
+			super(parent);
+			summaryTV = (TextView) parent.findViewById(R.id.example_of_entry_with_tag);
+			tagTV = (TextView) parent.findViewById(R.id.tag);
+			amountTV = (TextView) parent.findViewById(R.id.number_of_tags);
+			parentLL = (CardView) parent.findViewById(R.id.tag_list);
 		}
+
+	}
+
+	// Create new views (invoked by the layout manager). Should do any parent specific customizations after the LayoutInflater method is invoked.
 	@Override
-	public View getView(int position, View convertView, ViewGroup parent) {
+	public TagsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+		// create a new view
+		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tags_of_entries, parent, false);
+		return  new TagsAdapter.ViewHolder(parentView);
+	}
 
-		View rowView = convertView;
-		    ViewHolder holder = null;
-			if (rowView == null) {
 
-				LayoutInflater inflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				rowView = inflater.inflate(R.layout.tags_of_entries, parent, false);
-				holder = new ViewHolder(rowView);
-				rowView.setTag(holder);
-			}
-			else{
-				holder = (ViewHolder) rowView.getTag();
-			}
+	// Replace the contents of a view (invoked by the layout manager)
+	@Override
+	public synchronized void onBindViewHolder(TagsAdapter.ViewHolder holder, final int position) {
+
+		textSize = Float.parseFloat(sp.getString("TextSize", "14"));
+		if (sp.getString("Theme", "Default").contains("Onyx")) {
+			holder.tagTV.setTextColor(context.getResources().getColor(R.color.UIDarkPurple));
+			holder.parentLL.setBackground(context.getResources().getDrawable(R.drawable.onyx_selector));
+
+			holder.amountTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
+			holder.summaryTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
+
+		}
+
+		holder.summaryTV.setTextSize(textSize);
+		holder.tagTV.setTextSize(textSize + (float) 2);
+		holder.amountTV.setTextSize(textSize + (float) 2);
+
+
+		if ( ! fontStyle.contains("DEFAULT") ) {
+
+			holder.tagTV.setTypeface(typeface);
+			holder.amountTV.setTypeface(typeface);
+			holder.summaryTV.setTypeface(typeface);
+		}
 
 		setInfo(holder, position);
-
-
-		
-		return rowView;
 	}
 
+	@Override
+	public int getItemCount() {
+		return tagsArr.size();
+	}
+
+
 	private void setInfo(ViewHolder holder, int position) {
-
-
-
-
-
-
-
 			/*
 				 * this underlines text SpannableString contentUnderline = new
 				 * SpannableString(tags.get(position).replaceAll("_", " "));

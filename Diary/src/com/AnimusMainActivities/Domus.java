@@ -61,10 +61,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Domus extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, MainActivity{
-	/*
-	created by Javi
-
-	 */
     // Views for class
 	private ViewSwitcher greetingContextVS;
 	private AdView ad = null;
@@ -88,7 +84,6 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 
     // others...
     private int selectedFile;
-    private short currentVisibleItem = -1;
     private boolean potentialNewEntry = false;
 
     // for side nav
@@ -212,7 +207,7 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 		// changes the color of views according to theme
 		theme =  sp.getString("Theme", "Default");
 		AnimusUI.setTheme(context, theme);
-        setContentView(R.layout.domus);
+        setContentView(R.layout.main_activity_base);
 
         // checks to see if there is a preference named INTRO, if not then it creates a new one with default value of false.
         // when true, intro has been seen and will not show the AlertDialog
@@ -252,7 +247,6 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 				WeakReference<ArrayList<String>> tag1ArrWeak = new WeakReference<>(bundle.getStringArrayList("TAG1"));
 				WeakReference<ArrayList<String>> tag2ArrWeak = new WeakReference<>(bundle.getStringArrayList("TAG2"));
 				WeakReference<ArrayList<String>> tag3ArrWeak = new WeakReference<>(bundle.getStringArrayList("TAG3"));
-				WeakReference<Short> currentVisibleWeak = new WeakReference<>(bundle.getShort("CURRENTVISIBLEITEM"));
 
 
 			primaryColor = bundle.getInt("PRIMARY_COLOR");
@@ -269,7 +263,6 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 				// new files adapter object
 				entriesAdapter = new EntriesAdapter(contextSoft.get(),  sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get() , tag3ArrWeak.get() ,favArrayListWeak.get(),
 						primaryColor, secondaryColor, textColorForDarkThemes, tagsTextColor, theme, fontStyle, numLines, textSize);
-	            currentVisibleItem =  currentVisibleWeak.get();
         }
         else {  // if there is nothing to copy from bundle, call method
             loadNewData(sp);
@@ -381,7 +374,7 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 
         }
         else {
-            if (!AnimusMiscMethods.isNetworkAvailable(contextWeak.get())){ // if not internet connection on phone then it removes the ADview from the domus activity for more user space.
+            if (!AnimusMiscMethods.isNetworkAvailable(contextWeak.get())){ // if not internet connection on phone then it removes the ADview from the main_activity_base activity for more user space.
                 home.removeView(ad);
             }
         }
@@ -596,7 +589,6 @@ public class Domus extends AppCompatActivity implements NavigationView.OnNavigat
 		for (int i = 0; i < entriesAdapter.getItemCount(); i ++)
 			faves[i]= entriesAdapter.getFaveAtPosition(i);
 
-		bundle.putShort("CURRENTVISIBLEITEM", currentVisibleItem);
         bundle.putStringArrayList("SORTEDFILES", entriesAdapter.getSortedFiles());
         bundle.putStringArrayList("TAG1", entriesAdapter.getFirstTags());
         bundle.putStringArrayList("TAG2", entriesAdapter.getSecondTags());

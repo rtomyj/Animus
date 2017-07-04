@@ -75,7 +75,7 @@ public class AboutMeActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setTheme();
 
-		setContentView(R.layout.about_me);
+		setContentView(R.layout.about);
 
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -212,7 +212,7 @@ public class AboutMeActivity extends AppCompatActivity {
 		alert = new AlertDialog.Builder(this);
 
 
-		alertView = View.inflate(this, R.layout.me, null);
+		alertView = View.inflate(this, R.layout.javi_profile_info, null);
 		alert.setView(alertView);
 		tv = (TextView) alertView.findViewById(R.id.textView1);
 		title = (TextView) alertView.findViewById(R.id.title);

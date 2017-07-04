@@ -242,7 +242,7 @@ public class PicEntries extends AppCompatActivity implements NavigationView.OnNa
 
 		if (picturesRV == null && adapterSize > 0) {
 			showList();
-			picturesRV = (RecyclerView) findViewById(R.id.pic_list);
+			picturesRV = (RecyclerView) findViewById(R.id.list);
 
 			if (picturesRV.getAdapter() == null) { // if there is no adapter binded to recyclerView then entriesAdapter is binded to it.
 
@@ -379,7 +379,7 @@ public class PicEntries extends AppCompatActivity implements NavigationView.OnNa
 
         //sets theme according to preference before setting the view
 		AnimusUI.setTheme(context, theme);
-		setContentView(R.layout.pic_entries);
+		setContentView(R.layout.main_activity_base);
 
         //changes colors of views for theme
         customizeUI();
@@ -535,6 +535,10 @@ public class PicEntries extends AppCompatActivity implements NavigationView.OnNa
 		}
 	}
 
+	@Override
+	public void in_appCheck(SharedPreferences sp) {
+
+	}
 
 
 }

@@ -16,8 +16,8 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
-import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -52,9 +52,6 @@ import org.w3c.dom.NodeList;
 import java.io.File;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -80,7 +77,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 
 	// views
 	private TagsAdapter adapter;
-	private ListView list;
+	private RecyclerView recyclerView;
 	private AdView adView = null;
 
 	// other
@@ -150,7 +147,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 
 			try {
 				Bundle ownedItems = in_appBillingService.getPurchases(3, getPackageName(), "inapp", null);
-				// Get the list of purchased items
+				// Get the recyclerView of purchased items
 				ArrayList<String> purchaseDataList = ownedItems.getStringArrayList("INAPP_PURCHASE_DATA_LIST");
 				WeakReference<ArrayList<String>> purchaseDataListWeak = new WeakReference<>(purchaseDataList);
 
@@ -218,8 +215,8 @@ public class Tags extends AppCompatActivity implements MainActivity{
 		}
 
 
-		if (list == null)
-		list = (ListView) findViewById(R.id.tag_list);
+		if (recyclerView == null)
+			recyclerView = (RecyclerView) findViewById(R.id.list);
 
 		if (adapter == null)
 			new LoadTags(this).execute("null");
@@ -228,10 +225,9 @@ public class Tags extends AppCompatActivity implements MainActivity{
 
 		final Context c = this;
 
-		list.setOnItemClickListener(new OnItemClickListener() {
-			@Override
-			public void onItemClick(AdapterView<?> parent, View view,
-					int position, long id) {
+		/* on click for items in tags
+
+
 
 				Intent i = new Intent(c, ChosenTag.class);
 				if (isAlphaSort == true)
@@ -239,10 +235,8 @@ public class Tags extends AppCompatActivity implements MainActivity{
 				else
 					i.putExtra("TAG", numSortedTagsArrList.get(position));
 				startActivityForResult(i, 2);
+		 */
 
-				passcodeCheck = false;
-			}
-		});
 
 		in_appCheck(sp);
 
@@ -262,7 +256,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 		theme = sp.getString("Theme", "Default");
 		AnimusUI.setTheme(this, theme);
 
-		setContentView(R.layout.tags);
+		setContentView(R.layout.main_activity_base);
 
 		customizeUI();  //changes colors of views for theme
 
@@ -301,47 +295,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 
 	@Override
 	public void customizeUI() {
-		ListView side = (ListView) findViewById(R.id.tags_left_drawer);
-		if (sp.getString("Theme", "Default").equals("Onyx P")) {
-			DrawerLayout l = (DrawerLayout) findViewById(R.id.drawer_layout);
-			TextView welcome = (TextView) findViewById(R.id.tags_text);
 
-			l.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
-			side.setBackgroundColor(getResources().getColor(R.color.UIDarkPink));
-			welcome.setTextColor(getResources().getColor(R.color.UIDarkText));
-
-
-		}
-		else if (sp.getString("Theme", "Default").equals("Onyx B")) {
-			DrawerLayout l = (DrawerLayout) findViewById(R.id.drawer_layout);
-			TextView welcome = (TextView) findViewById(R.id.tags_text);
-
-			l.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
-			side.setBackgroundColor(getResources().getColor(R.color.UIDarkBlue));
-			welcome.setTextColor(getResources().getColor(R.color.UIDarkText));
-
-
-		}
-		else if (sp.getString("Theme", "Default").equals("Material")) {
-
-			side.setBackgroundColor(getResources().getColor(R.color.UIMaterialLightGreen));
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 2")) {
-
-			side.setBackgroundColor(getResources().getColor(R.color.UIMaterialDeepOrange));
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 3")) {
-
-			side.setBackgroundColor(getResources().getColor(R.color.UIMaterialDeepYellow));
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 4")) {
-
-			side.setBackgroundColor(getResources().getColor(R.color.UIMaterialGreen));
-		}
-		else{
-
-			side.setBackgroundColor(getResources().getColor(R.color.UIBlue));
-		}
 	}
 
 	public synchronized void sort(MenuItem m) {
@@ -363,6 +317,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 	}
 
 
+	/*
 	public class CustomComparator implements Comparator<String> {
 		private final Pattern pattern = Pattern.compile("(\\d+)\\s+(.*)");
 
@@ -386,13 +341,12 @@ public class Tags extends AppCompatActivity implements MainActivity{
 			return m1.group(2).compareTo(m2.group(2));
 		}
 	}
+	*/
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean("IS_ALPHA_SORT", isAlphaSort);
-
-		outState.putInt("CURRENT_POSITION", list.getLastVisiblePosition());
 	}
 
 
@@ -609,8 +563,7 @@ public class Tags extends AppCompatActivity implements MainActivity{
 				*/
 
 			adapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
-			list.setAdapter(adapter);
-			list.setSelection(currentPosition);
+			//recyclerView.setAdapter(adapter);
 
 		}
 
