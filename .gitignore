@@ -67,3 +67,4 @@ freeline_project_description.json
  lint.xml
  .classpath
  classpath.xml
+ project.properties
