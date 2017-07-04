@@ -53,5 +53,11 @@ google-services.json
 freeline.py
 freeline/
 freeline_project_description.json
+
+# -- Start of custom settings
+
  #Mac Settings
  .DS_Store
+ 
+ #Eclicpse Settings
+ *.settings
