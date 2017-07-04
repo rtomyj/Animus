@@ -61,3 +61,7 @@ freeline_project_description.json
  
  #Eclicpse Settings
  *.settings
+ 
+ #Other Android files
+ project.xml
+ lint.xml
