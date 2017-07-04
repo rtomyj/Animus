@@ -65,3 +65,4 @@ freeline_project_description.json
  #Other Android files
  project.xml
  lint.xml
+ .classpath
