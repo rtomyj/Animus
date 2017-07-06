@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.view.View;
 
 import com.AnimusMainActivities.Domus;
+import com.AnimusMainActivities.MainActivity;
 import com.AnimusMainActivities.NewEntry;
 import com.AnimusMainActivities.PicEntries;
 import com.AnimusSubActivities.ChosenFile;
@@ -33,7 +34,7 @@ public class AnimusLauncherMethods {
     public static void getNavigationIntent(int menuItem, Context parent){
         Intent intent = null;
         switch (menuItem){
-            case R.id.entries:
+            case R.id.domus:
                 intent  = new Intent(parent, Domus.class);
                 break;
             case R.id.notes:
@@ -73,7 +74,7 @@ public class AnimusLauncherMethods {
 
         chosenFile.putExtra("FILESARRAY", sortedFiles);
         chosenFile.putExtra("POSITION",position);
-        ((Activity) context).startActivityForResult(chosenFile, Domus.CHOSEN_FILE);
+        ((Activity) context).startActivityForResult(chosenFile, MainActivity.CHOSEN_FILE);
     }
     public static void newEntry(Context context){
         Intent intent = new Intent(context, NewEntry.class);

@@ -77,7 +77,7 @@ public class Notes extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.entries) {
+        if (id == R.id.domus) {
 			Intent domus = new Intent(this, Domus.class);
 			startActivityForResult(domus, 2);
 

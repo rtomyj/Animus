@@ -22,6 +22,7 @@ import com.UtilityClasses.AnimusMiscMethods;
 import com.UtilityClasses.AnimusTags;
 import com.UtilityClasses.AnimusUI;
 import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
 import java.io.BufferedReader;
@@ -51,18 +52,16 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     // UI Customization
     private Context context;
     private Typeface userSelectedFontTF;
-    private float textSize = 0;
-    private String fontStyle, theme;
     private volatile Animation animation;
     private volatile LinearLayout.LayoutParams tagsTVParams;
     private volatile Drawable tagsBackgroundDrawable, darkThemeSelectorShader;
-    private int primaryColor, secondaryColor, tagsTextColor, numLines, textColorForDarkThemes;
 
     // controls which views get animated
     private short maxPosition;
 
     // other
     private Locale locale;
+    private CustomAttributes userUIPreferences;
 
     /*
     holds a limited amount of UI objects. When the recycler view needs to get new objects, old ones are recycled from here.
@@ -83,6 +82,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
         ViewHolder(View parent) {
             super(parent);
+            this.parent = parent;
             summaryTV = (TextView) parent.findViewById(R.id.summary_of_entry);
             titleTV = (TextView) parent.findViewById((R.id.title));
             timeTV = (TextView) parent.findViewById(R.id.file_year);
@@ -102,8 +102,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
             locale = Locale.getDefault();
             this.context = context;
 
-            if (!fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
-                userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontStyle);
+            if (! userUIPreferences.fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
+                userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + userUIPreferences.fontStyle);
             }
 
             animation = AnimationUtils.loadAnimation(context, R.anim.fadein);
@@ -111,23 +111,17 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
             tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
             tagsTVParams.setMargins(0, 0, 45, 0);
 
-            tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, theme);
-            darkThemeSelectorShader = AnimusUI.getDarkSelectorDrawable(context, theme);
+            tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, userUIPreferences.theme);
+            darkThemeSelectorShader = AnimusUI.getDarkSelectorDrawable(context, userUIPreferences.theme);
 
         }
     }
 
     // Constructor with the necessary data set being passed to it.
     public EntriesAdapter(Context context, ArrayList<String> temp, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
-                          int primaryColor, int secondaryColor, int textColorForDarkThemes, int tagsTextColor, String theme, String fontStyle, int numLines, float textSize ) {
-        this.primaryColor = primaryColor;
-        this.secondaryColor = secondaryColor;
-        this.textColorForDarkThemes = textColorForDarkThemes;
-        this.tagsTextColor = tagsTextColor;
-        this.theme = theme;
-        this.fontStyle = fontStyle;
-        this.numLines = numLines;
-        this.textSize= textSize;
+                          CustomAttributes userUIPreferences) {
+
+        this.userUIPreferences = userUIPreferences;
 
         // transfers all the info from the calling activity to this adapter.
         sortedFilesArrList = new ArrayList<>(temp);
@@ -140,16 +134,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     }
 
     // constructor with only the months array and the calling activities Context
-    public EntriesAdapter(Context context, int primaryColor, int secondaryColor, int textColorForDarkThemes, int tagsTextColor, String theme, String fontStyle,
-                          int numLines, float textSize){
-        this.primaryColor = primaryColor;
-        this.secondaryColor = secondaryColor;
-        this.textColorForDarkThemes = textColorForDarkThemes;
-        this.tagsTextColor = tagsTextColor;
-        this.theme = theme;
-        this.fontStyle = fontStyle;
-        this.numLines = numLines;
-        this.textSize= textSize;
+    public EntriesAdapter(Context context, CustomAttributes userUIPrefrences){
+        this.userUIPreferences = userUIPrefrences;
 
         ArrayList<File> filesArrayList = new ArrayList<>();
         filesArrayList.addAll(AnimusFiles.getFilesWithExtension(context.getFilesDir(),".txt"));
@@ -190,36 +176,36 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     // Changes the color/text size/etc of views. All values have been stored in variables in the setAdapterBaseData() method
     private void customizeUI(ViewHolder holder ) {
         // changes colors of UI elements according to theme.
-        holder.favTV.setTextColor(primaryColor);
-        holder.menuTV.setTextColor(primaryColor);
-        holder.dayTV.setTextColor(secondaryColor);
-        holder.titleTV.setTextColor(secondaryColor);
+        holder.favTV.setTextColor(userUIPreferences.primaryColor);
+        holder.menuTV.setTextColor(userUIPreferences.primaryColor);
+        holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
+        holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
 
-        switch (theme) {
+        switch (userUIPreferences.theme) {
             case "Onyx P":
             case "Onyx B":
                 holder.cardView.setBackground(darkThemeSelectorShader);
-                holder.monthTV.setTextColor(textColorForDarkThemes);
-                holder.summaryTV.setTextColor(textColorForDarkThemes);
-                holder.menuTV.setTextColor(textColorForDarkThemes);
-                holder.timeTV.setTextColor(textColorForDarkThemes);
-                holder.favTV.setTextColor(textColorForDarkThemes);
+                holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                holder.menuTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                holder.favTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                 break;
         }
 
         // changes text size and number of lines according to user preference
-        holder. summaryTV.setMaxLines(numLines);
-        holder.summaryTV.setMinLines(numLines);
+        holder. summaryTV.setMaxLines(userUIPreferences.numLines);
+        holder.summaryTV.setMinLines(userUIPreferences.numLines);
 
-        holder.summaryTV.setTextSize(textSize);
-        holder.dayTV.setTextSize(textSize + (float) 5);
-        holder.monthTV.setTextSize(textSize);
-        holder.titleTV.setTextSize(textSize+ (float) 2);
-        holder.timeTV.setTextSize(textSize);
+        holder.summaryTV.setTextSize(userUIPreferences.textSize);
+        holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
+        holder.monthTV.setTextSize(userUIPreferences.textSize);
+        holder.titleTV.setTextSize(userUIPreferences.textSize+ (float) 2);
+        holder.timeTV.setTextSize(userUIPreferences.textSize);
 
 
         // changes font if applicable
-        if (!fontStyle.contains("DEFAULT")) {
+        if (! userUIPreferences.fontStyle.contains("DEFAULT")) {
             holder.summaryTV.setTypeface(userSelectedFontTF);
             holder.monthTV.setTypeface(userSelectedFontTF);
             holder.titleTV.setTypeface(userSelectedFontTF);
@@ -336,7 +322,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
 
             } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
-                    if (!fontStyle.equals("Default"))
+                    if (! userUIPreferences.fontStyle.equals("Default"))
                     holder.summaryTV.setTypeface(holder.summaryTV.getTypeface(), Typeface.NORMAL);
                     holder.summaryTV.setText(Html.fromHtml(summaryString));
             }
@@ -367,7 +353,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
                         break;
                 }
             if (! tagName.equals("")) {
-                    final TextView tagTV = AnimusTags.newTagView(context, textSize, tagsTextColor, tagsTVParams, tagsBackgroundDrawable, fontStyle, userSelectedFontTF);
+                    final TextView tagTV = AnimusTags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, tagsTVParams, tagsBackgroundDrawable, userUIPreferences.fontStyle, userSelectedFontTF);
                     tagTV.setText(tagName.replaceAll("_", " "));
                     holder.tagsLL.addView(tagTV);
                 }

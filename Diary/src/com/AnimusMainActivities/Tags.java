@@ -16,26 +16,26 @@ import android.os.Bundle;
 import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
-import android.support.v7.app.AppCompatActivity;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.AdapterView.OnItemClickListener;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.AnimusAdapters.TagsAdapter;
-import com.AnimusSubActivities.ChosenTag;
-import com.AnimusSubActivities.Passcode;
 import com.UtilityClasses.AnimusDonation;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;
 import com.UtilityClasses.AnimusUI;
-import com.UtilityClasses.MainActivity;
+import com.UtilityClasses.CustomAttributes;
 import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -50,13 +50,14 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 import java.io.File;
+import java.lang.ref.SoftReference;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
-public class Tags extends AppCompatActivity implements MainActivity{
+public class Tags extends MainActivity {
 	// used to get info
 	private SharedPreferences sp;
 
@@ -76,46 +77,27 @@ public class Tags extends AppCompatActivity implements MainActivity{
 	private ArrayList<String> numSortedFilenamesArrList = new ArrayList();
 
 	// views
-	private TagsAdapter adapter;
+	private TagsAdapter tagsAdapter;
+
 	private RecyclerView recyclerView;
+	private RecyclerView.LayoutManager recycleViewLayoutManager;
 	private AdView adView = null;
 
 	// other
 	private boolean isAlphaSort = true;
-	private int currentPosition;
-
-	//  Customizations
-	private String theme;
+	private CustomAttributes userUIPreferences;
+	private Toolbar actionBar;
+	private DrawerLayout sideNavDrawer;
 
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
-		if (requestCode == PASSWORD_CHECK) {
-
-			if (resultCode == RESULT_OK) {
-				passcodeCheck = false;
-			}
-			if (resultCode == RESULT_CANCELED) {
-				// Write your code if there's no result
-				passcodeCheck = true;
-			}
-		}
 	}
 
 	@Override
 	protected void onRestart() {
 		super.onRestart();
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-		passcodeOn = sp.getBoolean("Password", false);
-		if (passcodeOn ) {
-			if (passcodeCheck ) {
-				Intent i = new Intent(this, Passcode.class);
-				startActivityForResult(i, PASSWORD_CHECK);
-			}
-			passcodeCheck = true;
-		}
 
 	}
 
@@ -181,12 +163,23 @@ public class Tags extends AppCompatActivity implements MainActivity{
 	protected void onStart() {
 		super.onStart();
 
+		if (recyclerView == null)// re-inits recyclerView  if it's null or first time onStart() is called.
+			recyclerView = (RecyclerView) findViewById(R.id.list);
+
+		if (recyclerView.getAdapter() == null) { // if there is no tagsAdapter binded to recyclerView then entriesAdapter is binded to it.
+			Log.e("tagsAdapter added", "stuff");
+			recyclerView.setHasFixedSize(true);  // children will not impact the redrawing of recyclerView; good for performance.
+			recyclerView.setLayoutManager(recycleViewLayoutManager);
+			recyclerView.setAdapter(tagsAdapter);
+		}
+
+
+
 		if (sp == null)
-		sp = PreferenceManager
-				.getDefaultSharedPreferences(this);
+		sp = PreferenceManager.getDefaultSharedPreferences(this);
 
 		// checks to see if there is an internet connection and puts an ad if there is.
-		if (sp.getBoolean("ADS", true) == true && adView == null){
+		if (sp.getBoolean("ADS", true)  && adView == null){
 			if (AnimusMiscMethods.isNetworkAvailable(this)) {
 
 
@@ -218,12 +211,11 @@ public class Tags extends AppCompatActivity implements MainActivity{
 		if (recyclerView == null)
 			recyclerView = (RecyclerView) findViewById(R.id.list);
 
-		if (adapter == null)
+		if (tagsAdapter == null)
 			new LoadTags(this).execute("null");
 		else
-			adapter.notifyDataSetChanged();
+			tagsAdapter.notifyDataSetChanged();
 
-		final Context c = this;
 
 		/* on click for items in tags
 
@@ -252,20 +244,35 @@ public class Tags extends AppCompatActivity implements MainActivity{
 		}
 
 		sp = PreferenceManager.getDefaultSharedPreferences(this);
+		userUIPreferences = new CustomAttributes(this, sp);
 
-		theme = sp.getString("Theme", "Default");
-		AnimusUI.setTheme(this, theme);
+		AnimusUI.setTheme(this, userUIPreferences.theme);
 
 		setContentView(R.layout.main_activity_base);
 
-		customizeUI();  //changes colors of views for theme
+
 
 		if (savedInstanceState != null) {
 			isAlphaSort = savedInstanceState.getBoolean("IS_ALPHA_SORT");
-			currentPosition = savedInstanceState.getInt("CURRENT_POSITION");
-		} else{
-
 		}
+
+
+		// creates new Toolbar object and sets it as the activities action bar
+		actionBar = (Toolbar) findViewById(R.id.toolbar);
+		setSupportActionBar(actionBar);
+		sideNavDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+
+		// creates toggle for action bar and anchors the side navigation drawer object to it.
+		ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, sideNavDrawer, actionBar, 0, 0);
+		WeakReference<ActionBarDrawerToggle> toggleWeak = new WeakReference<>(toggle);
+		toggleWeak.get().syncState();
+		toggleWeak.clear();
+
+		NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+		navigationView.setItemIconTintList(null);
+		navigationView.setNavigationItemSelectedListener(this);  // uses the methods in this class to listen for onclick events for the side nav drawer
+
+		recycleViewLayoutManager = new LinearLayoutManager(this);
 	}
 
 
@@ -293,24 +300,20 @@ public class Tags extends AppCompatActivity implements MainActivity{
 		AnimusLauncherMethods.newEntry(this);
 	}
 
-	@Override
-	public void customizeUI() {
-
-	}
 
 	public synchronized void sort(MenuItem m) {
 		if (isAlphaSort == true) {
 			isAlphaSort = false;
 			m.setTitle(getResources().getString(R.string.alph_sort));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort_alph));
-			adapter.sortNum(numSortedTagsArrList, numSortedTagNumArrList, numSortedFilenamesArrList);
+			tagsAdapter.sortNum(numSortedTagsArrList, numSortedTagNumArrList, numSortedFilenamesArrList);
 			Log.e("11111111", Integer.toString(alphaSortedFilenamesArrList.size()));
 		} else {
 			isAlphaSort = true;
 
 			m.setTitle(getResources().getString(R.string.value_sort));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort));
-			adapter.sortAlph(alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
+			tagsAdapter.sortAlph(alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
 			Log.e("eee", Integer.toString(alphaSortedFilenamesArrList.size()));
 		}
 
@@ -556,16 +559,47 @@ public class Tags extends AppCompatActivity implements MainActivity{
 			super.onPostExecute(result);
 			/*
 			if (isAlphaSort == true)
-				adapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList);
+				tagsAdapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList);
 			else
-				adapter = new TagsAdapter(context, numSortedTagsArrList, numSortedTagNumArrList);
+				tagsAdapter = new TagsAdapter(context, numSortedTagsArrList, numSortedTagNumArrList);
 
 				*/
 
-			adapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
-			//recyclerView.setAdapter(adapter);
+			tagsAdapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
+			//recyclerView.setAdapter(tagsAdapter);
 
 		}
 
+	}
+
+
+
+	// All clicks from the dropDownMenuForSelectedFile side bar are handled here. Uses a handler to delay the click so the sidebar has time to close and the transitions are smooth.
+	@Override
+	public boolean onNavigationItemSelected(final MenuItem item) {
+		android.os.Handler delayedAction = new android.os.Handler();
+		final Context context = this;
+		final SoftReference<Context> contextSoft = new SoftReference<>(context);
+
+		delayedAction.postDelayed(new Runnable() {
+			@Override
+			public void run() {
+				switch (item.getItemId()){
+					case R.id.domus:
+						break;
+					case R.id.donation:
+						//donation();       // shows donation popup
+						break;
+					case R.id.feedback:
+						feedback();      // launches feedback operations
+						break;
+					default:
+						AnimusLauncherMethods.getNavigationIntent(item.getItemId(), contextSoft.get()); 		// getNavigationIntent gets the correct intent for the method to use.
+						break;
+				}
+			}
+		}, 150);
+		sideNavDrawer.closeDrawer(GravityCompat.START); // closes the side bar
+		return true;
 	}
 }

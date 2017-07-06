@@ -5,7 +5,7 @@
         android:id="@+id/submenu_1">
         <menu>
         <item
-            android:id="@+id/entries"
+            android:id="@+id/domus"
             android:icon="@drawable/entries"
             android:title="@string/entries" />
 

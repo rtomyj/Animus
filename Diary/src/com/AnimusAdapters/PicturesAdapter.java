@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusPictures;
+import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
 import java.io.File;
@@ -36,10 +37,8 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	private ArrayList<String> picturesArrList;
 
 	// user preferences;
-	private String fontStyle = "", theme= "";
+	private CustomAttributes userUIPreferences;
 	private Typeface userSelectedFontTF;
-	private float textSize;
-	private int primaryColor = 0, secondaryColor = 0, darkTextColor = 0, darkThemeBackgroundColor = 0, darkThemeForegroundColor = 0;
 
 	// Cache
 	private AnimusPictures.LRUBitmapCache cache;
@@ -55,42 +54,27 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 		setAdapterBaseData();
 		getPicFiles();
 	}
-	public PicturesAdapter(Context context, ArrayList<String> picturesArrList, int primaryColor, int secondaryColor, int darkTextColor, int darkThemeForegroundColor, int darkThemeBackgroundColor,
-										float textsize, String fontStyle, String theme){
+	public PicturesAdapter(Context context, ArrayList<String> picturesArrList, CustomAttributes userUIPreferences){
 		this.context = context;
 		this.picturesArrList = (picturesArrList);
-		this.primaryColor = primaryColor;
-		this.secondaryColor = secondaryColor;
-		this.darkTextColor = darkTextColor;
-		this.darkThemeForegroundColor = darkThemeForegroundColor;
-		this.darkThemeBackgroundColor = darkThemeBackgroundColor;
-		this.textSize = textsize;
-		this.fontStyle = fontStyle;
-		this.theme = theme;
+		this.userUIPreferences = userUIPreferences;
 
 		makeTypeFace();
 		setupCache();
 	}
 
-	public PicturesAdapter(Context context, int primaryColor, int secondaryColor, int darkTextColor, int darkThemeForegroundColor, int darkThemeBackgroundColor,
-						   float textsize, String fontStyle, String theme){
+	public PicturesAdapter(Context context, CustomAttributes userUIPreferences){
 		this.context = context;
-		this.primaryColor = primaryColor;
-		this.secondaryColor = secondaryColor;
-		this.darkTextColor = darkTextColor;
-		this.darkThemeForegroundColor = darkThemeForegroundColor;
-		this.darkThemeBackgroundColor = darkThemeBackgroundColor;
-		this.textSize = textsize;
-		this.fontStyle = fontStyle;
-		this.theme = theme;
+
+		this.userUIPreferences = userUIPreferences;
 
 		getPicFiles();
 		setupCache();
 		makeTypeFace();
 	}
 	private void makeTypeFace(){
-		if (!fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
-		userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontStyle);
+		if (!userUIPreferences.fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
+		userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + userUIPreferences.fontStyle);
 	}
 
 	}
@@ -98,11 +82,11 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 	private void getUserPreferences(){
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-		fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
+		userUIPreferences.fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
 
 		makeTypeFace();
 
-		textSize = Float.parseFloat(sp.getString("TextSize", "14"));
+		userUIPreferences.textSize = Float.parseFloat(sp.getString("TextSize", "14"));
 	}
 	private  void setupCache(){
 		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
@@ -216,28 +200,28 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 		File f = new File(context.getFilesDir(), picturesArrList.get(position) + ".txt");
 		if (  f.exists()) {
-			if (!fontStyle.contains("DEFAULT")) {
+			if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
 				holder.titleTV.setTypeface(userSelectedFontTF);
 				holder.monthTV.setTypeface(userSelectedFontTF);
 				holder.yearTV.setTypeface(userSelectedFontTF);
 				holder.dayTV.setTypeface(userSelectedFontTF);
 			}
 
-			if (theme.equals("Onyx")) {
-				holder.titleTV.setTextColor(darkTextColor);
-				holder.monthTV.setTextColor(darkTextColor);
-				holder.yearTV.setTextColor(darkTextColor);
+			if (userUIPreferences.theme.equals("Onyx")) {
+				holder.titleTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+				holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+				holder.yearTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 				holder.parentTV.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
 			}
 
 
-			holder.dayTV.setTextColor(secondaryColor);
-			holder.titleTV.setTextColor(secondaryColor);
+			holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
+			holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
 
-			holder.titleTV.setTextSize(textSize + (float) 2);
-			holder.monthTV.setTextSize(textSize);
-			holder.dayTV.setTextSize(textSize + (float) 5);
-			holder.yearTV.setTextSize(textSize);
+			holder.titleTV.setTextSize(userUIPreferences.textSize + (float) 2);
+			holder.monthTV.setTextSize(userUIPreferences.textSize);
+			holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
+			holder.yearTV.setTextSize(userUIPreferences.textSize);
 
 			if (!picturesArrList.get(position).substring(0, 4).equals("Temp"))
 				holder.titleTV.setText(picturesArrList.get(position).replace("_", " "));

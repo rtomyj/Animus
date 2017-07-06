@@ -44,15 +44,12 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
 	public TagsAdapter(Context context, ArrayList<String> tagsArr, ArrayList<Integer> tagAmountArr, ArrayList<String> fileNames) {
 		this.context = context;
-		//this.fileNames = fileNames;
 
-		// this makes two seperate arraylists... waste o ram.
 		this.fileNames.addAll(fileNames);
 		this.tagsArr.addAll(tagsArr);
 		this.tagAmountArr.addAll(tagAmountArr);
 
 		sp = PreferenceManager.getDefaultSharedPreferences(this.context);
-
 
 		fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
 
