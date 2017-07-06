@@ -5,16 +5,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.UtilityClasses.AnimusUI;
 import com.rtomyj.Diary.R;
 
 import java.util.TimerTask;
 
-public class Passcode extends Activity {
+public class Passcode extends AppCompatActivity {
 	EditText password;
 	TextView hint;
 	int attempts = 0;
@@ -43,29 +45,11 @@ public class Passcode extends Activity {
 		// Intent i = new Intent("com.diary.favs");
 		// startActivity(i);
 		// } else
-		
-		if (sp.getString("Theme", "Default").contains("Onyx")) {
-			super.setTheme(R.style.Onyx);
-		}
-		else if (sp.getString("Theme", "Default").equals("Material")){
-			super.setTheme(R.style.Material);
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 2")){
-			super.setTheme(R.style.Material2);
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 3")){
-			super.setTheme(R.style.Material3);
-		}
-		else if (sp.getString("Theme", "Default").equals("Material 4")){
-			super.setTheme(R.style.Material4);
-		}
+
+		String theme = sp.getString("Theme", "Default");
+		AnimusUI.setTheme(this, theme);
 		setContentView(R.layout.passcode);
 
-		try {
-			getActionBar().hide();
-		}catch(NullPointerException noActionBar){
-
-		}
 
 		password = (EditText) findViewById(R.id.password);
 		hint = (TextView) findViewById(R.id.hint);

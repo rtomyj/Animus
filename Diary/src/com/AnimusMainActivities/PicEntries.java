@@ -41,13 +41,10 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 			activityAdapter = new PicturesAdapter(this, userUIPreferences);
 		}
 
-		actionBar.setSubtitle("Total: " + activityAdapter.getTotalPicCount());
+		actionBar.setSubtitle("Total: " + adapterSize);
 
-		int adapterSize = activityAdapter.getItemCount();
 
-		if (adapterSize > 0) {
-			showList();
-			if (recyclerView.getAdapter() == null) { // if there is no adapter binded to recyclerView then entriesAdapter is binded to it.
+		if (recyclerView.getAdapter() == null) { // if there is no adapter binded to recyclerView then entriesAdapter is binded to it.
 
 				Log.e("adapter added", "stuff");
 				recyclerView.setHasFixedSize(true);  // children will not impact the redrawing of recyclerView; good for performance.
@@ -70,10 +67,6 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 				}
 			});
 		*/
-		}
-		else if (adapterSize == 0){
-			showWelcome();
-		}
 	}
 
 	// changes the color of UI elements according to the them the user has selected.
@@ -92,12 +85,6 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		// creates new Toolbar object and sets it as the activities action bar
-
-		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {		// blocks orientation change on really small screens
-			setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-		}
-
 
 		if (savedInstanceState != null){
 			ArrayList<String> picArrList = savedInstanceState.getStringArrayList("PIC_ARR_LIST");
@@ -128,9 +115,6 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 		}
 		return true;
 	}
-
-
-
 
 
 }

@@ -100,8 +100,6 @@ public class Domus extends MainActivity<EntriesAdapter> {
 		setContentView(R.layout.main_activity_base);
 		setupActionBar();
 
-		adapterSize = activityAdapter.getItemCount();
-
 
 	}
 
@@ -297,6 +295,7 @@ public class Domus extends MainActivity<EntriesAdapter> {
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);  // needed in order for password screen not be invoked every time user goes back from any other activity
 
 		switch (requestCode) {
 			case NEW_ENTRY:
@@ -327,9 +326,6 @@ public class Domus extends MainActivity<EntriesAdapter> {
 					sp.edit().remove("NEWFILETAG2").apply();
 					sp.edit().remove("NEWFILETAG3").apply();
 				}
-				break;
-			default:
-				super.onActivityResult(requestCode, resultCode, data);
 				break;
 		}
 	}

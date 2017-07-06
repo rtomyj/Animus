@@ -1,6 +1,5 @@
 package com.AnimusMainActivities;
 
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.PendingIntent;
 import android.content.ComponentName;
@@ -18,7 +17,6 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -30,7 +28,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
-import com.AnimusSubActivities.Passcode;
 import com.UtilityClasses.AnimusDonation;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;
@@ -109,8 +106,9 @@ import java.util.ArrayList;
 
         // changes the color of views according to theme
         AnimusUI.setTheme(this, userUIPreferences.theme);
-
         recycleViewLayoutManager = new LinearLayoutManager(this);
+
+        adapterSize = activityAdapter.getItemCount();
 
     }
 
@@ -251,9 +249,7 @@ import java.util.ArrayList;
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        // prevents password prompt from reappearing once the user enters the correct password and when user comes back from an activity
-        shouldLaunchPasswordActivity = false;
-        passWordCheckedSuccessfull = true;
+        super.onActivityResult(requestCode, resultCode, data);
 
         switch (requestCode) {
             case SETTINGS:
@@ -268,9 +264,6 @@ import java.util.ArrayList;
                 if (resultCode == RESULT_OK) {
                     // mGoogleApiClient.connect();
                 }
-                break;
-            default:
-                super.onActivityResult(requestCode, resultCode, data);
                 break;
         }
 
@@ -340,7 +333,7 @@ import java.util.ArrayList;
     protected void onStart() {
         super.onStart();
 
-        if (recyclerView == null)// re-inits recyclerView  if it's null or first time onStart() is called.
+        if (recyclerView == null)       // re-inits recyclerView  if it's null or first time onStart() is called.
             recyclerView = (RecyclerView) findViewById(R.id.list);
 
         LinearLayout home = (LinearLayout) findViewById(R.id.parent);
@@ -374,7 +367,7 @@ import java.util.ArrayList;
         in_appCheck(sp);
 
 
-        if ( activityAdapter.getItemCount() == 0) {
+        if ( adapterSize == 0) {
             showWelcome();  // if not entries are in the app then it shows the generic screen.
         } else
             showList();  // else it shows the user their entries.
