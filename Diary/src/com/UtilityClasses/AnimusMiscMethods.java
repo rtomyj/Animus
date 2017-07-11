@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.text.SpannableString;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -396,6 +397,46 @@ public class AnimusMiscMethods {
 					context.getResources().getString(R.string.feedback_error),
 					Toast.LENGTH_LONG).show();
 		}
+	}
+
+
+	private class LoadDate extends AsyncTask<String, Integer, String> {
+		private TextView month_and_year;
+		private Context context;
+		private String[] m;
+
+		private File f;
+		private java.util.Calendar calendar;
+
+		private String firstVisibleItem;
+
+		public LoadDate(Context c, TextView month_and_year, String[] m,
+						String firstVisibleItem) {
+			this.month_and_year = month_and_year;
+			this.context= c;
+			this.m = m;
+			this.firstVisibleItem = firstVisibleItem;
+		}
+
+		@Override
+		protected String doInBackground(String... params) {
+			if (isCancelled() == false) {
+				f = new File(context.getFilesDir(), firstVisibleItem);
+				calendar = java.util.Calendar.getInstance();
+				calendar.setTimeInMillis(f.lastModified());
+			}
+
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(String result) {
+			super.onPostExecute(result);
+			if ( ! (m[calendar.get(java.util.Calendar.MONTH)] + " " + Integer.toString(calendar.get(java.util.Calendar.YEAR))).equals(month_and_year.getText())){
+				month_and_year.setText(m[calendar.get(java.util.Calendar.MONTH)] + " " + Integer.toString(calendar.get(java.util.Calendar.YEAR)));
+			}
+		}
+
 	}
 
 }

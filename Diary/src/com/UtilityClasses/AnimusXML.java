@@ -577,7 +577,7 @@ public class AnimusXML {
                                             if (element.getAttribute("favoriteSelectedFile").equals("true"))
                                                 favArrList.set(index, true);
                                         } catch (NullPointerException G) {
-                                            Log.e("Faves null ptr", G.toString());
+                                            Log.e("FaveEntries null ptr", G.toString());
                                         }
                                     }
                                     index++;
@@ -598,6 +598,122 @@ public class AnimusXML {
 
     }
 
+    public static short getFaveNum(File filesDir){
+        short faveNum = 0;
+        DocumentBuilderFactory factory;
+        DocumentBuilder builder;
+        Document doc = null;
+
+        Element element;
+        Node node;
+        NodeList nodeList;
+
+        File filesXML = new File(filesDir, "Files.xml");
+
+        factory = DocumentBuilderFactory.newInstance();
+        factory.setIgnoringComments(true);
+        try {
+            builder = factory.newDocumentBuilder();
+            doc = builder.parse(filesXML);
+        }catch(ParserConfigurationException| SAXException | IOException exception){
+            Log.e("Error getting fave num", exception.toString());
+        }
+
+        assert doc != null;
+        nodeList = doc.getElementsByTagName("Files");
+        node = nodeList.item(0);
+        nodeList = node.getChildNodes();
+        int nodeLen = nodeList.getLength();
+
+        for (int z = 0; z < nodeLen; z++) {
+            node = nodeList.item(z);
+            if (!node.getNodeName().equals("#text")) {
+                element = (Element) node;
+                if (element.getAttribute("favoriteSelectedFile").equals("true"))
+                    faveNum++;
+            }
+        }
+
+        return faveNum;
+    }
+
+
+    // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
+    public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList,
+                                             final ArrayList<Boolean> favArrList, final File filesDir ) throws IndexOutOfBoundsException{
+        new Thread(new Runnable() {
+            DocumentBuilderFactory factory;
+            DocumentBuilder builder;
+            Document doc;
+
+            Element element;
+            Node node;
+            NodeList nodeList;
+
+            @Override
+            public void run() {
+
+                File filesXML = new File(filesDir, "Files.xml");
+
+                factory = DocumentBuilderFactory.newInstance();
+                factory.setIgnoringComments(true);
+                try {
+                    builder = factory.newDocumentBuilder();
+                    doc = builder.parse(filesXML);
+                }catch(ParserConfigurationException| SAXException | IOException exception){
+                    Log.e("Error parsing xml", exception.toString());
+                }
+
+                StringBuilder currentTagName = new StringBuilder();
+                byte faveIndex = 0, amountOfTags;
+
+
+                nodeList = doc.getElementsByTagName("Files");
+                node = nodeList.item(0);
+                nodeList = node.getChildNodes();
+                int nodeLen = nodeList.getLength();
+
+                for (int z = 0; z < nodeLen; z++) {
+                    node = nodeList.item(z);
+                    if (!node.getNodeName().equals("#text")) {
+                        element = (Element) node;
+                        if (element.getAttribute("favoriteSelectedFile").equals("true")) {
+                            filenames.set(faveIndex, element.getAttribute("name"));
+                            // If the amount of tags in the xml element "tags" is 0 then the tag Arrays will get populated with null
+                            // otherwise they will get populated in the for loop, along with the ArrayList holding unique tags.
+
+                            amountOfTags = Byte.parseByte(element.getAttribute("tags"));
+                            getTags: for (byte x = 0; x < amountOfTags; x++) {
+                                currentTagName.delete(0, currentTagName.length());
+                                currentTagName.append(element.getAttribute("tag" + Integer.toString(x + 1)));
+                                String currentTag = currentTagName.toString();
+
+                                switch (x){
+                                    case 0:
+                                        tag1ArrList.set(faveIndex, currentTag);
+                                        break;
+                                    case 1:
+                                        tag2ArrList.set(faveIndex, currentTag);
+                                        break;
+                                    case 2:
+                                        tag3ArrList.set(faveIndex, currentTag);
+                                        break;
+                                    default:
+                                        break getTags;
+                                }
+                            }
+                            faveIndex ++;
+                        }
+                    }
+                }
+                // if the file isn't entered int th Files.xml then a new instance will be made for it here.
+
+            }
+        }).start();
+
+
+
+    }
 
 
 /*

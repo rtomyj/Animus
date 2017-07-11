@@ -5,16 +5,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.AnimusMainActivities.Domus;
-import com.AnimusMainActivities.MainActivity;
-import com.AnimusMainActivities.NewEntry;
-import com.AnimusMainActivities.PicEntries;
-import com.AnimusSubActivities.ChosenFile;
-import com.AnimusSubActivities.FavesActivity;
-import com.AnimusSubActivities.MainSettingsFrag;
-import com.AnimusSubActivities.Notes;
-import com.AnimusSubActivities.PhotoViewer;
-import com.AnimusMainActivities.Tags;
+import com.MainActivities.Entries;
+import com.MainActivities.FaveEntries;
+import com.MainActivities.MainActivity;
+import com.MainActivities.NewEntry;
+import com.MainActivities.PicEntries;
+import com.SubActivities.ChosenFile;
+import Settings.MainSettingsFrag;
+import com.SubActivities.Notes;
+import com.SubActivities.PhotoViewer;
+import com.MainActivities.Tags;
 import com.rtomyj.Diary.R;
 
 import java.util.ArrayList;
@@ -31,11 +31,11 @@ public class AnimusLauncherMethods {
         return i;
     }
 
-    public static void getNavigationIntent(int menuItem, Context parent){
+    public static void launchActivity(int menuItem, Context parent){
         Intent intent = null;
         switch (menuItem){
             case R.id.domus:
-                intent  = new Intent(parent, Domus.class);
+                intent  = new Intent(parent, Entries.class);
                 break;
             case R.id.notes:
                 intent  = new Intent(parent, Notes.class);
@@ -47,7 +47,7 @@ public class AnimusLauncherMethods {
                 intent = new Intent(parent, Tags.class);
                 break;
             case R.id.faves:
-                intent = new Intent(parent, FavesActivity.class);
+                intent = new Intent(parent, FaveEntries.class);
                 break;
             case R.id.settings:
                 intent= new Intent(parent, MainSettingsFrag.class);
