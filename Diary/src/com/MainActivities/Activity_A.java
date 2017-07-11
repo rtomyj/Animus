@@ -1,4 +1,4 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
@@ -6,9 +6,8 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 
-import com.AnimusSubActivities.Passcode;
+import com.SubActivities.Passcode;
 
 /**
  * Created by CaptainSaveAHoe on 7/6/17.
@@ -79,5 +78,10 @@ public class Activity_A extends AppCompatActivity {
     protected void onSaveInstanceState(Bundle bundle) {
         bundle.putBoolean("PASSWORD_CHECK", shouldLaunchPasswordActivity);
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
     }
 }

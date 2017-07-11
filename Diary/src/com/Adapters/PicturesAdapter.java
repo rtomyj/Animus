@@ -1,4 +1,4 @@
-package com.AnimusAdapters;
+package com.Adapters;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -26,6 +26,25 @@ import com.rtomyj.Diary.R;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+
+
+		/*
+		for onclick
+			picturesRV.setOnItemClickListener(new OnItemClickListener() {
+				@Override
+				public void onItemClick(AdapterView<?> parent, View view,
+				                        int position, long id) {
+					Intent i = new Intent(context, ChosenFile.class);
+					i.putExtra("FILENAME", (pictureFilesArrayList.get(position) + ".txt"));
+					i.putExtra("FILESARRAY", pictureFilesArrayList);
+					i.putExtra("POSITION", position);
+					pass_codeCheck = false;
+					startActivityForResult(i, 2);
+
+				}
+			});
+		*/
+
 
 public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
 	// for info

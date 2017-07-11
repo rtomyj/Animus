@@ -1,4 +1,4 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.Manifest;
 import android.app.Activity;
@@ -51,7 +51,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.AnimusSubActivities.Passcode;
+import com.SubActivities.Passcode;
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;

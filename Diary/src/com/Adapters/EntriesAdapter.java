@@ -1,8 +1,9 @@
-package com.AnimusAdapters;
+package com.Adapters;
 
 import android.content.Context;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -25,6 +26,8 @@ import com.UtilityClasses.AnimusXML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
+import org.xml.sax.SAXException;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -34,6 +37,8 @@ import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Locale;
+
+import javax.xml.parsers.ParserConfigurationException;
 
 public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHolder> {
 
@@ -133,10 +138,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         setAdapterBaseData(context);
     }
 
-    // constructor with only the months array and the calling activities Context
-    public EntriesAdapter(Context context, CustomAttributes userUIPrefrences){
-        this.userUIPreferences = userUIPrefrences;
-
+    private void loadAllEntries(Context context){
         ArrayList<File> filesArrayList = new ArrayList<>();
         filesArrayList.addAll(AnimusFiles.getFilesWithExtension(context.getFilesDir(),".txt"));
 
@@ -148,7 +150,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
             }
         });
 
-        final int sortedFilesArrListSize = filesArrayList.size();
+        int sortedFilesArrListSize = filesArrayList.size();
         sortedFilesArrList = new ArrayList<>(sortedFilesArrListSize);
         tag1ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
         tag2ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
@@ -160,6 +162,33 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
         filesArrayList.clear();
         AnimusXML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+    }
+    private void loadJustFaveEntries(Context context){
+
+        try {
+            short faveNum = AnimusXML.getFaveNum(context.getFilesDir());
+
+            sortedFilesArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
+            tag1ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
+            tag2ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
+            tag3ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
+            favArrList = new ArrayList<>(Collections.nCopies(faveNum, true));
+            AnimusXML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+        }catch (IndexOutOfBoundsException exception){
+            Log.e("Error parsing xml", exception.toString());
+        }
+    }
+
+
+    // constructor with only the months array and the calling activities Context
+    public EntriesAdapter(Context context, CustomAttributes userUIPreferences, boolean justFaves){
+        this.userUIPreferences = userUIPreferences;
+
+        if ( ! justFaves)
+            loadAllEntries(context);
+        else
+            loadJustFaveEntries(context);
+
 
         setAdapterBaseData(context);
     }
@@ -372,9 +401,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     }
 
 
-    public void fileChanged(ArrayList<String> sortedFiles,
-                            ArrayList<String> tag1ArrList2, ArrayList<String> tag2ArrList2,
-                            ArrayList<String> tag3ArrList2, ArrayList<Boolean> favArrList2) {
+    public void fileChanged(ArrayList<String> sortedFiles, ArrayList<String> tag1ArrList2, ArrayList<String> tag2ArrList2, ArrayList<String> tag3ArrList2, ArrayList<Boolean> favArrList2) {
         this.sortedFilesArrList.clear();
         this.tag1ArrList.clear();
         this.tag2ArrList.clear();
@@ -429,6 +456,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     public ArrayList<String> getThirdTags(){
         return tag2ArrList;
     }
+
+
     public void childRemoved(int target){
         cachePosition = target;
         cacheFileName = sortedFilesArrList.get(target);

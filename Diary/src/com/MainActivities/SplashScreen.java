@@ -1,7 +1,6 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -80,11 +79,11 @@ public class SplashScreen extends Activity {
 					tv.setTextColor(darkThemeTextColor);
 
 
-			final Intent domusIntent = new Intent(this, Domus.class);
+			final Intent domusIntent = new Intent(this, Entries.class);
 			domusIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
-			// runs a delayed task. Domus will launch automatically in 2.5 seconds
+			// runs a delayed task. Entries will launch automatically in 2.5 seconds
 			final Timer time = new Timer();
 			time.schedule(new TimerTask() {
 				public void run() {
@@ -117,7 +116,7 @@ public class SplashScreen extends Activity {
 
 			if (passwordET.getText().toString()
 					.equals(password)) {
-				Intent i = new Intent(this, Domus.class);
+				Intent i = new Intent(this, Entries.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 			} else {

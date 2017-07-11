@@ -1,6 +1,7 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.support.design.widget.Snackbar;
+import android.support.v7.widget.LinearLayoutManager;
 import android.util.Log;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -10,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v4.widget.SwipeRefreshLayout;
 import android.text.Html;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -19,7 +19,7 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.AnimusAdapters.EntriesAdapter;
+import com.Adapters.EntriesAdapter;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusXML;
@@ -28,7 +28,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Domus extends MainActivity<EntriesAdapter> {
+public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 	// Objects for list
 	private ArrayList<String> faveChangedFileNameArrList = new ArrayList<>(10);
 	private ArrayList<String> deletedFileNameArrList = new ArrayList<>(10);
@@ -38,27 +38,7 @@ public class Domus extends MainActivity<EntriesAdapter> {
 
 	// others...
 	private int selectedFile;
-
-	// shows popup for new users once and only once
-	private void showIntro() {
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
-		if (!sp.contains("INTRO")) {
-			sp.edit().putBoolean("INTRO", false).apply();
-		}
-
-		if (!sp.getBoolean("INTRO", false)) {
-			AlertDialog.Builder introDialog = new AlertDialog.Builder(this);
-			View introView = View.inflate(this, R.layout.intro, null);
-
-			introDialog.setView(introView);
-
-			introDialog.setPositiveButton(getResources().getString(R.string.intro_dialog_dismiss_button), null);
-			introDialog.create();
-			introDialog.show();
-			sp.edit().putBoolean("INTRO", true).apply();  // sets preference to true for intro meaning the user already has seen it.
-		}
-	}
+	boolean loadJustFaves = false;
 
 
 	@Override
@@ -90,17 +70,13 @@ public class Domus extends MainActivity<EntriesAdapter> {
 			activityAdapter = new EntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
 					userUIPreferences);
 		} else {  // if there is nothing to copy from bundle, call method
-			activityAdapter = new EntriesAdapter(this, userUIPreferences);
+			activityAdapter = new EntriesAdapter(this, userUIPreferences, loadJustFaves);
 
-			// checks to see if there is a preference named INTRO, if not then it creates a new one with default value of false.
-			// when true, intro has been seen and will not show the AlertDialog
-			showIntro();
 		}
-
-		setContentView(R.layout.main_activity_base);
+		adapterSize = activityAdapter.getItemCount();
 		setupActionBar();
-
-
+		setInfoToActionBar(DOMUS);
+		customizeUI();  // changes UI elements
 	}
 
 	// Sets the UI elements to specified colors depending on the theme used.
@@ -110,15 +86,11 @@ public class Domus extends MainActivity<EntriesAdapter> {
 	}
 
 
-	@Override
-	protected void onStart() {
-		super.onStart();
 
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-		customizeUI();  // changes UI elements
+	private void makeSnackBar(){
 
-		LinearLayout home = (LinearLayout) findViewById(R.id.parent);
 		if (undoDeleteSnackBar == null) {
+			LinearLayout home = (LinearLayout) findViewById(R.id.parent);
 			undoDeleteSnackBar = Snackbar.make(home, getText(R.string.entry_deleted_snackbar_dialog), Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.undo_text), new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
@@ -128,7 +100,7 @@ public class Domus extends MainActivity<EntriesAdapter> {
 					adapterSize++;
 					actionBar.setSubtitle("Total Entries: " + Integer.toString(adapterSize));
 
-					if (activityAdapter.getItemCount() == 0) {
+					if (adapterSize == 0) {
 						showWelcome();
 					} else
 						showList();
@@ -137,21 +109,15 @@ public class Domus extends MainActivity<EntriesAdapter> {
 			((TextView) (undoDeleteSnackBar.getView().findViewById(android.support.design.R.id.snackbar_text))).setTextColor(ContextCompat.getColor(this, R.color.Peach));
 		}
 
+	}
+
+
+	@Override
+	protected void onStart() {
+		super.onStart();
+		makeSnackBar();
 		// Creates xml files for tags, faves, etc...
 		AnimusXML.checkForAppFiles(getFilesDir(), getAssets(), getBaseContext().getContentResolver());
-
-		SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
-		WeakReference<SwipeRefreshLayout> mSwipeRefreshLayoutWeak = new WeakReference<>(mSwipeRefreshLayout);
-
-		if (!sp.getBoolean("DROPBOXBACKUP", false)) { // there will be a swipeable layout for refreshing data, only if dropbox backup is true in settings.
-			mSwipeRefreshLayoutWeak.get().setEnabled(false);
-		} else {
-			mSwipeRefreshLayoutWeak.get().setColorSchemeColors(
-					ContextCompat.getColor(this, R.color.UIMaterialTeal),
-					ContextCompat.getColor(this, R.color.UIBlue),
-					ContextCompat.getColor(this, R.color.UIPurple),
-					ContextCompat.getColor(this, R.color.UIPink));
-		}
 
 	}
 
@@ -340,15 +306,11 @@ public class Domus extends MainActivity<EntriesAdapter> {
 		AnimusLauncherMethods.chosenFile(this, activityAdapter.getFilename(selectedFile), selectedFile, activityAdapter.getSortedFiles());
 	}
 
+
 	@Override
 	public boolean onNavigationItemSelected(final MenuItem item) {
-	switch(item.getItemId()) {
-		case R.id.domus:
-			break;
-		default:
-			super.onNavigationItemSelected(item);
-	}
+		super.onNavigationItemSelected(item);
 		return true;
-}
+	}
 
 }

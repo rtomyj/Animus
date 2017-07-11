@@ -1,4 +1,4 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -14,9 +14,12 @@ import android.os.IBinder;
 import android.os.RemoteException;
 import android.preference.PreferenceManager;
 import android.support.design.widget.NavigationView;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
@@ -57,11 +60,15 @@ import java.util.ArrayList;
     Extended class can call all important views/variables. Those that are used just in this class are set to private.
  */
 
- public class MainActivity <T extends RecyclerView.Adapter> extends Activity_A implements NavigationView.OnNavigationItemSelectedListener {
+ public class MainActivity <T extends RecyclerView.Adapter, S extends RecyclerView.LayoutManager> extends Activity_A implements NavigationView.OnNavigationItemSelectedListener {
     // constants used when launching activity for result to handle the result
-    public final static int NEW_ENTRY = 1;
-    public final static int CHOSEN_FILE = 2;
-    public final static int SETTINGS = 10;
+    public final static byte NEW_ENTRY = 1;
+    public final static byte CHOSEN_FILE = 2;
+    public final static byte SETTINGS = 10;
+
+    final static byte DOMUS = 50;
+    final static byte PIC_ENTRIES = 51;
+    final static byte TAGS = 52;
 
     // Misc views
     ViewSwitcher greetingContextVS;
@@ -72,7 +79,7 @@ import java.util.ArrayList;
     // Objects for list
     RecyclerView recyclerView;
     T activityAdapter;
-    RecyclerView.LayoutManager recycleViewLayoutManager;
+    S recycleViewLayoutManager;
 
     // Service objects
     private IInAppBillingService in_appBillingService = null;
@@ -106,9 +113,7 @@ import java.util.ArrayList;
 
         // changes the color of views according to theme
         AnimusUI.setTheme(this, userUIPreferences.theme);
-        recycleViewLayoutManager = new LinearLayoutManager(this);
-
-        adapterSize = activityAdapter.getItemCount();
+        setContentView(R.layout.main_activity_base);
 
     }
 
@@ -151,7 +156,7 @@ import java.util.ArrayList;
                         feedback();      // launches feedback operations
                         break;
                     default:
-                        AnimusLauncherMethods.getNavigationIntent(item.getItemId(), contextSoft.get());        // getNavigationIntent gets the correct intent for the method to use.
+                        AnimusLauncherMethods.launchActivity(item.getItemId(), contextSoft.get());        // launchActivity gets the correct intent for the method to use.
                         break;
                 }
             }
@@ -276,6 +281,7 @@ import java.util.ArrayList;
         if (sideNavDrawer.isDrawerOpen(GravityCompat.START)) {
             sideNavDrawer.closeDrawer(GravityCompat.START);
         }
+        super.onBackPressed();
     }
 
 
@@ -329,22 +335,14 @@ import java.util.ArrayList;
         }
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-
-        if (recyclerView == null)       // re-inits recyclerView  if it's null or first time onStart() is called.
-            recyclerView = (RecyclerView) findViewById(R.id.list);
-
+    private void loadAds(){
         LinearLayout home = (LinearLayout) findViewById(R.id.parent);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-
         if (loadAds && ad == null) {
             if (AnimusMiscMethods.isNetworkAvailable(this)) { // checks network access, if the phone is connected then an AD can be fetched.
                 ad = new AdView(this);
                 ad.setAdSize(AdSize.SMART_BANNER);
                 ad.setAdUnitId("ca-app-pub-9636313395157467/8316827940");
-                home.addView(ad); // places AD in the bottom part of the Domus Activity.
+                home.addView(ad); // places AD in the bottom part of the Entries Activity.
 
                 AdRequest request = new AdRequest.Builder().setGender(AdRequest.GENDER_FEMALE).build(); // targets the core demographic of the app with ADS.
                 WeakReference<AdRequest> requestWeak = new WeakReference<>(request);
@@ -359,6 +357,28 @@ import java.util.ArrayList;
                 home.removeView(ad);
             }
         }
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
+        loadAds();
+
+        //  allows data to get refreshed from whatever backup option user chooses
+        //              !!!!! Backup coming soon !!!!!
+        SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
+
+        if (!sp.getBoolean("DROPBOXBACKUP", false)) { // there will be a swipeable layout for refreshing data, only if dropbox backup is true in settings.
+            mSwipeRefreshLayout.setEnabled(false);
+        } else {
+            mSwipeRefreshLayout.setColorSchemeColors(
+                    ContextCompat.getColor(this, R.color.UIMaterialTeal),
+                    ContextCompat.getColor(this, R.color.UIBlue),
+                    ContextCompat.getColor(this, R.color.UIPurple),
+                    ContextCompat.getColor(this, R.color.UIPink));
+        }
+
 
         if (greetingContextVS == null)  // re-inits view switcher if it's null or first time onStart() is called.
             greetingContextVS = (ViewSwitcher) findViewById(R.id.change_greeting);
@@ -367,7 +387,10 @@ import java.util.ArrayList;
         in_appCheck(sp);
 
 
-        if ( adapterSize == 0) {
+        if (recyclerView == null)       // re-inits recyclerView  if it's null or first time onStart() is called.
+            recyclerView = (RecyclerView) findViewById(R.id.list);
+
+        if (adapterSize == 0) {
             showWelcome();  // if not entries are in the app then it shows the generic screen.
         } else
             showList();  // else it shows the user their entries.
@@ -436,6 +459,20 @@ import java.util.ArrayList;
         AnimusLauncherMethods.newEntry(this);
         potentialNewEntry = true;
 
+    }
+    void setInfoToActionBar(Byte activity){
+        switch (activity) {
+            case DOMUS:
+                recycleViewLayoutManager =  (S) new LinearLayoutManager(this);
+                actionBar.setSubtitle("Total: " + adapterSize);
+                break;
+            case PIC_ENTRIES:
+                recycleViewLayoutManager =  (S) new GridLayoutManager(this, 2);
+                actionBar.setSubtitle("Total: " + adapterSize);
+                break;
+            case TAGS:
+                break;
+        }
     }
 
 }

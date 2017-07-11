@@ -1,18 +1,15 @@
-package com.AnimusMainActivities;
+package com.MainActivities;
 
 import android.content.Intent;
-import android.content.pm.ActivityInfo;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
-import android.util.Log;
 import android.view.MenuItem;
 
-import com.AnimusAdapters.PicturesAdapter;
+import com.Adapters.PicturesAdapter;
 import com.rtomyj.Diary.R;
 import java.util.ArrayList;
 
-public class PicEntries extends MainActivity<PicturesAdapter> {
+public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager> {
 
 	@Override
 	protected void onPause() {
@@ -37,36 +34,6 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 	@Override
 	protected void onStart() {
 		super.onStart();
-		if (activityAdapter == null) {
-			activityAdapter = new PicturesAdapter(this, userUIPreferences);
-		}
-
-		actionBar.setSubtitle("Total: " + adapterSize);
-
-
-		if (recyclerView.getAdapter() == null) { // if there is no adapter binded to recyclerView then entriesAdapter is binded to it.
-
-				Log.e("adapter added", "stuff");
-				recyclerView.setHasFixedSize(true);  // children will not impact the redrawing of recyclerView; good for performance.
-				recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-				recyclerView.setAdapter(activityAdapter);
-			}
-
-		/*
-			picturesRV.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-				                        int position, long id) {
-					Intent i = new Intent(context, ChosenFile.class);
-					i.putExtra("FILENAME", (pictureFilesArrayList.get(position) + ".txt"));
-					i.putExtra("FILESARRAY", pictureFilesArrayList);
-					i.putExtra("POSITION", position);
-					pass_codeCheck = false;
-					startActivityForResult(i, 2);
-
-				}
-			});
-		*/
 	}
 
 	// changes the color of UI elements according to the them the user has selected.
@@ -77,9 +44,7 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
-
 		outState.putStringArrayList("PIC_ARR_LIST", activityAdapter.getPicturesArrList());
-
 	}
 
 	@Override
@@ -94,14 +59,16 @@ public class PicEntries extends MainActivity<PicturesAdapter> {
 				actionBar.setSubtitle("Total: " + activityAdapter.getTotalPicCount());		// sets the total of all pictures saved in app not just the number that shows up in adapter
 			}
 
+		}else{
+			if (activityAdapter == null) {
+				activityAdapter = new PicturesAdapter(this, userUIPreferences);
+			}
 		}
 
-        //sets theme according to preference before setting the view
-		setContentView(R.layout.main_activity_base);
+		adapterSize = activityAdapter.getItemCount();
 		setupActionBar();
-
-        //changes colors of views for theme
-        customizeUI();
+		setInfoToActionBar(PIC_ENTRIES);
+        customizeUI();			//changes colors of views for theme
 	}
 
 

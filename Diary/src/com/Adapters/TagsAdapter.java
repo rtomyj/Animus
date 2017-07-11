@@ -1,10 +1,8 @@
-package com.AnimusAdapters;
+package com.Adapters;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.content.res.Configuration;
 import android.graphics.Typeface;
-import android.os.Build;
 import android.preference.PreferenceManager;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
@@ -13,11 +11,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.UtilityClasses.AnimusLauncherMethods;
 import com.rtomyj.Diary.R;
 
 import java.io.DataInputStream;
