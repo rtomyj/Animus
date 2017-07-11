@@ -19,9 +19,6 @@ import android.widget.Toast;
 
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusUI;
-import com.dropbox.client2.DropboxAPI;
-import com.dropbox.client2.android.AndroidAuthSession;
-import com.dropbox.client2.session.AppKeyPair;
 import com.rtomyj.Diary.R;
 
 import org.w3c.dom.Document;
@@ -53,7 +50,7 @@ public class Data extends AppCompatActivity {
 	final static private String APP_SECRET = "yah1emwm7tbs29g";
 
 
-	private DropboxAPI<AndroidAuthSession> mDBApi;
+	//private DropboxAPI<AndroidAuthSession> mDBApi;
 
 	private Switch sdSwitch;
 	private Switch dropboxSwitch;
@@ -137,9 +134,9 @@ public class Data extends AppCompatActivity {
 				.getDefaultSharedPreferences(this);
 
 // And later in some initialization function:
-		AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
-		AndroidAuthSession session = new AndroidAuthSession(appKeys);
-		mDBApi = new DropboxAPI<AndroidAuthSession>(session);
+		//AppKeyPair appKeys = new AppKeyPair(APP_KEY, APP_SECRET);
+		//AndroidAuthSession session = new AndroidAuthSession(appKeys);
+	//	mDBApi = new DropboxAPI<AndroidAuthSession>(session);
 		//sdSwitch = (Switch) findViewById(R.id.sd_backup);
 		dropboxSwitch = (Switch) findViewById(R.id.dropbox_backup);
 		syncPB = (ProgressBar) findViewById(R.id.progressBar1);
