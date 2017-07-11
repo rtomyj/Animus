@@ -9,7 +9,6 @@
             android:icon="@drawable/entries"
             android:title="@string/entries" />
 
-
         <item
             android:id="@+id/pictures"
             android:icon="@drawable/photos"

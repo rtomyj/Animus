@@ -34,8 +34,6 @@ import android.widget.ViewSwitcher;
 import com.UtilityClasses.AnimusDonation;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;
-import com.UtilityClasses.AnimusUI;
-import com.UtilityClasses.CustomAttributes;
 import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -61,58 +59,33 @@ import java.util.ArrayList;
  */
 
  public class MainActivity <T extends RecyclerView.Adapter, S extends RecyclerView.LayoutManager> extends Activity_A implements NavigationView.OnNavigationItemSelectedListener {
-    // constants used when launching activity for result to handle the result
-    public final static byte NEW_ENTRY = 1;
-    public final static byte CHOSEN_FILE = 2;
-    public final static byte SETTINGS = 10;
-
-    final static byte DOMUS = 50;
-    final static byte PIC_ENTRIES = 51;
-    final static byte TAGS = 52;
 
     // Misc views
-    ViewSwitcher greetingContextVS;
+    protected ViewSwitcher greetingContextVS;
     private AdView ad = null;
     protected Toolbar actionBar;
-    private DrawerLayout sideNavDrawer;
+    protected DrawerLayout sideNavDrawer;
 
-    // Objects for list
-    RecyclerView recyclerView;
-    T activityAdapter;
-    S recycleViewLayoutManager;
+    // Objects to make the listView work
+    protected RecyclerView recyclerView;
+    protected T activityAdapter;
+    protected S recycleViewLayoutManager;
 
     // Service objects
     private IInAppBillingService in_appBillingService = null;
     private ServiceConnection connection;
 
     // Misc primitives
-    boolean potentialNewEntry = false, loadAds = false;
+    protected boolean potentialNewEntry = false, loadAds = false;
 
     // others...
-    CustomAttributes userUIPreferences;
-    int adapterSize = 0;
+    protected int adapterSize = 0;
 
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-        if (bundle != null){
-            // loads data from bundle
-            userUIPreferences = new CustomAttributes(bundle.getInt("PRIMARY_COLOR"), bundle.getInt("SECONDARY_COLOR"), bundle.getInt("TAGS_TEXT_COLOR"), bundle.getInt("DARK_THEME_TEXT_COLOR"),
-                    bundle.getInt("DARK_THEME_BACKGROUND_COLOR"), bundle.getInt("NUM_LINES"), bundle.getFloat("TEXT_SIZE"), bundle.getString("FONT_STYLE"),  bundle.getString("THEME"));
-
-            loadAds = bundle.getBoolean("LOAD_ADS");
-
-        }
-        else {  // if there is nothing to copy from bundle, call method
-            userUIPreferences = new CustomAttributes(this, sp);
-            loadAds = sp.getBoolean("ADS", true);
-        }
-
-        // changes the color of views according to theme
-        AnimusUI.setTheme(this, userUIPreferences.theme);
         setContentView(R.layout.main_activity_base);
 
     }
@@ -125,9 +98,7 @@ import java.util.ArrayList;
 
         // creates toggle for action bar and anchors the side navigation drawer object to it.
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, sideNavDrawer, actionBar, 0, 0);
-        WeakReference<ActionBarDrawerToggle> toggleWeak = new WeakReference<>(toggle);
-        toggleWeak.get().syncState();
-        toggleWeak.clear();
+        toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
@@ -244,8 +215,6 @@ import java.util.ArrayList;
         }
     }
 
-
-    // checks to see if the app should launch the password screen. It is only launched when the user has explicitly opted in for the feature in the settings screen and when the app is relaunched from multitasking
     @Override
     protected void onRestart() {
         super.onRestart();
@@ -262,12 +231,6 @@ import java.util.ArrayList;
                 if (sp.getBoolean("THEMECHANGE", false)) {  // whenever the  user changes the theme this changes the theme to this activity
                     sp.edit().remove("THEMECHANGE").apply();
                     this.recreate();
-                }
-                break;
-
-            case 1111:
-                if (resultCode == RESULT_OK) {
-                    // mGoogleApiClient.connect();
                 }
                 break;
         }
@@ -395,7 +358,7 @@ import java.util.ArrayList;
         } else
             showList();  // else it shows the user their entries.
 
-        if (recyclerView.getAdapter() == null) { // if there is no adapter binded to recyclerView then entriesAdapter is binded to it.
+        if (recyclerView.getAdapter() == null) { // if there is no adapter bond to recyclerView then entriesAdapter is binded to it.
             Log.e("adapter added", "stuff");
             recyclerView.setHasFixedSize(true);  // children will not impact the redrawing of recyclerView; good for performance.
             recyclerView.setLayoutManager(recycleViewLayoutManager);
@@ -431,6 +394,7 @@ import java.util.ArrayList;
     // when the activity is being terminated it gets the chance to saveEntryText its state. Here it saves the files, the tags for the files, their status (whether they're favorites) etc.
     @Override
     protected void onSaveInstanceState(Bundle bundle) {
+        super.onSaveInstanceState(bundle);
         bundle.putInt("PRIMARY_COLOR",  userUIPreferences.primaryColor);
         bundle.putInt("SECONDARY_COLOR", userUIPreferences.secondaryColor);
         bundle.putInt("DARK_THEME_TEXT_COLOR", userUIPreferences.textColorForDarkThemes);
@@ -460,6 +424,8 @@ import java.util.ArrayList;
         potentialNewEntry = true;
 
     }
+
+    @SuppressWarnings("unchecked")
     void setInfoToActionBar(Byte activity){
         switch (activity) {
             case DOMUS:
@@ -471,6 +437,12 @@ import java.util.ArrayList;
                 actionBar.setSubtitle("Total: " + adapterSize);
                 break;
             case TAGS:
+                recycleViewLayoutManager = (S) new LinearLayoutManager(this);
+                actionBar.setSubtitle("Total: " + adapterSize);
+                break;
+            default:
+                recycleViewLayoutManager = (S) new LinearLayoutManager(this);
+                actionBar.setSubtitle("Total: " + adapterSize);
                 break;
         }
     }

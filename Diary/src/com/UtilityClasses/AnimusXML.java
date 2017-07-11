@@ -715,103 +715,63 @@ public class AnimusXML {
 
     }
 
+    public static void getTagsFromXML(ArrayList<String> unsortedTagsArrList, ArrayList<Byte> unsortedTagNumArrList, ArrayList<String> fileNames, File filesDir){
+        DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+        File xml = new File(filesDir, "Files.xml");
 
-/*
+            try {
+                Document doc;
+                Element currentElement;
+                Node node;
+                NodeList nodeList;
+                DocumentBuilder builder = factory.newDocumentBuilder();
+                doc = builder.parse(xml);
 
-    private class LoadList extends AsyncTask<String, Integer, String> {
-        private File[] pngFiles;
-        private TextView tv;
-        private ViewSwitcher vs;
-        private PicEntries picEntries;
-        private LinearLayout parent;
-        private GridView list;
-        int size = 0;
-        int x = 2;
+                nodeList = doc.getElementsByTagName("Files");
+                node = nodeList.item(0);
+                currentElement = (Element) node;
 
-        public LoadList(TextView tv, ViewSwitcher vs, PicEntries picEntries, LinearLayout home, GridView list2) {
-            this.tv = tv;
-            this.vs = vs;
-            this.picEntries = picEntries;
-            this.parent = home;
-            this.list = list2;
-        }
+                nodeList = currentElement.getChildNodes();
 
-        @Override
-        protected String doInBackground(String... arg0) {
-            FilenameFilter filter = new FilenameFilter() {
+                int XML_listSize = nodeList.getLength(), Array_listSiz = 0;
 
-                @Override
-                public boolean accept(File dir, String filename) {
-                    return filename.endsWith(".png");
+                for (int z = 0; z < XML_listSize; z++) {
+                    node = nodeList.item(z);
+
+                    if ( ! node.getNodeName().equals("#text")) {
+                        currentElement = (Element) node;
+
+                        // if current node isn't for the file in question, it searches through all its tags and adds those that are unique to suggestionsArrList
+
+                        int tagNumInCurrentElement = Integer.parseInt(currentElement.getAttribute("tags"));
+
+                        for (int j = 0; j < tagNumInCurrentElement; j++){
+                            String currentTag = ((Element) node).getAttribute("tag" + Integer.toString(j + 1).replaceAll("_", " "));
+                            if (!unsortedTagsArrList.contains(currentTag) ){
+                                unsortedTagsArrList.add(currentTag);
+                                unsortedTagNumArrList.add((byte) 1);
+                                Log.e("heee", currentTag);
+
+                                fileNames.add(((Element) node).getAttribute("name"));
+                                Array_listSiz ++;
+
+                            } else {
+                                for (int x = 0; x < Array_listSiz; x++) {
+                                    if (unsortedTagsArrList.get(x).equals(currentTag)) {
+
+                                        unsortedTagNumArrList.set(x, (byte) (unsortedTagNumArrList.get(x) +  1));
+                                    }
+                                }
+                            }
+                    }
+                    }
                 }
-
-            };
-
-            pngFiles = picEntries.getFilesDir().listFiles(filter);
-
-            String tempPNGFile, tempPNGFileNoExt;
-
-            for (int i = 0; i < pngFiles.length; i++) {
-
-                //Log.e("number ran", pngFiles[i].getName());
-
-                x = 1;
-                boolean isInArrayList = false;
-
-                tempPNGFile = pngFiles[i].getName().replaceAll(".png", "");
-                size = tempPNGFile.length();
-
-                try {
-                    while (tempPNGFile.charAt(size - x) != '(') {
-                        Log.e("Letter", Character.toString(tempPNGFile.charAt(size - x)));
-                        x++;
-                    }
-
-
-                    tempPNGFileNoExt = tempPNGFile.substring(0, size - x);
-
-                    for (int j = 0; j < pictureFilesArrayList.size(); j++) {
-                        if (pictureFilesArrayList.get(j).equals(tempPNGFileNoExt)) {
-                            isInArrayList = true;
-                            break;
-                        }
-                    }
-
-                    if (!isInArrayList) {
-                        File file = new File(context.getFilesDir(), tempPNGFile.concat("txt"));
-                        if (file.exists())
-                            pictureFilesArrayList.add(tempPNGFileNoExt);
-                    }
-
-                }catch(StringIndexOutOfBoundsException e){
-                    Log.e("err", e.toString());
-
-                }
+            } catch (IOException | ParserConfigurationException  | SAXException exception) {
+                Log.e("Err parsing tags", exception.toString());
 
             }
 
-            return null;
-
-
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            if (pictureFilesArrayList.size() == 0) {
-
-                if (vs.getCurrentView().equals(tv) == false)
-                    vs.showNext();
-            } else {
-                if (vs.getCurrentView().equals(parent) == false)
-                    vs.showNext();
-
-                Collections.reverse(pictureFilesArrayList);
-                PicturesAdapter adapter = new PicturesAdapter(picEntries, pictureFilesArrayList, cache);
-                list.setAdapter(adapter);
-            }
-
-        }
 
     }
-*/
+
 }

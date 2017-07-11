@@ -1,8 +1,11 @@
 package com.UtilityClasses;
 
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.graphics.Typeface;
+import android.graphics.drawable.Drawable;
+import android.view.animation.Animation;
+import android.widget.LinearLayout;
 
 /**
  * Created by CaptainSaveAHoe on 7/4/17.
@@ -13,6 +16,12 @@ public class CustomAttributes {
     public int primaryColor = 0, secondaryColor = 0, tagsTextColor = 0, numLines, textColorForDarkThemes = 0, darkThemeForegroundColor, darkThemeBackgroundColor = 0;
     public float textSize = 0;
     public String fontStyle = "", theme = "";
+
+    public Typeface userSelectedFontTF;
+    public volatile Animation animation;
+    public volatile LinearLayout.LayoutParams tagsTVParams;
+    public volatile Drawable tagsBackgroundDrawable, darkThemeSelectorShader;
+
 
     public CustomAttributes(Context context, SharedPreferences sp){
         // stores the primary/secondary app color as integers and the tags background color as a drawable. Less calls to the xml.
@@ -29,8 +38,10 @@ public class CustomAttributes {
         fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
         numLines = Integer.parseInt(sp.getString("LineNum", "3"));
 
+        setupResources(context);
+
     }
-    public CustomAttributes(int primaryColor, int secondaryColor, int tagsTextColor, int textColorForDarkThemes, int darkThemeBackgroundColor,
+    public CustomAttributes(Context context, int primaryColor, int secondaryColor, int tagsTextColor, int textColorForDarkThemes, int darkThemeBackgroundColor,
                             int numLines, float textSize, String fontStyle, String theme){
         this.primaryColor = primaryColor;
         this.secondaryColor = secondaryColor;
@@ -41,6 +52,23 @@ public class CustomAttributes {
         this.textSize = textSize;
         this.fontStyle = fontStyle;
         this.theme = theme;
+
+        setupResources(context);
+    }
+
+    private void setupResources(Context context){
+        if ( ! fontStyle.contains("DEFAULT"))
+            userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontStyle);
+
+        tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
+        tagsTVParams.setMargins(0, 0, 45, 0);
+
+        tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, theme);
+        darkThemeSelectorShader = AnimusUI.getDarkSelectorDrawable(context, theme);
+    }
+
+    public void setAnimation(Animation animation){
+        this.animation = animation;
     }
 
 }

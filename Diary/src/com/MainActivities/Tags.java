@@ -1,36 +1,13 @@
 package com.MainActivities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import com.Adapters.TagsAdapter;
 import com.rtomyj.Diary.R;
-import org.w3c.dom.Document;
-import org.w3c.dom.Element;
-import org.w3c.dom.Node;
-import org.w3c.dom.NodeList;
-import java.io.File;
-import java.util.ArrayList;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-
-public class Tags extends MainActivity {
-	//lists
-	private ArrayList<Integer> alphSortedTagNumArrList = new ArrayList<>();
-	private ArrayList<String> alphaSortedTagsArrList = new ArrayList();
-	private ArrayList<String> alphaSortedFilenamesArrList = new ArrayList();
-
-	private ArrayList<Integer> numSortedTagNumArrList = new ArrayList<>();
-	private ArrayList<String> numSortedTagsArrList = new ArrayList();
-	private ArrayList<String> numSortedFilenamesArrList = new ArrayList();
-
-	// views
-	private TagsAdapter tagsAdapter;
-
+public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	// other
 	private boolean isAlphaSort = true;
 
@@ -49,12 +26,6 @@ public class Tags extends MainActivity {
 	@Override
 	protected void onStart() {
 		super.onStart();
-
-		if (tagsAdapter == null)
-			new LoadTags(this).execute("null");
-		else
-			tagsAdapter.notifyDataSetChanged();
-
 
 		/* on click for items in tags
 				Intent i = new Intent(c, ChosenTag.class);
@@ -76,7 +47,10 @@ public class Tags extends MainActivity {
 
 		if (savedInstanceState != null) {
 			isAlphaSort = savedInstanceState.getBoolean("IS_ALPHA_SORT");
+		}else{
+			activityAdapter = new TagsAdapter(this, userUIPreferences);
 		}
+
 
 		adapterSize = activityAdapter.getItemCount();
 		setupActionBar();
@@ -85,27 +59,20 @@ public class Tags extends MainActivity {
 	}
 
 
-
-	/*
-         * public boolean onPrepareOptionsMenu(Menu dropDownMenuForSelectedFile) { if (isAlphaSort == true)
-         * dropDownMenuForSelectedFile.removeItem(R.id.alph_sort); else dropDownMenuForSelectedFile.removeItem(R.id.value_sort);
-         * return super.onPrepareOptionsMenu(dropDownMenuForSelectedFile); }
-         */
-
 	public synchronized void sort(MenuItem m) {
 		if (isAlphaSort == true) {
 			isAlphaSort = false;
 			m.setTitle(getResources().getString(R.string.alph_sort));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort_alph));
-			tagsAdapter.sortNum(numSortedTagsArrList, numSortedTagNumArrList, numSortedFilenamesArrList);
-			Log.e("11111111", Integer.toString(alphaSortedFilenamesArrList.size()));
+			//tagsAdapter.sortNum(numSortedTagsArrList, numSortedTagNumArrList, numSortedFilenamesArrList);
+			//Log.e("11111111", Integer.toString(alphaSortedFilenamesArrList.size()));
 		} else {
 			isAlphaSort = true;
 
 			m.setTitle(getResources().getString(R.string.value_sort));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort));
-			tagsAdapter.sortAlph(alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
-			Log.e("eee", Integer.toString(alphaSortedFilenamesArrList.size()));
+			//tagsAdapter.sortAlph(alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
+			//Log.e("eee", Integer.toString(alphaSortedFilenamesArrList.size()));
 		}
 
 	}
@@ -156,6 +123,8 @@ public class Tags extends MainActivity {
 	}
 
 
+
+	/*
 	private class LoadTags extends AsyncTask<String, Integer, String> {
 		private Context context;
 		private ArrayList<String> fileNames = new ArrayList<>();
@@ -171,63 +140,7 @@ public class Tags extends MainActivity {
 		protected String doInBackground(String... params) {
 
 
-			DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-			File xml = new File(getFilesDir(), "Files.xml");
 
-			if (numSortedTagsArrList.size() == 0) {
-				alphaSortedTagsArrList.clear();
-				alphSortedTagNumArrList.clear();
-				numSortedTagsArrList.clear();
-				numSortedTagNumArrList.clear();
-
-				try {
-					Document doc;
-					Element element;
-					Node node;
-					NodeList nodeList;
-					DocumentBuilder builder = factory.newDocumentBuilder();
-					doc = builder.parse(xml);
-
-					nodeList = doc.getElementsByTagName("Files");
-					node = nodeList.item(0);
-					element = (Element) node;
-
-					nodeList = element.getChildNodes();
-
-				for (int z = 0; z < nodeList.getLength(); z++) {
-					node = nodeList.item(z);
-
-					if (node.getNodeName() != "#text") {
-
-						element = (Element) node;
-
-						// if current node isnt for the file in question, it searches through all its tags and adds those that are unique to suggestionsArrList
-
-							String tagsInCurrentNode = ((Element) node).getAttribute("tags");
-
-							for (int j = 0; j < Integer.parseInt(tagsInCurrentNode); j ++)
-								if (!unsortedTagsArrList.contains(((Element) node).getAttribute("tag" + Integer.toString(j + 1)))) {
-									unsortedTagsArrList.add(((Element) node).getAttribute("tag" + Integer.toString(j + 1)).replaceAll("_", " "));
-									unsortedTagNumArrList.add(1);
-
-									fileNames.add(((Element) node).getAttribute("name"));
-									Log.e("tag", ((Element) node).getAttribute("tag" + Integer.toString(j + 1)));
-
-								}
-						else{
-									for (int x = 0; x < unsortedTagsArrList.size(); x++){
-										if (unsortedTagsArrList.get(x).equals(((Element) node).getAttribute("tag" + Integer.toString(j + 1)))){
-
-											unsortedTagNumArrList.set(x, unsortedTagNumArrList.get(x) + 1);
-										}
-									}
-								}
-
-					}
-				}
-			} catch (Exception ex) {
-
-			}
 
 				boolean addedAlph, addedNumerically;
 
@@ -309,7 +222,7 @@ public class Tags extends MainActivity {
 			else
 				tagsAdapter = new TagsAdapter(context, numSortedTagsArrList, numSortedTagNumArrList);
 
-				*/
+
 
 			tagsAdapter = new TagsAdapter(context, alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
 			//recyclerView.setAdapter(tagsAdapter);
@@ -317,6 +230,8 @@ public class Tags extends MainActivity {
 		}
 
 	}
+	*/
+
 
 
 	@Override

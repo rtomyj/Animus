@@ -56,10 +56,6 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
     // UI Customization
     private Context context;
-    private Typeface userSelectedFontTF;
-    private volatile Animation animation;
-    private volatile LinearLayout.LayoutParams tagsTVParams;
-    private volatile Drawable tagsBackgroundDrawable, darkThemeSelectorShader;
 
     // controls which views get animated
     private short maxPosition;
@@ -106,18 +102,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         if (this.context ==null) {
             locale = Locale.getDefault();
             this.context = context;
-
-            if (! userUIPreferences.fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
-                userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + userUIPreferences.fontStyle);
-            }
-
-            animation = AnimationUtils.loadAnimation(context, R.anim.fadein);
-
-            tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
-            tagsTVParams.setMargins(0, 0, 45, 0);
-
-            tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, userUIPreferences.theme);
-            darkThemeSelectorShader = AnimusUI.getDarkSelectorDrawable(context, userUIPreferences.theme);
+            userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
 
         }
     }
@@ -213,7 +198,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         switch (userUIPreferences.theme) {
             case "Onyx P":
             case "Onyx B":
-                holder.cardView.setBackground(darkThemeSelectorShader);
+                holder.cardView.setBackground(userUIPreferences.darkThemeSelectorShader);
                 holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                 holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                 holder.menuTV.setTextColor(userUIPreferences.textColorForDarkThemes);
@@ -235,11 +220,11 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
         // changes font if applicable
         if (! userUIPreferences.fontStyle.contains("DEFAULT")) {
-            holder.summaryTV.setTypeface(userSelectedFontTF);
-            holder.monthTV.setTypeface(userSelectedFontTF);
-            holder.titleTV.setTypeface(userSelectedFontTF);
-            holder. dayTV.setTypeface(userSelectedFontTF);
-            holder.timeTV.setTypeface(userSelectedFontTF);
+            holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            holder. dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            holder.timeTV.setTypeface(userUIPreferences.userSelectedFontTF);
         }
 
     }
@@ -270,7 +255,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         holder.favTV.setId(position);
 
         if (position > maxPosition && position > 2) {
-            holder.cardView.startAnimation(animation);
+            holder.cardView.startAnimation(userUIPreferences.animation);
             maxPosition = (short) position;
         }
 
@@ -382,7 +367,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
                         break;
                 }
             if (! tagName.equals("")) {
-                    final TextView tagTV = AnimusTags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, tagsTVParams, tagsBackgroundDrawable, userUIPreferences.fontStyle, userSelectedFontTF);
+                    final TextView tagTV = AnimusTags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, userUIPreferences.tagsTVParams, userUIPreferences.tagsBackgroundDrawable,
+                            userUIPreferences.fontStyle, userUIPreferences.userSelectedFontTF);
                     tagTV.setText(tagName.replaceAll("_", " "));
                     holder.tagsLL.addView(tagTV);
                 }

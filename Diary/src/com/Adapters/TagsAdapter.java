@@ -13,6 +13,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
 import java.io.DataInputStream;
@@ -21,36 +23,28 @@ import java.util.ArrayList;
 
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	private Context context;
-	private ArrayList<String> tagsArr = new ArrayList();
-	private ArrayList<Integer> tagAmountArr = new ArrayList();
-	private ArrayList<String> fileNames = new ArrayList<>();
-	
-	private float textSize;
-	
-	private Typeface typeface;
+	private ArrayList<String> tagsArr;
+	private ArrayList<Byte> tagAmountArr;
+	private ArrayList<String> fileNames;
 
-	private String fontStyle;
-	private SharedPreferences sp;
+	private CustomAttributes userUIPreferences;
 
-
-	// parsing file
-	private File entryFile;
-	private DataInputStream br;
-
-	public TagsAdapter(Context context, ArrayList<String> tagsArr, ArrayList<Integer> tagAmountArr, ArrayList<String> fileNames) {
+	public TagsAdapter(Context context, ArrayList<String> tagsArr, ArrayList<Byte> tagAmountArr, ArrayList<String> fileNames) {
 		this.context = context;
+		this.tagsArr = new ArrayList<>(tagsArr);
+		this.tagAmountArr = new ArrayList<>(tagAmountArr);
+		this.fileNames = new ArrayList<>(fileNames);
 
-		this.fileNames.addAll(fileNames);
-		this.tagsArr.addAll(tagsArr);
-		this.tagAmountArr.addAll(tagAmountArr);
+	}
+	public TagsAdapter(Context context, CustomAttributes userUIPreferences){
+		tagsArr = new ArrayList<>();
+		tagAmountArr = new ArrayList<>();
+		fileNames = new ArrayList<>();
 
-		sp = PreferenceManager.getDefaultSharedPreferences(this.context);
+		this.context = context;
+		this.userUIPreferences = userUIPreferences;
 
-		fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
-
-		if (fontStyle.contains("DEFAULT") != true)
-			typeface = Typeface.createFromAsset(this.context.getAssets(), "fonts/" + fontStyle);
-
+		AnimusXML.getTagsFromXML(tagsArr, tagAmountArr,fileNames ,context.getFilesDir());
 	}
 
 
@@ -86,28 +80,28 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	// Replace the contents of a view (invoked by the layout manager)
 	@Override
 	public synchronized void onBindViewHolder(TagsAdapter.ViewHolder holder, final int position) {
-
-		textSize = Float.parseFloat(sp.getString("TextSize", "14"));
-		if (sp.getString("Theme", "Default").contains("Onyx")) {
-			holder.tagTV.setTextColor(context.getResources().getColor(R.color.UIDarkPurple));
+		if (userUIPreferences.theme.contains("Onyx")) {
 			holder.parentLL.setBackground(context.getResources().getDrawable(R.drawable.onyx_selector));
 
-			holder.amountTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
-			holder.summaryTV.setTextColor(context.getResources().getColor(R.color.UIDarkText));
+			holder.amountTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+			holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 
 		}
+		holder.tagTV.setTextColor(userUIPreferences.secondaryColor);
 
-		holder.summaryTV.setTextSize(textSize);
-		holder.tagTV.setTextSize(textSize + (float) 2);
-		holder.amountTV.setTextSize(textSize + (float) 2);
+		holder.summaryTV.setTextSize(userUIPreferences.textSize);
+		holder.tagTV.setTextSize(userUIPreferences.textSize + (float) 2);
+		holder.amountTV.setTextSize(userUIPreferences.textSize + (float) 2);
 
 
-		if ( ! fontStyle.contains("DEFAULT") ) {
+		if ( userUIPreferences.userSelectedFontTF != null ) {
 
-			holder.tagTV.setTypeface(typeface);
-			holder.amountTV.setTypeface(typeface);
-			holder.summaryTV.setTypeface(typeface);
+			holder.tagTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.amountTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
 		}
+		holder.summaryTV.setMaxLines(userUIPreferences.numLines);
+		holder.summaryTV.setMinLines(userUIPreferences.numLines);
 
 		setInfo(holder, position);
 	}
@@ -119,35 +113,20 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
 
 	private void setInfo(ViewHolder holder, int position) {
-			/*
-				 * this underlines text SpannableString contentUnderline = new
-				 * SpannableString(tags.get(position).replaceAll("_", " "));
-				 *
-				 * contentUnderline.setSpan(new UnderlineSpan(), 0,
-				 * contentUnderline.length(), 0); tag.setText(contentUnderline);
-				 */
+		File entryFile;
+		DataInputStream br;
+
 		holder.tagTV.setText(tagsArr.get(position).replaceAll("_", " "));
-		// if (tags.get(position).length() > 14)
-		// tag.setTextSize(20);
-		// if (tags.get(position).length() > 22)
-		// tag.setTextSize(18);
-
-		holder.amountTV.setText(Integer.toString(tagAmountArr.get(position)));
-
-		holder.summaryTV.setText(null);
-
-		holder.summaryTV.setMaxLines(Integer.parseInt(sp.getString("LineNum", "3")));
-		holder.summaryTV.setMinLines(Integer.parseInt(sp.getString("LineNum", "3")));
+		holder.amountTV.setText(Byte.toString(tagAmountArr.get(position)));
+		holder.summaryTV.setText("");
 
 		try {
 
 			entryFile = new File(context.getFilesDir(), fileNames.get(position));
 
-			br = new DataInputStream(context.openFileInput(entryFile
-					.getName()));
+			br = new DataInputStream(context.openFileInput(entryFile.getName()));
 			br.readUTF();
-			holder.summaryTV.setText(Html.fromHtml(br.readUTF().trim()
-					.replaceAll("\n", "<br />")));
+			holder.summaryTV.setText(Html.fromHtml(br.readUTF().trim().replaceAll("\n", "<br />")));
 			br.close();
 		} catch (Exception e) {
 			Log.e("test", e.toString());
@@ -158,7 +137,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	}
 
 	public void sortNum(ArrayList<String> numSortedTags,
-			ArrayList<Integer> numSortedTagNum, ArrayList<String> fileNames) {
+			ArrayList<Byte> numSortedTagNum, ArrayList<String> fileNames) {
 		this.tagAmountArr.clear();
 		this.tagsArr.clear();
 		this.fileNames.clear();
@@ -171,7 +150,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	}
 
 	public void sortAlph(ArrayList<String> alphaSortedTags,
-			ArrayList<Integer> alphSortedTagNum, ArrayList<String> fileNames) {
+			ArrayList<Byte> alphSortedTagNum, ArrayList<String> fileNames) {
 		this.tagAmountArr.clear();
 		this.tagsArr.clear();
 		this.fileNames.clear();
