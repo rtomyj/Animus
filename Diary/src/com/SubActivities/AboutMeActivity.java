@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.app.AlertDialog;
 import android.content.Intent;

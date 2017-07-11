@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

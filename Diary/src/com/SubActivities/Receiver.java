@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.R;
 import android.app.IntentService;
@@ -8,7 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import com.AnimusMainActivities.Domus;
+import com.MainActivities.Entries;
 
 public class Receiver extends IntentService{
 
@@ -26,7 +26,7 @@ protected void onHandleIntent(Intent intent) {
     Context context = Receiver.this;
     CharSequence title = "Its Time to Eat";
     CharSequence details = "Click Here to Search for Restaurants";
-    Intent myIntent = new Intent(context, Domus.class);
+    Intent myIntent = new Intent(context, Entries.class);
     PendingIntent pending = PendingIntent.getActivity(context, 0, myIntent, 0);
     //notify.setLatestEventInfo(context, title, details, pending);
     nm.notify(0,notify);

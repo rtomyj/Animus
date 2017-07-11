@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;

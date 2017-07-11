@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import java.util.ArrayList;
 import java.util.HashMap;

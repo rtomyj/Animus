@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package Settings;
 
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;

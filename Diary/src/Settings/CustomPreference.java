@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package Settings;
 
 import android.content.Context;
 import android.preference.SwitchPreference;

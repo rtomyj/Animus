@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,8 +8,8 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.AnimusMainActivities.NewEntry;
-import com.AnimusMainActivities.SplashScreen;
+import com.MainActivities.NewEntry;
+import com.MainActivities.SplashScreen;
 import com.rtomyj.Diary.R;
 
 public class Widget extends AppWidgetProvider {

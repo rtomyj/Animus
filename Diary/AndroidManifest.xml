@@ -66,7 +66,7 @@
 
 
         <activity
-            android:name="com.AnimusMainActivities.SplashScreen"
+            android:name="com.MainActivities.SplashScreen"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:noHistory="true"
@@ -78,7 +78,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusMainActivities.Domus"
+            android:name="com.MainActivities.Entries"
             android:configChanges="orientation"
             android:label="@string/entries">
             <intent-filter>
@@ -92,10 +92,10 @@
                 android:value=".Search"/>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.Notes"
+            android:name="com.SubActivities.Notes"
             android:configChanges="orientation"
             android:label="@string/notes"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.notes"/>
 
@@ -103,9 +103,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.ChosenFile"
+            android:name="com.SubActivities.ChosenFile"
             android:configChanges="orientation"
-            android:parentActivityName="com.AnimusMainActivities.Domus"
+            android:parentActivityName="com.MainActivities.Entries"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.diary.chosen_file"/>
@@ -114,10 +114,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.ChosenTag"
+            android:name="com.MainActivities.ChosenTag"
             android:configChanges="orientation"
             android:label="All Entries"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.selectedtag"/>
 
@@ -125,10 +125,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusMainActivities.PicEntries"
+            android:name="com.MainActivities.PicEntries"
             android:configChanges="orientation"
             android:label="@string/pic_entries"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.entries_w_pic"/>
 
@@ -137,13 +137,13 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.AnimusMainActivities.Domus"/>
+                android:value="com.MainActivities.Entries"/>
         </activity>
         <activity
-            android:name="com.AnimusMainActivities.Tags"
+            android:name="com.MainActivities.Tags"
             android:configChanges="orientation"
             android:label="@string/tags"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.tags"/>
 
@@ -154,13 +154,13 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.AnimusMainActivities.Domus"/>
+                android:value="com.MainActivities.Entries"/>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.FavesActivity"
+            android:name="com.MainActivities.FaveEntries"
             android:configChanges="orientation"
             android:label="@string/favs"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.favs"/>
 
@@ -169,10 +169,10 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.AnimusMainActivities.Domus"/>
+                android:value="com.MainActivities.Entries"/>
         </activity>
         <activity
-            android:name="com.AnimusMainActivities.NewEntry"
+            android:name="com.MainActivities.NewEntry"
             android:configChanges="orientation"
             android:label="@string/new_entry"
             android:windowSoftInputMode="adjustResize">
@@ -183,10 +183,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.NewNote"
+            android:name="com.SubActivities.NewNote"
             android:configChanges="orientation"
             android:label="@string/new_note"
-            android:parentActivityName="com.AnimusMainActivities.Domus"
+            android:parentActivityName="com.MainActivities.Entries"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.diary.new_note"/>
@@ -195,10 +195,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.MainSettingsFrag"
+            android:name="Settings.MainSettingsFrag"
             android:configChanges="orientation"
             android:label="@string/action_settings"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.main_settings_stub"/>
 
@@ -206,10 +206,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.NotificationSettingActivity"
+            android:name="Settings.NotificationSettingActivity"
             android:configChanges="orientation"
             android:label="Notification Settings"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.notification_settings"/>
 
@@ -217,10 +217,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.AboutMeActivity"
+            android:name="com.SubActivities.AboutMeActivity"
             android:configChanges="orientation"
             android:label="@string/about"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.about_me"/>
 
@@ -228,10 +228,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.UserHelpActivity"
+            android:name="com.SubActivities.UserHelpActivity"
             android:configChanges="orientation"
             android:label="@string/help"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.help"/>
 
@@ -242,7 +242,7 @@
             android:name="com.UtilityClasses.Debug"
             android:configChanges="orientation"
             android:label="Javi"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.files"/>
 
@@ -250,7 +250,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.Passcode"
+            android:name="com.SubActivities.Passcode"
             android:configChanges="orientation"
             android:label="@string/app_name"
             android:screenOrientation="portrait">
@@ -261,7 +261,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.PhotoViewer"
+            android:name="com.SubActivities.PhotoViewer"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -271,7 +271,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.PasswordSet"
+            android:name="com.SubActivities.PasswordSet"
             android:configChanges="orientation"
             android:label="@string/password"
             android:screenOrientation="portrait">
@@ -283,7 +283,7 @@
         </activity>
 
         <receiver
-            android:name="com.AnimusSubActivities.Widget"
+            android:name="com.SubActivities.Widget"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -307,10 +307,10 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.Data"
+            android:name="Settings.Data"
             android:configChanges="orientation"
             android:label="Data"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.data"/>
 
@@ -318,10 +318,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.FontSelectionActivity"
+            android:name="com.SubActivities.FontSelectionActivity"
             android:configChanges="orientation"
             android:label="Custom Font"
-            android:parentActivityName="com.AnimusMainActivities.Domus">
+            android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.fonts"/>
 
@@ -329,20 +329,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.AnimusSubActivities.ChosenNote"
+            android:name="com.SubActivities.ChosenNote"
             android:configChanges="orientation"
-            android:parentActivityName="com.AnimusSubActivities.Notes">
+            android:parentActivityName="com.SubActivities.Notes">
             <intent-filter>
                 <action android:name="com.diary.chosen_note"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.AnimusSubActivities.TestActivity"
-            android:screenOrientation="portrait">
-            <intent-filter>
-                <action android:name="com.diary.test"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>

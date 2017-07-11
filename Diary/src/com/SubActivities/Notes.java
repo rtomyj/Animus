@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.app.AlertDialog;
 import android.app.PendingIntent;
@@ -30,7 +30,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
-import com.AnimusMainActivities.Domus;
+import com.MainActivities.Entries;
 import com.android.vending.billing.IInAppBillingService;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
@@ -40,6 +40,8 @@ import com.rtomyj.Diary.R;
 import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
+
+import Settings.MainSettingsFrag;
 
 public class Notes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {
@@ -78,7 +80,7 @@ public class Notes extends AppCompatActivity
         int id = item.getItemId();
 
         if (id == R.id.domus) {
-			Intent domus = new Intent(this, Domus.class);
+			Intent domus = new Intent(this, Entries.class);
 			startActivityForResult(domus, 2);
 
         } else if (id == R.id.notes) {

@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package Settings;
 
 
 import android.app.Activity;
@@ -19,7 +19,9 @@ import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.widget.ProgressBar;
 
-import com.AnimusMainActivities.NewEntry;
+import com.MainActivities.NewEntry;
+import com.SubActivities.Passcode;
+import com.SubActivities.PasswordSet;
 import com.rtomyj.Diary.R;
 
 import java.io.BufferedReader;

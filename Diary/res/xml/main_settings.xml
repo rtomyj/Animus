@@ -7,7 +7,7 @@
             android:summary="Manage info stored on app." >
             <intent android:action="com.diary.data" />
         </Preference>
-        <com.AnimusSubActivities.CustomPreference
+        <Settings.CustomPreference
             android:defaultValue="false"
             android:key="Password"
             android:summary="@string/password_explanation"
@@ -22,7 +22,7 @@
             />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/personal" >
-        <com.AnimusSubActivities.CustomPreference
+        <Settings.CustomPreference
             android:defaultValue="false"
             android:key="Statuses"
             android:summary="@string/status_setting_explanation"
@@ -47,12 +47,12 @@
         </EditTextPreference>
 
 
-        <com.AnimusSubActivities.CustomPreference
+        <Settings.CustomPreference
             android:defaultValue="false"
             android:key="GPS"
             android:summary="@string/location_setting_info"
             android:title="@string/location_setting_title" />
-        <com.AnimusSubActivities.CustomPreference
+        <Settings.CustomPreference
             android:defaultValue="false"
             android:key="Contacts"
             android:summary="@string/contacts_suggestions"

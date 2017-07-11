@@ -1,4 +1,4 @@
-package com.AnimusSubActivities;
+package com.SubActivities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
