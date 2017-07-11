@@ -11,7 +11,7 @@ import com.MainActivities.MainActivity;
 import com.MainActivities.NewEntry;
 import com.MainActivities.PicEntries;
 import com.SubActivities.ChosenFile;
-import Settings.MainSettingsFrag;
+import com.Settings.MainSettingsFrag;
 import com.SubActivities.Notes;
 import com.SubActivities.PhotoViewer;
 import com.MainActivities.Tags;

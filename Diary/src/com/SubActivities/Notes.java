@@ -41,7 +41,7 @@ import org.json.JSONObject;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 
-import Settings.MainSettingsFrag;
+import com.Settings.MainSettingsFrag;
 
 public class Notes extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener  {

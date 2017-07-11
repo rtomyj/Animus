@@ -195,7 +195,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Settings.MainSettingsFrag"
+            android:name="com.Settings.MainSettingsFrag"
             android:configChanges="orientation"
             android:label="@string/action_settings"
             android:parentActivityName="com.MainActivities.Entries">
@@ -206,7 +206,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="Settings.NotificationSettingActivity"
+            android:name="com.Settings.NotificationSettingActivity"
             android:configChanges="orientation"
             android:label="Notification Settings"
             android:parentActivityName="com.MainActivities.Entries">
@@ -307,7 +307,7 @@
                 android:resource="@xml/searchable"/>
         </activity>
         <activity
-            android:name="Settings.Data"
+            android:name="com.Settings.Data"
             android:configChanges="orientation"
             android:label="Data"
             android:parentActivityName="com.MainActivities.Entries">

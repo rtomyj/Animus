@@ -1,4 +1,4 @@
-package Settings;
+package com.Settings;
 
 
 import android.app.Activity;

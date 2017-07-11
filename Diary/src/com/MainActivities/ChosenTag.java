@@ -29,7 +29,7 @@ import android.widget.Toast;
 
 import com.Adapters.EntriesAdapter;
 import com.SubActivities.ChosenFile;
-import Settings.MainSettingsFrag;
+import com.Settings.MainSettingsFrag;
 import com.SubActivities.NewNote;
 import com.SubActivities.Passcode;
 import com.android.vending.billing.IInAppBillingService;
