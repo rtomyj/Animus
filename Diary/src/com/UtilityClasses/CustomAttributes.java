@@ -11,16 +11,16 @@ import android.widget.LinearLayout;
  * Created by CaptainSaveAHoe on 7/4/17.
  */
 
-public class CustomAttributes {
+public  class CustomAttributes {
     // UI Customization
     public int primaryColor = 0, secondaryColor = 0, tagsTextColor = 0, numLines, textColorForDarkThemes = 0, darkThemeForegroundColor, darkThemeBackgroundColor = 0;
     public float textSize = 0;
     public String fontStyle = "", theme = "";
 
     public Typeface userSelectedFontTF;
-    public volatile Animation animation;
-    public volatile LinearLayout.LayoutParams tagsTVParams;
-    public volatile Drawable tagsBackgroundDrawable, darkThemeSelectorShader;
+    public Animation animation;
+    public  LinearLayout.LayoutParams tagsTVParams;
+    public  Drawable tagsBackgroundDrawable, darkThemeSelectorShader;
 
 
     public CustomAttributes(Context context, SharedPreferences sp){
