@@ -9,12 +9,18 @@ import android.provider.ContactsContract;
 import android.util.Log;
 import android.widget.EditText;
 
+import java.io.BufferedReader;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FilenameFilter;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
+import java.nio.ByteBuffer;
+import java.nio.CharBuffer;
+import java.nio.charset.Charset;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -286,6 +292,56 @@ public class AnimusFiles {
         return file.exists();
     }
 
+    /*
+        creates a File object to see how many characters are in the file. if length is 1 then there is one character.
+
+        Due to bad programming this App writes the filename in the file using .writeUTF() and as such there are characters that don't do anything in the beelining of the file and after the
+        writing of the filename. The blocks of code that remove characters from the object summaryBuilder is there to mitigate this. Plans to change this oversight are in the way but
+        to support legacy code the deletes will still have to remain.
+
+        readLength is the length of the charBuffer. This limits over-reading characters for situations where only some of the text is necessary (ie summarizing a file)
+     */
+
+    public static String getTextFromFile(Context context, String filename, int readLength) throws IOException {
+        File file = new File(context.getFilesDir(), filename);
+        long fileLength = file.length();
+        if (readLength> fileLength)
+            readLength = (int) fileLength;
+
+        fileLength -= filename.length();
+        --fileLength;
+
+
+        if (fileLength > 0) {
+            char[] summaryBytes = new char[readLength];
+
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(context.openFileInput(filename)), readLength);
+            bufferedReader.read(summaryBytes, 0, readLength);
+            bufferedReader.close();
+            //Log.e("buffer size", Integer.toString(summaryBytes.length));
+
+            StringBuilder summaryBuilder = new StringBuilder();
+            summaryBuilder.append(summaryBytes);
+
+            summaryBuilder.delete(0, 2);
+
+
+            // removes filename from the text of the file
+            filename = filename.replaceAll(" ", "_");
+            for (int iter = 0; iter < filename.length(); iter++) {
+                if (summaryBuilder.charAt(0) == filename.charAt(iter))
+                    summaryBuilder.deleteCharAt(0);
+                else
+                    break;
+            }
+
+           summaryBuilder.delete(0, 3);
+
+            return summaryBuilder.toString().trim();
+        }else{
+            return "";
+        }
+    }
 
 
 }
