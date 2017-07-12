@@ -1,18 +1,15 @@
 package com.Adapters;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.support.v4.content.ContextCompat;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
 import android.util.Log;
+import android.util.LruCache;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -21,26 +18,16 @@ import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;
 import com.UtilityClasses.AnimusTags;
-import com.UtilityClasses.AnimusUI;
-import com.UtilityClasses.AnimusXML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
-import org.xml.sax.SAXException;
-
-import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Collections;
-import java.util.Comparator;
 import java.util.Locale;
 
-import javax.xml.parsers.ParserConfigurationException;
-
-public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHolder> {
+public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHolder>{
 
     // cache for deleted content
     private String cacheFileName, cacheTag1, cacheTag2, cachetTag3;
@@ -48,14 +35,14 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     private int cachePosition;
 
     // lists holding contents for the recycler view
-    private volatile ArrayList<String> sortedFilesArrList ;
-    private volatile ArrayList<String> tag1ArrList;
-    private volatile ArrayList<String> tag2ArrList;
-    private volatile ArrayList<String> tag3ArrList;
-    private volatile ArrayList<Boolean> favArrList ;
+    ArrayList<String> sortedFilesArrList ;
+    ArrayList<String> tag1ArrList;
+    ArrayList<String> tag2ArrList;
+    ArrayList<String> tag3ArrList;
+    ArrayList<Boolean> favArrList ;
 
     // UI Customization
-    private Context context;
+    Context context;
 
     // controls which views get animated
     private short maxPosition;
@@ -63,12 +50,15 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     // other
     private Locale locale;
     private CustomAttributes userUIPreferences;
+    private LruCache<Integer, String> summaryCache;
+    private int summaryLength;
 
     /*
     holds a limited amount of UI objects. When the recycler view needs to get new objects, old ones are recycled from here.
     Otherwise the views are used again by the LayoutManager
      */
     static class ViewHolder extends RecyclerView.ViewHolder{
+        private boolean alreadyCustomized = false;
         private View parent;
         private TextView summaryTV;
         private TextView titleTV;
@@ -98,84 +88,44 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     }
 
     // there are two constructors and they both require the same data setup, this takes care of it
-    private void setAdapterBaseData(Context context){
-        if (this.context ==null) {
-            locale = Locale.getDefault();
-            this.context = context;
-            userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
+    private void setupData(){
+        locale = Locale.getDefault();
+        userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
+        summaryCache = new LruCache<>(50);
 
+        if (userUIPreferences.numLines < 4) {
+            summaryLength = 250;
+        } else {
+            summaryLength = 400;
         }
+
     }
 
     // Constructor with the necessary data set being passed to it.
-    public EntriesAdapter(Context context, ArrayList<String> temp, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
+    EntriesAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
                           CustomAttributes userUIPreferences) {
 
         this.userUIPreferences = userUIPreferences;
+        this.context = context;
 
         // transfers all the info from the calling activity to this adapter.
-        sortedFilesArrList = new ArrayList<>(temp);
+        this.sortedFilesArrList = new ArrayList<>(sortedFilesArrList);
         this.tag1ArrList = new ArrayList<>(tag1ArrList);
         this.tag2ArrList = new ArrayList<>(tag2ArrList);
         this.tag3ArrList = new ArrayList<>(tag3ArrList);
         this.favArrList= new ArrayList<>(favArrList);
 
-        setAdapterBaseData(context);
+        setupData();
     }
 
-    private void loadAllEntries(Context context){
-        ArrayList<File> filesArrayList = new ArrayList<>();
-        filesArrayList.addAll(AnimusFiles.getFilesWithExtension(context.getFilesDir(),".txt"));
-
-        Collections.sort(filesArrayList, new Comparator<File>() {
-            @Override
-            public int compare(File f1, File f2) {
-                return Long.valueOf(f2.lastModified()).compareTo(
-                        f1.lastModified());
-            }
-        });
-
-        int sortedFilesArrListSize = filesArrayList.size();
-        sortedFilesArrList = new ArrayList<>(sortedFilesArrListSize);
-        tag1ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        tag2ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        tag3ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        favArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, false));
-
-        for (File list : filesArrayList)
-            sortedFilesArrList.add(list.getName());
-
-        filesArrayList.clear();
-        AnimusXML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
-    }
-    private void loadJustFaveEntries(Context context){
-
-        try {
-            short faveNum = AnimusXML.getFaveNum(context.getFilesDir());
-
-            sortedFilesArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
-            tag1ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
-            tag2ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
-            tag3ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
-            favArrList = new ArrayList<>(Collections.nCopies(faveNum, true));
-            AnimusXML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
-        }catch (IndexOutOfBoundsException exception){
-            Log.e("Error parsing xml", exception.toString());
-        }
-    }
 
 
     // constructor with only the months array and the calling activities Context
-    public EntriesAdapter(Context context, CustomAttributes userUIPreferences, boolean justFaves){
+    EntriesAdapter(Context context, CustomAttributes userUIPreferences){
         this.userUIPreferences = userUIPreferences;
+        this.context = context;
 
-        if ( ! justFaves)
-            loadAllEntries(context);
-        else
-            loadJustFaveEntries(context);
-
-
-        setAdapterBaseData(context);
+        setupData();
     }
 
     // Create new views (invoked by the layout manager). Should do any parent specific customizations after the LayoutInflater method is invoked.
@@ -187,44 +137,51 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     }
 
 
-    // Changes the color/text size/etc of views. All values have been stored in variables in the setAdapterBaseData() method
+    // Changes the color/text size/etc of views. All values have been stored in variables in the setupData() method
     private void customizeUI(ViewHolder holder ) {
-        // changes colors of UI elements according to theme.
-        holder.favTV.setTextColor(userUIPreferences.primaryColor);
-        holder.menuTV.setTextColor(userUIPreferences.primaryColor);
-        holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
-        holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
-
-        switch (userUIPreferences.theme) {
-            case "Onyx P":
-            case "Onyx B":
-                holder.cardView.setBackground(userUIPreferences.darkThemeSelectorShader);
-                holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                holder.menuTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                holder.favTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                break;
-        }
-
-        // changes text size and number of lines according to user preference
-        holder. summaryTV.setMaxLines(userUIPreferences.numLines);
-        holder.summaryTV.setMinLines(userUIPreferences.numLines);
-
-        holder.summaryTV.setTextSize(userUIPreferences.textSize);
-        holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
-        holder.monthTV.setTextSize(userUIPreferences.textSize);
-        holder.titleTV.setTextSize(userUIPreferences.textSize+ (float) 2);
-        holder.timeTV.setTextSize(userUIPreferences.textSize);
+        if ( !holder.alreadyCustomized) {
+            holder.alreadyCustomized = true;
 
 
-        // changes font if applicable
-        if (! userUIPreferences.fontStyle.contains("DEFAULT")) {
-            holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
-            holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
-            holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
-            holder. dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
-            holder.timeTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            // changes colors of UI elements according to theme.
+            holder.favTV.setTextColor(userUIPreferences.primaryColor);
+            holder.menuTV.setTextColor(userUIPreferences.primaryColor);
+            holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
+            holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
+
+            switch (userUIPreferences.theme) {
+                case "Onyx P":
+                case "Onyx B":
+                    holder.cardView.setBackground(userUIPreferences.darkThemeSelectorShader);
+                    holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    holder.menuTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    holder.favTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    break;
+            }
+
+            // changes text size and number of lines according to user preference
+            holder.summaryTV.setMaxLines(userUIPreferences.numLines);
+            holder.summaryTV.setMinLines(userUIPreferences.numLines);
+
+            holder.summaryTV.setTextSize(userUIPreferences.textSize);
+            holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
+            holder.monthTV.setTextSize(userUIPreferences.textSize);
+            holder.titleTV.setTextSize(userUIPreferences.textSize + (float) 2);
+            holder.timeTV.setTextSize(userUIPreferences.textSize);
+
+
+            // changes font if applicable
+            if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
+                holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
+                holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
+                holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
+                holder.dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
+                holder.timeTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            }
+
+
         }
 
     }
@@ -232,9 +189,6 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public synchronized void onBindViewHolder(ViewHolder holder, final int position) {
-        // - get element from your dataset at this position
-        // - replace the contents of the view with that element
-
         holder.parent.setClickable(true);
         holder.parent.setId(position);
         holder.parent.setOnClickListener(new View.OnClickListener() {
@@ -255,7 +209,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         holder.favTV.setId(position);
 
         if (position > maxPosition && position > 2) {
-            holder.cardView.startAnimation(userUIPreferences.animation);
+            holder.parent.startAnimation(userUIPreferences.animation);
             maxPosition = (short) position;
         }
 
@@ -270,86 +224,89 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
     // sets text to the views from the entry file/files.xml
     private void setInfo(ViewHolder holder, int position){
-        char[] summaryBytes;
-        int length;
+
+
+            File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
+            // sets filename to selected view.
+            String filename = sortedFilesArrList.get(position); // gets the file name with the extension and the underscores instead of spaces.
+            String formattedFilename = filename.replaceAll(".txt", "").replaceAll("_", " ");
+
+            if (formattedFilename.length() > 3) { // user can name a file with a name shorter than 4 letters. This catches that exception
+                switch (formattedFilename.substring(0, 4)) {
+                    case "Temp":
+                        holder.titleTV.setText("");
+                        break;
+                    default:
+                        holder.titleTV.setText(formattedFilename);
+                        break;
+                }
+            } else
+                holder.titleTV.setText(formattedFilename);
+
+
         Calendar calendar = Calendar.getInstance();
 
-        if (holder.summaryTV.getMaxLines() < 4 ) {
-            length = 250;
-            summaryBytes = new char[length];
-        }
-        else  {
-            length = 400;
-            summaryBytes = new char[length];
-        }
+            // gets a calendar instance and changes views text to corresponding info.
+            calendar.setTimeInMillis(file.lastModified());
 
-        File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
-        // sets filename to selected view.
-        String filename = file.getName(); // gets the file name with the extension and the underscores instead of spaces.
-        String formattedFilename = filename.replaceAll(".txt", "").replaceAll("_", " ");
-        if (formattedFilename.length() > 3) { // user can name a file with a name shorter than 4 letters. This catches that exception
-            switch (formattedFilename.substring(0, 4)) {
-                case "Temp":
-                    holder.titleTV.setText("");
-                    break;
-                default:
-                    holder.titleTV.setText(formattedFilename);
-                    break;
-            }
-        }else
-            holder.titleTV.setText(formattedFilename);
+            holder.timeTV.setText(AnimusMiscMethods.getLocalizedTime(calendar));
 
-        // gets a calendar instance and changes views text to corresponding info.
-        calendar.setTimeInMillis(file.lastModified());
-
-        holder.timeTV.setText(AnimusMiscMethods.getLocalizedTime(calendar));
-
-        // uses string builder to append info about the day of month.
-        StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
-        dayBuilder.append(",");
-        holder.dayTV.setText(dayBuilder.toString());
-        holder.monthTV.setText(String.format(locale, "%1$tB", calendar));
+            // uses string builder to append info about the day of month.
+            StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
+            dayBuilder.append(",");
+            holder.dayTV.setText(dayBuilder.toString());
+            holder.monthTV.setText(String.format(locale, "%1$tB", calendar));
 
 
-        // sets the faves view to the corresponding emoticon
-        try {
-            if (favArrList.get(position))
-                holder.favTV.setText(Html.fromHtml("★"));
-            else
-                holder.favTV.setText(Html.fromHtml("☆"));
-        }
-        catch(Exception e){
-            holder.favTV.setText(Html.fromHtml("☆"));
-            Log.e("Fave views state", e.toString());
+            // sets the faves view to the corresponding emoticon
+            try {
+                if (favArrList.get(position))
+                    holder.favTV.setText("★");
+                else
+                    holder.favTV.setText("☆");
+            } catch (Exception e) {
+                holder.favTV.setText("☆");
+                Log.e("Fave views state", e.toString());
 
-        }
-
-        try {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader( context.openFileInput(filename)), length);
-                bufferedReader.read(summaryBytes,0, length);
-                String summaryString = new String(summaryBytes);
-                summaryString = summaryString.substring(summaryString.indexOf("\n") + 3);   // the +3 skips some weird annotation that is added when using writeUTF()
-
-            if (summaryString.isEmpty()) { // if the entry was empty, places a text informing the user and changes the gravity to center.
-                holder.summaryTV.setGravity(Gravity.CENTER |Gravity.CENTER_VERTICAL);
-                holder.summaryTV.setText(context.getResources().getString(R.string.text));
-
-
-            } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
-                    if (! userUIPreferences.fontStyle.equals("Default"))
-                    holder.summaryTV.setTypeface(holder.summaryTV.getTypeface(), Typeface.NORMAL);
-                    holder.summaryTV.setText(Html.fromHtml(summaryString));
             }
 
-            bufferedReader.close();
-        } catch (IOException e) {
-            e.printStackTrace();
+            setSummary(holder.summaryTV, position, filename);
+
+    }
+
+    /*
+        sets info to the summary TextView. There is a cache to save the summary text once it is read from the corresponding file potentially saving memory or operations or both.
+
+     */
+    private void setSummary(TextView summaryTV, int position, String filename){
+        String summaryString = summaryCache.get(position);
+
+        if (summaryString == null) {
+            try {
+                summaryString = AnimusFiles.getTextFromFile(context, filename, summaryLength);
+            } catch (IOException e) {
+                Log.e("Err loading text", e.toString());
+                summaryString = "";
+            }
+            summaryCache.put(position, summaryString);
+
+        }else{
+            Log.e("Loaded from cache", filename);
         }
+
+        if (summaryString.isEmpty()) { // if the entry was empty, places a text informing the user and changes the gravity to center.
+            summaryTV.setGravity(Gravity.CENTER );
+            summaryTV.setText(context.getResources().getString(R.string.text));
+
+        } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
+            summaryTV.setText(Html.fromHtml(summaryString));
+        }
+
     }
 
 
     // iterates through the tag arrays and creates a new TextView for the tag if it is necessary.
-    synchronized public void tags(ViewHolder holder, int position){
+    private synchronized void tags(ViewHolder holder, int position){
         holder.tagsLL.removeAllViews();
 
         int count = 0;
@@ -387,6 +344,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     }
 
 
+    // called whenever all ArrayLists all get changed.
     public void fileChanged(ArrayList<String> sortedFiles, ArrayList<String> tag1ArrList2, ArrayList<String> tag2ArrList2, ArrayList<String> tag3ArrList2, ArrayList<Boolean> favArrList2) {
         this.sortedFilesArrList.clear();
         this.tag1ArrList.clear();
@@ -457,6 +415,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         tag3ArrList.remove(target);
         tag2ArrList.remove(target);
         favArrList.remove(target);
+
         this.notifyItemRemoved(target);
         this.notifyItemRangeChanged(target, this.getItemCount());
 
@@ -467,13 +426,13 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         tag2ArrList.add(cachePosition, cacheTag2);
         tag3ArrList.add(cachePosition, cachetTag3);
         favArrList.add(cachePosition, cacheFileIsFavorite);
-        this.notifyItemInserted(cachePosition);
+
+        notifyItemInserted(cachePosition);
         notifyItemRangeChanged(cachePosition, this.getItemCount());
     }
 
 
      public void setFaveStatus (int target, boolean status) {
-
         favArrList.set(target, status);
         notifyItemChanged(target);
     }

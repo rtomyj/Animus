@@ -107,7 +107,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 		userUIPreferences.textSize = Float.parseFloat(sp.getString("TextSize", "14"));
 	}
-	private  void setupCache(){
+	private void setupCache(){
 		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		int memory = am.getMemoryClass() * 1024 * 1024 / 14;
 		// dividing resources up
