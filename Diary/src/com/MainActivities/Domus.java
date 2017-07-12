@@ -41,6 +41,7 @@ public class Domus extends Entries {
 
     @Override
     protected void onCreate(Bundle bundle) {
+        currentActivity = DOMUS;
         super.onCreate(bundle);
         if (bundle == null) {
             // checks to see if there is a preference named INTRO, if not then it creates a new one with default value of false.

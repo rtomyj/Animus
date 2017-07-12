@@ -19,7 +19,9 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
+import com.Adapters.AllEntriesAdapter;
 import com.Adapters.EntriesAdapter;
+import com.Adapters.FaveEntriesAdapter;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusXML;
@@ -38,7 +40,6 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 
 	// others...
 	private int selectedFile;
-	boolean loadJustFaves = false;
 
 
 	@Override
@@ -67,10 +68,26 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 
 
 			// new files adapter object
-			activityAdapter = new EntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
-					userUIPreferences);
+			switch (currentActivity){
+				case DOMUS:
+					activityAdapter = new AllEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
+							userUIPreferences);
+					break;
+				case FAVES:
+					activityAdapter = new FaveEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
+							userUIPreferences);
+					break;
+			}
+
 		} else {  // if there is nothing to copy from bundle, call method
-			activityAdapter = new EntriesAdapter(this, userUIPreferences, loadJustFaves);
+			switch (currentActivity) {
+				case DOMUS:
+					activityAdapter = new AllEntriesAdapter(this, userUIPreferences);
+					break;
+				case FAVES:
+					activityAdapter = new FaveEntriesAdapter(this, userUIPreferences);
+					break;
+			}
 
 		}
 		adapterSize = activityAdapter.getItemCount();

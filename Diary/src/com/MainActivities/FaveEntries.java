@@ -38,7 +38,7 @@ public class FaveEntries extends Entries {
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		loadJustFaves = true;
+		currentActivity = FAVES;
 		super.onCreate(savedInstanceState);
 
 
