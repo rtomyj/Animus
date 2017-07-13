@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Animus</string>
-    <string name="action_settings">Settings</string>
-    <string name="entries">Entries</string>
+    <string name="APP_NAME">Animus</string>
+    <string name="SETTINGS">Settings</string>
+    <string name="ENTRIES">Entries</string>
     <string name="calendar_view">Calendar</string>
     <string name="favorite_entries">Favs</string>
-    <string name="pic_entries">Pictures</string>
-    <string name="home">Home</string>
-    <string name="entry">New Entry</string>
+    <string name="PICTURES">Pictures</string>
+    <string name="HOME">Home</string>
+    <string name="NEW_ENTRY">New Entry</string>
     <string name="address_book">People</string>
-    <string name="tags">Tags</string>
+    <string name="TAGS">Tags</string>
     <string name="bugs_button">Bugs, Tips, Suggestions</string>
-    <string name="take_picture">Take Picture</string>
-    <string name="choose_photo">Choose Photo</string>
+    <string name="TAKE_PICTURE">Take Picture</string>
+    <string name="CHOOSE_PHOTO">Choose Photo</string>
 
     <string-array name="months">
         <item>January</item>
@@ -30,17 +30,17 @@
         <item>December</item>
     </string-array>
 
-    <string name="email">Send As Email</string>
+    <string name="SEND_AS_EMAIL">Send As Email</string>
     <string name="delete_entry_dialog">Delete? Are you sure?</string>
     <string name="delete_confirmation">Delete</string>
     <string name="delelte_dialog_message">All data will be deleted if you continue&#8230;</string>
     <string name="edit_tags_dialog_title">Select one tag you would like to delete.</string>
-    <string name="cancel">Cancel</string>
-    <string name="tags_">Tags:	</string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="tags">Tags:	</string>
+    <string name="YES">Yes</string>
+    <string name="NO">No</string>
+    <string name="OPEN">Open</string>
+    <string name="CLOSE">Close</string>
 
     <string-array name="weekdays">
         <item></item>
@@ -185,10 +185,10 @@
     p_privacy" string.
     -->
 
-    <string name="help_tags">With tags you can always revisit past entries in a breeze. If there is a topic that seems
+    <string name="tags_explanation">With tags you can always revisit past entries in a breeze. If there is a topic that seems
 		    			 to always come up in your entries, you can associate them with a keyword. This keyword, or tag, will
 		    			 then help the application link entries together.</string>
-    <string name="help_privacy">The information you store in this app is yours. I do not and cannot read your entries
+    <string name="privacy_explanation">The information you store in this app is yours. I do not and cannot read your entries
 		    			 . Android 4.0 and above do not have ads. Anything below that does. Otherwise there are analytics running to find out
 		    			 new and returning users and the amount of time they use a particular activity. Also, system crash logs will deliver XML references. These references are only file names
 		    			 and tag names and will aid in pinpointing  what causes the app to crash.\n\nDO NOT 
@@ -225,9 +225,9 @@
     <string name="backup_and_restore">Backup &amp; Restore</string>
     <string name="sync">Sync</string>
     <string name="dbx_warning">*Editing file names in Dropbox might cause problems with tags and other app features.</string>
-    <string name="the_dev">The Dev</string>
+    <string name="THE_DEV">The Dev</string>
     <string name="name">The names Javi</string>
-    <string name="me_info">I am a full time student and have a full time job. Wish that I could code more, but what are you gonna do?</string>
+    <string name="my_info_explanation">I am a full time student and have a full time job. Wish that I could code more, but what are you gonna do?</string>
     <string name="donate">Donation/Ads</string>
     <string name="donation_err">Err reaching Google Play...</string>
     <string name="new_entry_hint">Body of entry</string>

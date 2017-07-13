@@ -1,18 +1,18 @@
 <resources>
 
-    <string name="app_name">Souvenirs</string>
-    <string name="action_settings">Paramètres</string>
-    <string name="entries">Entrées</string>
+    <string name="APP_NAME">Souvenirs</string>
+    <string name="SETTINGS">Paramètres</string>
+    <string name="ENTRIES">Entrées</string>
     <string name="calendar_view">Calendrier</string>
     <string name="favorite_entries">Favoris</string>
-    <string name="pic_entries">Photos</string>
-    <string name="home">Principal</string>
-    <string name="entry">Nouvelle Entrée</string>
+    <string name="PICTURES">Photos</string>
+    <string name="HOME">Principal</string>
+    <string name="NEW_ENTRY">Nouvelle Entrée</string>
     <string name="address_book">Personnes</string>
-    <string name="tags">Balises</string>
+    <string name="TAGS">Balises</string>
     <string name="bugs_button">Bugs, Conseils, Suggestions</string>
-    <string name="take_picture">Prendre une Photo</string>
-    <string name="choose_photo">Choisissez Photo</string>
+    <string name="TAKE_PICTURE">Prendre une Photo</string>
+    <string name="CHOOSE_PHOTO">Choisissez Photo</string>
 
     <string-array name="months">
         <item>janvier</item>
@@ -29,15 +29,15 @@
         <item>décembre</item>
     </string-array>
 
-    <string name="email">Envoyer par email</string>
+    <string name="SEND_AS_EMAIL">Envoyer par email</string>
     <string name="delete_entry_dialog">Effacer? Etes-vous sûr?</string>
     <string name="delete_confirmation">Effacer</string>
     <string name="delelte_dialog_message">Toutes les données seront effacées si vous continuez ...</string>
     <string name="edit_tags_dialog_title">Sélectionner un balese que vous souhaitez supprimer.</string>
-    <string name="cancel">Annuler</string>
-    <string name="tags_">Baleses: </string>
-    <string name="yes">Oui</string>
-    <string name="no">Non</string>
+    <string name="CANCEL">Annuler</string>
+    <string name="tags">Baleses: </string>
+    <string name="YES">Oui</string>
+    <string name="NO">Non</string>
 
     <string-array name="navigation_titles">
         <item>Entrées</item>
@@ -47,8 +47,8 @@
         <item>Favoris</item>
     </string-array>
 
-    <string name="open">Ouvrir</string>
-    <string name="close">Fermer</string>
+    <string name="OPEN">Ouvrir</string>
+    <string name="CLOSE">Fermer</string>
 
     <string-array name="weekdays">
         <item></item>
@@ -183,10 +183,10 @@
     p_privacy" string.
     -->
 
-    <string name="help_tags">Avec les étiquettes, vous pouvez toujours revoir les entrées passées dans une brise. S\'il ya un sujet qui semble 
+    <string name="tags_explanation">Avec les étiquettes, vous pouvez toujours revoir les entrées passées dans une brise. S\'il ya un sujet qui semble
 à venir toujours dans vos entrées, vous pouvez les associer à un mot-clé. Ce mot-clé ou mot-clé, la volonté 
 alors aider le lien de l\'application ainsi que les entrées.</string>
-    <string name="help_privacy">Les informations que vous stockez dans cette application est le vôtre. Je ne sais pas et ne peux pas lire vos entrées 
+    <string name="privacy_explanation">Les informations que vous stockez dans cette application est le vôtre. Je ne sais pas et ne peux pas lire vos entrées
 . Android 4.0 et ci-dessus n\'ont pas annonces. Tout en dessous qui le fait. Sinon, il ya l\'analyse en cours d\'exécution à savoir 
 nouveaux et aux anciens utilisateurs et la quantité de temps qu\'ils utilisent une activité particulière. En outre, les journaux de crash système livrera références XML. Ces références ne sont que des noms de fichiers 
 et les noms de balises et aideront à repérer ce qui provoque l\'application à planter. \ n \ n PAS 
@@ -237,9 +237,9 @@ dans les balises et les noms d\'entrée si vous ne voulez pas courir dans le ris
     <string name="backup_and_restore">Sauvegarde &amp; restaurer</string>
     <string name="sync">Synchroniser</string>
     <string name="dbx_warning">*Les noms de fichiers d\'édition dans Dropbox peuvent causer des problèmes avec des étiquettes et d\'autres caractéristiques d\'applications.</string>
-    <string name="the_dev">Le Développeur</string>
+    <string name="THE_DEV">Le Développeur</string>
     <string name="name">Les noms Javi</string>
-    <string name="me_info">Je suis un étudiant à temps plein et un emploi à temps plein. Souhaite que je pourrais coder plus, mais ce que tu vas faire?&lt;br/>&lt;br/>J\'aime la technologie et de la conception de l\'interface utilisateur de fantaisie. Ce qui suit sont mes comptes de médias sociaux personnels. Si vous aimez mon travail, aller et suivre!&lt;br/>&lt;br/>
+    <string name="my_info_explanation">Je suis un étudiant à temps plein et un emploi à temps plein. Souhaite que je pourrais coder plus, mais ce que tu vas faire?&lt;br/>&lt;br/>J\'aime la technologie et de la conception de l\'interface utilisateur de fantaisie. Ce qui suit sont mes comptes de médias sociaux personnels. Si vous aimez mon travail, aller et suivre!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
     <string name="donate">Donner</string>
     <string name="donation_err">Tromper atteindre Google Play...</string>
