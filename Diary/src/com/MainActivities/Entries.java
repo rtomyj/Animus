@@ -11,7 +11,6 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.text.Html;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,6 +21,7 @@ import android.widget.TextView;
 import com.Adapters.AllEntriesAdapter;
 import com.Adapters.EntriesAdapter;
 import com.Adapters.FaveEntriesAdapter;
+import com.BaseClasses.MainActivity;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusXML;
@@ -90,32 +90,21 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 			}
 
 		}
-		adapterSize = activityAdapter.getItemCount();
-		setupActionBar();
-		setInfoToActionBar(DOMUS);
-		customizeUI();  // changes UI elements
+		setup();
 	}
-
-	// Sets the UI elements to specified colors depending on the theme used.
-	@Override
-	void customizeUI() {
-		super.customizeUI();
-	}
-
-
 
 	private void makeSnackBar(){
 
 		if (undoDeleteSnackBar == null) {
 			LinearLayout home = (LinearLayout) findViewById(R.id.parent);
-			undoDeleteSnackBar = Snackbar.make(home, getText(R.string.entry_deleted_snackbar_dialog), Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.undo_text), new View.OnClickListener() {
+			undoDeleteSnackBar = Snackbar.make(home, getText(R.string.ENTRY_DELETED), Snackbar.LENGTH_LONG).setAction(getResources().getString(R.string.UNDO), new View.OnClickListener() {
 				@Override
 				public void onClick(View view) {
 					deletedFileNameArrList.remove(deletedFileNameArrList.size() - 1);  // removes last inserted element from array list
 					activityAdapter.restorePreviousDeletion(); // calls the restore method from entries adapter to get the info of the delete file.
 
 					adapterSize++;
-					actionBar.setSubtitle("Total Entries: " + Integer.toString(adapterSize));
+					setActionBarSubTitle("Total Entries: " + Integer.toString(adapterSize));
 
 					if (adapterSize == 0) {
 						showWelcome();
@@ -188,11 +177,11 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 
 
 		if (((TextView) faveView).getText().toString().equals("☆")) {
-			((TextView) faveView).setText(Html.fromHtml("★"));
+			((TextView) faveView).setText("★");
 			activityAdapter.setFaveStatus(faveViewIndex, true);
 
 		} else {
-			((TextView) faveView).setText(Html.fromHtml("☆"));
+			((TextView) faveView).setText("☆");
 			activityAdapter.setFaveStatus(faveViewIndex, false);
 		}
 
@@ -209,7 +198,7 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 		builderWeak.get().setTitle(R.string.delete_entry_dialog);
 		builderWeak.get().setMessage(R.string.delelte_dialog_message);
 		builderWeak.get().setIcon(ContextCompat.getDrawable(this, R.drawable.white_discard));
-		builderWeak.get().setNegativeButton(R.string.no, null);
+		builderWeak.get().setNegativeButton(R.string.NO, null);
 		builderWeak.get().setPositiveButton(R.string.delete_confirmation,
 				new DialogInterface.OnClickListener() {
 					@Override
@@ -222,7 +211,7 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 						deletedFileNameArrList.add(activityAdapter.getFilename(selectedFile));
 						activityAdapter.childRemoved(selectedFile);
 						adapterSize--;
-						actionBar.setSubtitle("Total Entries: " + Integer.toString(adapterSize));
+						setActionBarSubTitle("Total Entries: " + Integer.toString(adapterSize));
 
 						if (activityAdapter.getItemCount() == 0) {
 							showWelcome();
@@ -289,16 +278,13 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
         		 potentialNewEntry is a boolean  that only gets set to true when the user clicks on the NewEntry button and  connects to that activity.
          		This if statement will only run if there is a new entry and its purpose is to refresh the Adapter with the new entry.
           	*/
-				if (potentialNewEntry && newFileName != null) {
+				if (newFileName != null) {
 					// adds the new file to the adapter and refreshes it so the contents of the RecyclerView make chronological sense.
 					activityAdapter.newEntry(newFileName, sp.getString("NEWFILETAG1", ""), sp.getString("NEWFILETAG2", ""), sp.getString("NEWFILETAG3", ""), sp.getBoolean("NEWFILEFAVE", false));
 
 					adapterSize++;
-					actionBar.setSubtitle("Total Entries: " + Integer.toString(adapterSize));
-
-					potentialNewEntry = false;
-
-					recyclerView.scrollToPosition(0);
+					setActionBarSubTitle("Total Entries: " + Integer.toString(adapterSize));
+					scrollToX(0);
 
 			/*
 				I use a preference to store new file name and their tags on the NewEntry activity if, for some reason, they don't go back to this activity then the onCreate method will pull in new data from

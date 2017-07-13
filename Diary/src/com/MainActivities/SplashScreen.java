@@ -1,6 +1,5 @@
 package com.MainActivities;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -10,6 +9,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.BaseClasses.Activity_Base;
 import com.UtilityClasses.AnimusUI;
 import com.rtomyj.Diary.R;
 
@@ -17,12 +17,11 @@ import java.lang.ref.WeakReference;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends Activity_Base {
 	private EditText passwordET;
 	private TextView hintTV;
 
 //	private int attempts = 0;
-	private float textSize;
 
 	private String password;
 	private boolean checkPasscode = false;
@@ -37,7 +36,6 @@ public class SplashScreen extends Activity {
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
 		checkPasscode = sp.getBoolean("Password", false);
-		textSize = Float.parseFloat(sp.getString("TextSize", "14"));
 		password = sp.getString("PasswordValue", "0000");
 
 
@@ -79,7 +77,7 @@ public class SplashScreen extends Activity {
 					tv.setTextColor(darkThemeTextColor);
 
 
-			final Intent domusIntent = new Intent(this, Entries.class);
+			final Intent domusIntent = new Intent(this, Domus.class);
 			domusIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 
 
@@ -116,7 +114,7 @@ public class SplashScreen extends Activity {
 
 			if (passwordET.getText().toString()
 					.equals(password)) {
-				Intent i = new Intent(this, Entries.class);
+				Intent i = new Intent(this, Domus.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
 			} else {
@@ -136,8 +134,8 @@ public class SplashScreen extends Activity {
 			TextView quoteTV = (TextView) findViewById(R.id.quote);
 			TextView ver_numTV = (TextView) findViewById(R.id.ver_num);
 
-			quoteTV.setTextSize(textSize);
-			ver_numTV.setTextSize(textSize);
+			quoteTV.setTextSize(userUIPreferences.textSize);
+			ver_numTV.setTextSize(userUIPreferences.textSize);
 		}
 	}
 

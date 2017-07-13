@@ -1,27 +1,16 @@
 package com.MainActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
 import com.Adapters.TagsAdapter;
+import com.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 
 public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	// other
 	private boolean isAlphaSort = true;
 
-
-	@Override
-	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-	}
-
-	@Override
-	protected void onRestart() {
-		super.onRestart();
-
-	}
 
 	@Override
 	protected void onStart() {
@@ -43,6 +32,7 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
+		currentActivity = TAGS;
 		super.onCreate(savedInstanceState);
 
 		if (savedInstanceState != null) {
@@ -50,12 +40,7 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 		}else{
 			activityAdapter = new TagsAdapter(this, userUIPreferences);
 		}
-
-
-		adapterSize = activityAdapter.getItemCount();
-		setupActionBar();
-		setInfoToActionBar(TAGS);
-		customizeUI();  // changes UI elements
+		setup();
 	}
 
 
@@ -109,20 +94,6 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean("IS_ALPHA_SORT", isAlphaSort);
 	}
-
-
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-
 
 	/*
 	private class LoadTags extends AsyncTask<String, Integer, String> {

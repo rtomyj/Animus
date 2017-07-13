@@ -7,16 +7,16 @@
         <item
             android:id="@+id/domus"
             android:icon="@drawable/entries"
-            android:title="@string/entries" />
+            android:title="@string/ENTRIES" />
 
         <item
             android:id="@+id/pictures"
             android:icon="@drawable/photos"
-            android:title="@string/pic_entries" />
+            android:title="@string/PICTURES" />
         <item
             android:id="@+id/tags"
             android:icon="@drawable/tags"
-            android:title="@string/tags" />
+            android:title="@string/TAGS" />
 
         <item
             android:id="@+id/faves"
@@ -31,7 +31,7 @@
         <item
             android:id="@+id/settings"
             android:icon="@drawable/settings"
-            android:title="@string/action_settings" />
+            android:title="@string/SETTINGS" />
         <item
             android:id="@+id/feedback"
             android:title="@string/feedback" />

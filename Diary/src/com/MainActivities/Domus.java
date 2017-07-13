@@ -1,14 +1,12 @@
 package com.MainActivities;
 
 import android.app.AlertDialog;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
-
 import com.UtilityClasses.AnimusXML;
 import com.rtomyj.Diary.R;
 
@@ -43,20 +41,9 @@ public class Domus extends Entries {
     protected void onCreate(Bundle bundle) {
         currentActivity = DOMUS;
         super.onCreate(bundle);
-        if (bundle == null) {
-            // checks to see if there is a preference named INTRO, if not then it creates a new one with default value of false.
-            // when true, intro has been seen and will not show the AlertDialog
-            showIntro();
-        }
+
+        showIntro();
     }
-
-
-    // Sets the UI elements to specified colors depending on the theme used.
-    @Override
-    void customizeUI() {
-        super.customizeUI();
-    }
-
 
     @Override
     protected void onStart() {
@@ -65,34 +52,6 @@ public class Domus extends Entries {
         AnimusXML.checkForAppFiles(getFilesDir(), getAssets(), getBaseContext().getContentResolver());
 
     }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    // when the activity is being terminated it gets the chance to saveEntryText its state. Here it saves the files, the tags for the files, their status (whether they're favorites) etc.
-    @Override
-    protected void onSaveInstanceState(Bundle bundle) {
-        super.onSaveInstanceState(bundle);
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);  // needed in order for password screen not be invoked every time user goes back from any other activity
-    }
-
-
-    @Override
-    protected void onRestart() {
-        super.onRestart();
-    }
-
 
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {

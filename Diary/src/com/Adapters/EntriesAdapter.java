@@ -50,7 +50,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     // other
     private Locale locale;
     private CustomAttributes userUIPreferences;
-    private LruCache<Integer, String> summaryCache;
+    private LruCache<String, String> summaryCache;
     private int summaryLength;
 
     /*
@@ -270,7 +270,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
             }
 
-            setSummary(holder.summaryTV, position, filename);
+            setSummary(holder.summaryTV, filename);
 
     }
 
@@ -278,8 +278,8 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         sets info to the summary TextView. There is a cache to save the summary text once it is read from the corresponding file potentially saving memory or operations or both.
 
      */
-    private void setSummary(TextView summaryTV, int position, String filename){
-        String summaryString = summaryCache.get(position);
+    private void setSummary(TextView summaryTV, String filename){
+        String summaryString = summaryCache.get(filename);
 
         if (summaryString == null) {
             try {
@@ -288,7 +288,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
                 Log.e("Err loading text", e.toString());
                 summaryString = "";
             }
-            summaryCache.put(position, summaryString);
+            summaryCache.put(filename, summaryString);
 
         }else{
             Log.e("Loaded from cache", filename);

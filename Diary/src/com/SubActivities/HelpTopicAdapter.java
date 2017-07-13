@@ -54,12 +54,12 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 						R.drawable.onyx_selector));
 			}
 		    if(position == 0){    
-		    	info.setText(context.getResources().getString(R.string.help_privacy));
+		    	info.setText(context.getResources().getString(R.string.privacy_explanation));
 		    	
 		    }
 		    
 		    if(position == 1){
-		    	info.setText(context.getResources().getString(R.string.help_tags));		    
+		    	info.setText(context.getResources().getString(R.string.tags_explanation));
 		    	
 		    }
 		    if(position == 2){

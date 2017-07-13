@@ -490,7 +490,7 @@ public class ChosenTag extends AppCompatActivity {
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 		builder.setMessage(R.string.delelte_dialog_message);
 		builder.setIcon(getResources().getDrawable(R.drawable.white_discard));
-		builder.setNegativeButton(R.string.no, null);
+		builder.setNegativeButton(R.string.NO, null);
 		builder.setPositiveButton(R.string.delete_confirmation,
 				new DialogInterface.OnClickListener() {
 					@Override

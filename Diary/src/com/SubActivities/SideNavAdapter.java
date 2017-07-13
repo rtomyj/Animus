@@ -103,7 +103,7 @@ public class SideNavAdapter extends ArrayAdapter<String> {
 
 			amount.setText(textFilesNum);
 
-			if (activity.equals(c.getResources().getString(R.string.entries))) {
+			if (activity.equals(c.getResources().getString(R.string.ENTRIES))) {
 				allScreens.setTypeface(tf, Typeface.BOLD);
 				amount.setTypeface(tf, Typeface.BOLD);
 

@@ -817,7 +817,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                         }
 
                     });
-                     t.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+                     t.setNegativeButton(R.string.NO, new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface arg0, int arg1) {
                         }
@@ -874,7 +874,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         }
         tagsList.setIcon(ContextCompat.getDrawable(context, R.drawable.tags));
         tagsList.setTitle(R.string.edit_tags_dialog_title);
-        tagsList.setNegativeButton(R.string.cancel, null);
+        tagsList.setNegativeButton(R.string.CANCEL, null);
         tagsList.setSingleChoiceItems(itemsT, -1,
                 new android.content.DialogInterface.OnClickListener() {
 

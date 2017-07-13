@@ -7,7 +7,7 @@ import android.view.View;
 
 import com.MainActivities.Entries;
 import com.MainActivities.FaveEntries;
-import com.MainActivities.MainActivity;
+import com.BaseClasses.MainActivity;
 import com.MainActivities.NewEntry;
 import com.MainActivities.PicEntries;
 import com.SubActivities.ChosenFile;

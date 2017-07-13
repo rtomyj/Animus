@@ -251,7 +251,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 			calendar.setTimeInMillis(f.lastModified());
 			//Log.e(String.valueOf(position), picturesArrList.get(position));
 
-			String months[] = context.getResources().getStringArray(R.array.months);
+			String months[] = context.getResources().getStringArray(R.array.non_abrev_months_arr);
 			holder.monthTV.setText(months[calendar.get(Calendar.MONTH)]);
 			holder.dayTV.setText(Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)) + ",");
 			holder.yearTV.setText(Integer.toString(calendar.get(Calendar.YEAR)));

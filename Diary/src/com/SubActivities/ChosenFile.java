@@ -673,7 +673,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
 
-			month = getResources().getStringArray(R.array.months);
+			month = getResources().getStringArray(R.array.non_abrev_months_arr);
 		} else
 			month = getResources().getStringArray(R.array.months_abrev);
 
@@ -1125,7 +1125,7 @@ menuVS.setVisibility(View.VISIBLE);
 			itemsT[i] = allTagsArrList.get(i).replaceAll("_", " ");
 		}
 		tagsList.setTitle(R.string.edit_tags_dialog_title);
-		tagsList.setNeutralButton(R.string.cancel, null);
+		tagsList.setNeutralButton(R.string.CANCEL, null);
 		tagsList.setSingleChoiceItems(itemsT, -1,
 				new android.content.DialogInterface.OnClickListener() {
 
@@ -1403,7 +1403,7 @@ menuVS.setVisibility(View.VISIBLE);
 				}
 		});
 				
-		t.setNegativeButton(R.string.no, null);
+		t.setNegativeButton(R.string.NO, null);
 		/**
 		 * if (Build.VERSION.SDK_INT >16) { t.setOnDismissListener(new
 		 * DialogInterface.OnDismissListener() {
@@ -1889,7 +1889,7 @@ menuVS.setVisibility(View.VISIBLE);
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
 
 							month = getResources().getStringArray(
-									R.array.months);
+									R.array.non_abrev_months_arr);
 						} else
 							month = getResources().getStringArray(
 									R.array.months_abrev);
@@ -2056,7 +2056,7 @@ menuVS.setVisibility(View.VISIBLE);
 
 			@Override
 			public boolean onLongClick(final View v) {
-				deletePic.setPositiveButton(R.string.yes,
+				deletePic.setPositiveButton(R.string.YES,
 						new DialogInterface.OnClickListener() {
 							@Override
 							public void onClick(DialogInterface dialog,
@@ -2080,7 +2080,7 @@ menuVS.setVisibility(View.VISIBLE);
 
 							}
 						});
-				deletePic.setNegativeButton(R.string.no, null);
+				deletePic.setNegativeButton(R.string.NO, null);
 				deletePic.show();
 
 				return false;
@@ -2336,7 +2336,7 @@ menuVS.setVisibility(View.VISIBLE);
 			loadedP.setOnLongClickListener(new View.OnLongClickListener() {
 				@Override
 				public boolean onLongClick(final View v) {
-					deletePic.setPositiveButton(R.string.yes,
+					deletePic.setPositiveButton(R.string.YES,
 							new DialogInterface.OnClickListener() {
 								@Override
 								public void onClick(DialogInterface dialog,
@@ -2361,7 +2361,7 @@ menuVS.setVisibility(View.VISIBLE);
 
 								}
 							});
-					deletePic.setNegativeButton(R.string.no, null);
+					deletePic.setNegativeButton(R.string.NO, null);
 					deletePic.show();
 
 					return false;

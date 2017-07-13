@@ -49,7 +49,7 @@
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@drawable/app_icon"
-        android:label="@string/app_name"
+        android:label="@string/APP_NAME"
         android:theme="@style/MyTheme"
         >
 
@@ -68,7 +68,7 @@
         <activity
             android:name="com.MainActivities.SplashScreen"
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/APP_NAME"
             android:noHistory="true"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -78,11 +78,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.MainActivities.Entries"
+            android:name="com.MainActivities.Domus"
             android:configChanges="orientation"
-            android:label="@string/entries">
+            android:label="@string/ENTRIES">
             <intent-filter>
-                <action android:name="com.diary.entries"/>
+                <action android:name="com.diary.main_activity"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -127,7 +127,7 @@
         <activity
             android:name="com.MainActivities.PicEntries"
             android:configChanges="orientation"
-            android:label="@string/pic_entries"
+            android:label="@string/PICTURES"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.entries_w_pic"/>
@@ -142,7 +142,7 @@
         <activity
             android:name="com.MainActivities.Tags"
             android:configChanges="orientation"
-            android:label="@string/tags"
+            android:label="@string/TAGS"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.tags"/>
@@ -197,7 +197,7 @@
         <activity
             android:name="com.Settings.MainSettingsFrag"
             android:configChanges="orientation"
-            android:label="@string/action_settings"
+            android:label="@string/SETTINGS"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.main_settings_stub"/>
@@ -252,7 +252,7 @@
         <activity
             android:name="com.SubActivities.Passcode"
             android:configChanges="orientation"
-            android:label="@string/app_name"
+            android:label="@string/APP_NAME"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="com.diary.passcode"/>
@@ -284,7 +284,7 @@
 
         <receiver
             android:name="com.SubActivities.Widget"
-            android:label="@string/app_name">
+            android:label="@string/APP_NAME">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
             </intent-filter>
