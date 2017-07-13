@@ -4,6 +4,8 @@
     <item android:title="Data"
         android:id="@+id/submenu_1">
         <menu>
+            <group
+                   android:checkableBehavior="single">
         <item
             android:id="@+id/domus"
             android:icon="@drawable/entries"
@@ -22,12 +24,16 @@
             android:id="@+id/faves"
             android:icon="@drawable/faves"
             android:title="@string/favs" />
+            </group>
     </menu>
     </item>
 
     <item android:title="Other"
         android:id="@+id/submenu_2">
         <menu>
+
+            <group
+                android:checkableBehavior="single">
         <item
             android:id="@+id/settings"
             android:icon="@drawable/settings"
@@ -41,7 +47,7 @@
             android:id="@+id/donation"
             android:icon="@drawable/donations"
             android:title="@string/donate" />
-
+</group>
         </menu>
 
     </item>
@@ -51,9 +57,13 @@
     <item android:title="Debug Menu"
         android:id="@+id/submenu_3">
         <menu>
+
+            <group
+                android:checkableBehavior="single">
             <item
                 android:id="@+id/debug"
                 android:title="Debug, yo" />
+            </group>
 
         </menu>
     </item>

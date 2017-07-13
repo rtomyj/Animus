@@ -5,15 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.MainActivities.Entries;
+import com.MainActivities.Domus;
 import com.MainActivities.FaveEntries;
 import com.BaseClasses.MainActivity;
-import com.MainActivities.NewEntry;
+import com.EntryActivities.NewEntry;
 import com.MainActivities.PicEntries;
-import com.SubActivities.ChosenFile;
+import com.EntryActivities.ChosenFile;
 import com.Settings.MainSettingsFrag;
 import com.SubActivities.Notes;
-import com.SubActivities.PhotoViewer;
 import com.MainActivities.Tags;
 import com.rtomyj.Diary.R;
 
@@ -35,7 +34,7 @@ public class AnimusLauncherMethods {
         Intent intent = null;
         switch (menuItem){
             case R.id.domus:
-                intent  = new Intent(parent, Entries.class);
+                intent  = new Intent(parent, Domus.class);
                 break;
             case R.id.notes:
                 intent  = new Intent(parent, Notes.class);

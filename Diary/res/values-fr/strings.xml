@@ -175,7 +175,7 @@
     <string name="file_exists_err">Le dossier existe</string>
     <string name="network_err">PAS D\'INTERNET</string>
     <string name="general_err">Erreur</string>
-    <string name="favs_welcome">Aucune entrée n\'a été en favoris ;-(</string>
+    <string name="faves_welcome">Aucune entrée n\'a été en favoris ;-(</string>
 
     <!--
     changed strings

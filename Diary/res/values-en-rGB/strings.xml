@@ -165,7 +165,7 @@
     <string name="file_exists_err">File exists</string>
     <string name="network_err">NO INTERNET</string>
     <string name="general_err">Err</string>
-    <string name="favs_welcome">No entries have been favorited ;-(</string>
+    <string name="faves_welcome">No entries have been favorited ;-(</string>
 
     <!--
     changed strings

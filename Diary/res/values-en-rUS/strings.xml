@@ -177,7 +177,7 @@
     <string name="general_err">Err</string>
     <!-- new strings -->
 
-    <string name="favs_welcome">No entries have been favorited ;-(</string>
+    <string name="faves_welcome">No entries have been favorited ;-(</string>
 
     <!--
     changed strings

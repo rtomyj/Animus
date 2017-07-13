@@ -95,7 +95,7 @@
             android:name="com.SubActivities.Notes"
             android:configChanges="orientation"
             android:label="@string/notes"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.notes"/>
 
@@ -103,9 +103,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.SubActivities.ChosenFile"
+            android:name="com.EntryActivities.ChosenFile"
             android:configChanges="orientation"
-            android:parentActivityName="com.MainActivities.Entries"
+            android:parentActivityName="com.BaseClasses.Entries"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.diary.chosen_file"/>
@@ -114,10 +114,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.MainActivities.ChosenTag"
+            android:name="com.MainActivities.SelectedTag"
             android:configChanges="orientation"
             android:label="All Entries"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.selectedtag"/>
 
@@ -128,7 +128,7 @@
             android:name="com.MainActivities.PicEntries"
             android:configChanges="orientation"
             android:label="@string/PICTURES"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.entries_w_pic"/>
 
@@ -137,13 +137,13 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.MainActivities.Entries"/>
+                android:value="com.BaseClasses.Entries"/>
         </activity>
         <activity
             android:name="com.MainActivities.Tags"
             android:configChanges="orientation"
             android:label="@string/TAGS"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.tags"/>
 
@@ -154,13 +154,13 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.MainActivities.Entries"/>
+                android:value="com.BaseClasses.Entries"/>
         </activity>
         <activity
             android:name="com.MainActivities.FaveEntries"
             android:configChanges="orientation"
             android:label="@string/favs"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.favs"/>
 
@@ -169,10 +169,10 @@
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value="com.MainActivities.Entries"/>
+                android:value="com.BaseClasses.Entries"/>
         </activity>
         <activity
-            android:name="com.MainActivities.NewEntry"
+            android:name="com.EntryActivities.NewEntry"
             android:configChanges="orientation"
             android:label="@string/new_entry"
             android:windowSoftInputMode="adjustResize">
@@ -186,7 +186,7 @@
             android:name="com.SubActivities.NewNote"
             android:configChanges="orientation"
             android:label="@string/new_note"
-            android:parentActivityName="com.MainActivities.Entries"
+            android:parentActivityName="com.BaseClasses.Entries"
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.diary.new_note"/>
@@ -198,7 +198,7 @@
             android:name="com.Settings.MainSettingsFrag"
             android:configChanges="orientation"
             android:label="@string/SETTINGS"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.main_settings_stub"/>
 
@@ -209,7 +209,7 @@
             android:name="com.Settings.NotificationSettingActivity"
             android:configChanges="orientation"
             android:label="Notification Settings"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.notification_settings"/>
 
@@ -220,7 +220,7 @@
             android:name="com.SubActivities.AboutMeActivity"
             android:configChanges="orientation"
             android:label="@string/about"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.about_me"/>
 
@@ -231,7 +231,7 @@
             android:name="com.SubActivities.UserHelpActivity"
             android:configChanges="orientation"
             android:label="@string/help"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.help"/>
 
@@ -242,7 +242,7 @@
             android:name="com.UtilityClasses.Debug"
             android:configChanges="orientation"
             android:label="Javi"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.files"/>
 
@@ -261,7 +261,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.SubActivities.PhotoViewer"
+            android:name="com.UtilityClasses.PhotoViewer"
             android:configChanges="orientation"
             android:screenOrientation="portrait">
             <intent-filter>
@@ -271,7 +271,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.SubActivities.PasswordSet"
+            android:name="com.Features.PasswordSet"
             android:configChanges="orientation"
             android:label="@string/password"
             android:screenOrientation="portrait">
@@ -283,7 +283,7 @@
         </activity>
 
         <receiver
-            android:name="com.SubActivities.Widget"
+            android:name="com.Features.Widget"
             android:label="@string/APP_NAME">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
@@ -310,7 +310,7 @@
             android:name="com.Settings.Data"
             android:configChanges="orientation"
             android:label="Data"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.data"/>
 
@@ -318,10 +318,10 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.SubActivities.FontSelectionActivity"
+            android:name="com.Settings.FontSelectionActivity"
             android:configChanges="orientation"
             android:label="Custom Font"
-            android:parentActivityName="com.MainActivities.Entries">
+            android:parentActivityName="com.BaseClasses.Entries">
             <intent-filter>
                 <action android:name="com.diary.fonts"/>
 

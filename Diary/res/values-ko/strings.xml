@@ -183,7 +183,7 @@
     <string name="file_exists_err">파일이 존재</string>
     <string name="network_err">인터넷에 없습니다</string>
     <string name="general_err">ERR</string>
-    <string name="favs_welcome">어떤 항목은 즐겨 찾기에 등록되어 있지 않은 ;-(</string>
+    <string name="faves_welcome">어떤 항목은 즐겨 찾기에 등록되어 있지 않은 ;-(</string>
     <string name="num_lines">줄 번호</string>
     <string name="num_lines_summary">항목을 스크롤 할 때 선이 표시.</string>
     <string name="theme">테마</string>

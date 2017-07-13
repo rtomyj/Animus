@@ -1,4 +1,4 @@
-package com.MainActivities;
+package com.EntryActivities;
 
 import android.Manifest;
 import android.app.Activity;

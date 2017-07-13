@@ -91,6 +91,12 @@
     </string-array>
 
     <string name="entries_welcome">Your diary is currently empty. Click the + to add an entry.</string>
+    <string name="pictures_welcome">Your diary has not picture files. Get snapping!</string>
+    <string name="tags_welcome">Your diary has no tags. Tagging makes it easier to see related entries. Try it out when editing.</string>
+    <string name="faves_welcome">Your diary has no favorite entries. \n\nr ;-(</string>
+
+
+
     <string name="location_setting_title">Location Entries</string>
     <string name="location_setting_info">App will ping for your current location.</string>
     <string name="intro_dialog_dismiss_button">I think I got it.</string>
@@ -224,7 +230,6 @@
         <item>Reset All Files</item>
     </string-array>
 
-    <string name="favs_welcome">No entries have been favorited ;-(</string>
 
 
     <!-- these strings are for the about help screen in the settings menu -->

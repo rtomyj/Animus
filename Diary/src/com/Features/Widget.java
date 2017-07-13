@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.Features;
 
 import android.app.PendingIntent;
 import android.appwidget.AppWidgetManager;
@@ -8,7 +8,7 @@ import android.content.Intent;
 import android.util.Log;
 import android.widget.RemoteViews;
 
-import com.MainActivities.NewEntry;
+import com.EntryActivities.NewEntry;
 import com.MainActivities.SplashScreen;
 import com.rtomyj.Diary.R;
 

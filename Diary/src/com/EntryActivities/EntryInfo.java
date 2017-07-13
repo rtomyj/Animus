@@ -1,10 +1,10 @@
-package com.SubActivities;
+package com.EntryActivities;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 
 
-public class UserEntries extends HashMap{
+public class EntryInfo extends HashMap{
 
     private int tagNum;
     private int currMood;
@@ -17,10 +17,10 @@ public class UserEntries extends HashMap{
     private ArrayList<String> tagsArrList = new ArrayList<>();
     private long date;
 
-    public UserEntries(String filename){
+    public EntryInfo(String filename){
 
     }
-    public UserEntries(short numberOfTags, short totalFiles, short bottomRange, short topRange, short startingPos){
+    public EntryInfo(short numberOfTags, short totalFiles, short bottomRange, short topRange, short startingPos){
 
     }
     private boolean isFav;

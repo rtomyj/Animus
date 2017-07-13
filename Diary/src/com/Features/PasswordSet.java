@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.Features;
 
 import android.content.Intent;
 import android.content.SharedPreferences;

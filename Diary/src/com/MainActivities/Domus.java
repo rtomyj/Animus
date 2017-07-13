@@ -4,9 +4,10 @@ import android.app.AlertDialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
-import android.support.v4.view.GravityCompat;
 import android.view.MenuItem;
 import android.view.View;
+
+import com.BaseClasses.Entries;
 import com.UtilityClasses.AnimusXML;
 import com.rtomyj.Diary.R;
 
@@ -57,7 +58,7 @@ public class Domus extends Entries {
     public boolean onNavigationItemSelected(final MenuItem item) {
         switch(item.getItemId()) {
             case R.id.domus:
-                sideNavDrawer.closeDrawer(GravityCompat.START); // closes the side bar
+                closeNavDrawer();
                 break;
             default:
                 super.onNavigationItemSelected(item);

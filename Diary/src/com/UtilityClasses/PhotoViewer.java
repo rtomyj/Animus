@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.UtilityClasses;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;

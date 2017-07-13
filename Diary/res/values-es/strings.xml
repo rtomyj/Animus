@@ -172,7 +172,7 @@
     <string name="file_exists_err">El archivo existe</string>
     <string name="network_err">NO INTERNET</string>
     <string name="general_err">Error</string>
-    <string name="favs_welcome">No hay entradas se han favorecido ;-(</string>
+    <string name="faves_welcome">No hay entradas se han favorecido ;-(</string>
 
     <!--
     changed strings

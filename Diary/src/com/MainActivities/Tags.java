@@ -17,7 +17,7 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 		super.onStart();
 
 		/* on click for items in tags
-				Intent i = new Intent(c, ChosenTag.class);
+				Intent i = new Intent(c, SelectedTag.class);
 				if (isAlphaSort == true)
 					i.putExtra("TAG", alphaSortedTagsArrList.get(position));
 				else
@@ -209,6 +209,7 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	public boolean onNavigationItemSelected(final MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.tags:
+				closeNavDrawer();
 				break;
 			default:
 				super.onNavigationItemSelected(item);

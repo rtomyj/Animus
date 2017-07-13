@@ -3,6 +3,7 @@ package com.MainActivities;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.BaseClasses.Entries;
 import com.rtomyj.Diary.R;
 
 public class FaveEntries extends Entries {
@@ -21,6 +22,7 @@ public class FaveEntries extends Entries {
 	public boolean onNavigationItemSelected(final MenuItem item) {
 		switch(item.getItemId()) {
 			case R.id.faves:
+				closeNavDrawer();
 				break;
 			default:
 				super.onNavigationItemSelected(item);

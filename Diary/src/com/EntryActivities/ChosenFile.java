@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.EntryActivities;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -66,6 +66,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
+import com.SubActivities.Passcode;
+import com.UtilityClasses.PhotoViewer;
 import com.UtilityClasses.AnimusMiscMethods;
 import com.rtomyj.Diary.R;
 

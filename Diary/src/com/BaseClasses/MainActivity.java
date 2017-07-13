@@ -45,14 +45,12 @@ import java.lang.ref.WeakReference;
     // Misc views
     private ViewSwitcher greetingContextVS;
     private Toolbar actionBar;
-
-    protected DrawerLayout sideNavDrawer;
+    private DrawerLayout sideNavDrawer;
 
 
     // Objects to make the listView work
     private RecyclerView recyclerView;
     private S recycleViewLayoutManager;
-
     protected T activityAdapter;
 
 
@@ -105,6 +103,7 @@ import java.lang.ref.WeakReference;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);  // uses the methods in this class to listen for onclick events for the side nav drawer
+        navigationView.setCheckedItem(R.id.domus);
     }
 
 
@@ -269,12 +268,19 @@ import java.lang.ref.WeakReference;
                 welcome.setText(getResources().getString(R.string.entries_welcome));
                 break;
             case PIC_ENTRIES:
+                welcome.setText(getResources().getString(R.string.pictures_welcome));
                 break;
             case TAGS:
+                welcome.setText(getResources().getString(R.string.tags_welcome));
                 break;
             case FAVES:
+                welcome.setText(getResources().getString(R.string.faves_welcome));
                 break;
         }
+    }
+
+    protected void closeNavDrawer(){
+        sideNavDrawer.closeDrawer(GravityCompat.START); // closes the side bar
     }
 
 

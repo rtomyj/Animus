@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.Features;
 
 import android.R;
 import android.app.IntentService;
@@ -8,7 +8,7 @@ import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 
-import com.MainActivities.Entries;
+import com.BaseClasses.Entries;
 
 public class Receiver extends IntentService{
 

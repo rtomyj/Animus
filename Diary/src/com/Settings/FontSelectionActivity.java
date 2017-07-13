@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.Settings;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.Adapters.FontAdapter;
 import com.rtomyj.Diary.R;
 
 import java.lang.ref.WeakReference;

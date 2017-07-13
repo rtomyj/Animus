@@ -28,7 +28,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.Adapters.EntriesAdapter;
-import com.SubActivities.ChosenFile;
+import com.EntryActivities.NewEntry;
+import com.EntryActivities.ChosenFile;
 import com.Settings.MainSettingsFrag;
 import com.SubActivities.NewNote;
 import com.SubActivities.Passcode;
@@ -58,7 +59,7 @@ import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
 // Reusing the entries layout and EntriesAdapter.
-public class ChosenTag extends AppCompatActivity {
+public class SelectedTag extends AppCompatActivity {
 	private IInAppBillingService mservice = null;
 	private ServiceConnection connection;
 

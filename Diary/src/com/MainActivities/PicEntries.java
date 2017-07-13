@@ -60,6 +60,7 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 	public boolean onNavigationItemSelected(final MenuItem item) {
 		switch (item.getItemId()){
 			case R.id.pictures:
+				closeNavDrawer();
 				break;
 			default:
 				super.onNavigationItemSelected(item);

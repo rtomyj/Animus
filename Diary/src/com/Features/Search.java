@@ -1,4 +1,4 @@
-package com.SubActivities;
+package com.Features;
 
 import android.app.ListActivity;
 import android.app.SearchManager;

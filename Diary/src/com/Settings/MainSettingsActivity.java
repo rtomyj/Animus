@@ -19,9 +19,9 @@ import android.preference.PreferenceManager;
 import android.preference.SwitchPreference;
 import android.widget.ProgressBar;
 
-import com.MainActivities.NewEntry;
+import com.EntryActivities.NewEntry;
 import com.SubActivities.Passcode;
-import com.SubActivities.PasswordSet;
+import com.Features.PasswordSet;
 import com.rtomyj.Diary.R;
 
 import java.io.BufferedReader;

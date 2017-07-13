@@ -174,7 +174,7 @@
     <string name="file_exists_err">Datei existiert</string>
     <string name="network_err">NO INTERNET</string>
     <string name="general_err">Fehler</string>
-    <string name="favs_welcome">Es wurden keine Einträge Favorit markiert ;-(</string>
+    <string name="faves_welcome">Es wurden keine Einträge Favorit markiert ;-(</string>
 
     <!--
     changed strings
