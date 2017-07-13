@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.BaseClasses.Activity_Base;
 import com.MainActivities.Domus;
 import com.MainActivities.FaveEntries;
 import com.BaseClasses.MainActivity;
@@ -12,7 +13,6 @@ import com.EntryActivities.NewEntry;
 import com.MainActivities.PicEntries;
 import com.EntryActivities.ChosenFile;
 import com.Settings.MainSettingsFrag;
-import com.SubActivities.Notes;
 import com.MainActivities.Tags;
 import com.rtomyj.Diary.R;
 
@@ -36,9 +36,6 @@ public class AnimusLauncherMethods {
             case R.id.domus:
                 intent  = new Intent(parent, Domus.class);
                 break;
-            case R.id.notes:
-                intent  = new Intent(parent, Notes.class);
-                break;
             case R.id.pictures:
                 intent = new Intent(parent, PicEntries.class);
                 break;
@@ -58,7 +55,7 @@ public class AnimusLauncherMethods {
         }
         switch (menuItem){      // if an activity needs a result when calling new activity then it will return the intent to the caller otherwise it launches the activity here and returns a null intent.
             case R.id.settings:
-                ((Activity)parent).startActivityForResult(intent, MainActivity.SETTINGS);
+                ((Activity)parent).startActivityForResult(intent, Activity_Base.SETTINGS);
                 break;
             default:
                 parent.startActivity(intent);

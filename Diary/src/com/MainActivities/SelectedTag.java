@@ -31,7 +31,6 @@ import com.Adapters.EntriesAdapter;
 import com.EntryActivities.NewEntry;
 import com.EntryActivities.ChosenFile;
 import com.Settings.MainSettingsFrag;
-import com.SubActivities.NewNote;
 import com.SubActivities.Passcode;
 import com.android.vending.billing.IInAppBillingService;
 import com.rtomyj.Diary.R;
@@ -513,10 +512,7 @@ public class SelectedTag extends AppCompatActivity {
 		overridePendingTransition(R.anim.scale, R.anim.scale);
 	}
 
-	public void newNote(MenuItem view) {
-		Intent i = new Intent(this, NewNote.class);
-		startActivityForResult(i, 2);
-	}
+
 
 	public void settingsClicked(MenuItem view) {
 		Intent i = new Intent(this, MainSettingsFrag.class);
