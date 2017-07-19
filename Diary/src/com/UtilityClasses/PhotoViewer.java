@@ -13,8 +13,6 @@ import java.io.File;
 
 public class PhotoViewer extends AppCompatActivity{
 
-
-
 	private String photo;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {

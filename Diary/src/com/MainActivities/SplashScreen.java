@@ -24,9 +24,7 @@ public class SplashScreen extends Activity_Base {
 //	private int attempts = 0;
 
 	private String password;
-	private boolean checkPasscode = false;
-
-
+	private boolean checkPassword = false;
 
 
 	@Override
@@ -35,46 +33,51 @@ public class SplashScreen extends Activity_Base {
 		super.onCreate(savedInstanceState);
 		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
 
-		checkPasscode = sp.getBoolean("Password", false);
+		checkPassword = sp.getBoolean("Password", false);
 		password = sp.getString("PasswordValue", "0000");
 
+		AnimusUI.setTheme(this, userUIPreferences.theme);		// sets theme
 
-		String themeName = sp.getString("Theme", "Default");
+		if (checkPassword) 		 // if the user has password enabled the splash screen will be the password input screen instead of regular splash
+			passwordScreen();
 
-		AnimusUI.setTheme(this, themeName);		// sets theme
-		int [] colors = AnimusUI.getThemeElements(this, themeName);		// gets colors according to theme
-		int primaryColor = colors[0], darkThemeTextColor = colors[2], darkThemeBackgroundColor = colors[3], darkThemeForegroundColor = colors[4];
+		else  		// if no passcode then regular splash layout is used.
+		splashScreen();
 
-		if (checkPasscode ) { // if the user has password enabled the splash screen will be the password input screen instead of regular splash
+
+		}
+
+		private void passwordScreen(){
 			setContentView(R.layout.passcode);
 
 			passwordET = (EditText) findViewById(R.id.password);
 			hintTV = (TextView) findViewById(R.id.hint);
 
-			passwordET.setBackgroundColor(primaryColor);
-			hintTV.setBackgroundColor(primaryColor);
+			passwordET.setBackgroundColor(userUIPreferences.primaryColor);
+			hintTV.setBackgroundColor(userUIPreferences.primaryColor);
 
 
-			if (themeName.contains("Onyx")){		 // checks the theme name and sees if it is an "Onyx" theme, changes colors accordingly
-					LinearLayout parentLL = (LinearLayout) findViewById(R.id.parent);
-					LinearLayout numberPadLL = (LinearLayout) findViewById(R.id.numberPad);
+			if (userUIPreferences.theme.contains("Onyx")){		 // checks the theme name and sees if it is an "Onyx" theme, changes colors accordingly
+				LinearLayout parentLL = (LinearLayout) findViewById(R.id.parent);
+				LinearLayout numberPadLL = (LinearLayout) findViewById(R.id.numberPad);
 
-					parentLL.setBackgroundColor(darkThemeBackgroundColor);
-					numberPadLL.setBackgroundColor(darkThemeForegroundColor);
+				parentLL.setBackgroundColor(userUIPreferences.darkThemeBackgroundColor);
+				numberPadLL.setBackgroundColor(userUIPreferences.darkThemeForegroundColor);
 			}
+		}
 
-		} else { 		// if no passcode then regular splash layout is used.
+		private void splashScreen(){
 			setContentView(R.layout.splash);
 
 			LinearLayout parentLL = (LinearLayout) findViewById(R.id.parent);
 			WeakReference<LinearLayout> parentLLWeak = new WeakReference<>(parentLL);
 
-			parentLLWeak.get().setBackgroundColor(primaryColor);
+			parentLLWeak.get().setBackgroundColor(userUIPreferences.primaryColor);
 
 			TextView tv = (TextView) findViewById(R.id.quote);
 
-			if (themeName.contains("Onyx"))
-					tv.setTextColor(darkThemeTextColor);
+			if (userUIPreferences.theme.contains("Onyx"))
+				tv.setTextColor(userUIPreferences.textColorForDarkThemes);
 
 
 			final Intent domusIntent = new Intent(this, Domus.class);
@@ -88,9 +91,6 @@ public class SplashScreen extends Activity_Base {
 					time.cancel();
 					startActivity(domusIntent);
 				}}, 2500, 1);
-			}
-
-
 		}
 
 
@@ -112,8 +112,7 @@ public class SplashScreen extends Activity_Base {
 
 		if (passwordET.getText().toString().length() == 4) {
 
-			if (passwordET.getText().toString()
-					.equals(password)) {
+			if (passwordET.getText().toString().equals(password)) {
 				Intent i = new Intent(this, Domus.class);
 				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
 				startActivity(i);
@@ -129,7 +128,7 @@ public class SplashScreen extends Activity_Base {
 	protected void onStart() {
 		super.onStart();
 
-		if (!checkPasscode) { // if use is not using a passcode, show the regular splash
+		if (!checkPassword) { // if use is not using a passcode, show the regular splash
 
 			TextView quoteTV = (TextView) findViewById(R.id.quote);
 			TextView ver_numTV = (TextView) findViewById(R.id.ver_num);

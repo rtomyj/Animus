@@ -1,11 +1,9 @@
 package com.Adapters;
 
 import android.content.Context;
-
 import com.UtilityClasses.AnimusFiles;
 import com.UtilityClasses.AnimusXML;
 import com.UtilityClasses.CustomAttributes;
-
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -16,7 +14,7 @@ import java.util.Comparator;
  * Created by CaptainSaveAHoe on 7/12/17.
  */
 
-public class AllEntriesAdapter extends  EntriesAdapter {
+public class AllEntriesAdapter extends EntriesAdapter {
 
     public AllEntriesAdapter(Context context, CustomAttributes userUIPreferences){
         super(context, userUIPreferences);

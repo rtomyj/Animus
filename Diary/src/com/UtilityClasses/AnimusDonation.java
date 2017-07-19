@@ -1,13 +1,10 @@
 package com.UtilityClasses;
 
 import android.app.PendingIntent;
-import android.content.Intent;
 import android.os.Bundle;
 import android.os.RemoteException;
-import android.widget.Toast;
 
 import com.android.vending.billing.IInAppBillingService;
-import com.rtomyj.Diary.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;

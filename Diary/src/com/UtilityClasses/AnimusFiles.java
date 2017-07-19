@@ -17,10 +17,6 @@ import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
 

@@ -20,13 +20,10 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-
-import com.MainActivities.Domus;
 import com.UtilityClasses.AnimusLauncherMethods;
 import com.UtilityClasses.AnimusMiscMethods;
 import com.rtomyj.Diary.R;
 import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
 
 /**
  * Created by CaptainSaveAHoe on 7/5/17.

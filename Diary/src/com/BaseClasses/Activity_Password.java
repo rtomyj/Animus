@@ -14,7 +14,7 @@ import com.SubActivities.Passcode;
     Base class of any activity that needs AppCompat functionality. Handles password related tasks. All sub classes need to call the super counterparts in order for the methods to be invoked.
     All sub classes should also override the loadAds attribute since not all sub classes should show them.
 
-    Variable currentActivity should be overidden to whatever activity is the sub activity.
+    Variable currentActivity should be overridden to whatever activity is the sub activity.
  */
 public class Activity_Password extends Activity_Base {
     // primitives for class
