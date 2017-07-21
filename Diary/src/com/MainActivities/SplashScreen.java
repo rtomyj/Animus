@@ -36,7 +36,7 @@ public class SplashScreen extends Activity_Base {
 		checkPassword = sp.getBoolean("Password", false);
 		password = sp.getString("PasswordValue", "0000");
 
-		AnimusUI.setTheme(this, userUIPreferences.theme);		// sets theme
+		UI.setTheme(this, userUIPreferences.theme);		// sets theme
 
 		if (checkPassword) 		 // if the user has password enabled the splash screen will be the password input screen instead of regular splash
 			passwordScreen();
@@ -44,12 +44,7 @@ public class SplashScreen extends Activity_Base {
 		else  		// if no passcode then regular splash layout is used.
 		splashScreen();
 
-<<<<<<< HEAD
-		UI.setTheme(this, themeName);		// sets theme
-		int [] colors = UI.getThemeElements(this, themeName);		// gets colors according to theme
-		int primaryColor = colors[0], darkThemeTextColor = colors[2], darkThemeBackgroundColor = colors[3], darkThemeForegroundColor = colors[4];
-=======
->>>>>>> a966f1388bbd459a8aac6ba356fb65af1d7e2e6e
+		UI.setTheme(this, userUIPreferences.theme);		// sets theme
 
 		}
 

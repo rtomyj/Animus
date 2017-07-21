@@ -8,7 +8,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import com.BaseClasses.Activity_Base;
-import com.UtilityClasses.AnimusUI;
+import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 
 public class PasswordSet extends Activity_Base {
@@ -21,7 +21,7 @@ public class PasswordSet extends Activity_Base {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		AnimusUI.setTheme(this, userUIPreferences.theme);
+		UI.setTheme(this, userUIPreferences.theme);
 
 		this.setContentView(R.layout.passcode);
 
