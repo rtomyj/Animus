@@ -68,7 +68,7 @@ import android.widget.ViewSwitcher;
 
 import com.SubActivities.Passcode;
 import com.UtilityClasses.PhotoViewer;
-import com.UtilityClasses.AnimusMiscMethods;
+import com.UtilityClasses.MiscMethods;
 import com.rtomyj.Diary.R;
 
 import org.w3c.dom.Document;
@@ -685,15 +685,15 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 					+ " " + month[lastModified.get(Calendar.MONTH)] + " "
 					+ lastModified.get(Calendar.DAY_OF_MONTH) + ", " + lastModified.get(Calendar.YEAR)
 					+ "\t\t" + "</b>"
-					+ AnimusMiscMethods.setHour(lastModified.get(Calendar.HOUR)) + ":"
-					+ AnimusMiscMethods.setMinute(lastModified.get(Calendar.MINUTE))
-					+ AnimusMiscMethods.ampm(lastModified.get(Calendar.HOUR))));
+					+ MiscMethods.setHour(lastModified.get(Calendar.HOUR)) + ":"
+					+ MiscMethods.setMinute(lastModified.get(Calendar.MINUTE))
+					+ MiscMethods.ampm(lastModified.get(Calendar.HOUR))));
 		else
 			d.setText(Html.fromHtml("<b>" + weekday[lastModified.get(Calendar.DAY_OF_WEEK)]
 					+ " " + lastModified.get(Calendar.DAY_OF_MONTH) + " "
 					+ month[lastModified.get(Calendar.MONTH)] + ". " + lastModified.get(Calendar.YEAR)
 					+ "\t\t" + "</b>" + lastModified.get(Calendar.HOUR) + ":"
-					+ AnimusMiscMethods.setMinute(lastModified.get(Calendar.MINUTE))));
+					+ MiscMethods.setMinute(lastModified.get(Calendar.MINUTE))));
 
 
 
@@ -1914,11 +1914,11 @@ menuVS.setVisibility(View.VISIBLE);
 									+ lastModified.get(Calendar.YEAR)
 									+ "</b>"
 									+ "<br />"
-									+ AnimusMiscMethods.setHour(lastModified.get(Calendar.HOUR))
+									+ MiscMethods.setHour(lastModified.get(Calendar.HOUR))
 									+ ":"
-									+ AnimusMiscMethods
+									+ MiscMethods
 											.setMinute(lastModified.get(Calendar.MINUTE))
-									+ AnimusMiscMethods.ampm(lastModified.get(Calendar.HOUR))));
+									+ MiscMethods.ampm(lastModified.get(Calendar.HOUR))));
 						else
 							d.setText(Html.fromHtml("<b>"
 									+ weekday[lastModified.get(Calendar.DAY_OF_WEEK)]
@@ -1932,7 +1932,7 @@ menuVS.setVisibility(View.VISIBLE);
 									+ "<br />"
 									+ lastModified.get(Calendar.HOUR)
 									+ ":"
-									+ AnimusMiscMethods
+									+ MiscMethods
 											.setMinute(lastModified.get(Calendar.MINUTE))));
 					}
 				});
@@ -2456,6 +2456,6 @@ menuVS.setVisibility(View.VISIBLE);
 		if (moodTV == null)
 			moodTV = (TextView) findViewById(R.id.mood);
 
-		moodTV.setText(AnimusMiscMethods.getMood(mood, moodTV));
+		moodTV.setText(MiscMethods.getMood(mood, moodTV));
 	}
 }

@@ -10,7 +10,7 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.UtilityClasses.AnimusUI;
+import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 
 import java.util.TimerTask;
@@ -46,7 +46,7 @@ public class Passcode extends AppCompatActivity {
 		// } else
 
 		String theme = sp.getString("Theme", "Default");
-		AnimusUI.setTheme(this, theme);
+		UI.setTheme(this, theme);
 		setContentView(R.layout.passcode);
 
 

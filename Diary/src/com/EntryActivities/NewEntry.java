@@ -52,15 +52,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.SubActivities.Passcode;
-import com.UtilityClasses.AnimusFiles;
-import com.UtilityClasses.AnimusLauncherMethods;
-import com.UtilityClasses.AnimusMiscMethods;
-import com.UtilityClasses.AnimusPermissions;
-import com.UtilityClasses.AnimusPictures;
-import com.UtilityClasses.AnimusTags;
-import com.UtilityClasses.AnimusUI;
-import com.UtilityClasses.AnimusAudio;
-import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.Files;
+import com.UtilityClasses.LauncherMethods;
+import com.UtilityClasses.MiscMethods;
+import com.UtilityClasses.Permissions;
+import com.UtilityClasses.Pictures;
+import com.UtilityClasses.Tags;
+import com.UtilityClasses.UI;
+import com.UtilityClasses.Audio;
+import com.UtilityClasses.XML;
 import com.UtilityClasses.Entry;
 import com.rtomyj.Diary.R;
 
@@ -107,7 +107,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
     private Uri picFromCameraURI;
 
     // recording ui and components
-    private AnimusAudio audio;
+    private Audio audio;
 
     // UI variables
     private int primaryColor = 0, secondaryColor = 0, darkThemeTextColor = 0, lightTextColor = 0;
@@ -122,7 +122,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         super.onCreate(previousInstance);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         context = this;
-       AnimusUI.setTheme(context, sp.getString("Theme", "Default"));
+       UI.setTheme(context, sp.getString("Theme", "Default"));
 
         // very small screen sizes will not look good on a horizontal screen so I block it.
         if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
@@ -204,7 +204,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         gpsPermission = sp.getBoolean("GPS", false);
         theme = sp.getString("Theme", "Default");
 
-        int [] colors = AnimusUI.getThemeElements(context, theme);           // used to set background color and text color of certain views later on.
+        int [] colors = UI.getThemeElements(context, theme);           // used to set background color and text color of certain views later on.
         primaryColor = colors[0];
         secondaryColor = colors[1];
         darkThemeTextColor = colors[2];
@@ -222,20 +222,20 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
     public void setupSuggestedTags(){
         //  gets suggested tags from previously used tags found in xml
-        tagSuggestionsArrList.addAll(AnimusTags.getUniqueTags(getFilesDir()));
+        tagSuggestionsArrList.addAll(Tags.getUniqueTags(getFilesDir()));
 
         // gets contact names from the users contacts to suggest tags.
         if (sp.getBoolean("Contacts", false)) {
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_CONTACTS) != PackageManager.PERMISSION_GRANTED) {
                 // Should we show an explanation?
                 if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.READ_CONTACTS)) {     // only shows explanation if user hasn't seen it or doesn't clicked "never show again"
-                    AnimusPermissions.requestDialog(AnimusPermissions.MY_PERMISSIONS_REQUEST_CONTACTS, context);
+                    Permissions.requestDialog(Permissions.MY_PERMISSIONS_REQUEST_CONTACTS, context);
                 }else{
-                    AnimusPermissions.permissionNotGranted(context, AnimusPermissions.MY_PERMISSIONS_REQUEST_CONTACTS);
+                    Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_CONTACTS);
                 }
 
             }else
-                tagSuggestionsArrList.addAll(AnimusFiles.getContactSuggestions(this));
+                tagSuggestionsArrList.addAll(Files.getContactSuggestions(this));
 
         }
 
@@ -249,7 +249,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
         monthTV.setText(String.format(Locale.getDefault(), "%1$tB", calendar));
         yearTV.setText(String.format(Locale.getDefault(), "%1$tY", calendar));
-        timeTV.setText(AnimusMiscMethods.getLocalizedTime(calendar));
+        timeTV.setText(MiscMethods.getLocalizedTime(calendar));
         dayTV.setText(String.format(Locale.getDefault(), "%1$td", calendar) + ',');
 
 
@@ -269,9 +269,9 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
                         // Should we show an explanation? Only needed when the user hasn't seen the dialog before
                         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.ACCESS_FINE_LOCATION)) {
-                            AnimusPermissions.requestDialog(AnimusPermissions.MY_PERMISSIONS_REQUEST_LOCATION, context);
+                            Permissions.requestDialog(Permissions.MY_PERMISSIONS_REQUEST_LOCATION, context);
                         }else{
-                            AnimusPermissions.permissionNotGranted(context, AnimusPermissions.MY_PERMISSIONS_REQUEST_LOCATION);
+                            Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_LOCATION);
                         }
 
                     }else
@@ -329,7 +329,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         if (hasAudio) {
             ImageSwitcher audioSwitcher = (ImageSwitcher) findViewById(R.id.audio);
             if (audio == null)
-                audio = new AnimusAudio(context, filename, audioSwitcher, hasAudio);
+                audio = new Audio(context, filename, audioSwitcher, hasAudio);
 
         }
 
@@ -353,7 +353,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
             enteredTagsLL = (LinearLayout) findViewById(R.id.tags_in_entry);
 
-            if (fileCreationMillis == 0) {      // this data setup will only run if fileCreationMillis is 0 and the only time that is true is when it never gets altered before onStart()
+            if (fileCreationMillis == 0) {      // this data setupViews will only run if fileCreationMillis is 0 and the only time that is true is when it never gets altered before onStart()
                 setupEntryData();       // gets date, time, statuses, location, suggested tags, etc
                 setupSuggestedTags();       // sets up suggested tags array with contact names and previously used tags.
             }
@@ -382,7 +382,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                     StringBuilder wordCount = new StringBuilder("");
                     wordCount.append(characterCount);
                     wordCount.append("W: " );
-                    wordCount.append(String.valueOf(AnimusMiscMethods.countWords(entryTextET.getText().toString())));
+                    wordCount.append(String.valueOf(MiscMethods.countWords(entryTextET.getText().toString())));
 
                     textCount.setText(wordCount);
                 }
@@ -417,12 +417,12 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         ImageView imageView;
         if(imageNum == 1) {
             imageView = (ImageView) findViewById(R.id.main_pic);
-            AnimusPictures.setImageToView(loadPics, imageNum, imageView, null);
+            Pictures.setImageToView(loadPics, imageNum, imageView, null);
         }else {
             LinearLayout layoutHoldingPics = (LinearLayout) findViewById(R.id.layoutWithP);
-            imageView = AnimusPictures.getImageView(context, imageNum);
+            imageView = Pictures.getImageView(context, imageNum);
 
-            AnimusPictures.setImageToView(loadPics, imageNum, imageView, layoutHoldingPics);
+            Pictures.setImageToView(loadPics, imageNum, imageView, layoutHoldingPics);
             setListenersToImageViews(imageView, imageNum, layoutHoldingPics);
         }
 
@@ -435,14 +435,14 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ((Activity)context).startActivityForResult(AnimusLauncherMethods.launchPhotoViewer(v, context, filename), 2);
+                ((Activity)context).startActivityForResult(LauncherMethods.launchPhotoViewer(v, context, filename), 2);
             }
         });
 
         imageView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                imageCount = AnimusPictures.deleteOnePicFromEntry(v, holder, context, filename, imageNum);
+                imageCount = Pictures.deleteOnePicFromEntry(v, holder, context, filename, imageNum);
                 return false;
             }
         });
@@ -552,7 +552,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         if (moodTV == null)
             moodTV = (TextView) findViewById(R.id.mood);
 
-        moodTV.setText(AnimusMiscMethods.getMood(mood, moodTV));
+        moodTV.setText(MiscMethods.getMood(mood, moodTV));
     }
 
 
@@ -650,6 +650,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
     private void takePic(){
         onPauseNotTakingPic = false;
         Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+
         picFromCameraURI = Uri.fromFile(new File(Environment.getExternalStorageDirectory(), System.currentTimeMillis() + ".png"));     // this stores the image to device storage
         intent.putExtra(MediaStore.EXTRA_OUTPUT, picFromCameraURI);
         startActivityForResult(intent, USE_CAMERA_CONST);
@@ -659,18 +660,18 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                 if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
                     // Should we show an explanation?
                     if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.CAMERA)) {
-                        AnimusPermissions.requestDialog(AnimusPermissions.MY_PERMISSIONS_REQUEST_CAMERA, context);
+                        Permissions.requestDialog(Permissions.MY_PERMISSIONS_REQUEST_CAMERA, context);
                     }
                     else{
-                        AnimusPermissions.permissionNotGranted(context, AnimusPermissions.MY_PERMISSIONS_REQUEST_CAMERA);
+                        Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_CAMERA);
                     }
                 } else {
                     if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {     // if the user has granted permission to access camera app seeks permission to write data to disk
                         // Should we show an explanation?
                         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-                            AnimusPermissions. requestDialog(AnimusPermissions.MY_PERMISSIONS_REQUEST_WRITE_TO_DISK, context);
+                            Permissions. requestDialog(Permissions.MY_PERMISSIONS_REQUEST_WRITE_TO_DISK, context);
                         }else{
-                            AnimusPermissions.permissionNotGranted(context, AnimusPermissions.MY_PERMISSIONS_REQUEST_WRITE_TO_DISK);
+                            Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_WRITE_TO_DISK);
                         }
                     }
                     else {          // if both the camera and the write disk permissions are set to ok, then the system goes to the camera UI
@@ -698,7 +699,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                     try {
                         ++ imageCount;
                         saveData();
-                        makeImageViews(imageCount, AnimusPictures.saveImage(picFromCameraURI, context,  filename, imageCount));
+                        makeImageViews(imageCount, Pictures.saveImage(picFromCameraURI, context,  filename, imageCount));
 
                     } catch (IOException e) {
                         Log.e("Taking pic Err", e.toString());
@@ -715,7 +716,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                         Uri selectedImage = data.getData();
                         ++ imageCount;
                         saveData();
-                        makeImageViews(imageCount, AnimusPictures.saveImage(selectedImage, context, filename, imageCount));
+                        makeImageViews(imageCount, Pictures.saveImage(selectedImage, context, filename, imageCount));
                     } catch (IOException e) {
                         Log.e("Pic file not found", e.toString());
                     }
@@ -744,20 +745,20 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
-            case AnimusPermissions.MY_PERMISSIONS_REQUEST_CAMERA:
+            case Permissions.MY_PERMISSIONS_REQUEST_CAMERA:
                 // If request is cancelled, the result arrays are empty.
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {      // if user checked allow
                     takePic();
                 }
                 break;
 
-            case AnimusPermissions.MY_PERMISSIONS_REQUEST_CONTACTS:
+            case Permissions.MY_PERMISSIONS_REQUEST_CONTACTS:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {      // if user checked allow
-                    tagSuggestionsArrList.addAll(AnimusFiles.getContactSuggestions(this));
+                    tagSuggestionsArrList.addAll(Files.getContactSuggestions(this));
                 }
                 break;
 
-            case AnimusPermissions.MY_PERMISSIONS_REQUEST_LOCATION:
+            case Permissions.MY_PERMISSIONS_REQUEST_LOCATION:
                 TextView currentLocationTV = (TextView) findViewById(R.id.location);
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {      // if user checked allow
                     getLocation(true, currentLocationTV);
@@ -766,12 +767,12 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                     getLocation(false, currentLocationTV);
                 }
                 break;
-            case AnimusPermissions.MY_PERMISSIONS_REQUEST_MIC:
+            case Permissions.MY_PERMISSIONS_REQUEST_MIC:
                 if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {      // if user checked allow
                         saveData();
                         ImageSwitcher audioSwitcher = (ImageSwitcher) findViewById(R.id.audio);
                         if (audio == null)
-                            audio = new AnimusAudio(context, filename, audioSwitcher);
+                            audio = new Audio(context, filename, audioSwitcher);
 
                 }
                 break;
@@ -810,8 +811,8 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                         public void onClick(DialogInterface arg0, int arg1) {
                             entryDeleted = true;
                             if (isSaved) {
-                                AnimusFiles.deleteEntry(context.getFilesDir(), filename);
-                                AnimusFiles.removeNewEntryFromPreference(sp);
+                                Files.deleteEntry(context.getFilesDir(), filename);
+                                Files.removeNewEntryFromPreference(sp);
                             }
                             finish();
                         }
@@ -832,7 +833,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
     public void addTag(String newTag, boolean addToList) {
         enteredTagsLL.setClickable(true);
         if (tagsBackgroundDrawable == null)
-           tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, theme);
+           tagsBackgroundDrawable = UI.getTagsBackgroundDrawable(context, theme);
 
         if (tagsTVParams == null){
             tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -842,7 +843,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         if (addToList)
         tagsArrList.add(newTag);
 
-        TextView tagTV = AnimusTags.newTagView(context, textSize, lightTextColor, tagsTVParams, tagsBackgroundDrawable, fontStyle, userSelectedFontTF);
+        TextView tagTV = Tags.newTagView(context, textSize, lightTextColor, tagsTVParams, tagsBackgroundDrawable, fontStyle, userSelectedFontTF);
         tagTV.setText(newTag);
         enteredTagsLL.addView(tagTV);
 
@@ -863,7 +864,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         EditText title = (EditText) findViewById(R.id.title_of_entry);
         onPauseNotTakingPic = false;
 
-        AnimusMiscMethods.email(title.toString(), entryTextET.toString(), "", context);
+        MiscMethods.email(title.toString(), entryTextET.toString(), "", context);
     }
 
     public void EditTags(View v) {
@@ -911,7 +912,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         final AutoCompleteTextView tagTV = new AutoCompleteTextView(context);
         ArrayAdapter<String> adapter = new ArrayAdapter<>(context, android.R.layout.simple_dropdown_item_1line, tagSuggestionsArrList);
 
-        AlertDialog.Builder newTagAlert = AnimusTags.getAddTagDialog(context.getResources(), tempDialog, tagTV, adapter, tagSuggestionsArrList);
+        AlertDialog.Builder newTagAlert = Tags.getAddTagDialog(context.getResources(), tempDialog, tagTV, adapter, tagSuggestionsArrList);
 
         newTagAlert.setIcon(ContextCompat.getDrawable(context, R.drawable.tags));
 
@@ -1024,13 +1025,13 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
 
     public void boldButtonClicked(View bold) {
-       AnimusMiscMethods.bold(entryTextET);
+       MiscMethods.bold(entryTextET);
     }
     public void italicButtonClicked(View italic) {
-        AnimusMiscMethods.italic(entryTextET);
+        MiscMethods.italic(entryTextET);
     }
     public void underlineButtonClicked(View underline) {
-        AnimusMiscMethods.underline(entryTextET);
+        MiscMethods.underline(entryTextET);
     }
 
 
@@ -1045,16 +1046,16 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) != PackageManager.PERMISSION_GRANTED) {
             // Should we show an explanation?
             if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.RECORD_AUDIO)) {
-                AnimusPermissions.requestDialog(AnimusPermissions.MY_PERMISSIONS_REQUEST_MIC, context);
+                Permissions.requestDialog(Permissions.MY_PERMISSIONS_REQUEST_MIC, context);
             }else{
-                AnimusPermissions.permissionNotGranted(context, AnimusPermissions.MY_PERMISSIONS_REQUEST_MIC);
+                Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_MIC);
             }
         } else {
                 saveData();
                 ImageSwitcher audioSwitcher = (ImageSwitcher) findViewById(R.id.audio);
                 if (audio == null) {
                     Log.e("audio recording", "fiilename is " + filename);
-                    audio = new AnimusAudio(context, filename, audioSwitcher);
+                    audio = new Audio(context, filename, audioSwitcher);
                 }
         }
     }
@@ -1093,14 +1094,14 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
         if (! filename.equals(currentFileName) ){         // when the title EditText and filename variable aren't equal all of the files have to be renamed.
             oldFileName = filename;
-            filename = AnimusFiles.renameFiles(context.getFilesDir(), filename, currentFileName);
+            filename = Files.renameFiles(context.getFilesDir(), filename, currentFileName);
             if ( ! isSaved)
-                AnimusXML.recordNewEntryToXML(context.getResources(), context.getFilesDir(), filename, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
+                XML.recordNewEntryToXML(context.getResources(), context.getFilesDir(), filename, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
         }
         else if (filename.equals(currentFileName) && ! isSaved){
             try {
-                filename = AnimusFiles.createNewEntryFile(currentFileName, context);
-                AnimusXML.recordNewEntryToXML(context.getResources(), context.getFilesDir(), filename, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
+                filename = Files.createNewEntryFile(currentFileName, context);
+                XML.recordNewEntryToXML(context.getResources(), context.getFilesDir(), filename, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
 
                 Log.e("new file created", "name is " + filename);
             }catch (IOException io){
@@ -1110,10 +1111,10 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
     try {
         if (isSaved)
-            AnimusXML.updateEntryInXML(context.getResources(), context.getFilesDir(), filename, oldFileName, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
+            XML.updateEntryInXML(context.getResources(), context.getFilesDir(), filename, oldFileName, imageCount, partnerString, jobString, tagsArrList, locationName, latitude, longitude, isFave, storedLocationBool, currMood);
         isSaved = true;
-        AnimusFiles.saveEntryText(filename, context, entryTextET);
-        AnimusFiles.saveNewEntryInfoToPreferences(sp, filename, tagsArrList, isFave);
+        Files.saveEntryText(filename, context, entryTextET);
+        Files.saveNewEntryInfoToPreferences(sp, filename, tagsArrList, isFave);
     } catch (IOException io) {
         Log.e("Err saving txt", io.toString());
     }

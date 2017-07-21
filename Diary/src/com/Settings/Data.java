@@ -17,8 +17,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.UtilityClasses.AnimusFiles;
-import com.UtilityClasses.AnimusUI;
+import com.UtilityClasses.Files;
+import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 
 import org.w3c.dom.Document;
@@ -66,7 +66,7 @@ public class Data extends AppCompatActivity {
 
 		context = this;
 		String theme = sp.getString("Theme", "Default");
-		AnimusUI.setTheme(context, theme);
+		UI.setTheme(context, theme);
 			
 		setContentView(R.layout.data);
 
@@ -367,13 +367,13 @@ public class Data extends AppCompatActivity {
 
     public void consolidate(View v){
 		// deletes files with "(X).txt" file name (no filename just an appended digit)
-		ArrayList<File> filesArrayList = new ArrayList<>(AnimusFiles.getFilesWithExtension(context.getFilesDir(), ".txt"));
-		ArrayList<File> picArrayList = new ArrayList<>(AnimusFiles.getFilesWithExtension(context.getFilesDir(), ".png"));
-		ArrayList<File> audioArrayList = new ArrayList<>(AnimusFiles.getFilesWithExtension(context.getFilesDir(), ".mpeg"));
+		ArrayList<File> filesArrayList = new ArrayList<>(Files.getFilesWithExtension(context.getFilesDir(), ".txt"));
+		ArrayList<File> picArrayList = new ArrayList<>(Files.getFilesWithExtension(context.getFilesDir(), ".png"));
+		ArrayList<File> audioArrayList = new ArrayList<>(Files.getFilesWithExtension(context.getFilesDir(), ".mpeg"));
 
-		AnimusFiles.deleteFilesWithNoName(filesArrayList, ".txt");
-		AnimusFiles.deleteFilesWithNoName(picArrayList, ".png");
-		AnimusFiles.deleteFilesWithNoName(audioArrayList, ".mpeg");
+		Files.deleteFilesWithNoName(filesArrayList, ".txt");
+		Files.deleteFilesWithNoName(picArrayList, ".png");
+		Files.deleteFilesWithNoName(audioArrayList, ".mpeg");
 
 
         DocumentBuilderFactory factory;
