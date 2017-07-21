@@ -6,8 +6,12 @@ import android.content.res.Configuration;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+<<<<<<< HEAD
 
 import com.UtilityClasses.UI;
+=======
+import com.UtilityClasses.AnimusUI;
+>>>>>>> a966f1388bbd459a8aac6ba356fb65af1d7e2e6e
 import com.UtilityClasses.CustomAttributes;
 
 /*

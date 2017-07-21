@@ -16,6 +16,10 @@ import com.SubActivities.Passcode;
     either by multitasking or by pressing the home button. Whenever the application launches a new activity within its own package, the variable launchingWithinApp should be checked to true
     so that the activity doesn't mistake it for an action that would require a password upon going back to the activity.
 
+<<<<<<< HEAD
+=======
+    Variable currentActivity should be overridden to whatever activity is the sub activity.
+>>>>>>> a966f1388bbd459a8aac6ba356fb65af1d7e2e6e
  */
 public class Activity_Password extends Activity_Base {
     private boolean shouldLaunchPasswordActivity, passWordCheckedSuccessful = false, launchingWithinApp = false;
