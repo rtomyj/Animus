@@ -3,10 +3,6 @@ package com.Adapters;
 import android.content.Context;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.util.Log;
-import android.util.LruCache;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,20 +10,18 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.UtilityClasses.AnimusFiles;
-import com.UtilityClasses.AnimusLauncherMethods;
-import com.UtilityClasses.AnimusMiscMethods;
-import com.UtilityClasses.AnimusTags;
+import com.UtilityClasses.LauncherMethods;
+import com.UtilityClasses.MiscMethods;
+import com.UtilityClasses.Tags;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
-public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHolder>{
+public class EntriesAdapter extends AdapterSummaryCache<EntriesAdapter.ViewHolder> {
 
     // cache for deleted content
     private String cacheFileName, cacheTag1, cacheTag2, cachetTag3;
@@ -35,29 +29,24 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
     private int cachePosition;
 
     // lists holding contents for the recycler view
-    ArrayList<String> sortedFilesArrList ;
+    ArrayList<String> sortedFilesArrList;
     ArrayList<String> tag1ArrList;
     ArrayList<String> tag2ArrList;
     ArrayList<String> tag3ArrList;
-    ArrayList<Boolean> favArrList ;
-
-    // UI Customization
-    Context context;
+    ArrayList<Boolean> favArrList;
 
     // controls which views get animated
     private short maxPosition;
 
     // other
     private Locale locale;
-    private CustomAttributes userUIPreferences;
-    private LruCache<String, String> summaryCache;
-    private int summaryLength;
+    int initSize = 1;
 
     /*
     holds a limited amount of UI objects. When the recycler view needs to get new objects, old ones are recycled from here.
     Otherwise the views are used again by the LayoutManager
      */
-    static class ViewHolder extends RecyclerView.ViewHolder{
+    static class ViewHolder extends RecyclerView.ViewHolder {
         private boolean alreadyCustomized = false;
         private View parent;
         private TextView summaryTV;
@@ -74,72 +63,62 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
         ViewHolder(View parent) {
             super(parent);
             this.parent = parent;
-            summaryTV = (TextView) parent.findViewById(R.id.summary_of_entry);
-            titleTV = (TextView) parent.findViewById((R.id.title));
-            timeTV = (TextView) parent.findViewById(R.id.file_year);
-            dayTV = (TextView) parent.findViewById(R.id.file_day);
-            monthTV = (TextView) parent.findViewById(R.id.file_month);
-            tagsLL = (LinearLayout) parent.findViewById(R.id.tags_file_adapter);
-            menuTV = (TextView) parent.findViewById(R.id.menu);
-            favTV = (TextView) parent.findViewById(R.id.fav);
-            cardView = (CardView) parent.findViewById(R.id.file_frag);
+            summaryTV = parent.findViewById(R.id.summary_of_entry);
+            titleTV = parent.findViewById((R.id.title));
+            timeTV = parent.findViewById(R.id.file_year);
+            dayTV = parent.findViewById(R.id.file_day);
+            monthTV = parent.findViewById(R.id.file_month);
+            tagsLL = parent.findViewById(R.id.tags_file_adapter);
+            menuTV = parent.findViewById(R.id.menu);
+            favTV = parent.findViewById(R.id.fav);
+            cardView = parent.findViewById(R.id.file_frag);
         }
 
     }
 
-    // there are two constructors and they both require the same data setup, this takes care of it
-    private void setupData(){
+
+    // there are two constructors and they both require the same data setupViews, this takes care of it
+    private void setupData() {
         locale = Locale.getDefault();
         userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
-        summaryCache = new LruCache<>(50);
-
-        if (userUIPreferences.numLines < 4) {
-            summaryLength = 250;
-        } else {
-            summaryLength = 400;
-        }
 
     }
 
     // Constructor with the necessary data set being passed to it.
     EntriesAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
-                          CustomAttributes userUIPreferences) {
-
-        this.userUIPreferences = userUIPreferences;
-        this.context = context;
-
+                   CustomAttributes userUIPreferences) {
+        super(context, userUIPreferences);
         // transfers all the info from the calling activity to this adapter.
         this.sortedFilesArrList = new ArrayList<>(sortedFilesArrList);
         this.tag1ArrList = new ArrayList<>(tag1ArrList);
         this.tag2ArrList = new ArrayList<>(tag2ArrList);
         this.tag3ArrList = new ArrayList<>(tag3ArrList);
-        this.favArrList= new ArrayList<>(favArrList);
+        this.favArrList = new ArrayList<>(favArrList);
 
         setupData();
     }
-
 
 
     // constructor with only the months array and the calling activities Context
-    EntriesAdapter(Context context, CustomAttributes userUIPreferences){
-        this.userUIPreferences = userUIPreferences;
-        this.context = context;
+    EntriesAdapter(Context context, CustomAttributes userUIPreferences) {
+        super(context, userUIPreferences);
 
         setupData();
     }
+
 
     // Create new views (invoked by the layout manager). Should do any parent specific customizations after the LayoutInflater method is invoked.
     @Override
     public EntriesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
         View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.files_of_entries, parent, false);
-        return  new ViewHolder(parentView);
+        return new ViewHolder(parentView);
     }
 
 
     // Changes the color/text size/etc of views. All values have been stored in variables in the setupData() method
-    private void customizeUI(ViewHolder holder ) {
-        if ( !holder.alreadyCustomized) {
+    private void customizeUI(ViewHolder holder) {
+        if (!holder.alreadyCustomized) {
             holder.alreadyCustomized = true;
 
 
@@ -195,7 +174,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
             @Override
             public void onClick(View parent) {
                 int position = parent.getId();
-                AnimusLauncherMethods.chosenFile(context, sortedFilesArrList.get(position), position, sortedFilesArrList);
+                LauncherMethods.chosenFile(context, sortedFilesArrList.get(position), position, sortedFilesArrList);
 
             }
         });
@@ -223,86 +202,52 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
 
 
     // sets text to the views from the entry file/files.xml
-    private void setInfo(ViewHolder holder, int position){
+    private void setInfo(ViewHolder holder, int position) {
 
+        File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
+        // sets filename to selected view.
+        String filename = sortedFilesArrList.get(position); // gets the file name with the extension and the underscores instead of spaces.
+        String formattedFilename = filename.replaceAll(".txt", "").replaceAll("_", " ");
 
-            File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
-            // sets filename to selected view.
-            String filename = sortedFilesArrList.get(position); // gets the file name with the extension and the underscores instead of spaces.
-            String formattedFilename = filename.replaceAll(".txt", "").replaceAll("_", " ");
-
-            if (formattedFilename.length() > 3) { // user can name a file with a name shorter than 4 letters. This catches that exception
-                switch (formattedFilename.substring(0, 4)) {
-                    case "Temp":
-                        holder.titleTV.setText("");
-                        break;
-                    default:
-                        holder.titleTV.setText(formattedFilename);
-                        break;
-                }
-            } else
-                holder.titleTV.setText(formattedFilename);
+        if (formattedFilename.length() > 3) { // user can name a file with a name shorter than 4 letters. This catches that exception
+            switch (formattedFilename.substring(0, 4)) {
+                case "Temp":
+                    holder.titleTV.setText("");
+                    break;
+                default:
+                    holder.titleTV.setText(formattedFilename);
+                    break;
+            }
+        } else
+            holder.titleTV.setText(formattedFilename);
 
 
         Calendar calendar = Calendar.getInstance();
 
-            // gets a calendar instance and changes views text to corresponding info.
-            calendar.setTimeInMillis(file.lastModified());
+        // gets a calendar instance and changes views text to corresponding info.
+        calendar.setTimeInMillis(file.lastModified());
 
-            holder.timeTV.setText(AnimusMiscMethods.getLocalizedTime(calendar));
+        holder.timeTV.setText(MiscMethods.getLocalizedTime(calendar));
 
-            // uses string builder to append info about the day of month.
-            StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
-            dayBuilder.append(",");
-            holder.dayTV.setText(dayBuilder.toString());
-            holder.monthTV.setText(String.format(locale, "%1$tB", calendar));
+        // uses string builder to append info about the day of month.
+        StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
+        dayBuilder.append(",");
+        holder.dayTV.setText(dayBuilder.toString());
+        holder.monthTV.setText(String.format(locale, "%1$tB", calendar));
 
 
-            // sets the faves view to the corresponding emoticon
-            try {
-                if (favArrList.get(position))
-                    holder.favTV.setText("★");
-                else
-                    holder.favTV.setText("☆");
-            } catch (Exception e) {
-                holder.favTV.setText("☆");
-                Log.e("Fave views state", e.toString());
+        // sets the faves view to the corresponding emoticon
+        if (favArrList.get(position))
+            holder.favTV.setText("★");
+        else
+            holder.favTV.setText("☆");
 
-            }
 
-            setSummary(holder.summaryTV, filename);
+        setSummary(holder.summaryTV, filename);
 
     }
 
-    /*
-        sets info to the summary TextView. There is a cache to save the summary text once it is read from the corresponding file potentially saving memory or operations or both.
 
-     */
-    private void setSummary(TextView summaryTV, String filename){
-        String summaryString = summaryCache.get(filename);
-
-        if (summaryString == null) {
-            try {
-                summaryString = AnimusFiles.getTextFromFile(context, filename, summaryLength);
-            } catch (IOException e) {
-                Log.e("Err loading text", e.toString());
-                summaryString = "";
-            }
-            summaryCache.put(filename, summaryString);
-
-        }else{
-            Log.e("Loaded from cache", filename);
-        }
-
-        if (summaryString.isEmpty()) { // if the entry was empty, places a text informing the user and changes the gravity to center.
-            summaryTV.setGravity(Gravity.CENTER );
-            summaryTV.setText(context.getResources().getString(R.string.text));
-
-        } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
-            summaryTV.setText(Html.fromHtml(summaryString));
-        }
-
-    }
 
 
     // iterates through the tag arrays and creates a new TextView for the tag if it is necessary.
@@ -324,7 +269,7 @@ public class EntriesAdapter extends RecyclerView.Adapter<EntriesAdapter.ViewHold
                         break;
                 }
             if (! tagName.equals("")) {
-                    final TextView tagTV = AnimusTags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, userUIPreferences.tagsTVParams, userUIPreferences.tagsBackgroundDrawable,
+                    final TextView tagTV = Tags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, userUIPreferences.tagsTVParams, userUIPreferences.tagsBackgroundDrawable,
                             userUIPreferences.fontStyle, userUIPreferences.userSelectedFontTF);
                     tagTV.setText(tagName.replaceAll("_", " "));
                     holder.tagsLL.addView(tagTV);

@@ -1,9 +1,7 @@
 package com.Adapters;
 
 import android.content.Context;
-import android.content.SharedPreferences;
-import android.graphics.Typeface;
-import android.preference.PreferenceManager;
+import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.text.Html;
@@ -13,7 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.UtilityClasses.AnimusXML;
+import com.MainActivities.ChosenTag;
+import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
@@ -23,28 +22,28 @@ import java.util.ArrayList;
 
 public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	private Context context;
-	private ArrayList<String> tagsArr;
-	private ArrayList<Byte> tagAmountArr;
-	private ArrayList<String> fileNames;
+	private ArrayList<String> tagsArrList;
+	private ArrayList<Byte> tagAmountArrList;
+	private ArrayList<String> fileNamesArrList;
 
 	private CustomAttributes userUIPreferences;
 
-	public TagsAdapter(Context context, ArrayList<String> tagsArr, ArrayList<Byte> tagAmountArr, ArrayList<String> fileNames) {
+	public TagsAdapter(Context context, ArrayList<String> tagsArrList, ArrayList<Byte> tagAmountArrList, ArrayList<String> fileNamesArrList) {
 		this.context = context;
-		this.tagsArr = new ArrayList<>(tagsArr);
-		this.tagAmountArr = new ArrayList<>(tagAmountArr);
-		this.fileNames = new ArrayList<>(fileNames);
+		this.tagsArrList = new ArrayList<>(tagsArrList);
+		this.tagAmountArrList = new ArrayList<>(tagAmountArrList);
+		this.fileNamesArrList = new ArrayList<>(fileNamesArrList);
 
 	}
 	public TagsAdapter(Context context, CustomAttributes userUIPreferences){
-		tagsArr = new ArrayList<>();
-		tagAmountArr = new ArrayList<>();
-		fileNames = new ArrayList<>();
+		tagsArrList = new ArrayList<>();
+		tagAmountArrList = new ArrayList<>();
+		fileNamesArrList = new ArrayList<>();
 
 		this.context = context;
 		this.userUIPreferences = userUIPreferences;
 
-		AnimusXML.getTagsFromXML(tagsArr, tagAmountArr,fileNames ,context.getFilesDir());
+		XML.getTagsFromXML(tagsArrList, tagAmountArrList, fileNamesArrList,context.getFilesDir());
 	}
 
 
@@ -60,10 +59,10 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
 		ViewHolder(View parent) {
 			super(parent);
-			summaryTV = (TextView) parent.findViewById(R.id.example_of_entry_with_tag);
-			tagTV = (TextView) parent.findViewById(R.id.tag);
-			amountTV = (TextView) parent.findViewById(R.id.number_of_tags);
-			parentLL = (CardView) parent.findViewById(R.id.tag_list);
+			summaryTV = parent.findViewById(R.id.example_of_entry_with_tag);
+			tagTV = parent.findViewById(R.id.tag);
+			amountTV =  parent.findViewById(R.id.number_of_tags);
+			parentLL = parent.findViewById(R.id.tag_list);
 		}
 
 	}
@@ -80,8 +79,23 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 	// Replace the contents of a view (invoked by the layout manager)
 	@Override
 	public synchronized void onBindViewHolder(TagsAdapter.ViewHolder holder, final int position) {
+		holder.parentLL.setId(position);
+		holder.parentLL.setClickable(true);
+		holder.parentLL.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				int position = view.getId();
+				Intent selectedTag = new Intent(context, ChosenTag.class);
+				selectedTag.putExtra("TAG_NAME", tagsArrList.get(position));
+				selectedTag.putExtra("TAG_NUM", (byte) tagAmountArrList.get(position));
+
+				context.startActivity(selectedTag);
+			}
+		});
+
+
 		if (userUIPreferences.theme.contains("Onyx")) {
-			holder.parentLL.setBackground(context.getResources().getDrawable(R.drawable.onyx_selector));
+			holder.parentLL.setBackground(userUIPreferences.darkThemeSelectorShader);
 
 			holder.amountTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 			holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
@@ -108,7 +122,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
 	@Override
 	public int getItemCount() {
-		return tagsArr.size();
+		return tagsArrList.size();
 	}
 
 
@@ -116,13 +130,13 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 		File entryFile;
 		DataInputStream br;
 
-		holder.tagTV.setText(tagsArr.get(position).replaceAll("_", " "));
-		holder.amountTV.setText(Byte.toString(tagAmountArr.get(position)));
+		holder.tagTV.setText(tagsArrList.get(position).replaceAll("_", " "));
+		holder.amountTV.setText(Byte.toString(tagAmountArrList.get(position)));
 		holder.summaryTV.setText("");
 
 		try {
 
-			entryFile = new File(context.getFilesDir(), fileNames.get(position));
+			entryFile = new File(context.getFilesDir(), fileNamesArrList.get(position));
 
 			br = new DataInputStream(context.openFileInput(entryFile.getName()));
 			br.readUTF();
@@ -138,26 +152,26 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 
 	public void sortNum(ArrayList<String> numSortedTags,
 			ArrayList<Byte> numSortedTagNum, ArrayList<String> fileNames) {
-		this.tagAmountArr.clear();
-		this.tagsArr.clear();
-		this.fileNames.clear();
+		this.tagAmountArrList.clear();
+		this.tagsArrList.clear();
+		this.fileNamesArrList.clear();
 
-		this.tagsArr.addAll(numSortedTags);
-		this.tagAmountArr.addAll(numSortedTagNum);
-		this.fileNames.addAll(fileNames);
+		this.tagsArrList.addAll(numSortedTags);
+		this.tagAmountArrList.addAll(numSortedTagNum);
+		this.fileNamesArrList.addAll(fileNames);
 		this.notifyDataSetChanged();
 
 	}
 
 	public void sortAlph(ArrayList<String> alphaSortedTags,
 			ArrayList<Byte> alphSortedTagNum, ArrayList<String> fileNames) {
-		this.tagAmountArr.clear();
-		this.tagsArr.clear();
-		this.fileNames.clear();
+		this.tagAmountArrList.clear();
+		this.tagsArrList.clear();
+		this.fileNamesArrList.clear();
 
-		this.tagsArr.addAll(alphaSortedTags);
-		this.tagAmountArr.addAll(alphSortedTagNum);
-		this.fileNames.addAll(fileNames);
+		this.tagsArrList.addAll(alphaSortedTags);
+		this.tagAmountArrList.addAll(alphSortedTagNum);
+		this.fileNamesArrList.addAll(fileNames);
 		this.notifyDataSetChanged();
 	}
 

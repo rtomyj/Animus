@@ -2,14 +2,13 @@ package com.Adapters;
 
 import android.content.Context;
 
-import com.UtilityClasses.AnimusFiles;
-import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.Files;
+import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 /**
@@ -25,33 +24,38 @@ public class AllEntriesAdapter extends  EntriesAdapter {
 
     public AllEntriesAdapter (Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
     CustomAttributes userUIPreferences) {
+
         super(context, sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, userUIPreferences);
     }
 
 
     private void loadAllEntries(){
-        ArrayList<File> filesArrayList = new ArrayList<>();
-        filesArrayList.addAll(AnimusFiles.getFilesWithExtension(context.getFilesDir(),".txt"));
+        final ArrayList<File> filesArrayList = new ArrayList<>(Files.getAllFilesWithExtension(context.getFilesDir(), ".txt"));
 
-        Collections.sort(filesArrayList, new Comparator<File>() {
+        initSize = filesArrayList.size();
+        sortedFilesArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
+        tag1ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
+        tag2ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
+        tag3ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
+        favArrList = new ArrayList<>(Collections.nCopies(initSize, false));
+
+        new Thread(new Runnable() {
             @Override
-            public int compare(File f1, File f2) {
-                return Long.valueOf(f2.lastModified()).compareTo(
-                        f1.lastModified());
+            public void run() {
+                int currentIndex = 0;
+                for (File list : filesArrayList) {
+                    sortedFilesArrList.set(currentIndex, list.getName());
+                    currentIndex++;
+                }
+                filesArrayList.clear();
+
+                XML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
             }
-        });
+        }).start();
 
-        int sortedFilesArrListSize = filesArrayList.size();
-        sortedFilesArrList = new ArrayList<>(sortedFilesArrListSize);
-        tag1ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        tag2ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        tag3ArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, ""));
-        favArrList = new ArrayList<>(Collections.nCopies(sortedFilesArrListSize, false));
-
-        for (File list : filesArrayList)
-            sortedFilesArrList.add(list.getName());
-
-        filesArrayList.clear();
-        AnimusXML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+        if (initSize < MAX_CACHE_SIZE)
+            setCacheSize(initSize);
     }
+
+
 }

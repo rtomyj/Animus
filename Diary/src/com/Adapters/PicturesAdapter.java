@@ -18,8 +18,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.UtilityClasses.AnimusFiles;
-import com.UtilityClasses.AnimusPictures;
+import com.UtilityClasses.Files;
+import com.UtilityClasses.LauncherMethods;
+import com.UtilityClasses.Pictures;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
@@ -27,23 +28,6 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
 
-
-		/*
-		for onclick
-			picturesRV.setOnItemClickListener(new OnItemClickListener() {
-				@Override
-				public void onItemClick(AdapterView<?> parent, View view,
-				                        int position, long id) {
-					Intent i = new Intent(context, ChosenFile.class);
-					i.putExtra("FILENAME", (pictureFilesArrayList.get(position) + ".txt"));
-					i.putExtra("FILESARRAY", pictureFilesArrayList);
-					i.putExtra("POSITION", position);
-					pass_codeCheck = false;
-					startActivityForResult(i, 2);
-
-				}
-			});
-		*/
 
 
 public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
@@ -60,7 +44,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	private Typeface userSelectedFontTF;
 
 	// Cache
-	private AnimusPictures.LRUBitmapCache cache;
+	private Pictures.LRUBitmapCache cache;
 
 
 	public PicturesAdapter(Context context, ArrayList<String> picturesArrList) {
@@ -111,7 +95,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
 		int memory = am.getMemoryClass() * 1024 * 1024 / 14;
 		// dividing resources up
-		cache = new AnimusPictures.LRUBitmapCache(memory);
+		cache = new Pictures.LRUBitmapCache(memory);
 
 	}
 
@@ -122,7 +106,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	}
 
 	private synchronized void getPicFiles(){
-		final ArrayList<File> files = AnimusFiles.getFilesWithExtension(context.getFilesDir(), ".png");
+		final ArrayList<File> files = Files.getFilesWithExtension(context.getFilesDir(), ".png");
 		totalPicCount = files.size();
 
 		picturesArrList = new ArrayList<>(totalPicCount);
@@ -163,7 +147,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 		 private TextView dayTV;
 		 private TextView yearTV;
 		 private ImageView imageView;
-		 private  LinearLayout parentTV;
+		 private  LinearLayout parent;
 			
 		 	ViewHolder(View rowView) {
 				super(rowView);
@@ -172,7 +156,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 				dayTV = (TextView) rowView.findViewById(R.id.day);
 				yearTV = (TextView) rowView.findViewById(R.id.year);
 				imageView = (ImageView) rowView.findViewById(R.id.image_in_adapter);
-				parentTV = (LinearLayout) rowView.findViewById(R.id.parent);
+				parent = (LinearLayout) rowView.findViewById(R.id.parent);
 			}
 
 		}
@@ -189,7 +173,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 			LayoutInflater inflater = (LayoutInflater) context
 					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = inflater.inflate(R.layout.pic_adapter, parentTV, false);
+			rowView = inflater.inflate(R.layout.pic_adapter, parent, false);
 			holder = new ViewHolder(rowView, position);
 			rowView.setTag(holder);
 		
@@ -200,7 +184,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 			if (holder.position != position){
 				LayoutInflater inflater = (LayoutInflater) context
 						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				rowView = inflater.inflate(R.layout.pic_adapter, parentTV, false);
+				rowView = inflater.inflate(R.layout.pic_adapter, parent, false);
 				holder = new ViewHolder(rowView, position);
 				rowView.setTag(holder);
 
@@ -217,6 +201,18 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	@Override
 	public synchronized void onBindViewHolder(PicturesAdapter.ViewHolder holder, int position) {
 
+		holder.parent.setClickable(true);
+		holder.parent.setId(position);
+		holder.parent.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View parent) {
+				int position = parent.getId();
+				LauncherMethods.chosenFile(context, picturesArrList.get(position)  + ".txt", position, picturesArrList);
+
+			}
+		});
+
+
 		File f = new File(context.getFilesDir(), picturesArrList.get(position) + ".txt");
 		if (  f.exists()) {
 			if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
@@ -230,7 +226,7 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 				holder.titleTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 				holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 				holder.yearTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-				holder.parentTV.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
+				holder.parent.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
 			}
 
 

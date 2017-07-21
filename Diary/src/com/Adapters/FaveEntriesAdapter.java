@@ -3,7 +3,7 @@ package com.Adapters;
 import android.content.Context;
 import android.util.Log;
 
-import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 
 import java.util.ArrayList;
@@ -30,14 +30,14 @@ public class FaveEntriesAdapter extends EntriesAdapter {
     private void loadFaveEntries(){
 
         try {
-            short faveNum = AnimusXML.getFaveNum(context.getFilesDir());
+            short faveNum = XML.getFaveNum(context.getFilesDir());
 
             sortedFilesArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
             tag1ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
             tag2ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
             tag3ArrList = new ArrayList<>(Collections.nCopies(faveNum, ""));
             favArrList = new ArrayList<>(Collections.nCopies(faveNum, true));
-            AnimusXML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+            XML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, context.getFilesDir());
         }catch (IndexOutOfBoundsException exception){
             Log.e("Error parsing xml", exception.toString());
         }
