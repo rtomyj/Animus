@@ -12,27 +12,10 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	private boolean isAlphaSort = true;
 
 
-	@Override
-	protected void onStart() {
-		super.onStart();
-
-		/* on click for items in tags
-				Intent i = new Intent(c, SelectedTag.class);
-				if (isAlphaSort == true)
-					i.putExtra("TAG", alphaSortedTagsArrList.get(position));
-				else
-					i.putExtra("TAG", numSortedTagsArrList.get(position));
-				startActivityForResult(i, 2);
-		 */
-
-
-	}
-
-
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		currentActivity = TAGS;
+		currentActivityIdentifier = TAGS;
 		super.onCreate(savedInstanceState);
 
 		if (savedInstanceState != null) {
@@ -40,7 +23,7 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 		}else{
 			activityAdapter = new TagsAdapter(this, userUIPreferences);
 		}
-		setup();
+		setupViews();
 	}
 
 

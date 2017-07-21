@@ -20,21 +20,18 @@ import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewSwitcher;
-
-import com.MainActivities.Domus;
-import com.UtilityClasses.AnimusLauncherMethods;
-import com.UtilityClasses.AnimusMiscMethods;
+import com.UtilityClasses.LauncherMethods;
+import com.UtilityClasses.MiscMethods;
 import com.rtomyj.Diary.R;
 import java.lang.ref.SoftReference;
-import java.lang.ref.WeakReference;
 
-/**
- * Created by CaptainSaveAHoe on 7/5/17.
+/*
+     Created by CaptainSaveAHoe on 7/5/17.
  */
 
 
 /*
-    Super class for all main activity ... activities. A class/screen that incorporates this will have all its RecyclerView, Adapter, Toolbar, AdView, etc setup.
+    Super class for all main activity ... activities. A class/screen that incorporates this will have all its RecyclerView, Adapter, Toolbar, AdView, etc setupViews.
 
     Extended class can call all important views/variables. Those that are used just in this class are set to private.
  */
@@ -81,9 +78,10 @@ import java.lang.ref.WeakReference;
 
         */
 
+
     }
 
-    protected void setup(){
+    protected void setupViews(){
         setupActionBar();
         setAdaptersForCurrentActivity();
         customizeUI();
@@ -103,7 +101,6 @@ import java.lang.ref.WeakReference;
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setItemIconTintList(null);
         navigationView.setNavigationItemSelectedListener(this);  // uses the methods in this class to listen for onclick events for the side nav drawer
-        navigationView.setCheckedItem(R.id.domus);
     }
 
 
@@ -111,8 +108,9 @@ import java.lang.ref.WeakReference;
     // All clicks from the dropDownMenuForSelectedFile side bar are handled here. Uses a handler to delay the click so the sidebar has time to close and the transitions are smooth.
     @Override
     public boolean onNavigationItemSelected(final MenuItem item) {
-        android.os.Handler delayedAction = new android.os.Handler();
+        closeNavDrawer();
 
+        android.os.Handler delayedAction = new android.os.Handler();
         Context context = this;
         final SoftReference<Context> contextSoft = new SoftReference<>(context);
 
@@ -121,25 +119,24 @@ import java.lang.ref.WeakReference;
             public void run() {
                 switch (item.getItemId()) {
                     case R.id.donation:
-                        //donation();       // shows donation popup
+                        donation();       // shows donation popup
                         break;
                     case R.id.feedback:
                         feedback();      // launches feedback operations
                         break;
                     default:
-                        AnimusLauncherMethods.launchActivity(item.getItemId(), contextSoft.get());        // launchActivity gets the correct intent for the method to use.
+                        LauncherMethods.launchActivity(item.getItemId(), contextSoft.get());        // launchActivity gets the correct intent for the method to use.
                         break;
                 }
             }
         }, 150);
-        sideNavDrawer.closeDrawer(GravityCompat.START); // closes the side bar
         return true;
     }
 
 
     // when user wants to submit feedback via email this method handles it.
     public void feedback() {
-        AnimusMiscMethods.email("", "", "mailto:corporationawesome@gmail.com", this);
+        MiscMethods.email("", "", "corporationawesome@gmail.com", this);
     }
 
 
@@ -154,29 +151,28 @@ import java.lang.ref.WeakReference;
 
     // Shows the RecyclerView
     protected void showList() {
-        TextView welcome = (TextView) findViewById(R.id.welcome_text);
-        if (greetingContextVS.getCurrentView().equals(welcome)) {
+        TextView welcomeTV = (TextView) findViewById(R.id.welcome_text);
+        if (greetingContextVS.getCurrentView().equals(welcomeTV)) {
             greetingContextVS.showNext();
         }
     }
 
     @Override
-    protected void onRestart() {
-        super.onRestart();
-
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
         switch (requestCode) {
             case SETTINGS:
                 SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
-                if (sp.getBoolean("THEMECHANGE", false)) {  // whenever the  user changes the theme this changes the theme to this activity
-                    sp.edit().remove("THEMECHANGE").apply();
+                if (sp.getBoolean("THEME_CHANGED", false)) {  // whenever the  user changes the theme this changes the theme to this activity
+                    userUIPreferences.themeChanged(this, sp);
+                    sp.edit().remove("THEME_CHANGED").apply();
                     this.recreate();
+
                 }
+
+
+                break;
+            default:
+                super.onActivityResult(requestCode, resultCode, data);
                 break;
         }
 
@@ -185,31 +181,31 @@ import java.lang.ref.WeakReference;
 
     @Override
     public void onBackPressed() {
+        super.onBackPressed();
         // if back arrow is pressed and the side navigation is open, it closes the side navigation
         if (sideNavDrawer.isDrawerOpen(GravityCompat.START)) {
             sideNavDrawer.closeDrawer(GravityCompat.START);
         }
-        super.onBackPressed();
     }
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        if (greetingContextVS == null)  // re-inits view switcher if it's null or first time onStart() is called.
+        if (greetingContextVS == null)          // re-inits view switcher if it's null or first time onStart() is called.
             greetingContextVS = (ViewSwitcher) findViewById(R.id.change_greeting);
 
-        if (recyclerView == null)       // re-inits recyclerView  if it's null or first time onStart() is called.
+        if (recyclerView == null)        // re-inits recyclerView  if it's null or first time onStart() is called.
             recyclerView = (RecyclerView) findViewById(R.id.list);
 
         if (adapterSize == 0) {
             showWelcome();  // if not entries are in the app then it shows the generic screen.
         } else
-            showList();  // else it shows the user their entries.
+            showList();          // else it shows the user their entries.
 
-        if (recyclerView.getAdapter() == null) { // if there is no adapter bond to recyclerView then entriesAdapter is binded to it.
+        if (recyclerView.getAdapter() == null) {        // if there is no adapter bond to recyclerView then entriesAdapter is binded to it.
             Log.e("adapter added", "stuff");
-            recyclerView.setHasFixedSize(true);  // children will not impact the redrawing of recyclerView; good for performance.
+            recyclerView.setHasFixedSize(true);         // children will not impact the redrawing of recyclerView; good for performance.
             recyclerView.setLayoutManager(recycleViewLayoutManager);
             recyclerView.setAdapter(activityAdapter);
         }
@@ -229,13 +225,13 @@ import java.lang.ref.WeakReference;
 
     // launches the NewEntry activity where the user enters new data.
     public void newEntry(View view) {
-        AnimusLauncherMethods.newEntry(this);
+        LauncherMethods.newEntry(this);
     }
 
     @SuppressWarnings("unchecked")
     protected void setAdaptersForCurrentActivity(){
         adapterSize = activityAdapter.getItemCount();
-        switch (currentActivity) {
+        switch (currentActivityIdentifier) {
             case DOMUS:
                 recycleViewLayoutManager =  (S) new LinearLayoutManager(this);
                 actionBar.setSubtitle("Total: " + adapterSize);
@@ -258,12 +254,15 @@ import java.lang.ref.WeakReference;
     protected void setActionBarSubTitle(String title){
         actionBar.setSubtitle(title);
     }
-    protected  void scrollToX(int x){
-        recycleViewLayoutManager.scrollToPosition(0);
+    protected void setActionBarTitle(String title){
+        actionBar.setTitle(title);
+    }
+    protected void scrollToX(int x){
+        recycleViewLayoutManager.scrollToPosition(x);
     }
     private void changeGreetingText(){
         TextView welcome = (TextView) findViewById(R.id.welcome_text);
-        switch (currentActivity){
+        switch (currentActivityIdentifier){
             case DOMUS:
                 welcome.setText(getResources().getString(R.string.entries_welcome));
                 break;
@@ -282,6 +281,27 @@ import java.lang.ref.WeakReference;
     protected void closeNavDrawer(){
         sideNavDrawer.closeDrawer(GravityCompat.START); // closes the side bar
     }
+
+    @Override
+    protected void onResume(){
+        super.onResume();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        switch (currentActivityIdentifier){
+            case DOMUS:
+                navigationView.setCheckedItem(R.id.domus);
+                break;
+            case PIC_ENTRIES:
+                navigationView.setCheckedItem(R.id.pictures);
+                break;
+            case TAGS:
+                navigationView.setCheckedItem(R.id.tags);
+                break;
+            case FAVES:
+                navigationView.setCheckedItem(R.id.faves);
+                break;
+        }
+    }
+
 
 
 }

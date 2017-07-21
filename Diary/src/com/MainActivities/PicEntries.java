@@ -35,7 +35,7 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		currentActivity = PIC_ENTRIES;
+		currentActivityIdentifier = PIC_ENTRIES;
 		super.onCreate(savedInstanceState);
 
 		if (savedInstanceState != null){
@@ -52,7 +52,7 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 			}
 		}
 
-		setup();
+		setupViews();
 	}
 
 

@@ -10,7 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.BaseClasses.Activity_Base;
-import com.UtilityClasses.AnimusUI;
+import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 
 import java.lang.ref.WeakReference;
@@ -41,8 +41,8 @@ public class SplashScreen extends Activity_Base {
 
 		String themeName = sp.getString("Theme", "Default");
 
-		AnimusUI.setTheme(this, themeName);		// sets theme
-		int [] colors = AnimusUI.getThemeElements(this, themeName);		// gets colors according to theme
+		UI.setTheme(this, themeName);		// sets theme
+		int [] colors = UI.getThemeElements(this, themeName);		// gets colors according to theme
 		int primaryColor = colors[0], darkThemeTextColor = colors[2], darkThemeBackgroundColor = colors[3], darkThemeForegroundColor = colors[4];
 
 		if (checkPasscode ) { // if the user has password enabled the splash screen will be the password input screen instead of regular splash

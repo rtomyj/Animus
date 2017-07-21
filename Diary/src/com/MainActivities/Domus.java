@@ -8,11 +8,11 @@ import android.view.MenuItem;
 import android.view.View;
 
 import com.BaseClasses.Entries;
-import com.UtilityClasses.AnimusXML;
+import com.UtilityClasses.Files;
 import com.rtomyj.Diary.R;
 
-/**
- * Created by CaptainSaveAHoe on 7/10/17.
+/*
+     Created by CaptainSaveAHoe on 7/10/17.
  */
 
 public class Domus extends Entries {
@@ -40,17 +40,17 @@ public class Domus extends Entries {
 
     @Override
     protected void onCreate(Bundle bundle) {
-        currentActivity = DOMUS;
-        super.onCreate(bundle);
+        currentActivityIdentifier = DOMUS;
 
-        showIntro();
+        super.onCreate(bundle);
     }
 
     @Override
     protected void onStart() {
         super.onStart();
         // Creates xml files for tags, faves, etc...
-        AnimusXML.checkForAppFiles(getFilesDir(), getAssets(), getBaseContext().getContentResolver());
+        showIntro();
+        Files.checkForAppFiles(getFilesDir(), getAssets(), getBaseContext().getContentResolver());
 
     }
 
@@ -58,7 +58,7 @@ public class Domus extends Entries {
     public boolean onNavigationItemSelected(final MenuItem item) {
         switch(item.getItemId()) {
             case R.id.domus:
-                closeNavDrawer();
+                super.closeNavDrawer();
                 break;
             default:
                 super.onNavigationItemSelected(item);

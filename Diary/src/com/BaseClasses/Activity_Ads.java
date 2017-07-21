@@ -5,55 +5,56 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.widget.LinearLayout;
 
-import com.UtilityClasses.AnimusMiscMethods;
+import com.UtilityClasses.MiscMethods;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
 import com.rtomyj.Diary.R;
 
-import java.lang.ref.WeakReference;
 
-/**
- * Created by CaptainSaveAHoe on 7/13/17.
+/*
+         Created by CaptainSaveAHoe on 7/13/17.
  */
 
+/*
+        Handles Ad related tasks. Checks for available network and if it finds a connection then it tries to get an Ad from the remote host and places the ad to the parent view.
+        Parent View should have a weight of 1 so that anything added to it resize the parent just enough to see the added view and the parent itself.
+ */
 public class Activity_Ads extends Activity_Password {
-    private AdView ad = null;
+    private AdView adView = null;
     private boolean loadAds = true;
 
 
     @Override
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
-        SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
         if (bundle != null){
             loadAds = bundle.getBoolean("LOAD_ADS");
-        }else
+        }else {
+            SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(this);
             loadAds = sp.getBoolean("ADS", true);
+        }
     }
 
     private void loadAds(){
         LinearLayout home = (LinearLayout) findViewById(R.id.parent);
+        boolean isNetworkAvailable = MiscMethods.isNetworkAvailable(this);
 
-        if (loadAds) {
-            if (AnimusMiscMethods.isNetworkAvailable(this)) { // checks network access, if the phone is connected then an AD can be fetched.
-                if (ad == null){
-                    ad = new AdView(this);
-                    ad.setAdSize(AdSize.SMART_BANNER);
-                    ad.setAdUnitId("ca-app-pub-9636313395157467/8316827940");
-                    AdRequest request = new AdRequest.Builder().setGender(AdRequest.GENDER_FEMALE).build(); // targets the core demographic of the app with ADS.
+        if (loadAds &&  isNetworkAvailable && adView == null) {
+                    adView = new AdView(this);
+                    adView.setAdSize(AdSize.SMART_BANNER);
+                    adView.setAdUnitId("ca-app-pub-9636313395157467/8316827940");
+                    AdRequest request = new AdRequest.Builder().setGender(AdRequest.GENDER_FEMALE).build();     // targets the core demographic of the app with ADS.
 
-                    // Start loading the ad in the background.
-                    ad.loadAd(request);
-                    home.addView(ad); // places AD in the bottom part of the Entries Activity.
-                }
-            }
-
-        } else {
-            if (!AnimusMiscMethods.isNetworkAvailable(this)) { // if not internet connection on phone then it removes the ADview from the main_activity_base activity for more user space.
-                home.removeView(ad);
-            }
+                    // Start loading the adView in the background.
+                    adView.loadAd(request);
+                    home.addView(adView); // places AD in the bottom part of the Entries Activity.
+        } else if (loadAds && ! isNetworkAvailable && adView != null) {
+            home.removeView(adView);
+            adView.destroy();
+            adView = null;
         }
+
     }
 
     @Override
@@ -66,8 +67,8 @@ public class Activity_Ads extends Activity_Password {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (ad != null) {
-            ad.destroy();
+        if (adView != null) {
+            adView.destroy();
 
         }
     }
@@ -75,6 +76,7 @@ public class Activity_Ads extends Activity_Password {
     @Override
     protected void onStart() {
         super.onStart();
+
         loadAds();
     }
 
@@ -83,9 +85,17 @@ public class Activity_Ads extends Activity_Password {
     @Override
     protected void onPause() {
         super.onPause();
-        if (ad != null) {
-            ad.pause();
-        }
+        if (adView != null)
+            adView.pause();
 
     }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (adView != null)
+            adView.resume();
+
+    }
+
 }
