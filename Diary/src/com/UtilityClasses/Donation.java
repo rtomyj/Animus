@@ -19,9 +19,9 @@ import java.util.ArrayList;
  * Created by CaptainSaveAHoe on 6/27/17.
  */
 
-public class AnimusDonation {
+public class Donation {
 
-    private AnimusDonation(){}
+    private Donation(){}
     public static PendingIntent requestGooglePlay(IInAppBillingService in_appBillingService, String donation, String packageName) throws JSONException, RemoteException {
         WeakReference<String> donationWeak =  new WeakReference<>(donation);
         PendingIntent pendingIntent = null;

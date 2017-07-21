@@ -19,7 +19,7 @@ import java.lang.ref.WeakReference;
  * Created by CaptainSaveAHoe on 6/7/17.
  */
 
-public class AnimusPermissions {
+public class Permissions {
 
     public static final int MY_PERMISSIONS_REQUEST_CAMERA = 900;
     public static final int MY_PERMISSIONS_REQUEST_LOCATION = 901;

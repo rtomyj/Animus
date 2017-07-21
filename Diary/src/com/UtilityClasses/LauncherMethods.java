@@ -5,24 +5,23 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.BaseClasses.Activity_Base;
+import com.BaseClasses.ActivityTypes;
 import com.MainActivities.Domus;
 import com.MainActivities.FaveEntries;
-import com.BaseClasses.MainActivity;
 import com.EntryActivities.NewEntry;
 import com.MainActivities.PicEntries;
 import com.EntryActivities.ChosenFile;
-import com.Settings.MainSettingsFrag;
+import com.Settings.MainSettingsActivity;
 import com.MainActivities.Tags;
 import com.rtomyj.Diary.R;
 
 import java.util.ArrayList;
 
-/**
- * Created by CaptainSaveAHoe on 6/7/17.
+/*
+     Created by CaptainSaveAHoe on 6/7/17.
  */
 
-public class AnimusLauncherMethods {
+public class LauncherMethods {
 
     public static Intent launchPhotoViewer(View v, Context context, String filename) {      // launches a new activity to see the selected picture in a bigger space
         Intent i = new Intent(context, PhotoViewer.class);
@@ -46,7 +45,7 @@ public class AnimusLauncherMethods {
                 intent = new Intent(parent, FaveEntries.class);
                 break;
             case R.id.settings:
-                intent= new Intent(parent, MainSettingsFrag.class);
+                intent= new Intent(parent, MainSettingsActivity.class);
                 break;
             case R.id.debug:
                 intent= new Intent(parent, Debug.class);
@@ -55,7 +54,7 @@ public class AnimusLauncherMethods {
         }
         switch (menuItem){      // if an activity needs a result when calling new activity then it will return the intent to the caller otherwise it launches the activity here and returns a null intent.
             case R.id.settings:
-                ((Activity)parent).startActivityForResult(intent, Activity_Base.SETTINGS);
+                ((Activity)parent).startActivityForResult(intent, ActivityTypes.SETTINGS);
                 break;
             default:
                 parent.startActivity(intent);
@@ -70,11 +69,11 @@ public class AnimusLauncherMethods {
 
         chosenFile.putExtra("FILESARRAY", sortedFiles);
         chosenFile.putExtra("POSITION",position);
-        ((Activity) context).startActivityForResult(chosenFile, MainActivity.CHOSEN_FILE);
+        ((Activity) context).startActivityForResult(chosenFile, ActivityTypes.CHOSEN_FILE);
     }
     public static void newEntry(Context context){
         Intent intent = new Intent(context, NewEntry.class);
-        (( Activity)  context).startActivityForResult(intent, MainActivity.NEW_ENTRY);
+        (( Activity)  context).startActivityForResult(intent, ActivityTypes.NEW_ENTRY);
         ((Activity) context).overridePendingTransition(R.anim.scale, R.anim.scale);
     }
 

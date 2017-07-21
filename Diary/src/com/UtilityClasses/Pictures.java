@@ -24,7 +24,7 @@ import java.io.InputStream;
  * Created by CaptainSaveAHoe on 6/8/17.
  */
 
-public class AnimusPictures {
+public class Pictures {
 
     public static ImageView getImageView(Context context, int imageCount) {
         ImageView imageView = new ImageView(context);

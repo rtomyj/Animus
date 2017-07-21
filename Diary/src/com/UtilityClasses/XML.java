@@ -1,132 +1,37 @@
 package com.UtilityClasses;
-
-import android.content.ContentResolver;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
-import android.provider.Settings;
 import android.util.Log;
 
 import com.rtomyj.Diary.R;
-
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.w3c.dom.Text;
 import org.xml.sax.SAXException;
-
-import java.io.BufferedReader;
-import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
 import java.util.ArrayList;
-
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.transform.OutputKeys;
 import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerConfigurationException;
 import javax.xml.transform.TransformerException;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 
-/**
- * Created by CaptainSaveAHoe on 6/15/17.
+/*
+     Created by CaptainSaveAHoe on 6/15/17.
  */
 
-public class AnimusXML {
-    private AnimusXML(){}
+public class XML {
+    final static String XML_FILE = "Files.xml";
 
+    private XML(){}
 
-    /*
-	New users are assigned new files for tagging, indexing, and syncing purposes. Method checks to see if those files are made, if not then they are generated for the user.
-	 */
-    public static void checkForAppFiles(final File filesDir, final AssetManager assets, final ContentResolver contentResolver){
-        new Thread(){
-            String line;
-
-            InputStreamReader inputStream;
-            WeakReference<InputStreamReader> inputStreamWeak;
-            BufferedReader reader;
-            WeakReference<BufferedReader> readerWeak;
-            BufferedWriter writer;
-            WeakReference<BufferedWriter> writerWeak;
-
-            public void run(){
-                File filesXML = new File(filesDir, "Files.xml");
-                if (! filesXML.exists() ) {			 // creats files file. It indexes all the files along with their associated tags, pictures and other info.
-                    try {
-                        filesXML.createNewFile();
-
-                        inputStream = new InputStreamReader(assets.open("Files.xml"));
-                        inputStreamWeak = new WeakReference<>(inputStream);
-
-                        reader = new BufferedReader(inputStreamWeak.get());
-                        readerWeak = new WeakReference<>(reader);
-
-                        writer  = new BufferedWriter(new FileWriter(filesXML));
-                        writerWeak = new WeakReference<>(writer);
-
-                        line = (readerWeak.get().readLine());
-                        while (line != null) {
-
-                            writerWeak.get().write(line + "\n");
-                            line = (readerWeak.get().readLine());
-                        }
-
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }finally {
-                        try { // closes streams in order they were open in case there's an exception to catch. Minimizes the risk of memory leak.
-                            inputStreamWeak.get().close();
-                            readerWeak.get().close();
-                            writerWeak.get().close();
-                        }catch (IOException ignored){
-
-                        }
-                    }
-                }
-
-                File changesXML = new File(filesDir, "Changes_" + Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID) + ".xml");
-                if (! changesXML.exists() ) {		// creates a changes xml file
-
-                    try {       // writes file for changes. Used for suyncing
-                        changesXML.createNewFile();
-                        inputStream = new InputStreamReader(assets.open("Changes.xml"));
-                        inputStreamWeak = new WeakReference<>(inputStream);
-
-                        reader = new BufferedReader(inputStreamWeak.get());
-                        readerWeak = new WeakReference<>(reader);
-
-                        writer  = new BufferedWriter(new FileWriter(changesXML));
-                        writerWeak = new WeakReference<>(writer);
-
-                        line =(readerWeak.get().readLine());
-                        while (line != null) {
-                            writerWeak.get().write(line + "\n");
-                            line = (readerWeak.get().readLine());
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }finally {
-                        try { // closes streams in order they were open in case theres an exception to catch. Minimizes the risk of memory leak.
-                            inputStreamWeak.get().close();
-                            readerWeak.get().close();
-                            writerWeak.get().close();
-                        }catch (IOException ignored){
-
-                        }
-                    }
-                }
-
-            }
-        }.start();
-    }
 
     public static synchronized void recordNewEntryToXML(final Resources resources, final File filesDir, final String filename,
                                                         final int imageCount, final String partnerString, final String jobString, final ArrayList<CharSequence> tagsArrList, final String locationName,
@@ -145,7 +50,7 @@ public class AnimusXML {
                 try {
 
                     builder = factory.newDocumentBuilder();
-                    doc = builder.parse(new File(filesDir, "Files.xml"));
+                    doc = builder.parse(new File(filesDir, XML_FILE));
                     source = new DOMSource(doc);
 
                     Element thisFile = doc.createElement("File");
@@ -163,48 +68,43 @@ public class AnimusXML {
 
                     CharSequence moods[] = resources.getStringArray(R.array.moods_for_xml);
                     thisFile.setAttribute("mood", moods[currMood].toString());
-                    if (! storedLocationBool ) {
+                    if ( storedLocationBool ) {
                         thisFile.setAttribute("latitude", Double.toString(latitude));
                         thisFile.setAttribute("longitude", Double.toString(longitude));
 
                         thisFile.setAttribute("locationName", locationName);
                     }
 
-                    for (int i = 0; i < tagsArrList.size(); i++) {
+                    for (int index = 1; index <= tagsArrList.size(); index++) {
+                        temp = "tag";
+                        temp = temp + Integer.toString(index);
+                        thisFile.setAttribute(temp, ((String) tagsArrList.get(index - 1)).replaceAll(" ", "_"));
 
-                        try {
-                            temp = "tag";
-                            temp = temp + Integer.toString(i + 1);
-                            thisFile.setAttribute(temp, ((String) tagsArrList.get(i)).replaceAll(" ", "_"));
-                        } catch (Exception ignored) {
-
-                        }
                     }
 
                     // adds some spacing for readability
                     tagList = doc.getElementsByTagName("Files");
                     tagNode = tagList.item(0);
-                    Text tab = doc.createTextNode("\t\t");
-                    tagNode.appendChild(tab);
-                    tagNode.appendChild(thisFile);
 
                     Text lineBreak = doc.createTextNode("\n\t");
                     tagNode.appendChild(lineBreak);
-
+                    tagNode.appendChild(thisFile);
 
 
                     doc.normalizeDocument();
-                    saveXML(source, new StreamResult(new File(filesDir, "Files.xml")));
+                    saveXML(source, new File(filesDir, XML_FILE));
 
                 } catch (IOException | TransformerException | SAXException | ParserConfigurationException exception) {
                     Log.e("err adding entry to xml", exception.toString());
+
                 }
 
 
             }
         }).start();
     }
-    static private void saveXML(DOMSource source, StreamResult result) throws  TransformerException{
+    static private void saveXML(DOMSource source, File xmlFile) throws  TransformerException{
+        StreamResult result = new StreamResult(xmlFile);
         TransformerFactory tFactory = TransformerFactory.newInstance();
         Transformer transformer = tFactory.newTransformer();
         transformer.setOutputProperty(OutputKeys.ENCODING, "UTF-8");
@@ -298,7 +198,7 @@ public class AnimusXML {
                     }
 
                     doc.normalizeDocument();
-                    saveXML(source, new StreamResult(new File(filesDir, "Files.xml")));
+                    saveXML(source, new File(filesDir, XML_FILE));
 
                 } catch (IOException | TransformerException | SAXException | ParserConfigurationException exception) {
                     Log.e("err adding entry to xml", exception.toString());
@@ -319,7 +219,7 @@ public class AnimusXML {
     fileNamesArr has strings that are filenames in the form of name_of_file.txt (extension and underscores instead of spaces.
      */
 
-    public synchronized static void updateFavesToXML(final File filesDir, final ArrayList<String> fileNamesArr){
+    public synchronized static void updateArrayOfFavesToXML(final File filesDir, final ArrayList<String> fileNamesArr){
         new Thread(new Runnable() {
             DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
             DocumentBuilder builder;
@@ -336,7 +236,7 @@ public class AnimusXML {
 
                 try {
                     builder = factory.newDocumentBuilder();
-                    doc = builder.parse(new File(filesDir, "Files.xml"));
+                    doc = builder.parse(new File(filesDir, XML_FILE));
                     source = new DOMSource(doc);
 
                     node = doc.getElementsByTagName("Files").item(0);
@@ -370,7 +270,7 @@ public class AnimusXML {
                     }
 
                     doc.normalize();
-                    saveXML(source, new StreamResult(new File(filesDir, "Files.xml")));
+                    saveXML(source, new File(filesDir, XML_FILE));
 
                 } catch (TransformerException | IOException | SAXException | ParserConfigurationException exception) {
                     Log.e("Err retrieving faves", exception.toString());
@@ -385,74 +285,46 @@ public class AnimusXML {
 
     static synchronized void deleteMultipleEntriesFromXML(final File filesDir, final ArrayList<String> deletedFileNamesArr){
         new Thread(new Runnable() {
-            File  XMLFile = new File(filesDir, "Files.xml");
-            WeakReference<File> xmlFileWeak = new WeakReference<>(XMLFile);
-
             @Override
             public void run() {
-
                 try {
+                    File  XMLFile = new File(filesDir, XML_FILE);
                     DocumentBuilder builder = DocumentBuilderFactory.newInstance().newDocumentBuilder();
+                    Document  doc = builder.parse(XMLFile);
+                    DOMSource domSource = new DOMSource(doc);
 
+                    Node parentNode = doc.getElementsByTagName("Files").item(0);
+                    NodeList nodeList = parentNode.getChildNodes();
 
-                    Document  doc = builder.parse(xmlFileWeak.get());
-                    TransformerFactory  tFactory = TransformerFactory.newInstance();
+                    int elementsRemoved = 0;
 
-                    WeakReference<Document> docWeak = new WeakReference<>(doc);
-                    WeakReference<TransformerFactory> tFactoryWeak = new WeakReference<>(tFactory);
+                    for (int i = 0; i < nodeList.getLength(); i++) {
+                        StringBuilder currFileNameOfXMLNode = new StringBuilder("");
+                        Node cursor = nodeList.item(i);
 
-                    StreamResult  streamResult = new StreamResult(xmlFileWeak.get());
-                    DOMSource domSource = new DOMSource(docWeak.get());
-                    WeakReference<StreamResult> streamResultWeak = new WeakReference<>(streamResult);
-                    WeakReference<DOMSource> domSourceWeak = new WeakReference<>(domSource);
-
-                    xmlFileWeak.clear();
-
-
-                    Transformer transformer = tFactoryWeak.get().newTransformer();
-                    WeakReference<Transformer> transformerWeak = new WeakReference<>(transformer);
-
-                    Node parentNode = docWeak.get().getElementsByTagName("Files").item(0);
-                    WeakReference<Node> parentNodeWeak = new WeakReference<>(parentNode);
-
-                    NodeList nodeList = parentNodeWeak.get().getChildNodes();
-                    WeakReference<NodeList> nodeListWeak = new WeakReference<>(nodeList);
-
-
-                    for (int i = 0; i < nodeListWeak.get().getLength(); i++) {
-                        Node  cursor = nodeListWeak.get().item(i);
-                        WeakReference<Node> cursorWeak = new WeakReference<>(cursor);
-
-                        if ( ! cursorWeak.get().getNodeName().equals("#text")) {            // if it isn't a text node, proceed
-                            Element element = (Element) cursorWeak.get();
-                            WeakReference<Element> elementWeak = new WeakReference<>(element);
-                            String currFileNameOfXMLNode = elementWeak.get().getAttribute("name");
+                        if ( ! cursor.getNodeName().equals("#text")) {            // if it isn't a text node, proceed
+                            Element element = (Element) cursor;
+                            currFileNameOfXMLNode.append(element.getAttribute("name"));
 
                             // loops through deleted files to compare the current node/attribute = "name" value with the value of the current index of the array. If they match then the node gets deleted and the for loop should break;
                            for (String filename : deletedFileNamesArr) {
-                                if (currFileNameOfXMLNode.equals(filename)) {
-                                    parentNodeWeak.get().removeChild(cursorWeak.get());
-                                    Node cursor2 = nodeListWeak.get().item(i - 1);
-                                    WeakReference<Node> cursor2Weak = new WeakReference<>(cursor2);
-                                    parentNodeWeak.get().removeChild(cursor2Weak.get());
-                                    deletedFileNamesArr.remove(filename);
+                                if (filename.equals(currFileNameOfXMLNode.toString())) {
+                                    parentNode.removeChild(cursor);
+                                    Node cursor2 = nodeList.item(i - 1);
+                                    parentNode.removeChild(cursor2);
+                                    elementsRemoved++;
                                     break;
                                 }
-                                if(deletedFileNamesArr.size() == 0)
+                                if(deletedFileNamesArr.size() == elementsRemoved)
                                     break;
                             }
                         }
                     }
 
-                    docWeak.get().normalize();
-                    try {
-                        transformerWeak.get().transform(domSourceWeak.get(), streamResultWeak.get());
-                    } catch (TransformerException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
+                    doc.normalize();
+                    saveXML(domSource, new File(filesDir, XML_FILE));
 
-                } catch (SAXException | IOException | ParserConfigurationException | TransformerConfigurationException exception) {
+                } catch (SAXException | IOException | ParserConfigurationException  | TransformerException exception) {
                     Log.e("Multiple delete err",exception.toString() );
                 }
             }
@@ -521,7 +393,7 @@ public class AnimusXML {
             public void run() {
 
 
-                File filesXML = new File(filesDir, "Files.xml");
+                File filesXML = new File(filesDir, XML_FILE);
 
                 factory = DocumentBuilderFactory.newInstance();
                 factory.setIgnoringComments(true);
@@ -539,8 +411,6 @@ public class AnimusXML {
 
                 int index;
                 StringBuilder currentTagName = new StringBuilder();
-
-                Log.e("Size of array", Integer.toString(tag1ArrList.size()));
 
                 if (doc != null)
                     try {
@@ -608,7 +478,7 @@ public class AnimusXML {
         Node node;
         NodeList nodeList;
 
-        File filesXML = new File(filesDir, "Files.xml");
+        File filesXML = new File(filesDir, XML_FILE);
 
         factory = DocumentBuilderFactory.newInstance();
         factory.setIgnoringComments(true);
@@ -639,8 +509,8 @@ public class AnimusXML {
 
 
     // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
-    public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList,
-                                             final ArrayList<Boolean> favArrList, final File filesDir ) throws IndexOutOfBoundsException{
+    public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList
+            , final File filesDir ) throws IndexOutOfBoundsException{
         new Thread(new Runnable() {
             DocumentBuilderFactory factory;
             DocumentBuilder builder;
@@ -653,7 +523,7 @@ public class AnimusXML {
             @Override
             public void run() {
 
-                File filesXML = new File(filesDir, "Files.xml");
+                File filesXML = new File(filesDir, XML_FILE);
 
                 factory = DocumentBuilderFactory.newInstance();
                 factory.setIgnoringComments(true);
@@ -715,9 +585,98 @@ public class AnimusXML {
 
     }
 
+
+    public static void getChosenTagEntries(final ArrayList<String> filenamesArrList, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList,
+                                           final ArrayList<Boolean> favesArrList, final File filesDir , final String chosenTagName) throws IndexOutOfBoundsException{
+        chosenTagName.replaceAll(" ", "_");
+
+        new Thread(new Runnable() {
+
+            DocumentBuilderFactory factory;
+            DocumentBuilder builder;
+            Document doc;
+
+            Element element;
+            Node node;
+            NodeList nodeList;
+
+            @Override
+            public void run() {
+
+                File filesXML = new File(filesDir, XML_FILE);
+
+                factory = DocumentBuilderFactory.newInstance();
+                factory.setIgnoringComments(true);
+                try {
+                    builder = factory.newDocumentBuilder();
+                    doc = builder.parse(filesXML);
+                }catch(ParserConfigurationException| SAXException | IOException exception){
+                    Log.e("Error parsing xml", exception.toString());
+                }
+
+                StringBuilder currentTagName = new StringBuilder(), strBuilder;
+                int currentDataSet = 0;
+
+                nodeList = doc.getElementsByTagName("Files");
+                node = nodeList.item(0);
+                nodeList = node.getChildNodes();
+                int nodeLen = nodeList.getLength();
+
+                for (int z = 0; z < nodeLen; z++) {
+                    node = nodeList.item(z);
+                    if (!node.getNodeName().equals("#text")) {
+                        element = (Element) node;
+                        int tagAmount = Integer.parseInt(element.getAttribute("tags"));
+
+                        for (int index = 1; index <= tagAmount; index++) {
+                            strBuilder = new StringBuilder("tag");
+                            strBuilder.append(Integer.toString(index));
+
+                            if (element.getAttribute(strBuilder.toString()).equals(chosenTagName)) {
+                                filenamesArrList.set(currentDataSet,  element.getAttribute("name"));
+                                if (element.getAttribute("favoriteSelectedFile").equals("true"))
+                                    favesArrList.set(currentDataSet, true);
+
+                                // If the amount of tags in the xml element "tags" is 0 then the tag Arrays will get populated with null
+                                // otherwise they will get populated in the for loop, along with the ArrayList holding unique tags.
+
+                                getTags:
+                                for (byte x = 0; x < tagAmount; x++) {
+                                    currentTagName.delete(0, currentTagName.length());
+                                    currentTagName.append(element.getAttribute("tag" + Integer.toString(x + 1)));
+                                    String currentTag = currentTagName.toString();
+
+                                    switch (x) {
+                                        case 0:
+                                            tag1ArrList.set(currentDataSet, currentTag);
+                                            break;
+                                        case 1:
+                                            tag2ArrList.set(currentDataSet, currentTag);
+                                            break;
+                                        case 2:
+                                            tag3ArrList.set(currentDataSet, currentTag);
+                                            break;
+                                        default:
+                                            break getTags;
+                                    }
+                                }
+                                currentDataSet ++;
+                            }
+                        }
+                    }
+                }
+                // if the file isn't entered int th Files.xml then a new instance will be made for it here.
+
+            }
+        }).start();
+
+
+
+    }
+
     public static void getTagsFromXML(ArrayList<String> unsortedTagsArrList, ArrayList<Byte> unsortedTagNumArrList, ArrayList<String> fileNames, File filesDir){
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-        File xml = new File(filesDir, "Files.xml");
+        File xml = new File(filesDir, XML_FILE);
 
             try {
                 Document doc;

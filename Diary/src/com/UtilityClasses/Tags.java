@@ -33,7 +33,7 @@ import javax.xml.parsers.DocumentBuilderFactory;
  * Created by CaptainSaveAHoe on 6/8/17.
  */
 
-public class AnimusTags {
+public class Tags {
 
     // returns a new TextView with custom padding and margins. It will be used to display tags.
     public synchronized static TextView newTagView(Context context, final float textSize, final int lightTextColor, final LinearLayout.LayoutParams tagsTVParams, final Drawable tagsBackgroundDrawable, String fontStyle, Typeface userSelectedFontTF){

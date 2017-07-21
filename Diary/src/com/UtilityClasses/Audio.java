@@ -17,7 +17,7 @@ import java.io.IOException;
  * Created by CaptainSaveAHoe on 6/7/17.
  */
 
-public class AnimusAudio {
+public class Audio {
     private MediaPlayer mediaPlayer;
     private Context context;
     private String filename;
@@ -26,7 +26,7 @@ public class AnimusAudio {
     private ImageSwitcher audioSwitcher;
 
 
-    public AnimusAudio(Context context, String filename, ImageSwitcher audioSwitcher){
+    public Audio(Context context, String filename, ImageSwitcher audioSwitcher){
         this.context = context;
         this.filename = filename;
         this.audioSwitcher = audioSwitcher;
@@ -38,7 +38,7 @@ public class AnimusAudio {
     }
 
 
-    public AnimusAudio(Context context, String filename, ImageSwitcher audioSwitcher, boolean previousRecording){
+    public Audio(Context context, String filename, ImageSwitcher audioSwitcher, boolean previousRecording){
         this.context = context;
         this.filename = filename;
         this.audioSwitcher = audioSwitcher;

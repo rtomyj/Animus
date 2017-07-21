@@ -14,7 +14,7 @@ import com.rtomyj.Diary.R;
  * Created by CaptainSaveAHoe on 6/5/17.
  */
 
-public  class AnimusUI {
+public  class UI {
 
     // Changes the base theme to the user selected theme.
     public static void setTheme(Context context, String theme){

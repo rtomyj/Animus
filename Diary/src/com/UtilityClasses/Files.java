@@ -3,68 +3,131 @@ package com.UtilityClasses;
 import android.content.ContentResolver;
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.content.res.AssetManager;
 import android.database.Cursor;
-import android.os.AsyncTask;
 import android.provider.ContactsContract;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.EditText;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.FilenameFilter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.lang.ref.WeakReference;
-import java.nio.ByteBuffer;
-import java.nio.CharBuffer;
-import java.nio.charset.Charset;
-import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Comparator;
 
 /**
  * Created by MacMini on 7/18/16.
  */
 
-public class AnimusFiles {
-    private AnimusFiles(){}
+public class Files {
+    private Files(){}
 
-    public static class DeleteMultipleEntries extends AsyncTask<String, Integer, String> {
-        Context context;
-        ArrayList<String> deletedFileNamesArr;
+    /*
+        New users are assigned new files for tagging, indexing, and syncing purposes. Method checks to see if those files are made, if not then they are generated for the user.
+         */
+    public static void checkForAppFiles(final File filesDir, final AssetManager assets, final ContentResolver contentResolver){
+        new Thread(){
+            String line;
+            InputStreamReader inputStream;
+            BufferedReader reader;
+            BufferedWriter writer;
 
-        public DeleteMultipleEntries(Context context, ArrayList<String> deletedFileNamesArr){
-            this.context = context;
-            this.deletedFileNamesArr = new ArrayList<>(deletedFileNamesArr);
-        }
-        @Override
-        protected void onPreExecute() {
+            public void run(){
+                File filesXML = new File(filesDir, XML.XML_FILE);
+                if (! filesXML.exists() ) {			 // creats files file. It indexes all the files along with their associated tags, pictures and other info.
+                    try {
+                        filesXML.createNewFile();
 
-            super.onPreExecute();
-        }
+                        inputStream = new InputStreamReader(assets.open(XML.XML_FILE));
 
-        @Override
-        protected String doInBackground(String... params) {
-            for(String file: deletedFileNamesArr){
-                AnimusFiles.deleteEntry(context.getFilesDir(), file);
+                        reader = new BufferedReader(inputStream);
+                        writer  = new BufferedWriter(new FileWriter(filesXML));
+
+                        line = (reader.readLine());
+                        while (line != null) {
+
+                            writer.write(line + "\n");
+                            line = (reader.readLine());
+                        }
+
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        try { // closes streams in order they were open in case there's an exception to catch. Minimizes the risk of memory leak.
+                            inputStream.close();
+                            reader.close();
+                            writer.close();
+                        }catch (IOException ignored){
+
+                        }
+                    }
+                }
+
+                File changesXML = new File(filesDir, "Changes_" + Settings.Secure.getString(contentResolver, Settings.Secure.ANDROID_ID) + ".xml");
+                if (! changesXML.exists() ) {		// creates a changes xml file
+
+                    try {       // writes file for changes. Used for suyncing
+                        changesXML.createNewFile();
+                        inputStream = new InputStreamReader(assets.open("Changes.xml"));
+                        reader = new BufferedReader(inputStream);
+
+                        writer  = new BufferedWriter(new FileWriter(changesXML));
+
+                        line =(reader.readLine());
+                        while (line != null) {
+                            writer.write(line + "\n");
+                            line = (reader.readLine());
+                        }
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        try { // closes streams in order they were open in case theres an exception to catch. Minimizes the risk of memory leak.
+                            inputStream.close();
+                            reader.close();
+                            writer.close();
+                        }catch (IOException ignored){
+
+                        }
+                    }
+                }
+
             }
-            AnimusXML.deleteMultipleEntriesFromXML(context.getFilesDir(), deletedFileNamesArr);
-
-
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-            super.onPostExecute(result);
-
-        }
-
+        }.start();
     }
 
+    public static void deleteMultipleEntries(final Context context, final ArrayList<String> deletedFilesArr){
 
+        // deletes all references of files from xml file
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                XML.deleteMultipleEntriesFromXML(context.getFilesDir(), deletedFilesArr);
+            }
+        }).start();
+
+        // deletes all references of files in file system
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+
+                for(String file: deletedFilesArr){
+                    Files.deleteEntry(context.getFilesDir(), file);
+                }
+            }
+        }).start();
+
+
+    }
 
     public static void deleteEntry(File filesDir, String filename){         // takes filesDir and filename without extension and deletes all files with name  passed that were used to store txt, photos and audio.
        if (filename.contains(".txt")){
@@ -100,7 +163,7 @@ public class AnimusFiles {
             photoFile = new File(filesDir, pngFilename.toString());
         }
 
-        AnimusXML.deleteEntryFromXML(filesDir, filename);
+        XML.deleteEntryFromXML(filesDir, filename);
     }
 
 
@@ -218,7 +281,7 @@ public class AnimusFiles {
 
     private static String findUnusedFileName(File filesDir, String desiredFilename){
         if (desiredFilename.equals(""))
-            desiredFilename = "Temp".concat(AnimusMiscMethods.randomizedExtension());
+            desiredFilename = "Temp".concat(MiscMethods.randomizedExtension());
 
         String txt = ".txt";
         File entryFile = new File(filesDir, desiredFilename + txt);
@@ -341,6 +404,24 @@ public class AnimusFiles {
         }else{
             return "";
         }
+    }
+
+
+    public static ArrayList<File> getAllFilesWithExtension(final File directory, final String extension){
+                ArrayList<File> filesArrayList = new ArrayList<>();
+
+                filesArrayList.addAll(Files.getFilesWithExtension(directory,extension));
+
+                Collections.sort(filesArrayList, new Comparator<File>() {
+                    @Override
+                    public int compare(File f1, File f2) {
+                        return Long.valueOf(f2.lastModified()).compareTo(
+                                f1.lastModified());
+                    }
+                });
+            return filesArrayList;
+
+
     }
 
 

@@ -21,8 +21,8 @@ import java.util.Calendar;
 import java.util.Locale;
 import java.util.Random;
 
-public class AnimusMiscMethods {
-	public AnimusMiscMethods(){
+public class MiscMethods {
+	public MiscMethods(){
 
 	}
 	public static String setMinute(int minute){
@@ -304,15 +304,15 @@ public class AnimusMiscMethods {
 		StringBuilder timeBuilder = new StringBuilder("");
 		switch (Locale.getDefault().getCountry()){
 			case "US":  // format is HH:MM AM/PM with HH being 1-12
-				timeBuilder.append(AnimusMiscMethods.setHour(calendar.get(Calendar.HOUR)));
+				timeBuilder.append(MiscMethods.setHour(calendar.get(Calendar.HOUR)));
 				timeBuilder.append(":");
-				timeBuilder.append(AnimusMiscMethods.setMinute(calendar.get(Calendar.MINUTE)) );
+				timeBuilder.append(MiscMethods.setMinute(calendar.get(Calendar.MINUTE)) );
 				timeBuilder.append(" ");
-				timeBuilder.append(AnimusMiscMethods.ampm(calendar.get(Calendar.HOUR)));
+				timeBuilder.append(MiscMethods.ampm(calendar.get(Calendar.HOUR)));
 				return timeBuilder.toString();
 			default:     // format is HH:MM with HH being 00-23
 				timeBuilder.append(calendar.get(Calendar.HOUR) );
-				timeBuilder.append(AnimusMiscMethods.setMinute(calendar.get(Calendar.MINUTE)));
+				timeBuilder.append(MiscMethods.setMinute(calendar.get(Calendar.MINUTE)));
 				return timeBuilder.toString();
 		}
 	}

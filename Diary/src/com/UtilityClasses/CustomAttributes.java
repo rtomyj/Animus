@@ -26,7 +26,7 @@ public  class CustomAttributes {
     public CustomAttributes(Context context, SharedPreferences sp){
         // stores the primary/secondary app color as integers and the tags background color as a drawable. Less calls to the xml.
         theme =  sp.getString("Theme", "Default");
-        int [] colors = AnimusUI.getThemeElements(context, theme);
+        int [] colors = UI.getThemeElements(context, theme);
         primaryColor = colors[0];
         secondaryColor = colors[1];
         textColorForDarkThemes = colors[2];
@@ -63,12 +63,20 @@ public  class CustomAttributes {
         tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
         tagsTVParams.setMargins(0, 0, 45, 0);
 
-        tagsBackgroundDrawable = AnimusUI.getTagsBackgroundDrawable(context, theme);
-        darkThemeSelectorShader = AnimusUI.getDarkSelectorDrawable(context, theme);
+        tagsBackgroundDrawable = UI.getTagsBackgroundDrawable(context, theme);
+        darkThemeSelectorShader = UI.getDarkSelectorDrawable(context, theme);
     }
 
     public void setAnimation(Animation animation){
         this.animation = animation;
+    }
+
+    public void themeChanged(Context context, SharedPreferences sp){
+        theme =  sp.getString("Theme", "Default");
+        int [] colors = UI.getThemeElements(context, theme);
+        primaryColor = colors[0];
+        secondaryColor = colors[1];
+
     }
 
 }
