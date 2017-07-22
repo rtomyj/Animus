@@ -82,7 +82,7 @@ public class SplashScreen extends Activity_Base {
 
 
 			final Intent domusIntent = new Intent(this, Domus.class);
-			domusIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+			domusIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 
 
 			// runs a delayed task. Entries will launch automatically in 2.5 seconds
@@ -115,7 +115,7 @@ public class SplashScreen extends Activity_Base {
 
 			if (passwordET.getText().toString().equals(password)) {
 				Intent i = new Intent(this, Domus.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				startActivity(i);
 			} else {
 				hintTV.setText(getResources().getString(R.string.wrong) + "\n" + getResources().getString(R.string.enter_password));

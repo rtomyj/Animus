@@ -17,8 +17,8 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.Adapters.AllEntriesAdapter;
-import com.Adapters.EntriesAdapter;
+import com.Adapters.AllUserEntriesAdapter;
+import com.Adapters.EntriesBaseAdapter;
 import com.Adapters.ChosenTagAdapter;
 import com.Adapters.FaveEntriesAdapter;
 import com.UtilityClasses.LauncherMethods;
@@ -29,7 +29,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
+public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManager> {
 	// Objects for list
 	private ArrayList<String> faveChangedFileNameArrList = new ArrayList<>(5);
 	private ArrayList<String> deletedFileNameArrList = new ArrayList<>(5);
@@ -70,7 +70,7 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 			// uses the previous states info to reinitialize the adapter.
 			switch (currentActivityIdentifier){
 				case DOMUS:
-					activityAdapter = new AllEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
+					activityAdapter = new AllUserEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
 							userUIPreferences);
 					break;
 				case FAVES:
@@ -86,7 +86,7 @@ public class Entries extends MainActivity<EntriesAdapter, LinearLayoutManager> {
 		} else { 		 // if there is nothing in the bundle then the class creates a new Adapter object. The Adapter will then load the files necessary from scratch
 			switch (currentActivityIdentifier) {
 				case DOMUS:
-					activityAdapter = new AllEntriesAdapter(this, userUIPreferences);
+					activityAdapter = new AllUserEntriesAdapter(this, userUIPreferences);
 					break;
 				case FAVES:
 					activityAdapter = new FaveEntriesAdapter(this, userUIPreferences);

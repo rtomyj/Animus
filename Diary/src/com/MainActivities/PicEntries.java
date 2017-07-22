@@ -1,6 +1,5 @@
 package com.MainActivities;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.MenuItem;
@@ -11,21 +10,6 @@ import com.rtomyj.Diary.R;
 import java.util.ArrayList;
 
 public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager> {
-
-	@Override
-	protected void onPause() {
-		super.onPause();
-	}
-
-	@Override
-	protected void onDestroy() {
-		super.onDestroy();
-	}
-
-	@Override
-	public void onActivityResult(int requestCode, int resultCode, Intent data) {
-		super.onActivityResult(requestCode, resultCode, data);
-	}
 
 	@Override
 	protected void onSaveInstanceState(Bundle outState) {
@@ -46,11 +30,12 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 				setActionBarSubTitle("Total: " + activityAdapter.getTotalPicCount());		// sets the total of all pictures saved in app not just the number that shows up in adapter
 			}
 
-		}else{
-			if (activityAdapter == null) {
-				activityAdapter = new PicturesAdapter(this, userUIPreferences);
-			}
 		}
+
+		if (activityAdapter == null) {
+			activityAdapter = new PicturesAdapter(this, userUIPreferences);
+		}
+
 
 		setupViews();
 	}

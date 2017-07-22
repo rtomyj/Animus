@@ -52,6 +52,16 @@ public class LauncherMethods {
                 break;
 
         }
+        switch (menuItem){
+            case R.id.domus:
+            case R.id.pictures:
+            case R.id.tags:
+            case R.id.faves:
+                intent.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+                break;
+            default:
+                break;
+        }
         switch (menuItem){      // if an activity needs a result when calling new activity then it will return the intent to the caller otherwise it launches the activity here and returns a null intent.
             case R.id.settings:
                 ((Activity)parent).startActivityForResult(intent, ActivityTypes.SETTINGS);

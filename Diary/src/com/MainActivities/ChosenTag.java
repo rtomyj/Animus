@@ -16,7 +16,7 @@ public class ChosenTag extends Entries {
 		adapterInitSize = activityIntent.getByteExtra("TAG_NUM", (byte) 5);
 
 		super.onCreate(savedInstanceState);
-		super.setActionBarTitle(getResources().getString(R.string.CURRENT_TAG) + chosenTagName);
+		//super.setActionBarTitle(getResources().getString(R.string.CURRENT_TAG) + chosenTagName);
 
 	}
 

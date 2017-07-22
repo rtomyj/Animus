@@ -7,14 +7,14 @@ import android.graphics.drawable.Drawable;
 import android.view.animation.Animation;
 import android.widget.LinearLayout;
 
-/**
- * Created by CaptainSaveAHoe on 7/4/17.
+/*
+  Created by CaptainSaveAHoe on 7/4/17.
  */
 
 public  class CustomAttributes {
     // UI Customization
     public int primaryColor = 0, secondaryColor = 0, tagsTextColor = 0, numLines, textColorForDarkThemes = 0, darkThemeForegroundColor, darkThemeBackgroundColor = 0;
-    public float textSize = 0;
+    public float textSize = 0, mediumTextSize = 0, largeTextSize = 0;
     public String fontStyle = "", theme = "";
 
     public Typeface userSelectedFontTF;
@@ -65,6 +65,9 @@ public  class CustomAttributes {
 
         tagsBackgroundDrawable = UI.getTagsBackgroundDrawable(context, theme);
         darkThemeSelectorShader = UI.getDarkSelectorDrawable(context, theme);
+
+        mediumTextSize = textSize + 2;
+        largeTextSize = textSize + 5;
     }
 
     public void setAnimation(Animation animation){
