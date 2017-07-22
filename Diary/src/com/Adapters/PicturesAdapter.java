@@ -5,10 +5,10 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.graphics.Typeface;
 import android.os.AsyncTask;
 import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
+import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,96 +27,67 @@ import com.rtomyj.Diary.R;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Locale;
 
 
-
-public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHolder> {
+public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 	// for info
 	private Calendar calendar= Calendar.getInstance();
-	private Context context;
 	private int totalPicCount = 0;
 
 	// holds data for adapter
 	private ArrayList<String> picturesArrList;
-
-	// user preferences;
-	private CustomAttributes userUIPreferences;
-	private Typeface userSelectedFontTF;
+	private ArrayList<Long> lastEditedLongArrList;
 
 	// Cache
 	private Pictures.LRUBitmapCache cache;
 
-
-	public PicturesAdapter(Context context, ArrayList<String> picturesArrList) {
-		this.context = context;
-		this.picturesArrList = (picturesArrList);
-		setAdapterBaseData();
-	}
-	public PicturesAdapter(Context context){
-		this.context = context;
-		setAdapterBaseData();
-		getPicFiles();
-	}
 	public PicturesAdapter(Context context, ArrayList<String> picturesArrList, CustomAttributes userUIPreferences){
-		this.context = context;
+		super(context, userUIPreferences);
 		this.picturesArrList = (picturesArrList);
-		this.userUIPreferences = userUIPreferences;
 
-		makeTypeFace();
 		setupCache();
+		for (int i = 0; i < picturesArrList.size(); i++){
+			StringBuilder filename = new StringBuilder(picturesArrList.get(0));
+			filename.append(".txt");
+			File file = new File(context.getFilesDir(), filename.toString());
+			lastEditedLongArrList.add(file.lastModified());
+		}
 	}
 
 	public PicturesAdapter(Context context, CustomAttributes userUIPreferences){
-		this.context = context;
-
-		this.userUIPreferences = userUIPreferences;
+		super(context, userUIPreferences);
 
 		getPicFiles();
 		setupCache();
-		makeTypeFace();
-	}
-	private void makeTypeFace(){
-		if (!userUIPreferences.fontStyle.contains("DEFAULT")) {  // if font style is anything but the value default, it creates a typeface with the specified name.
-		userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + userUIPreferences.fontStyle);
 	}
 
-	}
-
-
-	private void getUserPreferences(){
-		SharedPreferences sp = PreferenceManager.getDefaultSharedPreferences(context);
-		userUIPreferences.fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
-
-		makeTypeFace();
-
-		userUIPreferences.textSize = Float.parseFloat(sp.getString("TextSize", "14"));
-	}
+	// makes a cache instance that uses a portion of the Devices ram
 	private void setupCache(){
 		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
-		int memory = am.getMemoryClass() * 1024 * 1024 / 14;
-		// dividing resources up
+		int memory = am.getMemoryClass() * 1024 * 1024 / 20;		// dividing resources up
 		cache = new Pictures.LRUBitmapCache(memory);
 
 	}
 
 
-	private void setAdapterBaseData(){
-		setupCache();
-		getUserPreferences();
-	}
-
-	private synchronized void getPicFiles(){
+	// gets all .png files from app storage
+	private void getPicFiles(){
 		final ArrayList<File> files = Files.getFilesWithExtension(context.getFilesDir(), ".png");
 		totalPicCount = files.size();
 
 		picturesArrList = new ArrayList<>(totalPicCount);
+		lastEditedLongArrList = new ArrayList<>(totalPicCount);
 		int index = 0;
 
+		// starts off adapter with at most 10 filenames
 		while (index < 10 && ! files.isEmpty()){
 			addPicFileToList(files.get(0));
 			files.remove(0);
 			index ++;
 		}
+
+		// after the 10 or so filenames are added the rest get added in a separate thread.
 		if (! files.isEmpty()) {
 			new Thread(new Runnable() {
 
@@ -131,12 +102,27 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 		}
 
 	}
+
+	/*
+		adds the filename of entries that have .png file types to the adapters array. Takes out any extension and numbering scheme.
+		Eg, entryName(2).png becomes entryName
+
+		The only way a name gets added to the adapters array is if the name is not a duplicate within adapters array and if the equivalent .txt file exists.
+		Eg, entryName(2) will be added as entryName only if entryName.txt exists.
+	 */
+
 	private void addPicFileToList(File file){
 		StringBuilder filename = new StringBuilder(file.getName());
 		filename.delete(filename.indexOf("("), filename.length() );
-		if ( !picturesArrList.contains(filename.toString()))
+		File f = new File(filename.toString() + ".txt");
+
+		if ( !picturesArrList.contains(filename.toString()) && f.exists()) {
 			picturesArrList.add(filename.toString());
-		Log.e("hh", filename.toString());
+			//Log.e("pic file added", filename.toString());
+			lastEditedLongArrList.add(f.lastModified());
+
+		}
+
 	}
 
 	
@@ -151,12 +137,12 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 			
 		 	ViewHolder(View rowView) {
 				super(rowView);
-				titleTV = (TextView) rowView.findViewById(R.id.title);
-				monthTV = (TextView) rowView.findViewById(R.id.month);
-				dayTV = (TextView) rowView.findViewById(R.id.day);
-				yearTV = (TextView) rowView.findViewById(R.id.year);
-				imageView = (ImageView) rowView.findViewById(R.id.image_in_adapter);
-				parent = (LinearLayout) rowView.findViewById(R.id.parent);
+				titleTV = rowView.findViewById(R.id.title);
+				monthTV =  rowView.findViewById(R.id.month);
+				dayTV =  rowView.findViewById(R.id.day);
+				yearTV =  rowView.findViewById(R.id.year);
+				imageView = rowView.findViewById(R.id.image_in_adapter);
+				parent =  rowView.findViewById(R.id.parent);
 			}
 
 		}
@@ -166,44 +152,35 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	public PicturesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.pic_adapter, parent, false);
 		return new ViewHolder(parentView);
-		/*
-		View rowView = convertView;
-	    ViewHolder holder;
-		if (rowView == null ) {
-
-			LayoutInflater inflater = (LayoutInflater) context
-					.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-			rowView = inflater.inflate(R.layout.pic_adapter, parent, false);
-			holder = new ViewHolder(rowView, position);
-			rowView.setTag(holder);
-		
-		}
-		else{
-			holder = (ViewHolder) rowView.getTag();
-
-			if (holder.position != position){
-				LayoutInflater inflater = (LayoutInflater) context
-						.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-				rowView = inflater.inflate(R.layout.pic_adapter, parent, false);
-				holder = new ViewHolder(rowView, position);
-				rowView.setTag(holder);
-
-				Log.e(picturesArrList.get(position) + " in the if statement", String.valueOf(position));
-			}
-		
-		}
-
-		
-		return rowView;
-		*/
 	}
 
 	@Override
 	public synchronized void onBindViewHolder(PicturesAdapter.ViewHolder holder, int position) {
+		setOnClick(holder.parent, position);
+		customizeUI(holder);
+		setData(holder.titleTV, holder.monthTV, holder.dayTV, holder.yearTV, position);
+		setBitmap(position, holder.imageView);
 
-		holder.parent.setClickable(true);
-		holder.parent.setId(position);
-		holder.parent.setOnClickListener(new View.OnClickListener() {
+	}
+	private void setData(TextView titleTV, TextView monthTV, TextView dayTV, TextView yearTV, int position){
+		if (!picturesArrList.get(position).substring(0, 4).equals("Temp"))
+			titleTV.setText(picturesArrList.get(position).replace("_", " "));
+		else
+			titleTV.setText(null);
+
+
+		calendar.setTimeInMillis(lastEditedLongArrList.get(position));
+		//Log.e(String.valueOf(position), picturesArrList.get(position));
+
+		monthTV.setText(String.format(locale, "%ta", calendar));
+		dayTV.setText(String.format(locale,"%tm", calendar));
+		yearTV.setText(String.format(locale,"%ty", calendar));
+	}
+
+	private void setOnClick(LinearLayout parent, int position){
+		parent.setClickable(true);
+		parent.setId(position);
+		parent.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View parent) {
 				int position = parent.getId();
@@ -211,50 +188,31 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 			}
 		});
+	}
 
-
-		File f = new File(context.getFilesDir(), picturesArrList.get(position) + ".txt");
-		if (  f.exists()) {
-			if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
-				holder.titleTV.setTypeface(userSelectedFontTF);
-				holder.monthTV.setTypeface(userSelectedFontTF);
-				holder.yearTV.setTypeface(userSelectedFontTF);
-				holder.dayTV.setTypeface(userSelectedFontTF);
-			}
-
-			if (userUIPreferences.theme.equals("Onyx")) {
-				holder.titleTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-				holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-				holder.yearTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-				holder.parent.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
-			}
-
-
-			holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
-			holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
-
-			holder.titleTV.setTextSize(userUIPreferences.textSize + (float) 2);
-			holder.monthTV.setTextSize(userUIPreferences.textSize);
-			holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
-			holder.yearTV.setTextSize(userUIPreferences.textSize);
-
-			if (!picturesArrList.get(position).substring(0, 4).equals("Temp"))
-				holder.titleTV.setText(picturesArrList.get(position).replace("_", " "));
-			else
-				holder.titleTV.setText(null);
-
-
-			calendar.setTimeInMillis(f.lastModified());
-			//Log.e(String.valueOf(position), picturesArrList.get(position));
-
-			String months[] = context.getResources().getStringArray(R.array.non_abrev_months_arr);
-			holder.monthTV.setText(months[calendar.get(Calendar.MONTH)]);
-			holder.dayTV.setText(Integer.toString(calendar.get(Calendar.DAY_OF_MONTH)) + ",");
-			holder.yearTV.setText(Integer.toString(calendar.get(Calendar.YEAR)));
-
-
-			setBitmap(position, holder.imageView);
+	private void customizeUI(ViewHolder holder){
+		if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
+			holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.yearTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
 		}
+
+		if (userUIPreferences.theme.contains("Onyx")) {
+			holder.titleTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+			holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+			holder.yearTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+			holder.parent.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
+		}
+
+
+		holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
+		holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
+
+		holder.titleTV.setTextSize(userUIPreferences.mediumTextSize);
+		holder.monthTV.setTextSize(userUIPreferences.textSize);
+		holder.dayTV.setTextSize(userUIPreferences.largeTextSize);
+		holder.yearTV.setTextSize(userUIPreferences.textSize);
 	}
 
 	private void setBitmap(int position, ImageView pictureView) {
@@ -265,11 +223,12 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 			num++;
 		}
 
-		Bitmap cachedImage = cache.getBitmapFromMemCache(f.getAbsolutePath());
+		String filename = f.getAbsolutePath();
+		Bitmap cachedImage = cache.getBitmapFromMemCache(filename);
 		if (cachedImage != null) {
 			pictureView.setImageBitmap(cachedImage);
 		} else {
-			new LoadPics(pictureView, f.length()).execute(f.getAbsolutePath());
+			new LoadPics(pictureView, f.length(), filename).execute("");
 		}
 
 	}
@@ -282,16 +241,18 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 	private class LoadPics extends AsyncTask<String, Integer, Bitmap> {
 		private ImageView imageView;
 		private long size;
+		String filename;
 
-		LoadPics(ImageView p, long size) {
+		LoadPics(ImageView p, long size, String filename) {
 			imageView = p;
 			this.size = size;
+			this.filename = filename;
 		}
 		protected synchronized Bitmap doInBackground(String... file) {
 			BitmapFactory.Options opt = new BitmapFactory.Options();
 			//Log.e(file[0], String.valueOf(size);
 			opt.inJustDecodeBounds = true;
-			BitmapFactory.decodeFile(file[0], opt);
+			BitmapFactory.decodeFile(filename, opt);
 			opt.inPreferQualityOverSpeed = false;
 			int size = 2;
 			int height = opt.outHeight / size, width = opt.outWidth / size;
@@ -302,8 +263,8 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 			}
 			opt.inSampleSize = size;
 			opt.inJustDecodeBounds = false;
-			Bitmap bm = BitmapFactory.decodeFile((file[0]), opt);
-			cache.addBitmapToMemoryCache(file[0], bm);
+			Bitmap bm = BitmapFactory.decodeFile((filename), opt);
+			cache.addBitmapToMemoryCache(filename, bm);
 			return bm;
 		}
 		protected void onPostExecute(Bitmap result) {
@@ -313,6 +274,9 @@ public class PicturesAdapter extends RecyclerView.Adapter<PicturesAdapter.ViewHo
 
 		public ArrayList<String> getPicturesArrList(){
 			return picturesArrList;
+		}
+		public ArrayList<Long> getLastEditedLongArrList(){
+			return lastEditedLongArrList;
 		}
 
 		public int getTotalPicCount(){

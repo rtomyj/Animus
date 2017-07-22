@@ -12,7 +12,7 @@ import java.util.Collections;
      Created by MacMini on 7/19/17.
  */
 
-public class ChosenTagAdapter extends EntriesAdapter {
+public class ChosenTagAdapter extends EntriesBaseAdapter {
 
     public ChosenTagAdapter(Context context, CustomAttributes userUIPreferences, String tagName, int initSize){
         super(context, userUIPreferences);

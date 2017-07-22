@@ -20,28 +20,23 @@ import java.io.DataInputStream;
 import java.io.File;
 import java.util.ArrayList;
 
-public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
-	private Context context;
+public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 	private ArrayList<String> tagsArrList;
 	private ArrayList<Byte> tagAmountArrList;
 	private ArrayList<String> fileNamesArrList;
 
-	private CustomAttributes userUIPreferences;
-
-	public TagsAdapter(Context context, ArrayList<String> tagsArrList, ArrayList<Byte> tagAmountArrList, ArrayList<String> fileNamesArrList) {
-		this.context = context;
+	public TagsAdapter(Context context, CustomAttributes userUIPreferences, ArrayList<String> tagsArrList, ArrayList<Byte> tagAmountArrList, ArrayList<String> fileNamesArrList) {
+		super(context, userUIPreferences);
 		this.tagsArrList = new ArrayList<>(tagsArrList);
 		this.tagAmountArrList = new ArrayList<>(tagAmountArrList);
 		this.fileNamesArrList = new ArrayList<>(fileNamesArrList);
 
 	}
 	public TagsAdapter(Context context, CustomAttributes userUIPreferences){
+		super(context, userUIPreferences);
 		tagsArrList = new ArrayList<>();
 		tagAmountArrList = new ArrayList<>();
 		fileNamesArrList = new ArrayList<>();
-
-		this.context = context;
-		this.userUIPreferences = userUIPreferences;
 
 		XML.getTagsFromXML(tagsArrList, tagAmountArrList, fileNamesArrList,context.getFilesDir());
 	}
@@ -74,6 +69,7 @@ public class TagsAdapter extends RecyclerView.Adapter<TagsAdapter.ViewHolder> {
 		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tags_of_entries, parent, false);
 		return  new TagsAdapter.ViewHolder(parentView);
 	}
+
 
 
 	// Replace the contents of a view (invoked by the layout manager)

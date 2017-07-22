@@ -19,21 +19,15 @@ import java.io.IOException;
     Created by MacMini on 7/20/17.
  */
 
- abstract class AdapterSummaryCache<T extends RecyclerView.ViewHolder> extends RecyclerView.Adapter<T> {
+ abstract class AdapterSummaryCache<T extends RecyclerView.ViewHolder> extends AdapterBase<T> {
 
-    private int summaryLength;
-    public static final int MAX_CACHE_SIZE = 15;
-    private LruCache<String , String> summaryCache;
-
-     CustomAttributes userUIPreferences;
-     Context context;
-
+     private int summaryLength;
+     static final int MAX_CACHE_SIZE = 15;
+     private LruCache<String , String> summaryCache;
 
 
      AdapterSummaryCache(Context context, CustomAttributes userUIPreferences){
-
-         this.userUIPreferences = userUIPreferences;
-         this.context = context;
+         super(context, userUIPreferences);
          if (userUIPreferences.numLines < 4) {
          summaryLength = 250;
      } else {
@@ -48,7 +42,7 @@ import java.io.IOException;
     /*
         sets info to the summary TextView. There is a cache to save the summary text once it is read from the corresponding file potentially saving memory or operations or both.
 */
-    public void setSummary(TextView summaryTV, String identifier){
+     void setSummary(TextView summaryTV, String identifier){
         String summaryString =  summaryCache.get( identifier);
 
         if (summaryString == null) {

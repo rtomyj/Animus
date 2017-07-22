@@ -13,7 +13,7 @@ import java.util.Collections;
  * Created by CaptainSaveAHoe on 7/12/17.
  */
 
-public class FaveEntriesAdapter extends EntriesAdapter {
+public class FaveEntriesAdapter extends EntriesBaseAdapter {
 
 
     public FaveEntriesAdapter(Context context, CustomAttributes userUIPreferences){
@@ -21,7 +21,7 @@ public class FaveEntriesAdapter extends EntriesAdapter {
         loadFaveEntries();
     }
 
-    public FaveEntriesAdapter (Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
+    public FaveEntriesAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
                               CustomAttributes userUIPreferences) {
         super(context, sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, userUIPreferences);
     }
