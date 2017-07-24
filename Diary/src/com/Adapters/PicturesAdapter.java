@@ -114,7 +114,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 	private void addPicFileToList(File file){
 		StringBuilder filename = new StringBuilder(file.getName());
 		filename.delete(filename.indexOf("("), filename.length() );
-		File f = new File(filename.toString() + ".txt");
+		File f = new File(context.getFilesDir(), filename.toString() + ".txt");
 
 		if ( !picturesArrList.contains(filename.toString()) && f.exists()) {
 			picturesArrList.add(filename.toString());
