@@ -7,6 +7,11 @@ import com.Adapters.TagsAdapter;
 import com.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
+
 public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	// other
 	private boolean isAlphaSort = true;
@@ -20,6 +25,18 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 
 		if (savedInstanceState != null) {
 			isAlphaSort = savedInstanceState.getBoolean("IS_ALPHA_SORT");
+
+			short initSize = savedInstanceState.getShort("ARR_SIZE"), index = 0;
+			Byte[] tagAmountArr = new Byte[initSize];
+			for (int element : savedInstanceState.getIntArray("TAG_AMOUNT_ARR")){
+				tagAmountArr[index] = (byte) element;
+				index++;
+			}
+
+			activityAdapter = new TagsAdapter(this, userUIPreferences, savedInstanceState.getStringArrayList("TAGS_ARR_LIST"),
+					new ArrayList<>(Arrays.asList(tagAmountArr)), savedInstanceState.getStringArrayList("FILE_NAMES_ARR_LIST"));
+
+
 		}else{
 			activityAdapter = new TagsAdapter(this, userUIPreferences);
 		}
@@ -76,6 +93,18 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putBoolean("IS_ALPHA_SORT", isAlphaSort);
+		outState.putStringArrayList("TAGS_ARR_LIST", activityAdapter.getTagsArrList());
+		outState.putStringArrayList("FILE_NAMES_ARR_LIST", activityAdapter.getFileNamesArrList());
+
+		ArrayList<Byte> tagAmountByteArrList = new ArrayList<>(activityAdapter.getTagAmountArrList());
+		int [] tagAmountIntArr = new int[tagAmountByteArrList.size()];
+		short index =0;
+		for (Byte tagAmountByte: tagAmountByteArrList){
+			tagAmountIntArr[index] = (int) tagAmountByte;
+			index++;
+		}
+		outState.putShort("ARR_SIZE", index);
+		outState.putIntArray("TAG_AMOUNT_ARR", tagAmountIntArr);
 	}
 
 	/*

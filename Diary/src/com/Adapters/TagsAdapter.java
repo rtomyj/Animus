@@ -4,8 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.text.Html;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,21 +13,21 @@ import com.MainActivities.ChosenTag;
 import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
-
-import java.io.DataInputStream;
-import java.io.File;
 import java.util.ArrayList;
 
-public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
+public class TagsAdapter extends AdapterSummaryCache<TagsAdapter.ViewHolder> {
 	private ArrayList<String> tagsArrList;
 	private ArrayList<Byte> tagAmountArrList;
 	private ArrayList<String> fileNamesArrList;
+	private String USES;
 
 	public TagsAdapter(Context context, CustomAttributes userUIPreferences, ArrayList<String> tagsArrList, ArrayList<Byte> tagAmountArrList, ArrayList<String> fileNamesArrList) {
 		super(context, userUIPreferences);
 		this.tagsArrList = new ArrayList<>(tagsArrList);
 		this.tagAmountArrList = new ArrayList<>(tagAmountArrList);
 		this.fileNamesArrList = new ArrayList<>(fileNamesArrList);
+
+		USES = context.getResources().getString(R.string.USES);
 
 	}
 	public TagsAdapter(Context context, CustomAttributes userUIPreferences){
@@ -39,6 +37,7 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 		fileNamesArrList = new ArrayList<>();
 
 		XML.getTagsFromXML(tagsArrList, tagAmountArrList, fileNamesArrList,context.getFilesDir());
+		USES = context.getResources().getString(R.string.USES);
 	}
 
 
@@ -50,14 +49,14 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 		private TextView tagTV;
 		private TextView amountTV;
 		private TextView summaryTV;
-		private CardView parentLL;
+		private CardView parentCardView;
 
 		ViewHolder(View parent) {
 			super(parent);
 			summaryTV = parent.findViewById(R.id.example_of_entry_with_tag);
 			tagTV = parent.findViewById(R.id.tag);
 			amountTV =  parent.findViewById(R.id.number_of_tags);
-			parentLL = parent.findViewById(R.id.tag_list);
+			parentCardView = parent.findViewById(R.id.tag_list);
 		}
 
 	}
@@ -75,9 +74,15 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 	// Replace the contents of a view (invoked by the layout manager)
 	@Override
 	public synchronized void onBindViewHolder(TagsAdapter.ViewHolder holder, final int position) {
-		holder.parentLL.setId(position);
-		holder.parentLL.setClickable(true);
-		holder.parentLL.setOnClickListener(new View.OnClickListener() {
+		setOnClick(holder.parentCardView, position);
+		customizeUI(holder);
+		setInfo(holder, position);
+	}
+
+	private void setOnClick(CardView parentLL, int position){
+		parentLL.setId(position);
+		parentLL.setClickable(true);
+		parentLL.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View view) {
 				int position = view.getId();
@@ -88,11 +93,10 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 				context.startActivity(selectedTag);
 			}
 		});
-
-
+	}
+	private void customizeUI(TagsAdapter.ViewHolder holder){
 		if (userUIPreferences.theme.contains("Onyx")) {
-			holder.parentLL.setBackground(userUIPreferences.darkThemeSelectorShader);
-
+			holder.parentCardView.setBackground(userUIPreferences.darkThemeSelectorShader);
 			holder.amountTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 			holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
 
@@ -100,8 +104,8 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 		holder.tagTV.setTextColor(userUIPreferences.secondaryColor);
 
 		holder.summaryTV.setTextSize(userUIPreferences.textSize);
-		holder.tagTV.setTextSize(userUIPreferences.textSize + (float) 2);
-		holder.amountTV.setTextSize(userUIPreferences.textSize + (float) 2);
+		holder.tagTV.setTextSize(userUIPreferences.mediumTextSize);
+		holder.amountTV.setTextSize(userUIPreferences.textSize);
 
 
 		if ( userUIPreferences.userSelectedFontTF != null ) {
@@ -112,8 +116,6 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 		}
 		holder.summaryTV.setMaxLines(userUIPreferences.numLines);
 		holder.summaryTV.setMinLines(userUIPreferences.numLines);
-
-		setInfo(holder, position);
 	}
 
 	@Override
@@ -123,31 +125,17 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 
 
 	private void setInfo(ViewHolder holder, int position) {
-		File entryFile;
-		DataInputStream br;
+		StringBuilder amountText = new StringBuilder(USES);
+		amountText.append(Byte.toString(tagAmountArrList.get(position)));
 
 		holder.tagTV.setText(tagsArrList.get(position).replaceAll("_", " "));
-		holder.amountTV.setText(Byte.toString(tagAmountArrList.get(position)));
-		holder.summaryTV.setText("");
+		holder.amountTV.setText(amountText.toString());
 
-		try {
-
-			entryFile = new File(context.getFilesDir(), fileNamesArrList.get(position));
-
-			br = new DataInputStream(context.openFileInput(entryFile.getName()));
-			br.readUTF();
-			holder.summaryTV.setText(Html.fromHtml(br.readUTF().trim().replaceAll("\n", "<br />")));
-			br.close();
-		} catch (Exception e) {
-			Log.e("test", e.toString());
-		}
-
-
+		setSummary(holder.summaryTV, fileNamesArrList.get(position));
 
 	}
 
-	public void sortNum(ArrayList<String> numSortedTags,
-			ArrayList<Byte> numSortedTagNum, ArrayList<String> fileNames) {
+	public void sortNum(ArrayList<String> numSortedTags, ArrayList<Byte> numSortedTagNum, ArrayList<String> fileNames) {
 		this.tagAmountArrList.clear();
 		this.tagsArrList.clear();
 		this.fileNamesArrList.clear();
@@ -159,8 +147,7 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 
 	}
 
-	public void sortAlph(ArrayList<String> alphaSortedTags,
-			ArrayList<Byte> alphSortedTagNum, ArrayList<String> fileNames) {
+	public void sortAlph(ArrayList<String> alphaSortedTags, ArrayList<Byte> alphSortedTagNum, ArrayList<String> fileNames) {
 		this.tagAmountArrList.clear();
 		this.tagsArrList.clear();
 		this.fileNamesArrList.clear();
@@ -169,6 +156,16 @@ public class TagsAdapter extends AdapterBase<TagsAdapter.ViewHolder> {
 		this.tagAmountArrList.addAll(alphSortedTagNum);
 		this.fileNamesArrList.addAll(fileNames);
 		this.notifyDataSetChanged();
+	}
+
+	public ArrayList<String> getTagsArrList(){
+		return tagsArrList;
+	}
+	public ArrayList<Byte> getTagAmountArrList(){
+		return tagAmountArrList;
+	}
+	public ArrayList<String> getFileNamesArrList(){
+		return fileNamesArrList;
 	}
 
 }

@@ -63,7 +63,7 @@ import java.io.IOException;
             summaryTV.setText(context.getResources().getString(R.string.text));
 
         } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
-            summaryTV.setText(Html.fromHtml(summaryString));
+            summaryTV.setText(Html.fromHtml(summaryString.replaceAll("\n", "</br>")));
         }
     }
 
