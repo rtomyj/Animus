@@ -40,8 +40,8 @@ android {
             renderscriptDebuggable false
         }
         debug {
-            shrinkResources true
-            minifyEnabled true
+            shrinkResources false
+            minifyEnabled false
             debuggable true
             renderscriptDebuggable true
             proguardFiles getDefaultProguardFile('proguard-android.txt')
