@@ -14,7 +14,7 @@
                                                      android:layout_height="match_parent"
                                                      android:background="@color/White_ish"
                                                      android:id="@+id/domus_main_layout"
-                                                     tools:context="com.BaseClasses.Entries">
+                                                     tools:context="com.MainActivities.Entries">
 
         <include layout="@layout/toolbar"/>
         <include layout="@layout/main_activity_content"/>
