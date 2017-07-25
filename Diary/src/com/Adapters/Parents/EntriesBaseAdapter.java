@@ -209,7 +209,9 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         // sets filename to selected view.
         String currentFile = sortedFilesArrList.get(position);
         StringBuilder filenameBuilder = new StringBuilder(currentFile);
-        filenameBuilder.delete(filenameBuilder.indexOf(".txt"), filenameBuilder.length());
+        int indexOfExtension = filenameBuilder.indexOf(".txt");     // sometimes the adapter will not have the filenames with the .txt extension
+        if (indexOfExtension > -1)
+         filenameBuilder.delete(indexOfExtension, filenameBuilder.length());
 
         String formattedFilename = filenameBuilder.toString().replaceAll("_", " ");
 

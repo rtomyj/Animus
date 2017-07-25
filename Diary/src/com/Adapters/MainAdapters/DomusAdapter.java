@@ -1,9 +1,8 @@
-package com.Adapters.MainActivites;
+package com.Adapters.MainAdapters;
 
 import android.content.Context;
 
 import com.Adapters.Parents.EntriesBaseAdapter;
-import com.MainActivities.Domus;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;

@@ -1,4 +1,4 @@
-package com.Adapters.MainActivites;
+package com.Adapters.MainAdapters;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,13 @@ import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 import java.util.ArrayList;
+import java.util.Collections;
 
+/*
+		Adapter that displays entries only if they are tagged with a specific string.
+
+		Later on the all the ArrayLists  will be rearranged according to  fileNamesArrList's alphabetic order, as well as tagAmountArrList descending by amount. User will be able to switch between the two.
+ */
 public class TagsAdapter extends AdapterSummaryCache<TagsAdapter.ViewHolder> {
 	private ArrayList<String> tagsArrList;
 	private ArrayList<Byte> tagAmountArrList;

@@ -1,4 +1,4 @@
-package com.Adapters.MainActivites;
+package com.Adapters.MainAdapters;
 
 import android.content.Context;
 

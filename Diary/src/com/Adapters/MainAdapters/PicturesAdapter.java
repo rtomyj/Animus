@@ -1,4 +1,4 @@
-package com.Adapters.MainActivites;
+package com.Adapters.MainAdapters;
 
 import android.app.ActivityManager;
 import android.content.Context;
@@ -15,10 +15,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.Adapters.Parents.AdapterBase;
+import com.UtilityClasses.CustomAttributes;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.LauncherMethods;
 import com.UtilityClasses.Pictures;
-import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 
 import java.io.File;
@@ -26,29 +26,27 @@ import java.util.ArrayList;
 import java.util.Calendar;
 
 
-public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
+/*
+		Adapter that displays an Entry that has at least one picture. Displays one picture that corresponds to its entry and the date of the entry as well as its name.
+ */
+
+public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 	// for info
 	private Calendar calendar= Calendar.getInstance();
-	private int totalPicCount = 0;
 
 	// holds data for adapter
 	private ArrayList<String> picturesArrList;
-	private ArrayList<Long> lastEditedLongArrList;
+	private ArrayList<Long> lastModifiedArrList;
 
 	// Cache
 	private Pictures.LRUBitmapCache cache;
 
-	public PicturesAdapter(Context context, ArrayList<String> picturesArrList, CustomAttributes userUIPreferences){
+	public PicturesAdapter(Context context, ArrayList<String> picturesArrList, ArrayList<Long> lastModifiedArrList, CustomAttributes userUIPreferences){
 		super(context, userUIPreferences);
-		this.picturesArrList = (picturesArrList);
+		this.picturesArrList = new ArrayList<>(picturesArrList);
+		this.lastModifiedArrList = new ArrayList<>(lastModifiedArrList);
 
 		setupCache();
-		for (int i = 0; i < picturesArrList.size(); i++){
-			StringBuilder filename = new StringBuilder(picturesArrList.get(0));
-			filename.append(".txt");
-			File file = new File(context.getFilesDir(), filename.toString());
-			lastEditedLongArrList.add(file.lastModified());
-		}
 	}
 
 	public PicturesAdapter(Context context, CustomAttributes userUIPreferences){
@@ -67,13 +65,16 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 	}
 
 
-	// gets all .png files from app storage
+	/*
+	 gets all .png files from app storage.
+	 Only stores their filename with no etension or pic number (eg tempFile(2).png becomes tempFile). Only one entry is stored, only entries with at least on pic entry is stored, and later only one pic per entry is displayed.
+	  */
 	private void getPicFiles(){
 		final ArrayList<File> files = Files.getFilesWithExtension(context.getFilesDir(), ".png");
-		totalPicCount = files.size();
+		int estimatedInitPicCount = files.size() / 2;
 
-		picturesArrList = new ArrayList<>(totalPicCount);
-		lastEditedLongArrList = new ArrayList<>(totalPicCount);
+		picturesArrList = new ArrayList<>(estimatedInitPicCount);
+		lastModifiedArrList = new ArrayList<>(estimatedInitPicCount);
 		int index = 0;
 
 		// starts off adapter with at most 10 filenames
@@ -115,7 +116,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 		if ( !picturesArrList.contains(filename.toString()) && f.exists()) {
 			picturesArrList.add(filename.toString());
 			//Log.e("pic file added", filename.toString());
-			lastEditedLongArrList.add(f.lastModified());
+			lastModifiedArrList.add(f.lastModified());
 
 		}
 
@@ -165,7 +166,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 			titleTV.setText(null);
 
 
-		calendar.setTimeInMillis(lastEditedLongArrList.get(position));
+		calendar.setTimeInMillis(lastModifiedArrList.get(position));
 		//Log.e(String.valueOf(position), picturesArrList.get(position));
 
 		monthTV.setText(String.format(locale, "%ta", calendar));
@@ -253,8 +254,8 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 			int size = 2;
 			int height = opt.outHeight / size, width = opt.outWidth / size;
 			while (height > 680 && width > 420 && size < 6) {
-				height = height / 2;
-				width = width / 2;
+				height /= size;
+				width /= size;
 				size += 2;
 			}
 			opt.inSampleSize = size;
@@ -271,12 +272,8 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {
 		public ArrayList<String> getPicturesArrList(){
 			return picturesArrList;
 		}
-		public ArrayList<Long> getLastEditedLongArrList(){
-			return lastEditedLongArrList;
-		}
-
-		public int getTotalPicCount(){
-			return totalPicCount;
+		public ArrayList<Long> getLastModifiedArrList(){
+			return lastModifiedArrList;
 		}
 
 }
