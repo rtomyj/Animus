@@ -510,83 +510,78 @@ public class XML {
 
     // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
     public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList
-            , final ArrayList<Boolean >faveArrList, final File filesDir ) {
-        new Thread(new Runnable() {
-            DocumentBuilderFactory factory;
-            DocumentBuilder builder;
-            Document doc;
+            , final ArrayList<Boolean >faveArrList, final File filesDir )  throws ParserConfigurationException, SAXException, IOException{
 
-            Element element;
-            Node node;
-            NodeList nodeList;
+        DocumentBuilderFactory factory;
+        DocumentBuilder builder;
+        Document doc;
 
-            @Override
-            public void run() {
-
-                File filesXML = new File(filesDir, XML_FILE);
-
-                factory = DocumentBuilderFactory.newInstance();
-                factory.setIgnoringComments(true);
-                try {
-                    builder = factory.newDocumentBuilder();
-                    doc = builder.parse(filesXML);
-                }catch(ParserConfigurationException| SAXException | IOException exception){
-                    Log.e("Error parsing xml", exception.toString());
-                }
-
-                StringBuilder currentTagName = new StringBuilder();
-                byte  amountOfTags;
+        Element element;
+        Node node;
+        NodeList nodeList;
 
 
-                nodeList = doc.getElementsByTagName("Files");
-                node = nodeList.item(0);
-                nodeList = node.getChildNodes();
-                int nodeLen = nodeList.getLength();
+        File filesXML = new File(filesDir, XML_FILE);
 
-                for (int z = 0; z < nodeLen; z++) {
-                    node = nodeList.item(z);
-                    if (!node.getNodeName().equals("#text")) {
-                        element = (Element) node;
-                        if (element.getAttribute("favoriteSelectedFile").equals("true")) {
-                            filenames.add(element.getAttribute("name"));
-                            // If the amount of tags in the xml element "tags" is 0 then the tag Arrays will get populated with null
-                            // otherwise they will get populated in the for loop, along with the ArrayList holding unique tags.
+        factory = DocumentBuilderFactory.newInstance();
+        factory.setIgnoringComments(true);
 
-                            amountOfTags = Byte.parseByte(element.getAttribute("tags"));
-                            switch (amountOfTags){
-                                case 0:
-                                    tag1ArrList.add("");
-                                case 1:
-                                    tag2ArrList.add("");
-                                case 2:
-                                    tag3ArrList.add("");
-                            }
-                            getTags: for (byte x = 0; x < amountOfTags; x++) {
-                                currentTagName.delete(0, currentTagName.length());
-                                currentTagName.append(element.getAttribute("tag" + Integer.toString(x + 1)));
-                                String currentTag = currentTagName.toString();
-                                switch (x){
-                                    case 0:
-                                        tag1ArrList.add(currentTag);
-                                        break;
-                                    case 1:
-                                        tag2ArrList.add(currentTag);
-                                        break;
-                                    case 2:
-                                        tag3ArrList.add(currentTag);
-                                        break;
-                                    default:
-                                        break getTags;
-                                }
+        builder = factory.newDocumentBuilder();
+        doc = builder.parse(filesXML);
 
-                            }
+        StringBuilder currentTagName = new StringBuilder();
+        byte  amountOfTags;
+
+
+        nodeList = doc.getElementsByTagName("Files");
+        node = nodeList.item(0);
+        nodeList = node.getChildNodes();
+        int nodeLen = nodeList.getLength();
+
+        for (int z = 0; z < nodeLen; z++) {
+            node = nodeList.item(z);
+            if (!node.getNodeName().equals("#text")) {
+                element = (Element) node;
+                if (element.getAttribute("favoriteSelectedFile").equals("true")) {
+                    faveArrList.add(true);
+                    filenames.add(element.getAttribute("name"));
+                    // If the amount of tags in the xml element "tags" is 0 then the tag Arrays will get populated with null
+                    // otherwise they will get populated in the for loop, along with the ArrayList holding unique tags.
+
+                    amountOfTags = Byte.parseByte(element.getAttribute("tags"));
+                    switch (amountOfTags){
+                        case 0:
+                            tag1ArrList.add("");
+                        case 1:
+                            tag2ArrList.add("");
+                        case 2:
+                            tag3ArrList.add("");
+                    }
+                    getTags: for (byte x = 0; x < amountOfTags; x++) {
+                        currentTagName.delete(0, currentTagName.length());
+                        currentTagName.append(element.getAttribute("tag" + Integer.toString(x + 1)));
+                        String currentTag = currentTagName.toString();
+                        switch (x){
+                            case 0:
+                                tag1ArrList.add(currentTag);
+                                break;
+                            case 1:
+                                tag2ArrList.add(currentTag);
+                                break;
+                            case 2:
+                                tag3ArrList.add(currentTag);
+                                break;
+                            default:
+                                break getTags;
                         }
+
                     }
                 }
-                // if the file isn't entered int th Files.xml then a new instance will be made for it here.
-
             }
-        }).start();
+        }
+        // if the file isn't entered int th Files.xml then a new instance will be made for it here.
+
+
 
 
 
