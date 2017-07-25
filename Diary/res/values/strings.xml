@@ -1,18 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
 
-    <string name="app_name">Animus</string>
-    <string name="action_settings" tools:ignore="MissingTranslation">Settings</string>
-    <string name="entries">Entries</string>
-    <string name="favorite_entries">Favs</string>
-    <string name="pic_entries">Pictures</string>
-    <string name="home">Home</string>
-    <string name="entry">New Entry</string>
-    <string name="tags">Tags</string>
-    <string name="take_picture">Take Picture</string>
-    <string name="choose_photo">Choose Photo</string>
+    <string name="APP_NAME">Animus</string>
+    <string name="SETTINGS" tools:ignore="MissingTranslation">Settings</string>
+    <string name="ENTRIES">Entries</string>
+    <string name="PICTURES">Pictures</string>
+    <string name="TAGS">Tags</string>
+    <string name="HOME">Home</string>
+    <string name="NEW_ENTRY">New Entry</string>
+    <string name="TAKE_PICTURE">Take Picture</string>
+    <string name="CHOOSE_PHOTO">Choose Photo</string>
 
-    <string-array name="months">
+    <string-array name="non_abrev_months_arr">
         <item>January</item>
         <item>February</item>
         <item>March</item>
@@ -27,37 +26,20 @@
         <item>December</item>
     </string-array>
 
-    <string name="email">Send As Email</string>
+    <string name="SEND_AS_EMAIL">Send As Email</string>
     <string name="delete_entry_dialog">Delete? Are you sure?</string>
     <string name="delete_confirmation">Delete</string>
     <string name="delelte_dialog_message">All data will be deleted if you continue...</string>
     <string name="edit_tags_dialog_title">Select one tag you would like to delete.</string>
-    <string name="cancel">Cancel</string>
-    <string name="tags_">Tags: </string>
-    <string name="yes">Yes</string>
-    <string name="no">No</string>
+    <string name="CANCEL">Cancel</string>
+    <string name="tags">Tags: </string>
+    <string name="YES">Yes</string>
+    <string name="NO">No</string>
 
-    <string-array name="navigation_titles">
-        <item>Entries</item>
-        <item>Notes</item>
-        <item>Pictures</item>
-        <item>Tags</item>
-        <item>Favorites</item>
-    </string-array>
 
-    <string name="open">Open</string>
-    <string name="close">Close</string>
+    <string name="OPEN">Open</string>
+    <string name="CLOSE">Close</string>
 
-    <string-array name="weekdays">
-        <item></item>
-        <item>Sunday</item>
-        <item>Monday</item>
-        <item>Tuesday</item>
-        <item>Wednesday</item>
-        <item>Thursday</item>
-        <item>Friday</item>
-        <item>Saturday</item>
-    </string-array>
 
     <string name="about">About</string>
     <string name="general">General</string>
@@ -109,6 +91,12 @@
     </string-array>
 
     <string name="entries_welcome">Your diary is currently empty. Click the + to add an entry.</string>
+    <string name="pictures_welcome">Your diary has not picture files. Get snapping!</string>
+    <string name="tags_welcome">Your diary has no tags. Tagging makes it easier to see related entries. Try it out when editing.</string>
+    <string name="faves_welcome">Your diary has no favorite entries. \n\nr ;-(</string>
+
+
+
     <string name="location_setting_title">Location Entries</string>
     <string name="location_setting_info">App will ping for your current location.</string>
     <string name="intro_dialog_dismiss_button">I think I got it.</string>
@@ -242,18 +230,19 @@
         <item>Reset All Files</item>
     </string-array>
 
-    <string name="favs_welcome">No entries have been favorited ;-(</string>
-    <string name="help_tags">With tags you can always revisit past entries in a breeze. If there is a topic that seems
+
+
+    <!-- these strings are for the about help screen in the settings menu -->
+    <string name="tags_explanation">With tags you can always revisit past entries in a breeze. If there is a topic that seems
 		    			 to always come up in your entries, you can associate them with a keyword. This keyword, or tag, will
 		    			 then help the application link entries together.</string>
-    <string name="help_privacy">The information you store in this app is yours. I do not and cannot read your entries
+    <string name="privacy_explanation">The information you store in this app is yours. I do not and cannot read your entries
 		    			 . Android 4.0 and above do not have ads. Anything below that does. Otherwise there are analytics running to find out
 		    			 new and returning users and the amount of time they use a particular activity. Also, system crash logs will deliver XML references. These references are only file names
 		    			 and tag names and will aid in pinpointing  what causes the app to crash.\n\nDO NOT 
 		    			 put sensetive information
 		    			 in tags and entry names if you do not want to run into the risk of me reading them. The body of entries and notes are 100% safe.</string>
-    <string name="help_usage"></string>
-    <string name="help_notes_and_entries"></string>
+
 
     <string-array name="privacy_topics">
         <item>Privacy</item>
@@ -285,9 +274,9 @@
     <string name="backup_and_restore">Backup &amp; Restore</string>
     <string name="sync">Sync</string>
     <string name="dbx_warning">*Editing file names in Dropbox might cause problems with tags and other app features.</string>
-    <string name="the_dev">The Dev</string>
+    <string name="THE_DEV">The Dev</string>
     <string name="name">The names Javi</string>
-    <string name="me_info">I am a full time student and have a full time job. Wish that I could code more, but what are you gonna do?</string>
+    <string name="my_info_explanation">I am a full time student and have a full time job. Wish that I could code more, but what are you gonna do?</string>
     <string name="donate">Donation/Ads</string>
     <string name="donation_err">Err reaching Google Play...</string>
     <string name="new_entry_hint">Body of entry</string>
@@ -341,8 +330,9 @@
     <!--
     These are stringss that havnet been translated.
     -->
-    <string name="entry_deleted_snackbar_dialog">Entry deleted</string>
-    <string name="undo_text">Undo</string>
+    <string name="ENTRY_DELETED">Entry deleted</string>
+    <string name="UNDO">Undo</string>
+    <string name="USES">Uses:  </string>
 
 
 </resources>

@@ -86,7 +86,7 @@ android:textColor="#333"
                     android:gravity="center"
                     android:paddingLeft="16dp"
                     android:paddingRight="16dp"
-                    android:text="@string/favs_welcome"
+                    android:text="@string/faves_welcome"
                     android:textSize="16sp" />
 
                 <ImageView

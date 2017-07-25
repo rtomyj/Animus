@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Erinnerungen</string>
-    <string name="action_settings">Einstellungen</string>
-    <string name="entries">Einträge</string>
+    <string name="APP_NAME">Erinnerungen</string>
+    <string name="SETTINGS">Einstellungen</string>
+    <string name="ENTRIES">Einträge</string>
     <string name="calendar_view">Kalender</string>
     <string name="favorite_entries">Favoriten</string>
-    <string name="pic_entries">Bilder</string>
-    <string name="home">Zuhause</string>
-    <string name="entry">Neuer Eintrag</string>
+    <string name="PICTURES">Bilder</string>
+    <string name="HOME">Zuhause</string>
+    <string name="NEW_ENTRY">Neuer Eintrag</string>
     <string name="address_book">Menschen</string>
-    <string name="tags">Etikett</string>
+    <string name="TAGS">Etikett</string>
     <string name="bugs_button">Bugs, Tipps, Anregungen</string>
-    <string name="take_picture">Bild Aufnehmen</string>
-    <string name="choose_photo">Wählen Sie Foto</string>
+    <string name="TAKE_PICTURE">Bild Aufnehmen</string>
+    <string name="CHOOSE_PHOTO">Wählen Sie Foto</string>
 
     <string-array name="months">
         <item>Januar</item>
@@ -30,15 +30,15 @@
         <item>Dezember</item>
     </string-array>
 
-    <string name="email">Als E-Mail</string>
+    <string name="SEND_AS_EMAIL">Als E-Mail</string>
     <string name="delete_entry_dialog">löschen? Sind Sie sicher?</string>
     <string name="delete_confirmation">löschen</string>
     <string name="delelte_dialog_message">Alle Daten werden gelöscht, wenn Sie weiterhin&#8230;</string>
     <string name="edit_tags_dialog_title">Wählen Sie einen etikett Sie löschen möchten.</string>
-    <string name="cancel">Stornieren</string>
-    <string name="tags_">Etikett: </string>
-    <string name="yes">Ja</string>
-    <string name="no">Nicht</string>
+    <string name="CANCEL">Stornieren</string>
+    <string name="tags">Etikett: </string>
+    <string name="YES">Ja</string>
+    <string name="NO">Nicht</string>
 
     <string-array name="navigation_titles">
         <item>Einträge</item>
@@ -48,8 +48,8 @@
         <item>Favorite</item>
     </string-array>
 
-    <string name="open">öffnen</string>
-    <string name="close">schließen</string>
+    <string name="OPEN">öffnen</string>
+    <string name="CLOSE">schließen</string>
 
     <string-array name="weekdays">
         <item></item>
@@ -174,17 +174,17 @@
     <string name="file_exists_err">Datei existiert</string>
     <string name="network_err">NO INTERNET</string>
     <string name="general_err">Fehler</string>
-    <string name="favs_welcome">Es wurden keine Einträge Favorit markiert ;-(</string>
+    <string name="faves_welcome">Es wurden keine Einträge Favorit markiert ;-(</string>
 
     <!--
     changed strings
     changed the order of privacy and tags in "privacy_topics" and took out the rest of the stuff. Also, changed up the "hel
     p_privacy" string.
     -->
-    <string name="help_tags">Mit Tags können Sie immer wieder besuchen letzten Einträge in einer Brise. Wenn es ein Thema, scheint 
+    <string name="tags_explanation">Mit Tags können Sie immer wieder besuchen letzten Einträge in einer Brise. Wenn es ein Thema, scheint
 immer kommen in Ihren Angaben, können Sie sie mit einem Stichwort zu verknüpfen. Dieses Schlüsselwort, oder Tag, Wille 
 dann helfen die Anwendung Link-Einträge zusammen.</string>
-    <string name="help_privacy">Die Informationen, die Sie in dieser App speichern, liegt bei Ihnen. Ich glaube nicht, und können Ihre Einträge nicht gelesen 
+    <string name="privacy_explanation">Die Informationen, die Sie in dieser App speichern, liegt bei Ihnen. Ich glaube nicht, und können Ihre Einträge nicht gelesen
 . Android 4.0 und höher keine Anzeigen. Alles unter das tut. Ansonsten gibt es Analytics läuft, um herauszufinden, 
 neue und bestehende User und die Zeit, die sie verwenden, eine bestimmte Tätigkeit. Außerdem werden Systemabsturz Protokolle XML Referenzen zu liefern. Diese Referenzen sind nur Dateinamen 
 und Etikett-Namen und wird in die Ermittlung, was die App abstürzt NDO NICHT unterstützen. \ n \ 
@@ -235,9 +235,9 @@ in Etikett und Entry-Namen, wenn Sie nicht wollen, um in die Gefahr der mich lie
     <string name="backup_and_restore">Sicherungskopie &amp; wiederherstellen</string>
     <string name="sync">Sync</string>
     <string name="dbx_warning">*Bearbeiten von Dateinamen in Dropbox könnte Probleme mit Tags und andere App-Features verursachen.</string>
-    <string name="the_dev">Entwickler</string>
+    <string name="THE_DEV">Entwickler</string>
     <string name="name">Die Namen Javi</string>
-    <string name="me_info">Ich bin ein Vollzeit-Student und habe einen Vollzeit-Job. Wünschte, ich könnte mehr Code, aber was willst du tun?&lt;br/>&lt;br/>Ich liebe Technik und Phantasie UI-Design. Die folgenden sind meine persönlichen Social Media-Konten. Wenn Sie meine Arbeit mögen, und folgen!&lt;br/>&lt;br/>
+    <string name="my_info_explanation">Ich bin ein Vollzeit-Student und habe einen Vollzeit-Job. Wünschte, ich könnte mehr Code, aber was willst du tun?&lt;br/>&lt;br/>Ich liebe Technik und Phantasie UI-Design. Die folgenden sind meine persönlichen Social Media-Konten. Wenn Sie meine Arbeit mögen, und folgen!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
     <string name="donate">Spenden</string>
     <string name="donation_err">Err reich Google Play...</string>

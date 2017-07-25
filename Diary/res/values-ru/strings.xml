@@ -5,10 +5,10 @@
     <string name="intro_pics">• Фотографии могут помочь говорят вещи Слова не могут. Неограниченное количество фотографий можно сказать много.</string>
     <string name="intro_tags">• Теги организовать записи в подобных мероприятиях и ключевых слов. Tag две различные записи, чтобы связать их.</string>
     <string name="intro_location">• Места приносит некоторую контекстуальный осведомленности, чтобы ваши записи. Включите функцию в настройках, и вы всегда будете знать, где вы были.</string>
-    <string name="help_tags">С тегами вы всегда можете вернуться к прошлым записи в ветер. Если есть тема, которая, кажется, 
+    <string name="tags_explanation">С тегами вы всегда можете вернуться к прошлым записи в ветер. Если есть тема, которая, кажется,
 всегда приходят в ваши записи, вы можете связать их с ключевым словом. Это ключевое слово, или тег, воля 
 затем помочь записи ссылка заявление вместе.</string>
-    <string name="help_privacy">Ваша информация принадлежит вам. Я не и не может читать ваши записи, и я не собирать информацию о 
+    <string name="privacy_explanation">Ваша информация принадлежит вам. Я не и не может читать ваши записи, и я не собирать информацию о
 Вы. Там нет объявлений или любых других показателей, которые потенциально могли бы собрать моделей использования 
 (кроме журналов отказ системы). Журналы сбоя системы будет поставлять ссылки XML. Эти ссылки только имена файлов 
 имена тегов, названия картин и поможет в выявлении, что вызывает приложение к краху.\n\nНЕ 
@@ -67,17 +67,17 @@
     </string-array>
 
     <string name="about">O</string>
-    <string name="action_settings">настройки</string>
+    <string name="SETTINGS">настройки</string>
     <string name="address_book">люди</string>
     <string name="allow_fullscreen">Разрешить полноэкранный</string>
     <string name="alph_sort">Сортировать по алфавиту</string>
-    <string name="app_name">Animus</string>
+    <string name="APP_NAME">Animus</string>
     <string name="bugs_button">Ошибки, советы, предложения</string>
     <string name="calendar_view">календарь</string>
-    <string name="cancel">отменить</string>
+    <string name="CANCEL">отменить</string>
     <string name="change_time_of_notification">изменение</string>
-    <string name="choose_photo">Выбрать фотографию</string>
-    <string name="close">близко</string>
+    <string name="CHOOSE_PHOTO">Выбрать фотографию</string>
+    <string name="CLOSE">близко</string>
     <string name="delelte_dialog_message">Все данные будут удалены, если вы будете продолжать ...</string>
     <string name="delete_confirmation">удалять</string>
     <string name="delete_entry_dialog">Удалить? Вы уверены?</string>
@@ -87,16 +87,16 @@
     <string name="done">сделанный</string>
     <string name="edit">редактировать</string>
     <string name="edit_tags_dialog_title">Выберите один тег вы хотите удалить.</string>
-    <string name="email">Отправить по электронной почте</string>
-    <string name="entries">Записи</string>
+    <string name="SEND_AS_EMAIL">Отправить по электронной почте</string>
+    <string name="ENTRIES">Записи</string>
     <string name="entries_welcome">Ваш дневник пуста. Нажмите кнопку +, чтобы добавить запись.</string>
-    <string name="entry">Новая запись</string>
+    <string name="NEW_ENTRY">Новая запись</string>
     <string name="favorite_entries">Избранные</string>
     <string name="favs">Избранные</string>
     <string name="full_setting_explanation">\"Новая запись\" экран пойдет на полный экран</string>
     <string name="general">общий</string>
     <string name="help">Помогите</string>
-    <string name="home">домой</string>
+    <string name="HOME">домой</string>
     <string name="intro_dialog_dismiss_button">Потрясающе! Позвольте мне начать.</string>
     <string name="intro_rate">Не забудьте оценить приложение.</string>
     <string name="location_setting_info">App будет пинг для вашего текущего местоположения.</string>
@@ -106,7 +106,7 @@
     <string name="new_note">Новый Примечание</string>
     <string name="new_pic">Новые фото Фото</string>
     <string name="new_recording">Новая запись</string>
-    <string name="no">нет</string>
+    <string name="NO">нет</string>
     <string name="no_photos_toast">Нет файлов использовали источники изображения.</string>
     <string name="no_tags_toast">Там нет записей с тегами.</string>
     <string name="note_hint">Начните вводить вашу записку.</string>
@@ -114,9 +114,9 @@
     <string name="notifications">Уведомления</string>
     <string name="occupation">оккупация</string>
     <string name="old_recording">Старый Запись</string>
-    <string name="open">открыто</string>
+    <string name="OPEN">открыто</string>
     <string name="personal">персональный</string>
-    <string name="pic_entries">Фотографии</string>
+    <string name="PICTURES">Фотографии</string>
     <string name="re_record">Re-записи</string>
     <string name="recording">Запись...</string>
     <string name="relationship">связь</string>
@@ -128,16 +128,16 @@
     <string name="status_setting_explanation">Все записи будут иметь ваши отношения, чтобы упростить опыт написания.</string>
     <string name="statuses">Статусы</string>
     <string name="stop_recording">Стоп</string>
-    <string name="tags">Метки</string>
-    <string name="tags_">Метки:</string>
-    <string name="take_picture">Сделать снимок</string>
+    <string name="TAGS">Метки</string>
+    <string name="tags">Метки:</string>
+    <string name="TAKE_PICTURE">Сделать снимок</string>
     <string name="time">время</string>
     <string name="unemployed">безработные</string>
     <string name="value_sort">Сортировать Численно</string>
     <string name="welcome">Добро пожаловать!</string>
     <string name="welcome_subtext">С помощью этого приложения вы можете записать ваши впечатления</string>
     <string name="work_question_dialog">Где вы в настоящее время работаете?</string>
-    <string name="yes">да</string>
+    <string name="YES">да</string>
     <string name="illegal_character">Незаконное характер...</string>
     <string name="add_tag">+  бирка</string>
     <string name="tag_hint_new_entry">Добавление тегов требуется ввести ключ для каждого значения.</string>
@@ -219,9 +219,9 @@
     <string name="backup_and_restore">Резервное копирование &amp; Restore</string>
     <string name="sync">Синхронизация</string>
     <string name="dbx_warning">*Изменение имен файлов в Dropbox может вызвать проблемы с тегами и другими функциями приложений.</string>
-    <string name="the_dev">Разработчик</string>
+    <string name="THE_DEV">Разработчик</string>
     <string name="name">Имена Javi</string>
-    <string name="me_info">Я студентом дневного отделения и иметь полный рабочий день. Жаль, что я мог бы код более, но то, что ты собираешься делать?&lt;br/>&lt;br/>Я люблю технологии и модный дизайн пользовательского интерфейса. Ниже мои личные социальные счета СМИ. Если вам нравится моя работа, пойти и следовать!&lt;br/>&lt;br/>
+    <string name="my_info_explanation">Я студентом дневного отделения и иметь полный рабочий день. Жаль, что я мог бы код более, но то, что ты собираешься делать?&lt;br/>&lt;br/>Я люблю технологии и модный дизайн пользовательского интерфейса. Ниже мои личные социальные счета СМИ. Если вам нравится моя работа, пойти и следовать!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
     <string name="donate">Пожертвовать</string>
     <string name="donation_err">Err достижения Google Play...</string>

@@ -54,5 +54,25 @@ freeline.py
 freeline/
 freeline_project_description.json
 
+<<<<<<< HEAD
 # Mac Settings
 .DS_STORE
+=======
+# -- Start of custom settings
+
+ #Mac Settings
+ .DS_Store
+ 
+ #Eclicpse Settings
+ *.settings
+ 
+ #Other Android files
+ project.xml
+ lint.xml
+ .classpath
+ classpath.xml
+ project.properties
+ gradlew
+ gradlew.bat
+ *.idea*
+>>>>>>> v2.3

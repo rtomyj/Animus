@@ -7,13 +7,14 @@
     android:layout_height="wrap_content"
                                     xmlns:tag_list="http://schemas.android.com/apk/res-auto"
                                     tag_list:cardCornerRadius="4dp"
+                                    tag_list:cardUseCompatPadding="true"
+                                    android:elevation="2dp"
     android:orientation="vertical" >
         <LinearLayout
         
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:elevation="2dp"
     android:background="?android:selectableItemBackground"
     android:paddingBottom="8dp"
     android:paddingTop="8dp"

@@ -1,29 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="action_settings">Configuración</string>
+    <string name="SETTINGS">Configuración</string>
     <string name="address_book">Personas</string>
-    <string name="app_name">Animus</string>
+    <string name="APP_NAME">Animus</string>
     <string name="bugs_button">Bugs, Consejos, sugerencias</string>
     <string name="calendar_view">calendario</string>
-    <string name="cancel">Cancelar</string>
-    <string name="choose_photo">Elegir Un Foto</string>
-    <string name="close">Concluir</string>
+    <string name="CANCEL">Cancelar</string>
+    <string name="CHOOSE_PHOTO">Elegir Un Foto</string>
+    <string name="CLOSE">Concluir</string>
     <string name="delelte_dialog_message">Se borrarán todos los datos si sigui&#8230;</string>
     <string name="delete_confirmation">Invalidar</string>
     <string name="delete_entry_dialog">¿Invalidar? Esta seguro?</string>
     <string name="edit_tags_dialog_title">Seleccione una etiqueta que desea invalidar.</string>
-    <string name="email">Enviar Por Correo Electrónico</string>
-    <string name="entries">Entradas</string>
-    <string name="entry">Nueva Entrada</string>
+    <string name="SEND_AS_EMAIL">Enviar Por Correo Electrónico</string>
+    <string name="ENTRIES">Entradas</string>
+    <string name="NEW_ENTRY">Nueva Entrada</string>
     <string name="favorite_entries">Favoritos</string>
-    <string name="home">Interior</string>
-    <string name="no">No</string>
-    <string name="pic_entries">Imágenes</string>
-    <string name="tags">Etiquetas</string>
-    <string name="tags_">Etiquetas:</string>
-    <string name="take_picture">Tomar Foto</string>
-    <string name="yes">Si</string>
+    <string name="HOME">Interior</string>
+    <string name="NO">No</string>
+    <string name="PICTURES">Imágenes</string>
+    <string name="TAGS">Etiquetas</string>
+    <string name="tags">Etiquetas:</string>
+    <string name="TAKE_PICTURE">Tomar Foto</string>
+    <string name="YES">Si</string>
     <string name="general">General</string>
 
     <string-array name="months">
@@ -70,7 +70,7 @@
     <string name="new_entry">Nueva Entrada</string>
     <string name="edit">Editar</string>
     <string name="done">Hecho</string>
-    <string name="open">Abrir</string>
+    <string name="OPEN">Abrir</string>
     <string name="new_note">Nueva Nota</string>
     <string name="note_hint">Comience a escribir su nota.</string>
     <string name="personal">Personal</string>
@@ -172,17 +172,17 @@
     <string name="file_exists_err">El archivo existe</string>
     <string name="network_err">NO INTERNET</string>
     <string name="general_err">Error</string>
-    <string name="favs_welcome">No hay entradas se han favorecido ;-(</string>
+    <string name="faves_welcome">No hay entradas se han favorecido ;-(</string>
 
     <!--
     changed strings
     changed the order of privacy and tags in "privacy_topics" and took out the rest of the stuff. Also, changed up the "hel
     p_privacy" string.
     -->
-    <string name="help_tags">Con las etiquetas siempre se puede volver a las entradas antiguas de una brisa. Si hay un tema que parece 
+    <string name="tags_explanation">Con las etiquetas siempre se puede volver a las entradas antiguas de una brisa. Si hay un tema que parece
 venir siempre en sus entradas, puede asociarlos con una palabra clave. Esta palabra clave o etiqueta, voluntad 
 luego ayudar al enlace de la aplicación entradas juntas.</string>
-    <string name="help_privacy">La información almacenada en esta aplicación es suya. Yo no lo hago y no puedo leer tus entradas 
+    <string name="privacy_explanation">La información almacenada en esta aplicación es suya. Yo no lo hago y no puedo leer tus entradas
 . Android 4.0 y superior no tienen anuncios. Cualquier cosa por debajo que hace. De lo contrario hay análisis que se ejecutan para averiguar 
 nuevos y antiguos usuarios y la cantidad de tiempo que utilizan una determinada actividad. Además, los registros de errores del sistema proporcionarán referencias XML. Estas referencias son sólo nombres de archivo 
 y los nombres de etiquetas y ayudarán en la localización de lo que hace que la aplicación se bloquee. \ n \ nNo 
@@ -233,9 +233,9 @@ en las etiquetas y nombres de entrada si usted no desea ejecutar en el riesgo de
     <string name="backup_and_restore">Copia de Seguridad &amp; Restaurar</string>
     <string name="sync">Sincronización</string>
     <string name="dbx_warning">*Edición de nombres de archivo en Dropbox podrían causar problemas con las etiquetas y otras características de la aplicación.</string>
-    <string name="the_dev">El Desarrollador</string>
+    <string name="THE_DEV">El Desarrollador</string>
     <string name="name">El nombres\' Javi</string>
-    <string name="me_info">Soy un estudiante de tiempo completo y tener un trabajo a tiempo completo. Ojalá que yo pudiera codificar más, pero lo que vas a hacer?&lt;br/>&lt;br/>Me encanta la tecnología y el diseño de interfaz de usuario elegante. Los siguientes son mis cuentas de redes sociales personales. Si te gusta mi trabajo, vaya y siga!&lt;br/>&lt;br/>
+    <string name="my_info_explanation">Soy un estudiante de tiempo completo y tener un trabajo a tiempo completo. Ojalá que yo pudiera codificar más, pero lo que vas a hacer?&lt;br/>&lt;br/>Me encanta la tecnología y el diseño de interfaz de usuario elegante. Los siguientes son mis cuentas de redes sociales personales. Si te gusta mi trabajo, vaya y siga!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
     <string name="donate">Donar</string>
     <string name="donation_err">Errar llegar Google Play...</string>
