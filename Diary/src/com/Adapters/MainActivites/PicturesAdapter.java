@@ -1,16 +1,12 @@
-package com.Adapters;
+package com.Adapters.MainActivites;
 
 import android.app.ActivityManager;
 import android.content.Context;
-import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
-import android.preference.PreferenceManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +14,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.Adapters.Parents.AdapterBase;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.LauncherMethods;
 import com.UtilityClasses.Pictures;
@@ -27,7 +24,6 @@ import com.rtomyj.Diary.R;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Locale;
 
 
 public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder> {

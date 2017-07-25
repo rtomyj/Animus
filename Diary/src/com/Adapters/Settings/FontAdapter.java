@@ -1,4 +1,4 @@
-package com.Adapters;
+package com.Adapters.Settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -43,19 +43,19 @@ public class FontAdapter extends ArrayAdapter<String> {
 				.getDefaultSharedPreferences(c);
 
 		if (sp.getString("Theme", "Default").contains("Onyx")) {
-			LinearLayout p = (LinearLayout) rowView.findViewById(R.id.parent);
+			LinearLayout p = rowView.findViewById(R.id.parent);
 
 			p.setBackground(c.getResources().getDrawable(
 					R.drawable.onyx_selector));
 
 
-			TextView tv2 = (TextView) rowView.findViewById(R.id.textView2);
+			TextView tv2 = rowView.findViewById(R.id.textView2);
 
 			tv2.setTextColor(c.getResources().getColor(R.color.UIDarkText));
 		}
 
-		tv = (TextView) rowView.findViewById(R.id.textView1);
-		tv2 = (TextView) rowView.findViewById(R.id.textView2);
+		tv = rowView.findViewById(R.id.textView1);
+		tv2 = rowView.findViewById(R.id.textView2);
 
 		if (position == 1) {
 					tv.setText(fonts.get(position));

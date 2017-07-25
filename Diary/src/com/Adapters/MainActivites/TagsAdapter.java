@@ -1,4 +1,4 @@
-package com.Adapters;
+package com.Adapters.MainActivites;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.MainActivities.ChosenTag;
+import com.Adapters.Parents.AdapterSummaryCache;
 import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;

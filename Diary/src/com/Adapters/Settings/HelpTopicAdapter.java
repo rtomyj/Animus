@@ -1,4 +1,4 @@
-package com.Adapters;
+package com.Adapters.Settings;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -30,8 +30,8 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 		    LayoutInflater inflater = (LayoutInflater) context
 		        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 		    View rowView = inflater.inflate(R.layout.help_topics, parent, false);
-		    TextView topic = (TextView) rowView.findViewById(R.id.topic);
-		    TextView info = (TextView) rowView.findViewById((R.id.info));
+		    TextView topic = rowView.findViewById(R.id.topic);
+		    TextView info = rowView.findViewById((R.id.info));
 
 		    topic.setText(values.get(position));
 		    SharedPreferences sp = PreferenceManager
@@ -39,7 +39,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 
 			if (sp.getString("Theme", "Default").equals("Onyx B")) {
 
-				LinearLayout p = (LinearLayout) rowView.findViewById(R.id.parent);
+				LinearLayout p = rowView.findViewById(R.id.parent);
 
 				info.setTextColor(context.getResources().getColor(R.color.UIDarkText));
 				p.setBackground(context.getResources().getDrawable(
@@ -47,7 +47,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 			}
 			else if (sp.getString("Theme", "Default").equals("Onyx P")) {
 
-				LinearLayout p = (LinearLayout) rowView.findViewById(R.id.parent);
+				LinearLayout p = rowView.findViewById(R.id.parent);
 
 				info.setTextColor(context.getResources().getColor(R.color.UIDarkText));
 				p.setBackground(context.getResources().getDrawable(

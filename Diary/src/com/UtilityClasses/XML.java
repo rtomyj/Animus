@@ -510,7 +510,7 @@ public class XML {
 
     // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
     public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList
-            , final File filesDir ) throws IndexOutOfBoundsException{
+            , final ArrayList<Boolean >faveArrList, final File filesDir ) {
         new Thread(new Runnable() {
             DocumentBuilderFactory factory;
             DocumentBuilder builder;
@@ -535,7 +535,7 @@ public class XML {
                 }
 
                 StringBuilder currentTagName = new StringBuilder();
-                byte faveIndex = 0, amountOfTags;
+                byte  amountOfTags;
 
 
                 nodeList = doc.getElementsByTagName("Files");
@@ -548,31 +548,38 @@ public class XML {
                     if (!node.getNodeName().equals("#text")) {
                         element = (Element) node;
                         if (element.getAttribute("favoriteSelectedFile").equals("true")) {
-                            filenames.set(faveIndex, element.getAttribute("name"));
+                            filenames.add(element.getAttribute("name"));
                             // If the amount of tags in the xml element "tags" is 0 then the tag Arrays will get populated with null
                             // otherwise they will get populated in the for loop, along with the ArrayList holding unique tags.
 
                             amountOfTags = Byte.parseByte(element.getAttribute("tags"));
+                            switch (amountOfTags){
+                                case 0:
+                                    tag1ArrList.add("");
+                                case 1:
+                                    tag2ArrList.add("");
+                                case 2:
+                                    tag3ArrList.add("");
+                            }
                             getTags: for (byte x = 0; x < amountOfTags; x++) {
                                 currentTagName.delete(0, currentTagName.length());
                                 currentTagName.append(element.getAttribute("tag" + Integer.toString(x + 1)));
                                 String currentTag = currentTagName.toString();
-
                                 switch (x){
                                     case 0:
-                                        tag1ArrList.set(faveIndex, currentTag);
+                                        tag1ArrList.add(currentTag);
                                         break;
                                     case 1:
-                                        tag2ArrList.set(faveIndex, currentTag);
+                                        tag2ArrList.add(currentTag);
                                         break;
                                     case 2:
-                                        tag3ArrList.set(faveIndex, currentTag);
+                                        tag3ArrList.add(currentTag);
                                         break;
                                     default:
                                         break getTags;
                                 }
+
                             }
-                            faveIndex ++;
                         }
                     }
                 }

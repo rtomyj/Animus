@@ -4,7 +4,7 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.MenuItem;
 
-import com.Adapters.PicturesAdapter;
+import com.Adapters.MainActivites.PicturesAdapter;
 import com.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 import java.util.ArrayList;
@@ -27,7 +27,6 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 
 			if(picArrList != null) {
 				activityAdapter = new PicturesAdapter(this, picArrList, userUIPreferences);
-				setActionBarSubTitle("Total: " + activityAdapter.getTotalPicCount());		// sets the total of all pictures saved in app not just the number that shows up in adapter
 			}
 
 		}

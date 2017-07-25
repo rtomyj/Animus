@@ -1,7 +1,9 @@
-package com.Adapters;
+package com.Adapters.MainActivites;
 
 import android.content.Context;
 
+import com.Adapters.Parents.EntriesBaseAdapter;
+import com.MainActivities.Domus;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
@@ -14,15 +16,21 @@ import java.util.Collections;
      Created by CaptainSaveAHoe on 7/12/17.
  */
 
-public class AllUserEntriesAdapter extends EntriesBaseAdapter {
+/*
+    Adapter for the Activity "Domus"
 
-    public AllUserEntriesAdapter(Context context, CustomAttributes userUIPreferences){
+    It displays all .txt files in a list in the order last modified (descending). Its parent class handles most of the work.
+ */
+
+public class DomusAdapter extends EntriesBaseAdapter {
+
+    public DomusAdapter(Context context, CustomAttributes userUIPreferences){
         super(context, userUIPreferences);
         loadAllEntries();
     }
 
-    public AllUserEntriesAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
-                                 CustomAttributes userUIPreferences) {
+    public DomusAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList,
+                        ArrayList<Boolean> favArrList, CustomAttributes userUIPreferences) {
 
         super(context, sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, userUIPreferences);
     }
@@ -52,8 +60,10 @@ public class AllUserEntriesAdapter extends EntriesBaseAdapter {
             }
         }).start();
 
-        if (initSize < MAX_CACHE_SIZE)
+        if (initSize < MAX_CACHE_SIZE && initSize != 0)
             setCacheSize(initSize);
+        else if (initSize == 0)
+            setCacheSize(1);
     }
 
 

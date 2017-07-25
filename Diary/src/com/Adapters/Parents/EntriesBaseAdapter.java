@@ -1,4 +1,4 @@
-package com.Adapters;
+package com.Adapters.Parents;
 
 import android.content.Context;
 import android.support.v7.widget.CardView;
@@ -10,6 +10,7 @@ import android.view.animation.AnimationUtils;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.UtilityClasses.DeletedEntry;
 import com.UtilityClasses.LauncherMethods;
 import com.UtilityClasses.MiscMethods;
 import com.UtilityClasses.Tags;
@@ -21,26 +22,24 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Locale;
 
+/*
+    Parent class for adapters that show a summary of the file .txt file, its last modified date, 3 of its tags and whether it was a favorite entry.
+ */
 public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.ViewHolder> {
-
-    // cache for deleted content
-    private String cacheFileName, cacheTag1, cacheTag2, cachetTag3;
-    private boolean cacheFileIsFavorite;
-    private int cachePosition;
+    private DeletedEntry deletedEntry;
 
     // lists holding contents for the recycler view
-    ArrayList<String> sortedFilesArrList;
-    ArrayList<String> tag1ArrList;
-    ArrayList<String> tag2ArrList;
-    ArrayList<String> tag3ArrList;
-    ArrayList<Boolean> favArrList;
+    protected ArrayList<String> sortedFilesArrList;
+    protected ArrayList<String> tag1ArrList;
+    protected ArrayList<String> tag2ArrList;
+    protected ArrayList<String> tag3ArrList;
+    protected ArrayList<Boolean> favArrList;
 
     // controls which views get animated
     private short maxPosition;
 
     // other
-    private Locale locale;
-    int initSize = 1;
+    protected int initSize = 1;
 
     /*
     holds a limited amount of UI objects. When the recycler view needs to get new objects, old ones are recycled from here.
@@ -85,8 +84,8 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
     }
 
     // Constructor with the necessary data set being passed to it.
-    EntriesBaseAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList, ArrayList<Boolean> favArrList,
-                       CustomAttributes userUIPreferences) {
+    protected EntriesBaseAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList,
+                                 ArrayList<Boolean> favArrList, CustomAttributes userUIPreferences) {
         super(context, userUIPreferences);
         // transfers all the info from the calling activity to this adapter.
         this.sortedFilesArrList = new ArrayList<>(sortedFilesArrList);
@@ -100,9 +99,8 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
 
     // constructor with only the months array and the calling activities Context
-    EntriesBaseAdapter(Context context, CustomAttributes userUIPreferences) {
+    protected EntriesBaseAdapter(Context context, CustomAttributes userUIPreferences) {
         super(context, userUIPreferences);
-
         setupData();
     }
 
@@ -121,13 +119,11 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         if (!holder.alreadyCustomized) {
             holder.alreadyCustomized = true;
 
-
-            // changes colors of UI elements according to theme.
-            holder.favTV.setTextColor(userUIPreferences.primaryColor);
-            holder.menuTV.setTextColor(userUIPreferences.primaryColor);
+            // changes TextColor
             holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
             holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
 
+            // changes background and text color depending whether theme is dark
             switch (userUIPreferences.theme) {
                 case "Onyx P":
                 case "Onyx B":
@@ -138,21 +134,25 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
                     holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                     holder.favTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                     break;
+                default:
+                    holder.menuTV.setTextColor(userUIPreferences.primaryColor);
+                    holder.favTV.setTextColor(userUIPreferences.primaryColor);
+                    break;
             }
 
             // changes text size and number of lines according to user preference
             holder.summaryTV.setMaxLines(userUIPreferences.numLines);
             holder.summaryTV.setMinLines(userUIPreferences.numLines);
 
+            // changes text size
             holder.summaryTV.setTextSize(userUIPreferences.textSize);
-            holder.dayTV.setTextSize(userUIPreferences.textSize + (float) 5);
+            holder.dayTV.setTextSize(userUIPreferences.largeTextSize);
             holder.monthTV.setTextSize(userUIPreferences.textSize);
-            holder.titleTV.setTextSize(userUIPreferences.textSize + (float) 2);
+            holder.titleTV.setTextSize(userUIPreferences.mediumTextSize);
             holder.timeTV.setTextSize(userUIPreferences.textSize);
 
-
             // changes font if applicable
-            if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
+            if (userUIPreferences.userSelectedFontTF != null) {
                 holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
                 holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
                 holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
@@ -168,9 +168,21 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
     // Replace the contents of a view (invoked by the layout manager)
     @Override
     public synchronized void onBindViewHolder(ViewHolder holder, final int position) {
-        holder.parent.setClickable(true);
-        holder.parent.setId(position);
-        holder.parent.setOnClickListener(new View.OnClickListener() {
+        setOnclick(holder.cardView, position);
+        customizeUI(holder);
+        setInfo(holder, position);
+        tags(holder, position);
+
+        if (position > maxPosition && position > 2) {
+            holder.parent.startAnimation(userUIPreferences.animation);
+            maxPosition = (short) position;
+        }
+
+    }
+    private void setOnclick(CardView parent, int position){
+        parent.setClickable(true);
+        parent.setId(position);
+        parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View parent) {
                 int position = parent.getId();
@@ -178,19 +190,6 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
             }
         });
-
-        customizeUI(holder);
-        setInfo(holder, position);
-        tags(holder, position);
-
-        // the id for the two views is the position they are in the RecyclerView so whenever they are clicked I can just check the id of the view and pull the info at that position from adapter
-        holder.menuTV.setId(position);
-        holder.favTV.setId(position);
-
-        if (position > maxPosition && position > 2) {
-            holder.parent.startAnimation(userUIPreferences.animation);
-            maxPosition = (short) position;
-        }
 
     }
 
@@ -203,11 +202,16 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
     // sets text to the views from the entry file/files.xml
     private void setInfo(ViewHolder holder, int position) {
+        // the id for the two views is the position they are in the RecyclerView so whenever they are clicked I can just check the id of the view and pull the info at that position from adapter
+        holder.menuTV.setId(position);
+        holder.favTV.setId(position);
 
-        File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
         // sets filename to selected view.
-        String filename = sortedFilesArrList.get(position); // gets the file name with the extension and the underscores instead of spaces.
-        String formattedFilename = filename.replaceAll(".txt", "").replaceAll("_", " ");
+        String currentFile = sortedFilesArrList.get(position);
+        StringBuilder filenameBuilder = new StringBuilder(currentFile);
+        filenameBuilder.delete(filenameBuilder.indexOf(".txt"), filenameBuilder.length());
+
+        String formattedFilename = filenameBuilder.toString().replaceAll("_", " ");
 
         if (formattedFilename.length() > 3) { // user can name a file with a name shorter than 4 letters. This catches that exception
             switch (formattedFilename.substring(0, 4)) {
@@ -225,6 +229,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         Calendar calendar = Calendar.getInstance();
 
         // gets a calendar instance and changes views text to corresponding info.
+        File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
         calendar.setTimeInMillis(file.lastModified());
 
         holder.timeTV.setText(MiscMethods.getLocalizedTime(calendar));
@@ -243,7 +248,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
             holder.favTV.setText("☆");
 
 
-        setSummary(holder.summaryTV, filename);
+        setSummary(holder.summaryTV, currentFile);
 
     }
 
@@ -347,13 +352,9 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
     }
 
 
+    // user can delete entry from the respective main activity. Deleted entry is cached in case user undo's deletion using SnackBar
     public void childRemoved(int target){
-        cachePosition = target;
-        cacheFileName = sortedFilesArrList.get(target);
-        cacheTag1 = tag1ArrList.get(target);
-        cacheTag2 = tag2ArrList.get(target);
-        cachetTag3 = tag3ArrList.get(target);
-        cacheFileIsFavorite = favArrList.get(target);
+        deletedEntry = new DeletedEntry(sortedFilesArrList.get(target), tag1ArrList.get(target), tag2ArrList.get(target), tag3ArrList.get(target), favArrList.get(target), target);
 
         sortedFilesArrList.remove(target);
         tag1ArrList.remove(target);
@@ -365,12 +366,16 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         this.notifyItemRangeChanged(target, this.getItemCount());
 
     }
+
+    // Restores deleted entry from SnackBar undo button.
     public void restorePreviousDeletion(){
-        sortedFilesArrList.add(cachePosition, cacheFileName);
-        tag1ArrList.add(cachePosition, cacheTag1);
-        tag2ArrList.add(cachePosition, cacheTag2);
-        tag3ArrList.add(cachePosition, cachetTag3);
-        favArrList.add(cachePosition, cacheFileIsFavorite);
+        int cachePosition = deletedEntry.cachePosition;
+        sortedFilesArrList.add(cachePosition, deletedEntry.cacheFileName);
+        tag1ArrList.add(cachePosition, deletedEntry.cacheTag1);
+        tag2ArrList.add(cachePosition, deletedEntry.cacheTag2);
+        tag3ArrList.add(cachePosition, deletedEntry.cachetTag3);
+        favArrList.add(cachePosition, deletedEntry.cacheFileIsFavorite);
+        deletedEntry = null;
 
         notifyItemInserted(cachePosition);
         notifyItemRangeChanged(cachePosition, this.getItemCount());
@@ -382,14 +387,15 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         notifyItemChanged(target);
     }
 
-    public void newEntry(String name, String tag1, String tag2, String tag3, boolean fave){
+    public void newEntry(String name, String tag1, String tag2, String tag3, boolean isFave){
         sortedFilesArrList.add(0, name);
         tag1ArrList.add(0, tag1);
         tag2ArrList.add(0, tag2);
         tag3ArrList.add(0, tag3);
-        favArrList.add(0, fave);
+        favArrList.add(0, isFave);
 
         notifyItemInserted(0);
         notifyItemRangeChanged(0, getItemCount());
     }
+
     }

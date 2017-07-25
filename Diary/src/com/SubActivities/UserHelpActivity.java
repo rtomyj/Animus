@@ -8,7 +8,7 @@ import android.support.v7.widget.Toolbar;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 
-import com.Adapters.HelpTopicAdapter;
+import com.Adapters.Settings.HelpTopicAdapter;
 import com.rtomyj.Diary.R;
 
 import java.lang.ref.WeakReference;

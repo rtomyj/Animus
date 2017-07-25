@@ -17,10 +17,10 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.Adapters.AllUserEntriesAdapter;
-import com.Adapters.EntriesBaseAdapter;
-import com.Adapters.ChosenTagAdapter;
-import com.Adapters.FaveEntriesAdapter;
+import com.Adapters.MainActivites.DomusAdapter;
+import com.Adapters.Parents.EntriesBaseAdapter;
+import com.Adapters.MainActivites.ChosenTagAdapter;
+import com.Adapters.MainActivites.FaveAdapter;
 import com.UtilityClasses.LauncherMethods;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.XML;
@@ -70,11 +70,11 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 			// uses the previous states info to reinitialize the adapter.
 			switch (currentActivityIdentifier){
 				case DOMUS:
-					activityAdapter = new AllUserEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
+					activityAdapter = new DomusAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
 							userUIPreferences);
 					break;
 				case FAVES:
-					activityAdapter = new FaveEntriesAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
+					activityAdapter = new FaveAdapter(this, sortedFilesArrWeak.get(), tag1ArrWeak.get(), tag2ArrWeak.get(), tag3ArrWeak.get(), favArrayListWeak.get(),
 							userUIPreferences);
 					break;
 				case CHOSEN_TAG:
@@ -86,10 +86,10 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 		} else { 		 // if there is nothing in the bundle then the class creates a new Adapter object. The Adapter will then load the files necessary from scratch
 			switch (currentActivityIdentifier) {
 				case DOMUS:
-					activityAdapter = new AllUserEntriesAdapter(this, userUIPreferences);
+					activityAdapter = new DomusAdapter(this, userUIPreferences);
 					break;
 				case FAVES:
-					activityAdapter = new FaveEntriesAdapter(this, userUIPreferences);
+					activityAdapter = new FaveAdapter(this, userUIPreferences);
 					break;
 				case CHOSEN_TAG:
 					activityAdapter = new ChosenTagAdapter(this, userUIPreferences, chosenTagName, adapterInitSize);

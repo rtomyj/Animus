@@ -6,7 +6,10 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.AsyncTask;
+import android.os.Build;
+import android.text.Html;
 import android.text.SpannableString;
+import android.text.Spanned;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -437,6 +440,15 @@ public class MiscMethods {
 			}
 		}
 
+	}
+
+	@SuppressWarnings("deprecation")
+	public static Spanned getHTMLStringVersion(String source) {
+		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+			return Html.fromHtml(source, Html.FROM_HTML_SEPARATOR_LINE_BREAK_PARAGRAPH);
+		} else
+			return
+					Html.fromHtml(source);
 	}
 
 }

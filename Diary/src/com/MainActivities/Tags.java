@@ -3,14 +3,12 @@ package com.MainActivities;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
-import com.Adapters.TagsAdapter;
+import com.Adapters.MainActivites.TagsAdapter;
 import com.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 
 public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	// other

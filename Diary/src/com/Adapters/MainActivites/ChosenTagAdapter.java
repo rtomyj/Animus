@@ -1,7 +1,8 @@
-package com.Adapters;
+package com.Adapters.MainActivites;
 
 import android.content.Context;
 
+import com.Adapters.Parents.EntriesBaseAdapter;
 import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 
@@ -12,6 +13,11 @@ import java.util.Collections;
      Created by MacMini on 7/19/17.
  */
 
+/*
+    Adapter for the MainActivity "ChosenTag"
+
+    Loads files only if they have the specified tag associated to it. Its super class does most of its work.
+ */
 public class ChosenTagAdapter extends EntriesBaseAdapter {
 
     public ChosenTagAdapter(Context context, CustomAttributes userUIPreferences, String tagName, int initSize){
@@ -30,7 +36,6 @@ public class ChosenTagAdapter extends EntriesBaseAdapter {
         tag2ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
         tag3ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
         favArrList = new ArrayList<>(Collections.nCopies(initSize, false));
-
 
         XML.getChosenTagEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir(), tagName);
     }
