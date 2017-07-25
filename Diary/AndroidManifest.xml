@@ -195,7 +195,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.Settings.MainSettingsFrag"
+            android:name="com.Settings.MainSettingsActivity"
             android:configChanges="orientation"
             android:label="@string/SETTINGS"
             android:parentActivityName="com.BaseClasses.Entries">
