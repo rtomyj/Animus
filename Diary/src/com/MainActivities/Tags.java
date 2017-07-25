@@ -3,8 +3,8 @@ package com.MainActivities;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.view.MenuItem;
-import com.Adapters.MainActivites.TagsAdapter;
-import com.BaseClasses.MainActivity;
+import com.Adapters.MainAdapters.TagsAdapter;
+import com.MainActivities.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 
 import java.util.ArrayList;

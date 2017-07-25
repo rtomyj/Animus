@@ -5,7 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
-import com.BaseClasses.ActivityTypes;
+import com.MainActivities.BaseClasses.ActivityTypes;
 import com.MainActivities.Domus;
 import com.MainActivities.FaveEntries;
 import com.EntryActivities.NewEntry;

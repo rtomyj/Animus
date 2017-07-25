@@ -1,4 +1,4 @@
-package com.BaseClasses;
+package com.MainActivities;
 
 import android.support.design.widget.Snackbar;
 import android.support.v7.widget.LinearLayoutManager;
@@ -17,10 +17,11 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.TextView;
 
-import com.Adapters.MainActivites.DomusAdapter;
+import com.Adapters.MainAdapters.DomusAdapter;
 import com.Adapters.Parents.EntriesBaseAdapter;
-import com.Adapters.MainActivites.ChosenTagAdapter;
-import com.Adapters.MainActivites.FaveAdapter;
+import com.Adapters.MainAdapters.ChosenTagAdapter;
+import com.Adapters.MainAdapters.FaveAdapter;
+import com.MainActivities.BaseClasses.MainActivity;
 import com.UtilityClasses.LauncherMethods;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.XML;

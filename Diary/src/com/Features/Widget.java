@@ -9,7 +9,7 @@ import android.util.Log;
 import android.widget.RemoteViews;
 
 import com.EntryActivities.NewEntry;
-import com.MainActivities.SplashScreen;
+import com.SubActivities.SplashScreen;
 import com.rtomyj.Diary.R;
 
 public class Widget extends AppWidgetProvider {

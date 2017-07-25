@@ -1,4 +1,4 @@
-package com.BaseClasses;
+package com.MainActivities.BaseClasses;
 
 import android.content.Context;
 import android.content.Intent;

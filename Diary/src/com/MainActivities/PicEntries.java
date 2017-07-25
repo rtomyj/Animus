@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.MenuItem;
 
-import com.Adapters.MainActivites.PicturesAdapter;
-import com.BaseClasses.MainActivity;
+import com.Adapters.MainAdapters.PicturesAdapter;
+import com.MainActivities.BaseClasses.MainActivity;
 import com.rtomyj.Diary.R;
 import java.util.ArrayList;
 
@@ -15,6 +15,14 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 	protected void onSaveInstanceState(Bundle outState) {
 		super.onSaveInstanceState(outState);
 		outState.putStringArrayList("PIC_ARR_LIST", activityAdapter.getPicturesArrList());
+
+		int size = activityAdapter.getItemCount(), index = 0;
+		long[] lastModifiedArr = new long[size];
+		for (Long lastModified : activityAdapter.getLastModifiedArrList()){
+			lastModifiedArr[index] = lastModified;
+			index++;
+		}
+		outState.putLongArray("MODIFIED_LONG_FOR_PICS", lastModifiedArr);
 	}
 
 	@Override
@@ -25,9 +33,15 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 		if (savedInstanceState != null){
 			ArrayList<String> picArrList = savedInstanceState.getStringArrayList("PIC_ARR_LIST");
 
-			if(picArrList != null) {
-				activityAdapter = new PicturesAdapter(this, picArrList, userUIPreferences);
+			int size = picArrList.size(),  index = 0;
+			ArrayList<Long> lastModifiedArrList = new ArrayList<>(size);
+			long[] lastModifiedArr = savedInstanceState.getLongArray("MODIFIED_LONG_FOR_PICS");
+			for (long lastModified: lastModifiedArr){
+				lastModifiedArrList.add(lastModified);
+				index ++;
 			}
+
+			activityAdapter = new PicturesAdapter(this, picArrList, lastModifiedArrList, userUIPreferences);
 
 		}
 

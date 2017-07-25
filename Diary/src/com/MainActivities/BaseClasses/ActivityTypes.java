@@ -1,4 +1,4 @@
-package com.BaseClasses;
+package com.MainActivities.BaseClasses;
 
 /**
  * Created by MacMini on 7/18/17.

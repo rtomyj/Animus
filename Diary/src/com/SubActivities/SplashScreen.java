@@ -1,4 +1,4 @@
-package com.MainActivities;
+package com.SubActivities;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -9,7 +9,8 @@ import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.BaseClasses.Activity_Base;
+import com.MainActivities.BaseClasses.Activity_Base;
+import com.MainActivities.Domus;
 import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 
@@ -82,7 +83,7 @@ public class SplashScreen extends Activity_Base {
 
 
 			final Intent domusIntent = new Intent(this, Domus.class);
-			domusIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+			domusIntent.addFlags(Intent.FLAG_ACTIVITY_TASK_ON_HOME);
 
 
 			// runs a delayed task. Entries will launch automatically in 2.5 seconds
@@ -115,7 +116,7 @@ public class SplashScreen extends Activity_Base {
 
 			if (passwordET.getText().toString().equals(password)) {
 				Intent i = new Intent(this, Domus.class);
-				i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
+				i.addFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);
 				startActivity(i);
 			} else {
 				hintTV.setText(getResources().getString(R.string.wrong) + "\n" + getResources().getString(R.string.enter_password));

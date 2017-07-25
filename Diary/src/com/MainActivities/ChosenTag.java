@@ -2,8 +2,6 @@ package com.MainActivities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import com.BaseClasses.Entries;
-import com.rtomyj.Diary.R;
 
 public class ChosenTag extends Entries {
 

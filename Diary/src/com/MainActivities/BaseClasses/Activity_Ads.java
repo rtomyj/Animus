@@ -1,4 +1,4 @@
-package com.BaseClasses;
+package com.MainActivities.BaseClasses;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;

@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-import com.BaseClasses.Activity_Base;
+import com.MainActivities.BaseClasses.Activity_Base;
 import com.UtilityClasses.UI;
 import com.rtomyj.Diary.R;
 

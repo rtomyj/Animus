@@ -1,4 +1,4 @@
-package com.BaseClasses;
+package com.MainActivities.BaseClasses;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
