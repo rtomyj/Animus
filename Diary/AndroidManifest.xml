@@ -114,7 +114,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.MainActivities.SelectedTag"
+            android:name="com.MainActivities.ChosenTag"
             android:configChanges="orientation"
             android:label="All Entries"
             android:parentActivityName="com.BaseClasses.Entries">
