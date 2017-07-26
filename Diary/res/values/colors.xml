@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--        colors for light themes     -->
+    <color name="UILightForeground">#ffffff</color>
+    <color name="UILightForegroundPressed">#efefef</color>
+    <color name="UIForegroundTransparent">#bbf7f7f7</color>
+    <color name="UILightBackground">#e6e6e6</color>
+    <color name="UILightNormalText">#373737</color>
+    <color name="UILightNonImportantText">#535354</color>
+
+    <!--        colors for dark themes     -->
+    <color name="UIDarkForeground">#3b3b3b</color>
+    <color name="UIDarkGray">#222</color>
+    <color name="UIDarkForegroundPressed">#333</color>
+    <color name="UIDarkNormalText">#cccccc</color>
+    <color name="UIDarkPurple">#e981fe</color>
+    <color name="UIDarkBackground">#191919</color>
+    <color name="UIDarkNonImportantText">#979798</color>
+    <color name="UIDarkBlue_Green">#039e71</color>
+
+    <!--            others      -->
+    <color name="Transparent_UIDarkGray">#df222222</color>
+
+    <!--        common colors       -->
+    <color name="UIPurple">#e04efe</color>
+    <color name="UIOrange">#f8751a</color>
+    <color name="UIBlack">#000000</color>
+    <color name="UIRed">#dd191d</color>
+
+
+
+
+
+    <color name="UISpringForeground">#faffd6</color>
+    <color name="UISpringLightGreen">#cbf4ae</color>
+    <color name="UISpringLightPink">#ffa1b3</color>
+    <color name="UISpringPink">#ff839d</color>
+
+
+
+    <!--        colors for default theme        -->
+    <color name="UIPink">#fc144a</color>
+    <color name="UIDarkPink">#eb0339</color>
+    <color name="UIBlue">#288dec</color>
+
+    <!--        colors for OnyxB  theme       -->
+    <color name="UIDarkOrange">#f18944</color>
+    <color name="UIDarkBlue">#008090</color>
+
+    <!--        colors for OnyxP  theme       -->
+    <color name="UIDarkGreen">#48f586</color>
+    <color name="UIDark_Pink">#fc567e</color>
+
+    <!--         Material colors for primary colors use the 600 version on at google's material design - colors documentation. The dark version of it uses 700. The secondary color
+           uses A400, if available-->
+    <!--        colors for Material 1 theme      -->
+    <color name="UIMaterialPink">#D81B60</color>
+    <color name="UIMaterialDarkPink">#C2185B</color>
+    <color name="UIMaterialLightGreen">#64DD17</color>
+
+    <!--        colors for Material 2 theme     -->
+    <color name = "UIMaterialBlue">#3949AB</color>
+    <color name = "UIMaterialDarkBlue">#303F9F</color>
+    <color name = "UIMaterialDeepOrange">#FF9100</color>
+
+    <!--      colors for Material 3 theme     -->
+    <color name="UIMaterialPurple">#5E35B1</color>
+    <color name="UIMaterialDarkPurple">#512DA8</color>
+    <color name="UIMaterialDeepYellow">#FFD600</color>
+
+    <!--    colors for Material 4 theme     -->
+    <color name = "UIMaterialOrange">#fb8c00</color>
+    <color name = "UIMaterialDarkOrange">#F57C00</color>
+    <color name = "UIMaterialGreen">#00C853</color>
+
+    <!--     colors for Material 5 theme     -->
+    <color name="UIMaterialDeepGreen">#43A047</color>
+    <color name="UIMaterialDeepDarkGreen">#388E3C</color>
+    <color name = "UIMaterialRed">#FF1744</color>
+
+    <!--     colors for Material 6 theme      -->
+    <color name="UIMaterialTeal">#00897B</color>
+    <color name="UIMaterialDarkTeal">#00796B</color>
+    <color name="UIMaterialBrown">#795548</color>
+    
+    
+</resources>
