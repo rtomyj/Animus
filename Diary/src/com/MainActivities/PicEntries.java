@@ -33,12 +33,14 @@ public class PicEntries extends MainActivity<PicturesAdapter, GridLayoutManager>
 		if (savedInstanceState != null){
 			ArrayList<String> picArrList = savedInstanceState.getStringArrayList("PIC_ARR_LIST");
 
-			int size = picArrList.size(),  index = 0;
+			assert picArrList != null;
+
+			int size = picArrList.size();
 			ArrayList<Long> lastModifiedArrList = new ArrayList<>(size);
 			long[] lastModifiedArr = savedInstanceState.getLongArray("MODIFIED_LONG_FOR_PICS");
+			assert lastModifiedArr != null;
 			for (long lastModified: lastModifiedArr){
 				lastModifiedArrList.add(lastModified);
-				index ++;
 			}
 
 			activityAdapter = new PicturesAdapter(this, picArrList, lastModifiedArrList, userUIPreferences);
