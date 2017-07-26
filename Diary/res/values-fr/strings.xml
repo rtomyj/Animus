@@ -12,7 +12,7 @@
     <string name="TAGS">Balises</string>
     <string name="bugs_button">Bugs, Conseils, Suggestions</string>
     <string name="TAKE_PICTURE">Prendre une Photo</string>
-    <string name="CHOOSE_PHOTO">Choisissez Photo</string>
+    <string name="CHOOSE_PICTURE">Choisissez Photo</string>
 
     <string-array name="months">
         <item>janvier</item>
@@ -30,9 +30,9 @@
     </string-array>
 
     <string name="SEND_AS_EMAIL">Envoyer par email</string>
-    <string name="delete_entry_dialog">Effacer? Etes-vous sûr?</string>
-    <string name="delete_confirmation">Effacer</string>
-    <string name="delelte_dialog_message">Toutes les données seront effacées si vous continuez ...</string>
+    <string name="delete_entry_dialog_title">Effacer? Etes-vous sûr?</string>
+    <string name="DELETE">Effacer</string>
+    <string name="delete_entry_dialog_message_">Toutes les données seront effacées si vous continuez ...</string>
     <string name="edit_tags_dialog_title">Sélectionner un balese que vous souhaitez supprimer.</string>
     <string name="CANCEL">Annuler</string>
     <string name="tags">Baleses: </string>
@@ -61,46 +61,46 @@
         <item>samedi</item>
     </string-array>
 
-    <string name="about">Sur</string>
-    <string name="general">Général</string>
+    <string name="ABOUT">Sur</string>
+    <string name="GENERAL">Général</string>
     <string name="allow_fullscreen">Autoriser Plein Écran</string>
-    <string name="notifications">Notifications</string>
-    <string name="old_recording">Ancien Enregistrement</string>
-    <string name="new_recording">Nouveau Enregistrement</string>
-    <string name="share">Part</string>
-    <string name="new_pic">Nouvelle Image</string>
+    <string name="NOTIFICATION">Notifications</string>
+    <string name="OLD_AUDIO_RECORDING">Ancien Enregistrement</string>
+    <string name="NEW_AUDIO_RECORDING">Nouveau Enregistrement</string>
+    <string name="SHARE">Part</string>
+    <string name="NEW_PICTURE">Nouvelle Image</string>
     <string name="new_entry">Nouvelle Entrée</string>
-    <string name="edit">Modifier</string>
-    <string name="done">Fini</string>
+    <string name="EDIT">Modifier</string>
+    <string name="DONE">Fini</string>
     <string name="new_note">Nouvelle Note</string>
     <string name="note_hint">Commencez à taper votre billet.</string>
     <string name="personal">Personnel</string>
-    <string name="relationship">Relations</string>
-    <string name="occupation">La Profession</string>
-    <string name="work_question_dialog">Où travaillez-vous actuellement?</string>
+    <string name="RELATIONSHIP">Relations</string>
+    <string name="OCCUPATION">La Profession</string>
+    <string name="occupation_question_dialog">Où travaillez-vous actuellement?</string>
     <string name="relationship_question_dialog">Qui êtes-vous fréquentez?</string>
-    <string name="help">Aider</string>
+    <string name="HELP">Aider</string>
 
     <!-- change the following two in the other xml String files -->
 
-    <string name="recording">Enregistrement&#8230;</string>
-    <string name="stop_recording">Arrêter</string>
-    <string name="dismiss">Rejeter</string>
+    <string name="RECORDING">Enregistrement&#8230;</string>
+    <string name="STOP">Arrêter</string>
+    <string name="DISMISS">Rejeter</string>
     <string name="no_tags_toast">Il n\'y a pas d\'entrées avec des balises.</string>
     <string name="no_photos_toast">Aucun ont utilisé des sources d\'image.</string>
     <string name="notes">Notes</string>
-    <string name="time">Fois</string>
-    <string name="statuses">Statuts</string>
+    <string name="TIME">Fois</string>
+    <string name="STATUSES">Statuts</string>
     <string name="status_setting_explanation">Toutes les inscriptions devront vos relations pour simplifier l\'expérience de l\'écriture.</string>
     <string name="full_setting_explanation">\"Nouvelle Entrée\" écran le plein écran.</string>
-    <string name="single">Célibataire</string>
-    <string name="unemployed">Sans Emploi</string>
+    <string name="SINGLE">Célibataire</string>
+    <string name="UNEMPLOYED">Sans Emploi</string>
     <string name="change_time_of_notification">Changer</string>
-    <string name="delete_pic">Effacer l\'image sélectionnée?</string>
+    <string name="delete_pic_dialog_title">Effacer l\'image sélectionnée?</string>
     <string name="delete_pic_confirmation">Action ne peut être annulée&#8230;</string>
-    <string name="alph_sort">Sorte alphabétique</string>
-    <string name="value_sort">Sorte Numériquement</string>
-    <string name="re_record">Re-enregistrement</string>
+    <string name="SORT_ALPHABETICALLY">Sorte alphabétique</string>
+    <string name="SORT_NUMERICALLY">Sorte Numériquement</string>
+    <string name="RE_RECORD">Re-enregistrement</string>
 
     <string-array name="abrev_weekdays">
         <item>dim</item>
@@ -113,10 +113,10 @@
     </string-array>
 
     <string name="entries_welcome">Votre journal est actuellement vide. Cliquez sur le + ajouter une entrée.</string>
-    <string name="location_setting_title">Lieu Entrées</string>
+    <string name="LOCATION_ENTRIES">Lieu Entrées</string>
     <string name="location_setting_info">L\'application vous demander votre localisation actuelle.</string>
     <string name="intro_dialog_dismiss_button">Excellent! Permettez-moi de faire pour commencer.</string>
-    <string name="welcome">Salut!</string>
+    <string name="WELCOME">Salut!</string>
     <string name="welcome_subtext">Avec cette application, vous pouvez enregistrer vos expériences.</string>
     <string name="intro_entries">Jamais hors de portée, votre téléphone et même comprimé peuvent accueillir vos moments de vie. \nA aucun moment est trop éphémère, et aucune expérience oublié.</string>
     <string name="intro_notes">• Les billets seront faciliter la collecte d\'informations simple comme une liste d\'épicerie ou corvée.</string>
@@ -124,7 +124,7 @@
     <string name="intro_tags">• Balises organise entrées en événements et des mots-clés similaires. Marquer deux entrées différentes pour les relier.</string>
     <string name="intro_location">• Endroits apporte une certaine conscience contextuelle à vos entrées. Tournez fonctionnalité dans les paramètres et vous saurez toujours où vous étiez.</string>
     <string name="intro_rate">N\'oubliez pas de noter l\'application.</string>
-    <string name="favs">Favoris</string>
+    <string name="FAVORITES">Favoris</string>
     <string name="locations">Lieux</string>
     <string name="share_dialog_title">Sélectionnez la méthode de partage...</string>
     <string name="share_dialog_neutral_button">arrière</string>
@@ -133,7 +133,7 @@
     <string name="tag_hint_new_entry">Ajout de balises nécessite touche entrée pour chaque valeur.</string>
     <string name="added">ajoutée</string>
     <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">Information en retour</string>
+    <string name="FEEDBACK">Information en retour</string>
     <string name="feedback_error">Erreur avec le client de messagerie par défaut...</string>
     <string name="tags_hint_1">Balise / Montant</string>
     <string name="tags_hint_2">Première entrée avec balise</string>
@@ -149,7 +149,7 @@
     <string name="reached_attempts_1_min">Atteint 4 tentatives. Essayez à nouveau en 1 minute...</string>
     <string name="enter_new_password">Sélectionnez nouveau mot de passe</string>
     <string name="re_enter_password">Re-entrer le mot de passe</string>
-    <string name="selection">Sélectionnez</string>
+    <string name="SELECT">Sélectionnez</string>
 
     <string-array name="months_abrev">
         <item>jan</item>
@@ -166,7 +166,7 @@
         <item>déc</item>
     </string-array>
 
-    <string name="ok">Bien</string>
+    <string name="OK">Bien</string>
     <string name="new_tag">Entrez un nouveau balise</string>
     <string name="rename_file_dialog">Entrez le nouveau nom de l\'entrée</string>
     <string name="modify_date">Date de Modifier</string>
@@ -241,7 +241,7 @@ dans les balises et les noms d\'entrée si vous ne voulez pas courir dans le ris
     <string name="name">Les noms Javi</string>
     <string name="my_info_explanation">Je suis un étudiant à temps plein et un emploi à temps plein. Souhaite que je pourrais coder plus, mais ce que tu vas faire?&lt;br/>&lt;br/>J\'aime la technologie et de la conception de l\'interface utilisateur de fantaisie. Ce qui suit sont mes comptes de médias sociaux personnels. Si vous aimez mon travail, aller et suivre!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
-    <string name="donate">Donner</string>
+    <string name="DONATION_AND_ADS">Donner</string>
     <string name="donation_err">Tromper atteindre Google Play...</string>
     <string name="new_entry_hint">Corps d\'entrée</string>
     <string name="entry_header">Titre</string>

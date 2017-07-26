@@ -15,7 +15,6 @@ import com.UtilityClasses.XML;
 import com.UtilityClasses.CustomAttributes;
 import com.rtomyj.Diary.R;
 import java.util.ArrayList;
-import java.util.Collections;
 
 /*
 		Adapter that displays entries only if they are tagged with a specific string.
@@ -72,7 +71,7 @@ public class TagsAdapter extends AdapterSummaryCache<TagsAdapter.ViewHolder> {
 	@Override
 	public TagsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 		// create a new view
-		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tags_of_entries, parent, false);
+		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.tags_adapter_layout, parent, false);
 		return  new TagsAdapter.ViewHolder(parentView);
 	}
 

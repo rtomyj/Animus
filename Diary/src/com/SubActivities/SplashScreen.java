@@ -39,10 +39,10 @@ public class SplashScreen extends Activity_Base {
 
 		UI.setTheme(this, userUIPreferences.theme);		// sets theme
 
-		if (checkPassword) 		 // if the user has password enabled the splash screen will be the password input screen instead of regular splash
+		if (checkPassword) 		 // if the user has password enabled the splash_screen_layout screen will be the password input screen instead of regular splash_screen_layout
 			passwordScreen();
 
-		else  		// if no passcode then regular splash layout is used.
+		else  		// if no passcode_layout then regular splash_screen_layout layout is used.
 		splashScreen();
 
 		UI.setTheme(this, userUIPreferences.theme);		// sets theme
@@ -50,7 +50,7 @@ public class SplashScreen extends Activity_Base {
 		}
 
 		private void passwordScreen(){
-			setContentView(R.layout.passcode);
+			setContentView(R.layout.passcode_layout);
 
 			passwordET = (EditText) findViewById(R.id.password);
 			hintTV = (TextView) findViewById(R.id.hint);
@@ -69,7 +69,7 @@ public class SplashScreen extends Activity_Base {
 		}
 
 		private void splashScreen(){
-			setContentView(R.layout.splash);
+			setContentView(R.layout.splash_screen_layout);
 
 			LinearLayout parentLL = (LinearLayout) findViewById(R.id.parent);
 			WeakReference<LinearLayout> parentLLWeak = new WeakReference<>(parentLL);
@@ -130,7 +130,7 @@ public class SplashScreen extends Activity_Base {
 	protected void onStart() {
 		super.onStart();
 
-		if (!checkPassword) { // if use is not using a passcode, show the regular splash
+		if (!checkPassword) { // if use is not using a passcode_layout, show the regular splash_screen_layout
 
 			TextView quoteTV = (TextView) findViewById(R.id.quote);
 			TextView ver_numTV = (TextView) findViewById(R.id.ver_num);

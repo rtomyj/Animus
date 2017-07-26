@@ -26,12 +26,12 @@
         android:onClick="feedback"
         android:orderInCategory="10"
         android:showAsAction="never"
-        android:title="@string/feedback"/>
+        android:title="@string/FEEDBACK"/>
     <item
         android:id="@+id/donation"
         android:onClick="donation"
         android:orderInCategory="30"
         android:showAsAction="never"
-        android:title="@string/donate"/>
+        android:title="@string/DONATION_AND_ADS"/>
 
 </menu>

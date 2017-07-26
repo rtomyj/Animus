@@ -109,7 +109,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
     @Override
     public EntriesBaseAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         // create a new view
-        View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.files_of_entries, parent, false);
+        View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.entries_adapter_layout, parent, false);
         return new ViewHolder(parentView);
     }
 

@@ -147,7 +147,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 
 	@Override
 	public PicturesAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.pic_adapter, parent, false);
+		View parentView = LayoutInflater.from(parent.getContext()).inflate(R.layout.pic_adapter_layout, parent, false);
 		return new ViewHolder(parentView);
 	}
 

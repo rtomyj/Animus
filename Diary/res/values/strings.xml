@@ -1,106 +1,88 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:tools="http://schemas.android.com/tools">
-
+<resources >
     <string name="APP_NAME">Animus</string>
-    <string name="SETTINGS" tools:ignore="MissingTranslation">Settings</string>
+<!--    Side navigation strings     -->
+    <string name="DATA" >Data</string>
     <string name="ENTRIES">Entries</string>
     <string name="PICTURES">Pictures</string>
     <string name="TAGS">Tags</string>
-    <string name="HOME">Home</string>
+    <string name="FAVORITES">Favorites</string>
+    <string name="PREFERENCES" >Preferences</string>
+    <string name="SETTINGS" >Settings</string>
+    <string name="FEEDBACK">Feedback</string>
+    <string name="DONATION_AND_ADS">Donation/Ads</string>
+    <string name="DEBUG_MENU">Debug Menu</string>
+    <string name="DEBUG_YO">Debug, yo</string>
+
+    <!--     Entry strings   -->
     <string name="NEW_ENTRY">New Entry</string>
+    <string name="NEW_PICTURE">New Picture</string>
     <string name="TAKE_PICTURE">Take Picture</string>
-    <string name="CHOOSE_PHOTO">Choose Photo</string>
-
-    <string-array name="non_abrev_months_arr">
-        <item>January</item>
-        <item>February</item>
-        <item>March</item>
-        <item>April</item>
-        <item>May</item>
-        <item>June</item>
-        <item>July</item>
-        <item>August</item>
-        <item>September</item>
-        <item>October</item>
-        <item>November</item>
-        <item>December</item>
-    </string-array>
-
-    <string name="SEND_AS_EMAIL">Send As Email</string>
-    <string name="delete_entry_dialog">Delete? Are you sure?</string>
-    <string name="delete_confirmation">Delete</string>
-    <string name="delelte_dialog_message">All data will be deleted if you continue...</string>
-    <string name="edit_tags_dialog_title">Select one tag you would like to delete.</string>
-    <string name="CANCEL">Cancel</string>
+    <string name="CHOOSE_PICTURE">Choose Picture</string>
     <string name="tags">Tags: </string>
+    <string name="SEND_AS_EMAIL">Send As Email</string>
+    <string name="delete_entry_dialog_title">Delete? Are you sure?</string>
+    <string name="DELETE">Delete</string>
+    <string name="delete_entry_dialog_message_">All data will be deleted if you continue…</string>
+    <string name="edit_tags_dialog_title">Select one tag you would like to delete.</string>
+    <string name="OLD_AUDIO_RECORDING">Old Audio Recording</string>
+    <string name="NEW_AUDIO_RECORDING">New Audio Recording</string>
+    <string name="SHARE">Share</string>
+    <string name="EDIT">Edit</string>
+    <string name="DONE">Done</string>
+    <string name="RECORDING">Recording&#8230;</string>
+
+    <!--        Setting Strings     -->
+    <string name="ABOUT">About</string>
+    <string name="GENERAL">General</string>
+    <string name="NOTIFICATION">Notifications</string>
+    <string name="personal">Entry Options</string>
+    <string name="RELATIONSHIP">Relationship</string>
+    <string name="OCCUPATION">Occupation</string>
+    <string name="occupation_question_dialog">What is your current occupation / where do you work?</string>
+    <string name="relationship_question_dialog">Who are you currently dating?</string>
+    <string name="HELP">Help</string>
+    <string name="STATUSES">Statuses</string>
+    <string name="status_setting_explanation">Save your current relationship status and occupation to quickly add it to new entries..</string>
+
+    <!--    misc constants      -->
+    <string name="CANCEL">Cancel</string>
     <string name="YES">Yes</string>
     <string name="NO">No</string>
-
-
     <string name="OPEN">Open</string>
     <string name="CLOSE">Close</string>
+    <string name="HOME">Home</string>
+    <string name="STOP">Stop</string>
+    <string name="DISMISS">Dismiss</string>
+    <string name="OK">OK</string>
+    <string name="TIME">Time</string>
+    <string name="SELECT">Select</string>
 
 
-    <string name="about">About</string>
-    <string name="general">General</string>
-    <string name="notifications">Notifications</string>
-    <string name="old_recording">Old Recording</string>
-    <string name="new_recording">New Recording</string>
-    <string name="share">Share</string>
-    <string name="new_pic">New Pic</string>
-    <string name="new_entry">New Entry</string>
-    <string name="edit">Edit</string>
-    <string name="done">Done</string>
-    <string name="new_note">New Note</string>
-    <string name="note_hint">Start typing your note.</string>
-    <string name="personal">Entry Options</string>
-    <string name="relationship">Relationship</string>
-    <string name="occupation">Occupation</string>
-    <string name="work_question_dialog">Where do you currently work?</string>
-    <string name="relationship_question_dialog">Who are you going out with?</string>
-    <string name="help">Help</string>
+
+
 
     <!-- change the following two in the other xml String files -->
 
-    <string name="recording">Recording&#8230;</string>
-    <string name="stop_recording">Stop</string>
-    <string name="dismiss">Dismiss</string>
-    <string name="no_tags_toast">There are no entries with tags.</string>
-    <string name="no_photos_toast">No files have used picture sources.</string>
-    <string name="notes">Notes</string>
-    <string name="time">Time</string>
-    <string name="statuses">Statuses</string>
-    <string name="status_setting_explanation">All entries will include preset information.</string>
     <string name="full_setting_explanation">\"New Entry\" activity will go full screen.</string>
-    <string name="single">Single</string>
-    <string name="unemployed">Unemployed</string>
-    <string name="delete_pic">Delete selected picture?</string>
-    <string name="delete_pic_confirmation">Action cannot be undone&#8230;</string>
-    <string name="alph_sort">Sort Alphabitically</string>
-    <string name="value_sort">Sort Numerically</string>
-    <string name="re_record">Re-record</string>
+    <string name="SINGLE">Single</string>
+    <string name="UNEMPLOYED">Unemployed</string>
+    <string name="delete_pic_dialog_title">Delete selected picture?</string>
+    <string name="delete_pic_confirmation">Picture cannot be retrieved once deleted. Continue?&#8230;</string>
+    <string name="SORT_ALPHABETICALLY">Sort Alphabetically</string>
+    <string name="SORT_NUMERICALLY">Sort Numerically</string>
+    <string name="RE_RECORD">Re-record</string>
 
-    <string-array name="abrev_weekdays">
-        <item>Sun</item>
-        <item>Mon</item>
-        <item>Tue</item>
-        <item>Wed</item>
-        <item>Thu</item>
-        <item>Fri</item>
-        <item>Sat</item>
-    </string-array>
-
-    <string name="entries_welcome">Your diary is currently empty. Click the + to add an entry.</string>
+    <string name="entries_welcome">Your diary is currently empty. Fix that by clicking the \'+\' button to record a new entry.</string>
     <string name="pictures_welcome">Your diary has not picture files. Get snapping!</string>
     <string name="tags_welcome">Your diary has no tags. Tagging makes it easier to see related entries. Try it out when editing.</string>
-    <string name="faves_welcome">Your diary has no favorite entries. \n\nr ;-(</string>
+    <string name="faves_welcome">Your diary has no favorite entries. Not cool, man ;-(</string>
 
 
-
-    <string name="location_setting_title">Location Entries</string>
-    <string name="location_setting_info">App will ping for your current location.</string>
-    <string name="intro_dialog_dismiss_button">I think I got it.</string>
-    <string name="welcome">Welcome!</string>
+    <string name="LOCATION_ENTRIES">Location Entries</string>
+    <string name="location_setting_info">App will ping for your current location and attach the location name to every new entry..</string>
+    <string name="intro_dialog_dismiss_button">I think I got it!</string>
+    <string name="WELCOME">Welcome!</string>
     <string name="welcome_subtext">With this app you can record your experiences.</string>
     <string name="intro_entries">Never out of reach, your phone and even tablet can host your life moments. \nNo moment is too fleeting, and no experience forgotten.</string>
     <string name="intro_notes">• Notes will facilitate gathering simple information like a grocery or chore picturesArrList.</string>
@@ -108,18 +90,16 @@
     <string name="intro_tags">• Tags organizes entries into similar events and keywords. Tag two different entries to link them.</string>
     <string name="intro_location">• Locations brings some contextual awareness to your entries. Turn feature on in settings and you will always know where you were.</string>
     <string name="intro_rate">Don\'t forget to rate the app.</string>
-    <string name="favs">Favorites</string>
     <string name="locations">Locations</string>
-    <string name="share_dialog_title">Select sharing method...</string>
+    <string name="share_dialog_title">Select sharing method…</string>
     <string name="share_dialog_neutral_button">Back</string>
-    <string name="illegal_character">Illegal Character...</string>
+    <string name="illegal_character">Illegal Character…</string>
     <string name="add_tag">+  Tag</string>
     <string name="tag_hint_new_entry">Adding tags requires enter key for every value.</string>
     <string name="added">added</string>
-    <string name="beta"></string>
-    <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">Feedback</string>
-    <string name="feedback_error">Err with the default E-Mail client...</string>
+    <string name="beta">Beta</string>
+    <string name="analytics_key">UA–48310537–1</string>
+    <string name="feedback_error">Err with the default E-Mail client…</string>
     <string name="tags_hint_1">Tag/Amount</string>
     <string name="tags_hint_2">Last entry with tag</string>
     <string name="untitled">(Untitled)</string>
@@ -133,27 +113,10 @@
     <string name="hello_world" translatable="false">Hello world!</string>
     <string name="enter_password">Enter Password</string>
     <string name="wrong">Wrong password</string>
-    <string name="reached_attempts_1_min">Reached 4 attempts. Try again in 1 minute...</string>
+    <string name="reached_attempts_1_min">Reached 4 attempts. Try again in 1 minute…</string>
     <string name="enter_new_password">Select new password</string>
     <string name="re_enter_password">Re-enter password</string>
-    <string name="selection">Select</string>
 
-    <string-array name="months_abrev">
-        <item>Jan</item>
-        <item>Feb</item>
-        <item>Mar</item>
-        <item>Apr</item>
-        <item>May</item>
-        <item>Jun</item>
-        <item>Jul</item>
-        <item>Aug</item>
-        <item>Sept</item>
-        <item>Oct</item>
-        <item>Nov</item>
-        <item>Dec</item>
-    </string-array>
-
-    <string name="ok">Ok</string>
     <string name="new_tag">Enter new tag</string>
     <string name="rename_file_dialog">Enter new name of entry</string>
     <string name="modify_date">Modify Date</string>
@@ -197,32 +160,7 @@
         <item>Material 5</item>
         <item>Material 6</item>
     </string-array>
-    <string-array name="text_size">
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-    </string-array>
-    <string-array name="text_size_values">
-        <item>12</item>
-        <item>13</item>
-        <item>14</item>
-        <item>15</item>
-        <item>16</item>
-        <item>17</item>
-        <item>18</item>
-        <item>19</item>
-        <item>20</item>
-        <item>21</item>
-        <item>22</item>
-    </string-array>
+
     <string-array name="reset_tags">
         <item>Reset All Files</item>
     </string-array>
@@ -232,7 +170,7 @@
 
 
 
-    <!-- these strings are for the about help screen in the settings menu -->
+    <!-- these strings are for the about_activity_layout help_activity_layout screen in the settings menu -->
     <string name="tags_explanation">With tags you can always revisit past entries in a breeze. If there is a topic that seems
 		    			 to always come up in your entries, you can associate them with a keyword. This keyword, or tag, will
 		    			 then help the application link entries together.</string>
@@ -264,7 +202,6 @@
 
     <string name="credits">Credits/Acknowledgements</string>
     <string name="no_sd">No SD card found</string>
-    <string name="data">Data</string>
     <string name="about_me_text">Thanks for the support. Use the following buttons to help me make the app better or to follow for updates. \n\n</string>
     <string name="dbx_disconnect">Associated dropbox account disconnected</string>
     <string name="dbx_sync">Dropbox Backup</string>
@@ -277,19 +214,18 @@
     <string name="THE_DEV">The Dev</string>
     <string name="name">The names Javi</string>
     <string name="my_info_explanation">I am a full time student and have a full time job. Wish that I could code more, but what are you gonna do?</string>
-    <string name="donate">Donation/Ads</string>
-    <string name="donation_err">Err reaching Google Play...</string>
+    <string name="donation_err">Err reaching Google Play…</string>
     <string name="new_entry_hint">Body of entry</string>
     <string name="entry_header">Title</string>
-    <string name="tag_hint">Tag...</string>
+    <string name="tag_hint">Tag…</string>
     <string name="donation_explanation">Donations help support the application. More donations mean more time spent working on new features. Oh and I will be able to buy food. That things expensive.</string>
 
 
-    <string name="remove_ads_explanation">Removing ads is a one time In-App purchase. We all hate ads. Even myself... I would click that button and pay if I were you.</string>
+    <string name="remove_ads_explanation">Removing ads is a one time In-App purchase. We all hate ads. Even myself… I would click that button and pay if I were you.</string>
     <string name="donation_button">Donate</string>
 
 
-    <string-array name="moods">
+    <string-array name="moods_arr">
         <item>No Mood</item>
         <item>Happy</item>
         <item>Angelic</item>
@@ -308,28 +244,7 @@
 
     </string-array>
 
-    <string-array name="moods_for_xml">
-        <item>No Mood</item>
-        <item>Happy</item>
-        <item>Angelic</item>
-        <item>Mischievous</item>
-        <item>Nervous</item>
-        <item>Confused</item>
-        <item>Sad</item>
-        <item>Sleepy</item>
-        <item>Shocked</item>
-        <item>Dazed</item>
-        <item>In Love</item>
-        <item>Romantic</item>
-        <item>Cool</item>
-        <item>Emotional</item>
-        <item>Poopy</item>
-
-    </string-array>
-
-    <!--
-    These are stringss that havnet been translated.
-    -->
+    <!--    These are strings that hamnet been translated.      -->
     <string name="ENTRY_DELETED">Entry deleted</string>
     <string name="UNDO">Undo</string>
     <string name="USES">Uses:  </string>

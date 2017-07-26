@@ -13,7 +13,7 @@
     <string name="TAGS">Etikett</string>
     <string name="bugs_button">Bugs, Tipps, Anregungen</string>
     <string name="TAKE_PICTURE">Bild Aufnehmen</string>
-    <string name="CHOOSE_PHOTO">Wählen Sie Foto</string>
+    <string name="CHOOSE_PICTURE">Wählen Sie Foto</string>
 
     <string-array name="months">
         <item>Januar</item>
@@ -31,9 +31,9 @@
     </string-array>
 
     <string name="SEND_AS_EMAIL">Als E-Mail</string>
-    <string name="delete_entry_dialog">löschen? Sind Sie sicher?</string>
-    <string name="delete_confirmation">löschen</string>
-    <string name="delelte_dialog_message">Alle Daten werden gelöscht, wenn Sie weiterhin&#8230;</string>
+    <string name="delete_entry_dialog_title">löschen? Sind Sie sicher?</string>
+    <string name="DELETE">löschen</string>
+    <string name="delete_entry_dialog_message_">Alle Daten werden gelöscht, wenn Sie weiterhin&#8230;</string>
     <string name="edit_tags_dialog_title">Wählen Sie einen etikett Sie löschen möchten.</string>
     <string name="CANCEL">Stornieren</string>
     <string name="tags">Etikett: </string>
@@ -62,43 +62,43 @@
         <item>Samstag</item>
     </string-array>
 
-    <string name="about">über</string>
-    <string name="general">General</string>
+    <string name="ABOUT">über</string>
+    <string name="GENERAL">General</string>
     <string name="allow_fullscreen">Vollbild zulassen</string>
-    <string name="notifications">Benachrichtigungen</string>
-    <string name="old_recording">Alte Aufnahme</string>
-    <string name="new_recording">Neue Aufnahme</string>
-    <string name="share">Aktie</string>
-    <string name="new_pic">Neues Bild</string>
+    <string name="NOTIFICATION">Benachrichtigungen</string>
+    <string name="OLD_AUDIO_RECORDING">Alte Aufnahme</string>
+    <string name="NEW_AUDIO_RECORDING">Neue Aufnahme</string>
+    <string name="SHARE">Aktie</string>
+    <string name="NEW_PICTURE">Neues Bild</string>
     <string name="new_entry">Neuer Eintrag</string>
-    <string name="edit">Bearbeiten</string>
-    <string name="done">Fertig</string>
+    <string name="EDIT">Bearbeiten</string>
+    <string name="DONE">Fertig</string>
     <string name="new_note">Neuer Anmerkung</string>
     <string name="note_hint">Beginnen Sie Ihre Notiz.</string>
     <string name="personal">Persönlich</string>
-    <string name="relationship">Beziehung</string>
-    <string name="occupation">Beruf</string>
-    <string name="work_question_dialog">Wo sehen Sie derzeit arbeiten?</string>
+    <string name="RELATIONSHIP">Beziehung</string>
+    <string name="OCCUPATION">Beruf</string>
+    <string name="occupation_question_dialog">Wo sehen Sie derzeit arbeiten?</string>
     <string name="relationship_question_dialog">Wer sind Sie aus?</string>
-    <string name="help">Hilfe</string>
-    <string name="recording">Aufnahme&#8230;</string>
-    <string name="stop_recording">Stopp</string>
-    <string name="dismiss">Entlassen</string>
+    <string name="HELP">Hilfe</string>
+    <string name="RECORDING">Aufnahme&#8230;</string>
+    <string name="STOP">Stopp</string>
+    <string name="DISMISS">Entlassen</string>
     <string name="no_tags_toast">Es sind keine Einträge mit Etikett.</string>
     <string name="no_photos_toast">Keine Dateien Bildquellen verwendet.</string>
     <string name="notes">Aufzeichnungen</string>
-    <string name="time">Zeit</string>
-    <string name="statuses">Status</string>
+    <string name="TIME">Zeit</string>
+    <string name="STATUSES">Status</string>
     <string name="status_setting_explanation">Alle Einsendungen werden Ihre Beziehungen, um das Schreiben zu vereinfachen Erfahrung.</string>
     <string name="full_setting_explanation">\"Neuer Eintrag\" wird als Vollbild zu gehen.</string>
-    <string name="single">Single</string>
-    <string name="unemployed">Arbeitslos</string>
+    <string name="SINGLE">Single</string>
+    <string name="UNEMPLOYED">Arbeitslos</string>
     <string name="change_time_of_notification">Ändern</string>
-    <string name="delete_pic">Löschen ausgewählte Bild?</string>
+    <string name="delete_pic_dialog_title">Löschen ausgewählte Bild?</string>
     <string name="delete_pic_confirmation">Diese Aktion kann nicht rückgängig gemacht werden&#8230;</string>
-    <string name="alph_sort">Alphabetisch Sortieren</string>
-    <string name="value_sort">Sortieren Numerisch</string>
-    <string name="re_record">Datensatz erneut</string>
+    <string name="SORT_ALPHABETICALLY">Alphabetisch Sortieren</string>
+    <string name="SORT_NUMERICALLY">Sortieren Numerisch</string>
+    <string name="RE_RECORD">Datensatz erneut</string>
 
     <string-array name="abrev_weekdays">
         <item>Son</item>
@@ -111,10 +111,10 @@
     </string-array>
 
     <string name="entries_welcome">Ihr Tagebuch ist derzeit leer. Klicken Sie auf das + um einen Eintrag hinzufügen.</string>
-    <string name="location_setting_title">Location-Einträge</string>
+    <string name="LOCATION_ENTRIES">Location-Einträge</string>
     <string name="location_setting_info">App für Ihren aktuellen Standort ping.</string>
     <string name="intro_dialog_dismiss_button">Ehrfürchtig! Lassen Sie mich loslegen.</string>
-    <string name="welcome">Herzlich Willkommen!</string>
+    <string name="WELCOME">Herzlich Willkommen!</string>
     <string name="welcome_subtext">Mit dieser App können Sie Ihr Leben Momente aufnehmen.</string>
     <string name="intro_entries">Nie aus der Reichweite, kann das Telefon und sogar Tablet-Momente Ihres Lebens zu hosten. \nWeitere Moment ist zu flüchtig, und keine Erfahrung vergessen.</string>
     <string name="intro_notes">• Schuldverschreibungen erleichtern das Sammeln einfache Informationen, wie ein Lebensmittelgeschäft oder lästige Pflicht Liste.</string>
@@ -122,7 +122,7 @@
     <string name="intro_tags">• Etiketts organisieren Einträge in ähnliche Ereignisse und Schlüsselwörter. Tag zwei verschiedene Einträge, um sie zu verbinden.</string>
     <string name="intro_location">• Standorte bringt einige Kontextbewusstsein, um Ihre Eingaben. Schalten Sie in den Einstellungen-Funktion auf, und Sie werden immer wissen, wo Sie waren.</string>
     <string name="intro_rate">Vergessen Sie nicht, die App bewerten.</string>
-    <string name="favs">Favoriten</string>
+    <string name="FAVORITES">Favoriten</string>
     <string name="locations">Standorte</string>
     <string name="share_dialog_title">Wählen Sie Sharing-Verfahren...</string>
     <string name="share_dialog_neutral_button">Vorherige</string>
@@ -132,7 +132,7 @@
     <string name="added">zusätzlich</string>
     <string name="beta">Deutsch ist derzeit in der Beta</string>
     <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">Rückkopplung</string>
+    <string name="FEEDBACK">Rückkopplung</string>
     <string name="feedback_error">Fehler mit dem Standard-Mail-Client...</string>
     <string name="tags_hint_1">Etikett/Betrag</string>
     <string name="tags_hint_2">Letzter Eintrag mit etikett</string>
@@ -148,7 +148,7 @@
     <string name="reached_attempts_1_min">Erreicht 4 Versuche. Versuchen Sie es erneut in 1 Minute...</string>
     <string name="enter_new_password">Wählen Sie neue Passwort</string>
     <string name="re_enter_password">Passwort erneut eingeben</string>
-    <string name="selection">Wählen Sie</string>
+    <string name="SELECT">Wählen Sie</string>
 
     <string-array name="months_abrev">
         <item>Jan</item>
@@ -165,7 +165,7 @@
         <item>Dez</item>
     </string-array>
 
-    <string name="ok">Ok</string>
+    <string name="OK">Ok</string>
     <string name="new_tag">Geben Sie den neuen etikett</string>
     <string name="rename_file_dialog">Geben Sie den neuen Namen der Einreise</string>
     <string name="modify_date">Datum Ändern</string>
@@ -239,7 +239,7 @@ in Etikett und Entry-Namen, wenn Sie nicht wollen, um in die Gefahr der mich lie
     <string name="name">Die Namen Javi</string>
     <string name="my_info_explanation">Ich bin ein Vollzeit-Student und habe einen Vollzeit-Job. Wünschte, ich könnte mehr Code, aber was willst du tun?&lt;br/>&lt;br/>Ich liebe Technik und Phantasie UI-Design. Die folgenden sind meine persönlichen Social Media-Konten. Wenn Sie meine Arbeit mögen, und folgen!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
-    <string name="donate">Spenden</string>
+    <string name="DONATION_AND_ADS">Spenden</string>
     <string name="donation_err">Err reich Google Play...</string>
     <string name="new_entry_hint">Körper der eintrag</string>
     <string name="entry_header">Titel</string>

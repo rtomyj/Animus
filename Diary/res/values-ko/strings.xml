@@ -13,7 +13,7 @@
     <string name="TAGS">태그</string>
     <string name="bugs_button">버그, 팁, 제안</string>
     <string name="TAKE_PICTURE">사진을 찍는다</string>
-    <string name="CHOOSE_PHOTO">사진을 선택</string>
+    <string name="CHOOSE_PICTURE">사진을 선택</string>
 
     <string-array name="months">
         <item>일월</item>
@@ -31,9 +31,9 @@
     </string-array>
 
     <string name="SEND_AS_EMAIL">전자 우편으로 보내기</string>
-    <string name="delete_entry_dialog">삭제 하시겠습니까? 당신은 확실한가요?</string>
-    <string name="delete_confirmation">삭제</string>
-    <string name="delelte_dialog_message">당신이 계속하는 경우 모든 데이터가 삭제됩니다...</string>
+    <string name="delete_entry_dialog_title">삭제 하시겠습니까? 당신은 확실한가요?</string>
+    <string name="DELETE">삭제</string>
+    <string name="delete_entry_dialog_message_">당신이 계속하는 경우 모든 데이터가 삭제됩니다...</string>
     <string name="edit_tags_dialog_title">하나의 태그를 선택하면 삭제하고 싶습니다.</string>
     <string name="CANCEL">취소</string>
     <string name="tags">태그: </string>
@@ -62,39 +62,39 @@
         <item>토요일</item>
     </string-array>
 
-    <string name="about">약</string>
-    <string name="general">일반</string>
+    <string name="ABOUT">약</string>
+    <string name="GENERAL">일반</string>
     <string name="allow_fullscreen">전체 화면이 허용</string>
-    <string name="notifications">알림</string>
-    <string name="old_recording">이전 기록</string>
-    <string name="new_recording">새로운 기록</string>
-    <string name="share">내놓을 몫</string>
-    <string name="new_pic">새로운 사진</string>
+    <string name="NOTIFICATION">알림</string>
+    <string name="OLD_AUDIO_RECORDING">이전 기록</string>
+    <string name="NEW_AUDIO_RECORDING">새로운 기록</string>
+    <string name="SHARE">내놓을 몫</string>
+    <string name="NEW_PICTURE">새로운 사진</string>
     <string name="new_entry">새 항목</string>
-    <string name="edit">편집</string>
-    <string name="done">완료</string>
+    <string name="EDIT">편집</string>
+    <string name="DONE">완료</string>
     <string name="new_note">새로운 주</string>
     <string name="note_hint">메모를 입력 시작</string>
     <string name="personal">개인의</string>
-    <string name="relationship">관계</string>
-    <string name="occupation">점령</string>
-    <string name="work_question_dialog">어디는 현재 작동합니까?</string>
+    <string name="RELATIONSHIP">관계</string>
+    <string name="OCCUPATION">점령</string>
+    <string name="occupation_question_dialog">어디는 현재 작동합니까?</string>
     <string name="relationship_question_dialog">당신은 누구와 외출?</string>
-    <string name="help">도와주세요</string>
-    <string name="recording">기록하는&#8230;</string>
-    <string name="stop_recording">정지</string>
-    <string name="dismiss">기각</string>
+    <string name="HELP">도와주세요</string>
+    <string name="RECORDING">기록하는&#8230;</string>
+    <string name="STOP">정지</string>
+    <string name="DISMISS">기각</string>
     <string name="no_tags_toast">태그에 항목이 없습니다.</string>
     <string name="no_photos_toast">어떤 파일은 영상 소스를 사용하지 않은.</string>
     <string name="notes">주의 사항</string>
-    <string name="time">시간</string>
-    <string name="statuses">상태</string>
+    <string name="TIME">시간</string>
+    <string name="STATUSES">상태</string>
     <string name="status_setting_explanation">모든 항목이 사전 설정 정보가 포함됩니다.</string>
     <string name="full_setting_explanation">\"새 항목\" 활동은 전체 화면으로 이동합니다.</string>
-    <string name="single">하나의</string>
-    <string name="unemployed">실직 한</string>
+    <string name="SINGLE">하나의</string>
+    <string name="UNEMPLOYED">실직 한</string>
     <string name="change_time_of_notification">변화</string>
-    <string name="delete_pic">선택한 사진을 삭제?</string>
+    <string name="delete_pic_dialog_title">선택한 사진을 삭제?</string>
     <string name="delete_pic_confirmation">작업은 취소 할 수 없습니다&#8230;</string>
 
     <string-array name="privacy_topics">
@@ -105,9 +105,9 @@
     <string name="tags_explanation">태그를 사용하면 항상 바람에 과거 항목을 다시 방문 할 수 있습니다. 항상 항목에 와서 화제가있는 경우, 당신은 키워드와 연결할 수 있습니다. 이 키워드 또는 태그는 다음 함께 응용 프로그램 링크 항목을 도움이 될 것입니다.</string>
     <string name="privacy_explanation">이 응용 프로그램에 저장되는 정보는 당신입니다. 난 몰라 당신의 항목을 읽을 수 없습니다
 		    			 . 위의 4.0 안드로이드와 광고를하지 않습니다. 그 아래 아무것도 않습니다. 그렇지 않으면 거기에 새로운 사용자를 반환을 알 수 있습니다 실행 분석은 시간의 양을 그들은 특정 활동을 사용. 또한, 시스템 충돌 로그는 XML 참조를 제공 할 것입니다. 이러한 참조는 이름과 태그 이름을 제기하고 충돌하는 응용 프로그램의 원인을 정확히 파악에 도움이됩니다.\n\n당신이 저를 읽기의 위험에 실행하지 않을 경우 태그 및 항목 이름에 sensetive 정보를 입력하지 마십시오. 항목 및 메모의 본문은 100 % 안전합니다.</string>
-    <string name="alph_sort">사전 순 정렬</string>
-    <string name="value_sort">정렬 수치</string>
-    <string name="re_record">다시 녹음</string>
+    <string name="SORT_ALPHABETICALLY">사전 순 정렬</string>
+    <string name="SORT_NUMERICALLY">정렬 수치</string>
+    <string name="RE_RECORD">다시 녹음</string>
 
     <string-array name="abrev_weekdays">
         <item>일요일</item>
@@ -120,10 +120,10 @@
     </string-array>
 
     <string name="entries_welcome">일기는 현재 비어 있습니다. 항목을 추가 +를 클릭.</string>
-    <string name="location_setting_title">위치 기반 항목</string>
+    <string name="LOCATION_ENTRIES">위치 기반 항목</string>
     <string name="location_setting_info">앱은 현재 위치의 핑 (ping)합니다.</string>
     <string name="intro_dialog_dismiss_button">달콤한! 날이 시작하자.</string>
-    <string name="welcome">환영!</string>
+    <string name="WELCOME">환영!</string>
     <string name="welcome_subtext">이 응용 프로그램을 통해 당신은 당신의 경험을 기록 할 수.</string>
     <string name="intro_entries">손이 닿지 않는, 휴대 전화, 심지어 태블릿은 당신의 삶의 순간을 호스팅 할 수 없습니다 마십시오. \n어떤 순간도 덧없고, 경험 잊어.</string>
     <string name="intro_notes">• 참고로 식료품 점이나 기계에 의존 목록과 같은 간단한 정보를 수집하고 촉진 할 것.</string>
@@ -131,7 +131,7 @@
     <string name="intro_tags">• 태그 유사한 이벤트와 키워드로 항목을 구성. 그들을 연결하는 두 개의 다른 항목에 태그를.</string>
     <string name="intro_location">• 위치는 항목에 어떤 상황 인식을 제공합니다. 설정에 대한 기능을 켜고 당신이 어디에 있는지 항상 알 수.</string>
     <string name="intro_rate">응용 프로그램을 평가하는 것을 잊지 마세요.</string>
-    <string name="favs">즐겨 찾기</string>
+    <string name="FAVORITES">즐겨 찾기</string>
     <string name="locations">지역</string>
     <string name="share_dialog_title">공유 방법을 선택합니다...</string>
     <string name="share_dialog_neutral_button">Back</string>
@@ -141,7 +141,7 @@
     <string name="added">추가</string>
     <string name="beta">한국어 현재 베타 버전으로 제공되고 있습니다. 당신은 아무 잘못이있을 때는 의견을 제출하시기 바랍니다.</string>
     <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">피드백</string>
+    <string name="FEEDBACK">피드백</string>
     <string name="feedback_error">기본 이메일 클라이언트와 잘못을...</string>
     <string name="tags_hint_1">태그 / 금액</string>
     <string name="tags_hint_2">태그 마지막 항목</string>
@@ -157,7 +157,7 @@
     <string name="reached_attempts_1_min">4 시도에 도달. 일분에 다시 시도...</string>
     <string name="enter_new_password">새 암호를 선택</string>
     <string name="re_enter_password">비밀번호 재 입력</string>
-    <string name="selection">선택</string>
+    <string name="SELECT">선택</string>
 
     <string-array name="months_abrev">
         <item>1월</item>
@@ -174,7 +174,7 @@
         <item>12월</item>
     </string-array>
 
-    <string name="ok">확인</string>
+    <string name="OK">확인</string>
     <string name="new_tag">새 태그를 입력</string>
     <string name="rename_file_dialog">항목의 새 이름을 입력합니다</string>
     <string name="modify_date">날짜를 수정</string>
@@ -225,7 +225,7 @@
     <string name="name">이름 Javi</string>
     <string name="my_info_explanation">나는 풀 타임 학생이고 풀 타임 직업을 가지고있다. 나는 더 많은 코드 수 있다는 소원,하지만 당신은 어떻게 할 건데?&lt;br/>&lt;br/>나는 기술과 멋진 UI 디자인을 사랑합니다. 다음은 내 개인의 소셜 미디어 계정입니다. 당신이 내 작품을 좋아하는 경우에, 이동에 따라!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
-    <string name="donate">기부</string>
+    <string name="DONATION_AND_ADS">기부</string>
     <string name="donation_err">도달 ERR Google Play...</string>
     <string name="new_entry_hint">항목의 바디</string>
     <string name="entry_header">제목</string>

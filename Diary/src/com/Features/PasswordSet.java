@@ -23,7 +23,7 @@ public class PasswordSet extends Activity_Base {
 		super.onCreate(savedInstanceState);
 		UI.setTheme(this, userUIPreferences.theme);
 
-		this.setContentView(R.layout.passcode);
+		this.setContentView(R.layout.passcode_layout);
 
 		//getSupportActionBar().hide();
 		password = (EditText) findViewById(R.id.password);

@@ -150,7 +150,7 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 	}
 
 
-	// User can favorite an entry right from the List widget.
+	// User can favorite an entry right from the List widget_layout.
 	/*
 		whenever there is a change to the view faveView a new index is added to the array faveChangedFileNameArrList. This index is the corresponding index of the file in the adapter.
 		If however, the index is already in the array, then it gets removed. The purpose is that all the changes will be handled at the same time. If there are no changes then that saves on time.

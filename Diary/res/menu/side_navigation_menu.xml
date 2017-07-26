@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:title="Data"
+    <item android:title="@string/DATA"
         android:id="@+id/submenu_1">
         <menu>
             <group
@@ -23,12 +23,12 @@
         <item
             android:id="@+id/faves"
             android:icon="@drawable/faves"
-            android:title="@string/favs" />
+            android:title="@string/FAVORITES" />
             </group>
     </menu>
     </item>
 
-    <item android:title="Other"
+    <item android:title="@string/PREFERENCES"
         android:id="@+id/submenu_2">
         <menu>
 
@@ -40,13 +40,13 @@
             android:title="@string/SETTINGS" />
         <item
             android:id="@+id/feedback"
-            android:title="@string/feedback" />
+            android:title="@string/FEEDBACK" />
 
 
         <item
             android:id="@+id/donation"
             android:icon="@drawable/donations"
-            android:title="@string/donate" />
+            android:title="@string/DONATION_AND_ADS" />
 </group>
         </menu>
 
@@ -54,7 +54,7 @@
 
 
 
-    <item android:title="Debug Menu"
+    <item android:title="@string/DEBUG_MENU"
         android:id="@+id/submenu_3">
         <menu>
 
@@ -62,7 +62,7 @@
                 android:checkableBehavior="single">
             <item
                 android:id="@+id/debug"
-                android:title="Debug, yo" />
+                android:title="@string/DEBUG_YO" />
             </group>
 
         </menu>

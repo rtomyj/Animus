@@ -144,7 +144,7 @@
         <activity
             android:name="com.MainActivities.FaveEntries"
             android:configChanges="orientation"
-            android:label="@string/favs"
+            android:label="@string/FAVORITES"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.favs"/>
@@ -192,7 +192,7 @@
         <activity
             android:name="com.SubActivities.AboutMeActivity"
             android:configChanges="orientation"
-            android:label="@string/about"
+            android:label="@string/ABOUT"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.about_me"/>
@@ -203,7 +203,7 @@
         <activity
             android:name="com.SubActivities.UserHelpActivity"
             android:configChanges="orientation"
-            android:label="@string/help"
+            android:label="@string/HELP"
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.help"/>

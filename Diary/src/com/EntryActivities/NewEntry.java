@@ -178,9 +178,9 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
         }
 
-        setContentView(R.layout.new_entry);
+        setContentView(R.layout.new_entry_layout);
 
-        // animates the toolbar on the bottom as well as the date_selection_layout layout.
+        // animates the actionbar_layout on the bottom as well as the date_selection_layout layout.
         LinearLayout infoLL = (LinearLayout) findViewById(R.id.info_layout);
         LinearLayout  markup = (LinearLayout) findViewById(R.id.markup);
 

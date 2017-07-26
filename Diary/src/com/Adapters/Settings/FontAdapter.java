@@ -37,7 +37,7 @@ public class FontAdapter extends ArrayAdapter<String> {
 	public View getView(final int position, View convertView, ViewGroup parent) {
 		LayoutInflater inflater = (LayoutInflater) c
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		View rowView = inflater.inflate(R.layout.fonts_adapter, parent, false);
+		View rowView = inflater.inflate(R.layout.fonts_adapter_layout, parent, false);
 
 		sp = PreferenceManager
 				.getDefaultSharedPreferences(c);

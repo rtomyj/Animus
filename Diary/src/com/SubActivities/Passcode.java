@@ -47,7 +47,7 @@ public class Passcode extends AppCompatActivity {
 
 		String theme = sp.getString("Theme", "Default");
 		UI.setTheme(this, theme);
-		setContentView(R.layout.passcode);
+		setContentView(R.layout.passcode_layout);
 
 
 		password = (EditText) findViewById(R.id.password);

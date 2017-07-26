@@ -32,7 +32,7 @@ public class Widget extends AppWidgetProvider {
             PendingIntent pendingIntent = PendingIntent.getActivity(context, 0, launchApp, 0);
             // Get the layout for the Amp Widget and attach an on-click listener
             // to the button
-            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget);
+            RemoteViews views = new RemoteViews(context.getPackageName(), R.layout.widget_layout);
             views.setOnClickPendingIntent(R.id.logo, pendingIntent);
 
             //
@@ -43,7 +43,7 @@ public class Widget extends AppWidgetProvider {
 
             views.setOnClickPendingIntent(R.id.new_entry, newEntryPending);
 
-            // Tell the AppWidgetManager to perform an update on the current app widget
+            // Tell the AppWidgetManager to perform an update on the current app widget_layout
             appWidgetManager.updateAppWidget(appWidgetId, views);
         }
     }

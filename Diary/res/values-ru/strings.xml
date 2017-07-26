@@ -66,77 +66,77 @@
         <item>СБТ </item>
     </string-array>
 
-    <string name="about">O</string>
+    <string name="ABOUT">O</string>
     <string name="SETTINGS">настройки</string>
     <string name="address_book">люди</string>
     <string name="allow_fullscreen">Разрешить полноэкранный</string>
-    <string name="alph_sort">Сортировать по алфавиту</string>
+    <string name="SORT_ALPHABETICALLY">Сортировать по алфавиту</string>
     <string name="APP_NAME">Animus</string>
     <string name="bugs_button">Ошибки, советы, предложения</string>
     <string name="calendar_view">календарь</string>
     <string name="CANCEL">отменить</string>
     <string name="change_time_of_notification">изменение</string>
-    <string name="CHOOSE_PHOTO">Выбрать фотографию</string>
+    <string name="CHOOSE_PICTURE">Выбрать фотографию</string>
     <string name="CLOSE">близко</string>
-    <string name="delelte_dialog_message">Все данные будут удалены, если вы будете продолжать ...</string>
-    <string name="delete_confirmation">удалять</string>
-    <string name="delete_entry_dialog">Удалить? Вы уверены?</string>
-    <string name="delete_pic">Удалить выбранное изображение?</string>
+    <string name="delete_entry_dialog_message_">Все данные будут удалены, если вы будете продолжать ...</string>
+    <string name="DELETE">удалять</string>
+    <string name="delete_entry_dialog_title">Удалить? Вы уверены?</string>
+    <string name="delete_pic_dialog_title">Удалить выбранное изображение?</string>
     <string name="delete_pic_confirmation">Действие не может быть отменено...</string>
-    <string name="dismiss">увольнять</string>
-    <string name="done">сделанный</string>
-    <string name="edit">редактировать</string>
+    <string name="DISMISS">увольнять</string>
+    <string name="DONE">сделанный</string>
+    <string name="EDIT">редактировать</string>
     <string name="edit_tags_dialog_title">Выберите один тег вы хотите удалить.</string>
     <string name="SEND_AS_EMAIL">Отправить по электронной почте</string>
     <string name="ENTRIES">Записи</string>
     <string name="entries_welcome">Ваш дневник пуста. Нажмите кнопку +, чтобы добавить запись.</string>
     <string name="NEW_ENTRY">Новая запись</string>
     <string name="favorite_entries">Избранные</string>
-    <string name="favs">Избранные</string>
+    <string name="FAVORITES">Избранные</string>
     <string name="full_setting_explanation">\"Новая запись\" экран пойдет на полный экран</string>
-    <string name="general">общий</string>
-    <string name="help">Помогите</string>
+    <string name="GENERAL">общий</string>
+    <string name="HELP">Помогите</string>
     <string name="HOME">домой</string>
     <string name="intro_dialog_dismiss_button">Потрясающе! Позвольте мне начать.</string>
     <string name="intro_rate">Не забудьте оценить приложение.</string>
     <string name="location_setting_info">App будет пинг для вашего текущего местоположения.</string>
-    <string name="location_setting_title">Записи Местонахождение</string>
+    <string name="LOCATION_ENTRIES">Записи Местонахождение</string>
     <string name="locations">Места</string>
     <string name="new_entry">Новая запись</string>
     <string name="new_note">Новый Примечание</string>
-    <string name="new_pic">Новые фото Фото</string>
-    <string name="new_recording">Новая запись</string>
+    <string name="NEW_PICTURE">Новые фото Фото</string>
+    <string name="NEW_AUDIO_RECORDING">Новая запись</string>
     <string name="NO">нет</string>
     <string name="no_photos_toast">Нет файлов использовали источники изображения.</string>
     <string name="no_tags_toast">Там нет записей с тегами.</string>
     <string name="note_hint">Начните вводить вашу записку.</string>
     <string name="notes">Примечания</string>
-    <string name="notifications">Уведомления</string>
-    <string name="occupation">оккупация</string>
-    <string name="old_recording">Старый Запись</string>
+    <string name="NOTIFICATION">Уведомления</string>
+    <string name="OCCUPATION">оккупация</string>
+    <string name="OLD_AUDIO_RECORDING">Старый Запись</string>
     <string name="OPEN">открыто</string>
     <string name="personal">персональный</string>
     <string name="PICTURES">Фотографии</string>
-    <string name="re_record">Re-записи</string>
-    <string name="recording">Запись...</string>
-    <string name="relationship">связь</string>
+    <string name="RE_RECORD">Re-записи</string>
+    <string name="RECORDING">Запись...</string>
+    <string name="RELATIONSHIP">связь</string>
     <string name="relationship_question_dialog">Кто ты встречаешься?</string>
-    <string name="share">доля</string>
+    <string name="SHARE">доля</string>
     <string name="share_dialog_neutral_button">назад</string>
     <string name="share_dialog_title">Выберите метод обмена...</string>
-    <string name="single">один</string>
+    <string name="SINGLE">один</string>
     <string name="status_setting_explanation">Все записи будут иметь ваши отношения, чтобы упростить опыт написания.</string>
-    <string name="statuses">Статусы</string>
-    <string name="stop_recording">Стоп</string>
+    <string name="STATUSES">Статусы</string>
+    <string name="STOP">Стоп</string>
     <string name="TAGS">Метки</string>
     <string name="tags">Метки:</string>
     <string name="TAKE_PICTURE">Сделать снимок</string>
-    <string name="time">время</string>
-    <string name="unemployed">безработные</string>
-    <string name="value_sort">Сортировать Численно</string>
-    <string name="welcome">Добро пожаловать!</string>
+    <string name="TIME">время</string>
+    <string name="UNEMPLOYED">безработные</string>
+    <string name="SORT_NUMERICALLY">Сортировать Численно</string>
+    <string name="WELCOME">Добро пожаловать!</string>
     <string name="welcome_subtext">С помощью этого приложения вы можете записать ваши впечатления</string>
-    <string name="work_question_dialog">Где вы в настоящее время работаете?</string>
+    <string name="occupation_question_dialog">Где вы в настоящее время работаете?</string>
     <string name="YES">да</string>
     <string name="illegal_character">Незаконное характер...</string>
     <string name="add_tag">+  бирка</string>
@@ -144,7 +144,7 @@
     <string name="added">добавленный</string>
     <string name="beta">В настоящее время России находится в стадии бета. Пожалуйста, присылайте обратную связь, если вы видите синтаксические ошибки</string>
     <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">Обратная связь</string>
+    <string name="FEEDBACK">Обратная связь</string>
     <string name="feedback_error">Ошибка с почтовым клиентом по умолчанию...</string>
     <string name="tags_hint_1">бирка/Количество</string>
     <string name="tags_hint_2">Последняя запись с бирка</string>
@@ -160,7 +160,7 @@
     <string name="reached_attempts_1_min">Достигнуто 4 попытки. Попробуйте еще раз за 1 минуту...</string>
     <string name="enter_new_password">Выберите новый пароль</string>
     <string name="re_enter_password">Повторно введите пароль</string>
-    <string name="selection">выбирать</string>
+    <string name="SELECT">выбирать</string>
 
     <string-array name="months_abrev">
         <item>янв</item>
@@ -177,7 +177,7 @@
         <item>дек</item>
     </string-array>
 
-    <string name="ok">Хорошо</string>
+    <string name="OK">Хорошо</string>
     <string name="new_tag">Введите новый бирка</string>
     <string name="rename_file_dialog">Введите новое имя входа</string>
     <string name="modify_date">Изменить Дата</string>
@@ -223,7 +223,7 @@
     <string name="name">Имена Javi</string>
     <string name="my_info_explanation">Я студентом дневного отделения и иметь полный рабочий день. Жаль, что я мог бы код более, но то, что ты собираешься делать?&lt;br/>&lt;br/>Я люблю технологии и модный дизайн пользовательского интерфейса. Ниже мои личные социальные счета СМИ. Если вам нравится моя работа, пойти и следовать!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
-    <string name="donate">Пожертвовать</string>
+    <string name="DONATION_AND_ADS">Пожертвовать</string>
     <string name="donation_err">Err достижения Google Play...</string>
     <string name="new_entry_hint">Тело вступления</string>
     <string name="entry_header">Название</string>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <PreferenceCategory android:title="@string/general" >
+    <PreferenceCategory android:title="@string/GENERAL" >
 
         <Preference android:title="Data"
             android:summary="Manage info stored on app." >
@@ -26,24 +26,24 @@
             android:defaultValue="false"
             android:key="Statuses"
             android:summary="@string/status_setting_explanation"
-            android:title="@string/statuses" />
+            android:title="@string/STATUSES" />
 
         <EditTextPreference
-            android:defaultValue="@string/single"
+            android:defaultValue="@string/SINGLE"
             android:dependency="Statuses"
             android:dialogTitle="@string/relationship_question_dialog"
             android:key="Relationship"
             android:persistent="true"
-            android:summary="@string/single"
-            android:title="@string/relationship" />
+            android:summary="@string/SINGLE"
+            android:title="@string/RELATIONSHIP" />
         <EditTextPreference
-            android:defaultValue="@string/unemployed"
+            android:defaultValue="@string/UNEMPLOYED"
             android:dependency="Statuses"
-            android:dialogTitle="@string/work_question_dialog"
+            android:dialogTitle="@string/occupation_question_dialog"
             android:key="Occupation"
             android:persistent="true"
-            android:summary="@string/unemployed"
-            android:title="@string/occupation" >
+            android:summary="@string/UNEMPLOYED"
+            android:title="@string/OCCUPATION" >
         </EditTextPreference>
 
 
@@ -51,7 +51,7 @@
             android:defaultValue="false"
             android:key="GPS"
             android:summary="@string/location_setting_info"
-            android:title="@string/location_setting_title" />
+            android:title="@string/LOCATION_ENTRIES" />
         <com.Settings.CustomPreference
             android:defaultValue="false"
             android:key="Contacts"
@@ -92,11 +92,11 @@
 
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/information">
-        <Preference android:title="@string/about"
+        <Preference android:title="@string/ABOUT"
             android:summary="social media links, version history, feedback, credits, etc." >
             <intent android:action="com.diary.about_me" />
         </Preference>
-        <Preference android:title="@string/help"
+        <Preference android:title="@string/HELP"
             android:summary="Information on privacy and other key app features.">
 
             <intent android:action="com.diary.help" />

@@ -7,11 +7,11 @@
     <string name="bugs_button">Bugs, Consejos, sugerencias</string>
     <string name="calendar_view">calendario</string>
     <string name="CANCEL">Cancelar</string>
-    <string name="CHOOSE_PHOTO">Elegir Un Foto</string>
+    <string name="CHOOSE_PICTURE">Elegir Un Foto</string>
     <string name="CLOSE">Concluir</string>
-    <string name="delelte_dialog_message">Se borrarán todos los datos si sigui&#8230;</string>
-    <string name="delete_confirmation">Invalidar</string>
-    <string name="delete_entry_dialog">¿Invalidar? Esta seguro?</string>
+    <string name="delete_entry_dialog_message_">Se borrarán todos los datos si sigui&#8230;</string>
+    <string name="DELETE">Invalidar</string>
+    <string name="delete_entry_dialog_title">¿Invalidar? Esta seguro?</string>
     <string name="edit_tags_dialog_title">Seleccione una etiqueta que desea invalidar.</string>
     <string name="SEND_AS_EMAIL">Enviar Por Correo Electrónico</string>
     <string name="ENTRIES">Entradas</string>
@@ -24,7 +24,7 @@
     <string name="tags">Etiquetas:</string>
     <string name="TAKE_PICTURE">Tomar Foto</string>
     <string name="YES">Si</string>
-    <string name="general">General</string>
+    <string name="GENERAL">General</string>
 
     <string-array name="months">
         <item>enero</item>
@@ -42,8 +42,8 @@
     </string-array>
 
     <string name="allow_fullscreen">Permitir Pantalla Completa</string>
-    <string name="notifications">Notificación</string>
-    <string name="about">Sobre La Aplicación</string>
+    <string name="NOTIFICATION">Notificación</string>
+    <string name="ABOUT">Sobre La Aplicación</string>
 
     <string-array name="navigation_titles">
         <item>Entradas</item>
@@ -63,40 +63,40 @@
         <item>sábado</item>
     </string-array>
 
-    <string name="old_recording">Grabación Anterior</string>
-    <string name="new_recording">Nueva Grabación</string>
-    <string name="share">Compartir</string>
-    <string name="new_pic">Nueva Imagen</string>
+    <string name="OLD_AUDIO_RECORDING">Grabación Anterior</string>
+    <string name="NEW_AUDIO_RECORDING">Nueva Grabación</string>
+    <string name="SHARE">Compartir</string>
+    <string name="NEW_PICTURE">Nueva Imagen</string>
     <string name="new_entry">Nueva Entrada</string>
-    <string name="edit">Editar</string>
-    <string name="done">Hecho</string>
+    <string name="EDIT">Editar</string>
+    <string name="DONE">Hecho</string>
     <string name="OPEN">Abrir</string>
     <string name="new_note">Nueva Nota</string>
     <string name="note_hint">Comience a escribir su nota.</string>
     <string name="personal">Personal</string>
-    <string name="relationship">Relación</string>
-    <string name="occupation">Ocupación</string>
-    <string name="work_question_dialog">¿Dónde trabajas actualmente?</string>
+    <string name="RELATIONSHIP">Relación</string>
+    <string name="OCCUPATION">Ocupación</string>
+    <string name="occupation_question_dialog">¿Dónde trabajas actualmente?</string>
     <string name="relationship_question_dialog">¿Con quién sales?</string>
-    <string name="help">Ayuda</string>
-    <string name="recording">Grabación&#8230;</string>
-    <string name="stop_recording">Detener la grabación</string>
-    <string name="dismiss">Despedir</string>
+    <string name="HELP">Ayuda</string>
+    <string name="RECORDING">Grabación&#8230;</string>
+    <string name="STOP">Detener la grabación</string>
+    <string name="DISMISS">Despedir</string>
     <string name="no_tags_toast">No hay entradas con etiquetas.</string>
     <string name="no_photos_toast">No hay entradas que usan fuentes de imagen.</string>
     <string name="notes">Notas</string>
-    <string name="time">Hora</string>
-    <string name="statuses">Estatus</string>
+    <string name="TIME">Hora</string>
+    <string name="STATUSES">Estatus</string>
     <string name="status_setting_explanation">Todas las entradas van a tener sus relaciones para simplificar la experiencia.</string>
     <string name="full_setting_explanation">\"Nueva Entrada\" será completa.</string>
-    <string name="single">Soltero</string>
-    <string name="unemployed">Desempleados</string>
+    <string name="SINGLE">Soltero</string>
+    <string name="UNEMPLOYED">Desempleados</string>
     <string name="change_time_of_notification">Change</string>
-    <string name="delete_pic">¿Invalidir la imagen seleccionada?</string>
+    <string name="delete_pic_dialog_title">¿Invalidir la imagen seleccionada?</string>
     <string name="delete_pic_confirmation">La acción no se puede deshacer&#8230;</string>
-    <string name="alph_sort">Sort Alphebitically</string>
-    <string name="value_sort">Ordenar Numéricamente</string>
-    <string name="re_record">Volver a grabar</string>
+    <string name="SORT_ALPHABETICALLY">Sort Alphebitically</string>
+    <string name="SORT_NUMERICALLY">Ordenar Numéricamente</string>
+    <string name="RE_RECORD">Volver a grabar</string>
 
     <string-array name="abrev_weekdays">
         <item>dom</item>
@@ -109,10 +109,10 @@
     </string-array>
 
     <string name="entries_welcome">Su diario está actualmente vacía. Empuje el + botón para hacer una entrada.</string>
-    <string name="location_setting_title">Permitir Ubicación</string>
+    <string name="LOCATION_ENTRIES">Permitir Ubicación</string>
     <string name="location_setting_info">App será un ping de tu ubicación actual.</string>
     <string name="intro_dialog_dismiss_button">Bueno! Permítame iniciarlo.</string>
-    <string name="welcome">¡Bienvenido!</string>
+    <string name="WELCOME">¡Bienvenido!</string>
     <string name="welcome_subtext">Con este app puede grabar sus experiencias.</string>
     <string name="intro_entries">Nunca fuera de alcance, el teléfono y la tableta aún pueden alojar sus momentos de la vida. \nNingún momento es demasiado fugaz, y ninguna experiencia olvidado.</string>
     <string name="intro_notes">• Notas facilitarán la recopilación de información tan simple como una lista de compras o tarea.</string>
@@ -120,7 +120,7 @@
     <string name="intro_tags">• Etiquetas organiza las entradas en los acontecimientos y palabras clave similares. Etiquetas dos entradas diferentes para vincularlos.</string>
     <string name="intro_location">• Ubicaciones trae algo de conciencia contextual de las entradas. Gire función en los ajustes y que siempre sabe dónde estabas.</string>
     <string name="intro_rate">No te olvides de votar la aplicación.</string>
-    <string name="favs">Favoritos</string>
+    <string name="FAVORITES">Favoritos</string>
     <string name="locations">Ubicaciones</string>
     <string name="share_dialog_title">Seleccione el método de reparto...</string>
     <string name="share_dialog_neutral_button">Detrás</string>
@@ -130,7 +130,7 @@
     <string name="added">sumado</string>
     <string name="beta">Española se encuentra actualmente en fase beta. Por favor enviar sus comentarios.</string>
     <string name="analytics_key">UA-48310537-1</string>
-    <string name="feedback">Realimentación</string>
+    <string name="FEEDBACK">Realimentación</string>
     <string name="feedback_error">Error con el cliente de correo electrónico predeterminado...</string>
     <string name="tags_hint_1">Etiqueta/Cantidad</string>
     <string name="tags_hint_2">Última entrada con etiqueta</string>
@@ -146,7 +146,7 @@
     <string name="reached_attempts_1_min">Alcanzado 4 intentos. Inténtelo de nuevo en 1 minuto...</string>
     <string name="enter_new_password">Seleccione nueva contraseña</string>
     <string name="re_enter_password">Vuelva a escribir la contraseña</string>
-    <string name="selection">Seleccione</string>
+    <string name="SELECT">Seleccione</string>
 
     <string-array name="months_abrev">
         <item>ene</item>
@@ -163,7 +163,7 @@
         <item>dic</item>
     </string-array>
 
-    <string name="ok">Bueno</string>
+    <string name="OK">Bueno</string>
     <string name="new_tag">Escriba la nueva etiqueta</string>
     <string name="rename_file_dialog">Introduzca el nuevo nombre de la entrada</string>
     <string name="modify_date">Modificar Fecha</string>
@@ -237,7 +237,7 @@ en las etiquetas y nombres de entrada si usted no desea ejecutar en el riesgo de
     <string name="name">El nombres\' Javi</string>
     <string name="my_info_explanation">Soy un estudiante de tiempo completo y tener un trabajo a tiempo completo. Ojalá que yo pudiera codificar más, pero lo que vas a hacer?&lt;br/>&lt;br/>Me encanta la tecnología y el diseño de interfaz de usuario elegante. Los siguientes son mis cuentas de redes sociales personales. Si te gusta mi trabajo, vaya y siga!&lt;br/>&lt;br/>
  &lt;a href=&quot;https://twitter.com/rtomyj&quot;>Twitter&lt;/a>          &lt;a href=&quot;https://github.com/rtomyj&quot;>Github&lt;/a></string>
-    <string name="donate">Donar</string>
+    <string name="DONATION_AND_ADS">Donar</string>
     <string name="donation_err">Errar llegar Google Play...</string>
     <string name="new_entry_hint">Cuerpo de entrada</string>
     <string name="entry_header">Título</string>
