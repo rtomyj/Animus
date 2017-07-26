@@ -74,7 +74,7 @@ public class Tags {
         newTagAlert.setTitle(resources.getString(R.string.new_tag));
         newTagAlert.setView(tagTV);
 
-        newTagAlert.setNegativeButton(resources.getString(R.string.dismiss), null);
+        newTagAlert.setNegativeButton(resources.getString(R.string.DISMISS), null);
 
         return newTagAlert;
     }

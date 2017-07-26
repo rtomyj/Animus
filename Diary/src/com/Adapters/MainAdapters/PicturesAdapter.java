@@ -27,14 +27,14 @@ import java.util.Calendar;
 
 
 /*
-		Adapter that displays an Entry that has at least one picture. Displays one picture that corresponds to its entry and the date of the entry as well as its name.
+		Adapter that displays an Entry that has at least one picture. Displays one picture that corresponds to its entry and the date_selection_layout of the entry as well as its name.
  */
 
 public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 	// for info
 	private Calendar calendar= Calendar.getInstance();
 
-	// holds data for adapter
+	// holds data_activity_layout for adapter
 	private ArrayList<String> picturesArrList;
 	private ArrayList<Long> lastModifiedArrList;
 
@@ -230,7 +230,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 
 	}
 
-	// Return the size of your data set (invoked by the layout manager)
+	// Return the size of your data_activity_layout set (invoked by the layout manager)
 	@Override
 	public int getItemCount() {
 		return picturesArrList.size();}

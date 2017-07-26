@@ -68,7 +68,7 @@ public class Data extends AppCompatActivity {
 		String theme = sp.getString("Theme", "Default");
 		UI.setTheme(context, theme);
 			
-		setContentView(R.layout.data);
+		setContentView(R.layout.data_activity_layout);
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
 		WeakReference<Toolbar> actionbarWeak = new WeakReference<>(actionbar);
@@ -93,9 +93,9 @@ public class Data extends AppCompatActivity {
 		}
 		else if(sp.getString("Theme", "Default").contains("Onyx")){
 			TextView backupRestoreInfo = (TextView) findViewById(R.id.textView1);
-			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.DarkWhite_ish));
-			backupRestoreTV.setTextColor(this.getResources().getColor(R.color.UIDarkText));
-			backupRestoreInfo.setTextColor(getResources().getColor(R.color.UIDarkText));
+			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIDarkBackground));
+			backupRestoreTV.setTextColor(this.getResources().getColor(R.color.UIDarkNormalText));
+			backupRestoreInfo.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 			
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 
@@ -111,13 +111,13 @@ public class Data extends AppCompatActivity {
 			TextView child2 = (TextView) findViewById(R.id.child2);
 			TextView consolidateExplanationTV = (TextView) findViewById(R.id.consolidate_explanation);
 
-			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
+			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkForeground));
 
 			subParentCV.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
 			fileConsolidationCV.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
 
-			child2.setTextColor(getResources().getColor(R.color.UIDarkText));
-			consolidateExplanationTV.setTextColor(getResources().getColor(R.color.UIDarkText));
+			child2.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			consolidateExplanationTV.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 		}
 
 
@@ -260,7 +260,7 @@ public class Data extends AppCompatActivity {
 				@Override
 				public void run() {
 					if (dbxAccountManager.hasLinkedAccount() == false){
-						dbxAccountManager.startLink((Activity) data, 0);
+						dbxAccountManager.startLink((Activity) data_activity_layout, 0);
 						syncPB.setProgress(0);
 					}
 					else {

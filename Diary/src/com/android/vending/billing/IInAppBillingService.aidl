@@ -88,7 +88,7 @@ interface IInAppBillingService {
      *
      * The Pending intent should be launched with startIntentSenderForResult. When purchase flow
      * has completed, the onActivityResult() will give a resultCode of OK or CANCELED.
-     * If the purchase is successful, the result data will contain the following key-value pairs
+     * If the purchase is successful, the result data_activity_layout will contain the following key-value pairs
      *         "RESPONSE_CODE" with int value, RESULT_OK(0) if success, other response codes on
      *              failure as listed above.
      *         "INAPP_PURCHASE_DATA" - String in JSON format similar to
@@ -98,7 +98,7 @@ interface IInAppBillingService {
      *                "purchaseTime":1345678900000,
      *                "purchaseToken" : "122333444455555",
      *                "developerPayload":"example developer payload" }'
-     *         "INAPP_DATA_SIGNATURE" - String containing the signature of the purchase data that
+     *         "INAPP_DATA_SIGNATURE" - String containing the signature of the purchase data_activity_layout that
      *                                  was signed with the private key of the developer
      *                                  TODO: change this to app-specific keys.
      */
@@ -107,7 +107,7 @@ interface IInAppBillingService {
 
     /**
      * Returns the current SKUs owned by the user of the type and package name specified along with
-     * purchase information and a signature of the data to be validated.
+     * purchase information and a signature of the data_activity_layout to be validated.
      * This will return all SKUs that have been purchased in V3 and managed items purchased using
      * V1 and V2 that have not been consumed.
      * @param apiVersion billing API version that the app is using

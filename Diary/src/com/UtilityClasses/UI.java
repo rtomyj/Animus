@@ -42,7 +42,7 @@ public  class UI {
     }
 
     public static int[] getThemeElements(Context context, String theme){
-        int primaryColor = 0, secondaryColor =0, darkThemeTextColor = 0, darkThemeBackgroundColor = 0, darkThemeForegroundColor = 0, tagsTextColor = 0;
+        int primaryColor = 0, secondaryColor =0, darkThemeTextColor = 0, darkThemeBackgroundColor = 0, darkThemeForegroundColor = 0;
 
         switch (theme) {
             case "Default":
@@ -66,15 +66,15 @@ public  class UI {
                 secondaryColor = ContextCompat.getColor(context, R.color.UIMaterialGreen);
                 break;
             case "Onyx P":
-                secondaryColor = ContextCompat.getColor(context, R.color.UIDarkPink);
-                darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkText);
-                darkThemeForegroundColor = ContextCompat.getColor(context, R.color.UIDarkOnyx);
-                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.DarkWhite_ish);
+                secondaryColor = ContextCompat.getColor(context, R.color.UIDark_Pink);
+                darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
+                darkThemeForegroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
+                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkBackground);
                 break;
             case "Onyx B":
-                darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkText);
+                darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
                 secondaryColor = ContextCompat.getColor(context, R.color.UIDarkBlue);
-                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkOnyx);
+                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
                 break;
         }
 
@@ -84,7 +84,7 @@ public  class UI {
         colors[2] = darkThemeTextColor;
         colors[3] = darkThemeBackgroundColor;
         colors[4] = darkThemeForegroundColor;
-        colors[5] = ContextCompat.getColor(context, R.color.Peach);
+        colors[5] = ContextCompat.getColor(context, R.color.UILightForeground);
 
         return colors;
     }

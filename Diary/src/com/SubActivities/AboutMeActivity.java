@@ -75,7 +75,7 @@ public class AboutMeActivity extends AppCompatActivity {
 		super.onCreate(savedInstanceState);
 		setTheme();
 
-		setContentView(R.layout.about);
+		setContentView(R.layout.about_activity_layout);
 
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -89,10 +89,10 @@ public class AboutMeActivity extends AppCompatActivity {
 			ScrollView scrollview = (ScrollView) findViewById(R.id.scrollView1);
 
 
-			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
+			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkForeground));
 			myInfo.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
 			scrollview.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
-			myInfo.setTextColor(getResources().getColor(R.color.UIDarkText));
+			myInfo.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 
 
 			Button facebook = (Button) findViewById(R.id.facebook);
@@ -102,12 +102,12 @@ public class AboutMeActivity extends AppCompatActivity {
 			Button me = (Button) findViewById(R.id.me);
 			Button history = (Button) findViewById(R.id.history);
 
-			facebook.setTextColor(getResources().getColor(R.color.UIDarkText));
-			twitter.setTextColor(getResources().getColor(R.color.UIDarkText));
-			bugsImprovements.setTextColor(getResources().getColor(R.color.UIDarkText));
-			credits.setTextColor(getResources().getColor(R.color.UIDarkText));
-			me.setTextColor(getResources().getColor(R.color.UIDarkText));
-			history.setTextColor(getResources().getColor(R.color.UIDarkText));
+			facebook.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			twitter.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			bugsImprovements.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			credits.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			me.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			history.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 		}
 
 		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL) {
@@ -191,17 +191,17 @@ public class AboutMeActivity extends AppCompatActivity {
 
 	public void credits(View v) {
 		alert = new AlertDialog.Builder(this);
-		alertView = View.inflate(this, R.layout.credits, null);
+		alertView = View.inflate(this, R.layout.credits_dialog_layout, null);
 
-		alert.setNeutralButton(R.string.dismiss, null);
+		alert.setNeutralButton(R.string.DISMISS, null);
 
 		alert.setView(alertView);
 		title = (TextView) alertView.findViewById(R.id.title);
 		tv = (TextView) alertView.findViewById(R.id.textView1);
 
 		if (theme.contains("Onyx")) {
-			tv.setTextColor(getResources().getColor(R.color.UIDarkText));
-			title.setTextColor(getResources().getColor(R.color.UIDarkText));
+			tv.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			title.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 		}
 								alert.create();
 										alert.show();
@@ -212,16 +212,16 @@ public class AboutMeActivity extends AppCompatActivity {
 		alert = new AlertDialog.Builder(this);
 
 
-		alertView = View.inflate(this, R.layout.javi_profile_info, null);
+		alertView = View.inflate(this, R.layout.javi_profile_info_layout, null);
 		alert.setView(alertView);
 		tv = (TextView) alertView.findViewById(R.id.textView1);
 		title = (TextView) alertView.findViewById(R.id.title);
 		tv.setText(Html.fromHtml(tv.getText().toString()));
 
-		alert.setNeutralButton(R.string.dismiss, null);
+		alert.setNeutralButton(R.string.DISMISS, null);
 		if (theme.contains("Onyx")) {
-			tv.setTextColor(getResources().getColor(R.color.UIDarkText));
-			title.setTextColor(getResources().getColor(R.color.UIDarkText));
+			tv.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			title.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 		}
 
 
@@ -234,18 +234,18 @@ public class AboutMeActivity extends AppCompatActivity {
 	}
 	public void history(View v) {
 		alert = new AlertDialog.Builder(this);
-		alertView = View.inflate(this, R.layout.history, null);
+		alertView = View.inflate(this, R.layout.history_layout, null);
 		alert.setView(alertView);
 
 
-		alert.setNeutralButton(R.string.dismiss, null);
+		alert.setNeutralButton(R.string.DISMISS, null);
 
 		title = (TextView) alertView.findViewById(R.id.title);
 		tv = (TextView) alertView.findViewById(R.id.textView1);
 
 		if (theme.contains("Onyx")) {
-			tv.setTextColor(getResources().getColor(R.color.UIDarkText));
-			title.setTextColor(getResources().getColor(R.color.UIDarkText));
+			tv.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			title.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 		}
 		alert.create();
 		alert.show();

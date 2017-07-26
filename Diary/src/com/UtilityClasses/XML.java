@@ -66,7 +66,7 @@ public class XML {
                     else
                         thisFile.setAttribute("favoriteSelectedFile", "false");
 
-                    CharSequence moods[] = resources.getStringArray(R.array.moods_for_xml);
+                    CharSequence moods[] = resources.getStringArray(R.array.moods_arr);
                     thisFile.setAttribute("mood", moods[currMood].toString());
                     if ( storedLocationBool ) {
                         thisFile.setAttribute("latitude", Double.toString(latitude));
@@ -178,7 +178,7 @@ public class XML {
                         else
                             fileNode.setAttribute("favoriteSelectedFile", "false");
 
-                        CharSequence moods[] = resources.getStringArray(R.array.moods_for_xml);
+                        CharSequence moods[] = resources.getStringArray(R.array.moods_arr);
                         fileNode.setAttribute("mood", moods[currMood].toString());
 
                         if (! storedLocationBool ) {
@@ -377,7 +377,7 @@ public class XML {
 
 
 
-    // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
+    // Loads the adapters data_activity_layout structures with the names of the files along with their tags, and whether they are favorite's or not.
     public static void getEntriesAdapterInfo(final ArrayList<String> sortedFilesArrList, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList,
                                 final ArrayList<Boolean> favArrList, final File filesDir ) {
         new Thread(new Runnable() {
@@ -508,7 +508,7 @@ public class XML {
     }
 
 
-    // Loads the adapters data structures with the names of the files along with their tags, and whether they are favorite's or not.
+    // Loads the adapters data_activity_layout structures with the names of the files along with their tags, and whether they are favorite's or not.
     public static void getFaveEntries(final ArrayList<String> filenames, final ArrayList<String> tag1ArrList, final ArrayList<String> tag2ArrList, final ArrayList<String> tag3ArrList
             , final ArrayList<Boolean >faveArrList, final File filesDir )  throws ParserConfigurationException, SAXException, IOException{
 

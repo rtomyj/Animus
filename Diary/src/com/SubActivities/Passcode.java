@@ -69,12 +69,12 @@ public class Passcode extends AppCompatActivity {
 			hint.setBackgroundColor(getResources().getColor(R.color.UIMaterialOrange));
 		}
 		else if (sp.getString("Theme", "Default").contains("Onyx")){
-			password.setBackgroundColor(getResources().getColor(R.color.DarkWhite_ish));
-			hint.setBackgroundColor(getResources().getColor(R.color.DarkWhite_ish));
+			password.setBackgroundColor(getResources().getColor(R.color.UIDarkBackground));
+			hint.setBackgroundColor(getResources().getColor(R.color.UIDarkBackground));
 
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 			LinearLayout numberPad = (LinearLayout) findViewById(R.id.numberPad);
-			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
+			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkForeground));
 
 			numberPad.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
 		}
@@ -92,9 +92,9 @@ public class Passcode extends AppCompatActivity {
 		if (password.getText().toString().length() == 4) {
 			hint.setText(getResources().getString(R.string.enter_password));
 			hint.setTextColor(getResources().getColor(
-					R.color.Non_Important_Text));
+					R.color.UILightNonImportantText));
 			password.setTextColor(getResources().getColor(
-					R.color.Non_Important_Text));
+					R.color.UILightNonImportantText));
 		}
 		if (v.getTag().toString().equals("backspace")) {
 			String temp = password.getText().toString();
@@ -117,7 +117,7 @@ public class Passcode extends AppCompatActivity {
 				password.setText(null);
 				hint.setText(getResources().getString(R.string.wrong));
 				password.setTextColor(getResources().getColor(R.color.UIRed));
-				hint.setTextColor(getResources().getColor(R.color.Peach));
+				hint.setTextColor(getResources().getColor(R.color.UILightForeground));
 			}
 		}
 	}

@@ -72,7 +72,7 @@ public class Activity_Donations extends Activity_Ads {
 */
      void donation() {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        View v = View.inflate(this, R.layout.donation, null);
+        View v = View.inflate(this, R.layout.donation_layout, null);
 
         if (userUIPreferences.theme.contains("Onyx")) {
             TextView titleTV =  v.findViewById(R.id.title);
@@ -85,18 +85,18 @@ public class Activity_Donations extends Activity_Ads {
         }
 
         builder.setView(v);
-        builder.setNeutralButton(getResources().getString(R.string.dismiss), null);
+        builder.setNeutralButton(getResources().getString(R.string.DISMISS), null);
         builder.create();
         builder.show();
 
     }
 
-    // invoked when user clicks the donation button in the donation AlertDialog
+    // invoked when user clicks the donation_layout button in the donation_layout AlertDialog
     public void baseDonation(View v) {
         donate("base_donation");       // name of the in_app purchase at DevConsole website.
     }
 
-    // invoked when user clicks the remove ads button in the donation AlertDialog
+    // invoked when user clicks the remove ads button in the donation_layout AlertDialog
     public void removeAds(View v) {
         donate("ad_removal");       // name of the in_app purchase at DevConsole website.
     }

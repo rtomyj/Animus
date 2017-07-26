@@ -46,7 +46,7 @@ public class SideNavAdapter extends ArrayAdapter<String> {
 		
 		if (sp.getString("FONTSTYLE", "DEFAULT").equals("DEFAULT") != true) {
 			if (tf == null)
-			tf = Typeface.createFromAsset(c.getAssets(), "fonts/"
+			tf = Typeface.createFromAsset(c.getAssets(), "fonts_adapter_layout/"
 					+ sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf");
 		}
 
@@ -77,8 +77,8 @@ public class SideNavAdapter extends ArrayAdapter<String> {
 
 
 
-			allScreens.setTextColor(c.getResources().getColor(R.color.Peach));
-			amount.setTextColor(c.getResources().getColor(R.color.Peach));
+			allScreens.setTextColor(c.getResources().getColor(R.color.UILightForeground));
+			amount.setTextColor(c.getResources().getColor(R.color.UILightForeground));
 
 		if (sp.getString("Theme", "Default").equals("Onyx")) {
 			LinearLayout l = (LinearLayout) rowView.findViewById(R.id.side_nav);
@@ -86,14 +86,14 @@ public class SideNavAdapter extends ArrayAdapter<String> {
 			l.setBackgroundColor(c.getResources().getColor(
 					R.color.Transparent_UIDarkGray));
 
-			allScreens.setTextColor(c.getResources().getColor(R.color.UIDarkText));
-			amount.setTextColor(c.getResources().getColor(R.color.UIDarkText));
+			allScreens.setTextColor(c.getResources().getColor(R.color.UIDarkNormalText));
+			amount.setTextColor(c.getResources().getColor(R.color.UIDarkNormalText));
 		}
 
 		
 
 		// tf = Typeface.createFromAsset(c.getAssets(),
-		// "fonts/Roboto-Regular.ttf");
+		// "fonts_adapter_layout/Roboto-Regular.ttf");
 		// allScreens.setTypeface(tf);
 
 		allScreens.setText(navigon.get(position));

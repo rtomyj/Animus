@@ -42,7 +42,7 @@ public class UserHelpActivity extends AppCompatActivity{
 		else if(sp.getString("Theme", "Default").equals("Material 4")){
 			super.setTheme(R.style.Material4);
 		}
-		setContentView(R.layout.help);
+		setContentView(R.layout.help_activity_layout);
 
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -73,7 +73,7 @@ public class UserHelpActivity extends AppCompatActivity{
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 
 			parent.setBackgroundColor(getResources()
-					.getColor(R.color.UIDarkOnyx));
+					.getColor(R.color.UIDarkForeground));
 		}
 	}
 	

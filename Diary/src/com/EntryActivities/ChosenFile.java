@@ -40,7 +40,6 @@ import android.util.Log;
 import android.view.GestureDetector;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.KeyEvent;
-import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -54,7 +53,6 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageSwitcher;
 import android.widget.ImageView;
@@ -62,7 +60,6 @@ import android.widget.LinearLayout;
 import android.widget.PopupMenu;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
-import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.ViewSwitcher;
 
@@ -88,7 +85,6 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-import java.util.Locale;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -314,7 +310,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 		}
 
 		deletePic = new AlertDialog.Builder(this);
-		deletePic.setTitle(R.string.delete_pic);
+		deletePic.setTitle(R.string.delete_pic_dialog_title);
 		deletePic.setMessage(R.string.delete_pic_confirmation);
 
 
@@ -340,7 +336,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 		if (fontStyle.contains("DEFAULT") != true) {
 			Typeface tf = Typeface.createFromAsset(this.getAssets(),
-					"fonts/" + fontStyle);
+					"fonts_adapter_layout/" + fontStyle);
 			t2.setTypeface(tf);
 			entryTextTV.setTypeface(tf);
 			entryTextET.setTypeface(tf);
@@ -364,14 +360,14 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 		LinearLayout infoLL = (LinearLayout) findViewById(R.id.info);
 
 		LinearLayout markupLL = (LinearLayout) findViewById(R.id.markup);
-
+/*
 		if (sp.getString("Theme", "Default").contains("Onyx")) {
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 
 
 
 			Button mood = (Button) findViewById(R.id.mood);
-			mood.setTextColor(getResources().getColor(R.color.Peach));
+			mood.setTextColor(getResources().getColor(R.color.UILightForeground));
 			LinearLayout changeTextVS = (LinearLayout) findViewById(R.id.content);
 
 			// make sure you use setBackgroundDrawable for sdk 15 and below
@@ -387,10 +383,10 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 			ViewSwitcher vs2 = (ViewSwitcher) findViewById(R.id.ChangeText);
 
-			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
+			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkForeground));
 			changeTextVS.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
-			entryTextTV.setTextColor(getResources().getColor(R.color.UIDarkText));
-			entryTextTV.setHighlightColor(getResources().getColor(R.color.Darkblue_green));
+			entryTextTV.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
+			entryTextTV.setHighlightColor(getResources().getColor(R.color.UIDarkBlue_Green));
 
 			// FIX THIS SO ITS NOT JUST A TRY CATCH
 			try{
@@ -401,15 +397,15 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 			}
 
 			infoLL.setBackgroundColor(getResources()
-					.getColor(R.color.DarkWhite_ish));
+					.getColor(R.color.UIDarkBackground));
 
 
 
-			t2.setTextColor(getResources().getColor(R.color.UIDarkText));
+			t2.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 			entryTextET.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
-			entryTextET.setTextColor(getResources().getColor(R.color.UIDarkText));
+			entryTextET.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
 			entryTextET.setHighlightColor(getResources()
-					.getColor(R.color.Darkblue_green));
+					.getColor(R.color.UIDarkBlue_Green));
 
 
 		}
@@ -442,6 +438,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 			infoLL.setBackgroundColor(getResources().getColor(R.color.UIMaterialOrange));
 
 		}
+		*/
 
 	}
 	@Override
@@ -457,7 +454,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 
 
-		setContentView(R.layout.chosen_file);
+		setContentView(R.layout.chosen_entry_activity_layout);
 
 		LinearLayout info = (LinearLayout) findViewById(R.id.info);
 		LinearLayout markup = (LinearLayout) findViewById(R.id.markup);
@@ -584,7 +581,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 				tv.setSingleLine(true);
 				tv.setLayoutParams(paramsForTagsOval);
 				tv.setTextSize(textSize);
-				tv.setTextColor(getResources().getColor(R.color.Peach));
+				tv.setTextColor(getResources().getColor(R.color.UILightForeground));
 				tv.setText(allTagsArrList.get(j).replaceAll("_", " "));
 
 				if (Build.VERSION.SDK_INT > 15)
@@ -668,18 +665,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 
 
-		String[] weekday = getResources()
-				.getStringArray(R.array.abrev_weekdays);
-
-		String[] month;
-
-		if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
-
-			month = getResources().getStringArray(R.array.non_abrev_months_arr);
-		} else
-			month = getResources().getStringArray(R.array.months_abrev);
-
-
+/*
 		if (Locale.getDefault().getCountry().equals("US"))
 			d.setText(Html.fromHtml("<b>" + weekday[lastModified.get(Calendar.DAY_OF_WEEK)]
 					+ " " + month[lastModified.get(Calendar.MONTH)] + " "
@@ -696,7 +682,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 					+ MiscMethods.setMinute(lastModified.get(Calendar.MINUTE))));
 
 
-
+*/
 
 
 
@@ -842,16 +828,6 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 		}
 	}
 
-	@Override
-	public boolean onCreateOptionsMenu(Menu menu) {
-		getMenuInflater().inflate(R.menu.chosen_file, menu);
-		
-		MenuItem item = menu.findItem(R.id.shareMenuItem);
-
-		//mShareActionProvider = (ShareActionProvider) MenuItemCompat.getActionProvider(item);
-
-		return true;
-	}
 
 	public void newTag(View v) {
 		AlertDialog.Builder newTag = new AlertDialog.Builder(this);
@@ -895,7 +871,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 
 								tv.setTextSize(textSize);
 								tv.setTextColor(getResources().getColor(
-										R.color.Peach));
+										R.color.UILightForeground));
 								tv.setText(temp);
 								tags.addView(tv);
 
@@ -945,7 +921,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 												R.drawable.drop_shadow_purple));
 							tv.setTextSize(textSize);
 							tv.setTextColor(getResources().getColor(
-									R.color.Peach));
+									R.color.UILightForeground));
 							tv.setPadding(24, 12, 24, 12);
 
 							if (textSize > 12)
@@ -1045,7 +1021,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 				DataOutputStream dos = new DataOutputStream(openFileOutput(
 						filename, Context.MODE_PRIVATE));
 
-				m.setTitle(getResources().getString(R.string.edit));
+				m.setTitle(getResources().getString(R.string.EDIT));
 				m.setIcon(R.drawable.white_edit);
 				string_constant = entryTextET.getText().toString().trim();
 				entryTextTV.setText(Html.fromHtml(string_constant.replace("\n",
@@ -1091,7 +1067,7 @@ public class ChosenFile extends AppCompatActivity implements SensorListener {
 			getResources().getConfiguration();
 			if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT)
 menuVS.setVisibility(View.VISIBLE);
-			m.setTitle(getResources().getString(R.string.done));
+			m.setTitle(getResources().getString(R.string.DONE));
 			m.setIcon(R.drawable.white_accept);
 			entryTextET.setText(null);
 			entryTextET.append(string_constant + " ");
@@ -1106,16 +1082,6 @@ menuVS.setVisibility(View.VISIBLE);
 		}
 	}
 
-	@Override
-	public boolean onPrepareOptionsMenu(Menu menu) {
-		audioFile = new File(getFilesDir(), filename.replaceAll(".txt",
-				".mpeg4"));
-		if (audioFile.exists() == false)
-			menu.removeItem(R.id.audio_clip);
-		else
-			menu.removeItem(R.id.add_audio);
-		return super.onPrepareOptionsMenu(menu);
-	}
 
 	public void tagsClicked(View v) {
 		AlertDialog.Builder tagsList = new AlertDialog.Builder(this);
@@ -1148,11 +1114,11 @@ menuVS.setVisibility(View.VISIBLE);
 
 	private void makeAudioDialog() {
 		audioPlayer = new AlertDialog.Builder(this);
-		mView = View.inflate(this, R.layout.audio_dialog, null);
+		mView = View.inflate(this, R.layout.audio_dialog_layout, null);
 		audioPlayer.setView(mView);
 
-		audioPlayer.setNeutralButton(R.string.dismiss, null);
-		audioPlayer.setNegativeButton(R.string.delete_confirmation,
+		audioPlayer.setNeutralButton(R.string.DISMISS, null);
+		audioPlayer.setNegativeButton(R.string.DELETE,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -1181,7 +1147,7 @@ menuVS.setVisibility(View.VISIBLE);
 		 **/
 
 		audioPlayer.setCancelable(false);
-		audioPlayer.setPositiveButton(R.string.re_record,
+		audioPlayer.setPositiveButton(R.string.RE_RECORD,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -1205,7 +1171,7 @@ menuVS.setVisibility(View.VISIBLE);
 		PopupMenu popup = new PopupMenu(this, m);
 
 		MenuInflater inflater = popup.getMenuInflater();
-		inflater.inflate(R.menu.pic_popup, popup.getMenu());
+		inflater.inflate(R.menu.pic_button_popup, popup.getMenu());
 		popup.show();
 	}
 
@@ -1364,9 +1330,9 @@ menuVS.setVisibility(View.VISIBLE);
 			e.printStackTrace();
 		}
 		final ProgressDialog progress = new ProgressDialog(ChosenFile.this);
-		progress.setTitle(R.string.recording);
+		progress.setTitle(R.string.RECORDING);
 		progress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-		progress.setButton(getResources().getString(R.string.stop_recording),
+		progress.setButton(getResources().getString(R.string.STOP),
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int whichButton) {
@@ -1395,8 +1361,8 @@ menuVS.setVisibility(View.VISIBLE);
 	public void deleteThis(View v) {
 		showing = true;
 		AlertDialog.Builder t = new AlertDialog.Builder(this);
-		t.setMessage(R.string.delelte_dialog_message);
-		t.setPositiveButton(R.string.delete_confirmation,
+		t.setMessage(R.string.delete_entry_dialog_message_);
+		t.setPositiveButton(R.string.DELETE,
 				new DialogInterface.OnClickListener() {
 
 					@Override
@@ -1687,7 +1653,7 @@ menuVS.setVisibility(View.VISIBLE);
 						element.setAttribute("favoriteSelectedFile", "false");
 
 
-					CharSequence moods[] = getResources().getStringArray(R.array.moods_for_xml);
+					CharSequence moods[] = getResources().getStringArray(R.array.moods_arr);
 					element.setAttribute("mood", moods[currMood].toString());
 
 					doc.normalize();
@@ -1866,22 +1832,23 @@ menuVS.setVisibility(View.VISIBLE);
 
 	}
 
+	/*
 	public void changeTime(View v) {
 		AlertDialog.Builder editTime = new AlertDialog.Builder(this);
-		mView = View.inflate(this, R.layout.date, null);
+		mView = View.inflate(this, R.layout.date_selection_layout, null);
 		editTime.setView(mView);
 
 
 		final TimePicker tp = (TimePicker) mView.findViewById(R.id.time_pick);
 		final DatePicker dp = (DatePicker) mView.findViewById(R.id.date_pick);
-		final TextView d = (TextView) findViewById(R.id.date);
+		final TextView d = (TextView) findViewById(R.id.date_selection_layout);
 
 		tp.setCurrentHour(lastModified.get(Calendar.HOUR));
 		tp.setCurrentMinute(lastModified.get(Calendar.MINUTE));
 		dp.updateDate(lastModified.get(Calendar.YEAR), lastModified.get(Calendar.MONTH),
 				lastModified.get(Calendar.DAY_OF_MONTH));
 
-		editTime.setNeutralButton(R.string.dismiss, null);
+		editTime.setNeutralButton(R.string.DISMISS, null);
 
 		editTime.setPositiveButton(R.string.ok,
 				new DialogInterface.OnClickListener() {
@@ -1890,8 +1857,7 @@ menuVS.setVisibility(View.VISIBLE);
 						String[] month;
 						if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_LARGE) {
 
-							month = getResources().getStringArray(
-									R.array.non_abrev_months_arr);
+							//month = getResources().getStringArray(R.array.non_abrev_months_arr);
 						} else
 							month = getResources().getStringArray(
 									R.array.months_abrev);
@@ -1903,6 +1869,7 @@ menuVS.setVisibility(View.VISIBLE);
 						lastModified.set(dp.getYear(), dp.getMonth(), dp.getDayOfMonth(), tp.getCurrentHour(), tp.getCurrentMinute(), 0);
 
 						lastModified.setTimeInMillis(lastModified.getTimeInMillis());
+
 						if (Locale.getDefault().getCountry().equals("US"))
 							d.setText(Html.fromHtml("<b>"
 									+ weekday[lastModified.get(Calendar.DAY_OF_WEEK)]
@@ -1936,14 +1903,14 @@ menuVS.setVisibility(View.VISIBLE);
 											.setMinute(lastModified.get(Calendar.MINUTE))));
 					}
 				});
+
 		editTime.create();
-		editTime.show();
-	}
+		edit
 
 	public void changeTimeMenu(MenuItem v) {
 		changeTime(new View(this));
 	}
-
+*/
 	public void renameFiles(MenuItem v) {
 		final AlertDialog.Builder newName = new AlertDialog.Builder(this);
 		final EditText renamed = new EditText(this);
@@ -1960,7 +1927,7 @@ menuVS.setVisibility(View.VISIBLE);
 			renamed.selectAll();
 		}
 
-		newName.setPositiveButton(getResources().getString(R.string.ok),
+		newName.setPositiveButton(getResources().getString(R.string.OK),
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -1991,7 +1958,7 @@ menuVS.setVisibility(View.VISIBLE);
 
 					}
 				});
-		newName.setNegativeButton(getResources().getString(R.string.dismiss),
+		newName.setNegativeButton(getResources().getString(R.string.DISMISS),
 				null);
 		newName.create();
 		final AlertDialog alert = newName.create();
@@ -2142,7 +2109,7 @@ menuVS.setVisibility(View.VISIBLE);
 				tv.setLayoutParams(paramsForTagsOval);
 				tv.setSingleLine(true);
 				tv.setTextSize(textSize);
-				tv.setTextColor(getResources().getColor(R.color.Peach));
+				tv.setTextColor(getResources().getColor(R.color.UILightForeground));
 
 				if (Build.VERSION.SDK_INT > 15)
 					tv.setBackground(getResources().getDrawable(
@@ -2215,7 +2182,7 @@ menuVS.setVisibility(View.VISIBLE);
 								job = element.getAttribute("occupation");
 								fav = element.getAttribute("favoriteSelectedFile");
 
-								String moods[] =  getResources().getStringArray(R.array.moods_for_xml);
+								String moods[] =  getResources().getStringArray(R.array.moods_arr);
 
 
 
@@ -2427,13 +2394,13 @@ menuVS.setVisibility(View.VISIBLE);
 
 		shouldISave = true;
 		AlertDialog.Builder selectMood = new AlertDialog.Builder(this);
-		CharSequence itemsT[] = getResources().getStringArray(R.array.moods);
+		CharSequence itemsT[] = getResources().getStringArray(R.array.moods_arr);
 
 
 		final TextView mood = (TextView) findViewById(R.id.mood);
 
 		selectMood.setTitle("Select Mood");
-		selectMood.setNeutralButton(R.string.dismiss, null);
+		selectMood.setNeutralButton(R.string.DISMISS, null);
 		selectMood.setSingleChoiceItems(itemsT, currMood,
 				new android.content.DialogInterface.OnClickListener() {
 

@@ -23,7 +23,7 @@ import java.util.Calendar;
 import java.util.Locale;
 
 /*
-    Parent class for adapters that show a summary of the file .txt file, its last modified date, 3 of its tags and whether it was a favorite entry.
+    Parent class for adapters that show a summary of the file .txt file, its last modified date_selection_layout, 3 of its tags and whether it was a favorite entry.
  */
 public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.ViewHolder> {
     private DeletedEntry deletedEntry;
@@ -76,14 +76,14 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
     }
 
 
-    // there are two constructors and they both require the same data setupViews, this takes care of it
+    // there are two constructors and they both require the same data_activity_layout setupViews, this takes care of it
     private void setupData() {
         locale = Locale.getDefault();
         userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
 
     }
 
-    // Constructor with the necessary data set being passed to it.
+    // Constructor with the necessary data_activity_layout set being passed to it.
     protected EntriesBaseAdapter(Context context, ArrayList<String> sortedFilesArrList, ArrayList<String> tag1ArrList, ArrayList<String> tag2ArrList, ArrayList<String> tag3ArrList,
                                  ArrayList<Boolean> favArrList, CustomAttributes userUIPreferences) {
         super(context, userUIPreferences);
@@ -193,7 +193,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
     }
 
-    // Return the size of your data set (invoked by the layout manager)
+    // Return the size of your data_activity_layout set (invoked by the layout manager)
     @Override
     public int getItemCount() {
         return sortedFilesArrList.size();
@@ -236,7 +236,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
         holder.timeTV.setText(MiscMethods.getLocalizedTime(calendar));
 
-        // uses string builder to append info about the day of month.
+        // uses string builder to append info about_activity_layout the day of month.
         StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
         dayBuilder.append(",");
         holder.dayTV.setText(dayBuilder.toString());

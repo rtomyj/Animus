@@ -26,7 +26,7 @@ public class Debug extends AppCompatActivity {
 	
 	void setTheme(SharedPreferences sp){
 		if (sp.getString("Theme", "Default").equals("Onyx")) {
-			super.setTheme(R.style.Onyx);
+			super.setTheme(R.style.OnyxB);
 		}
 		else if (sp.getString("Theme", "Default").equals("Material")){
 			super.setTheme(R.style.Material);
@@ -48,7 +48,7 @@ public class Debug extends AppCompatActivity {
 
 		setTheme(sp);
 		
-		setContentView(R.layout.debug);
+		setContentView(R.layout.debug_activity_layout);
 
 		filesOutput = (TextView) findViewById(R.id.scanFiles);
 		filesOutput.setText(null);

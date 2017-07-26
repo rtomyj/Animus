@@ -26,14 +26,14 @@ public class Domus extends Entries {
 
         if (!sp.getBoolean("INTRO", false)) {
             AlertDialog.Builder introDialog = new AlertDialog.Builder(this);
-            View introView = View.inflate(this, R.layout.intro, null);
+            View introView = View.inflate(this, R.layout.app_intro_layout, null);
 
             introDialog.setView(introView);
 
             introDialog.setPositiveButton(getResources().getString(R.string.intro_dialog_dismiss_button), null);
             introDialog.create();
             introDialog.show();
-            sp.edit().putBoolean("INTRO", true).apply();  // sets preference to true for intro meaning the user already has seen it.
+            sp.edit().putBoolean("INTRO", true).apply();  // sets preference to true for app_intro_layout meaning the user already has seen it.
         }
     }
 

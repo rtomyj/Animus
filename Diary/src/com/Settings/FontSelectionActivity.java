@@ -47,7 +47,7 @@ public class FontSelectionActivity extends AppCompatActivity {
 		}else if(sp.getString("Theme", "Default").equals("Material 4")){
 			super.setTheme(R.style.Material4);
 		}
-		setContentView(R.layout.fonts);
+		setContentView(R.layout.fonts_adapter_layout);
 
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -74,7 +74,7 @@ public class FontSelectionActivity extends AppCompatActivity {
 		list.add("MarckScript-Regular");
 		list.add("TypeWritersSubstitute");
 		list.add("Rothenburg Decorative");
-		list.add("data-latin");
+		list.add("data_activity_layout-latin");
 		list.add("day_roman");
 		list.add("Monoglyceride");
 		list.add("always forever");
@@ -104,7 +104,7 @@ public class FontSelectionActivity extends AppCompatActivity {
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 
 			parent.setBackgroundColor(getResources()
-					.getColor(R.color.UIDarkOnyx));
+					.getColor(R.color.UIDarkForeground));
 
 
 		}

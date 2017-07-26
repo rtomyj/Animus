@@ -67,7 +67,7 @@ public class Permissions {
 
         permissionDialogWeak.get().setView(requestView);
         permissionDialogWeak.get().setNegativeButton(R.string.CANCEL, null);
-        permissionDialogWeak.get().setNeutralButton(context.getString(R.string.dismiss), new DialogInterface.OnClickListener() {
+        permissionDialogWeak.get().setNeutralButton(context.getString(R.string.DISMISS), new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 requestResult(request, (Activity) context);

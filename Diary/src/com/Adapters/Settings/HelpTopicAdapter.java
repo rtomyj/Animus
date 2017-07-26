@@ -21,7 +21,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 	  
 
 	  public HelpTopicAdapter(Context context, ArrayList<String> temp) {
-	    super(context, R.layout.help_topics, temp);
+	    super(context, R.layout.help_adapter_layout, temp);
 	    this.context = context;
 	    values.addAll(temp);
 	  }
@@ -29,7 +29,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 	public View getView(int position, View convertView, ViewGroup parent) {
 		    LayoutInflater inflater = (LayoutInflater) context
 		        .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		    View rowView = inflater.inflate(R.layout.help_topics, parent, false);
+		    View rowView = inflater.inflate(R.layout.help_adapter_layout, parent, false);
 		    TextView topic = rowView.findViewById(R.id.topic);
 		    TextView info = rowView.findViewById((R.id.info));
 
@@ -41,7 +41,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 
 				LinearLayout p = rowView.findViewById(R.id.parent);
 
-				info.setTextColor(context.getResources().getColor(R.color.UIDarkText));
+				info.setTextColor(context.getResources().getColor(R.color.UIDarkNormalText));
 				p.setBackground(context.getResources().getDrawable(
 						R.drawable.onyx_selector));
 			}
@@ -49,7 +49,7 @@ public class HelpTopicAdapter extends ArrayAdapter<String> {
 
 				LinearLayout p = rowView.findViewById(R.id.parent);
 
-				info.setTextColor(context.getResources().getColor(R.color.UIDarkText));
+				info.setTextColor(context.getResources().getColor(R.color.UIDarkNormalText));
 				p.setBackground(context.getResources().getDrawable(
 						R.drawable.onyx_selector));
 			}

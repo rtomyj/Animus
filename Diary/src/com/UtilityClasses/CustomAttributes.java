@@ -58,7 +58,7 @@ public  class CustomAttributes {
 
     private void setupResources(Context context){
         if ( ! fontStyle.contains("DEFAULT"))
-            userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts/" + fontStyle);
+            userSelectedFontTF = Typeface.createFromAsset(context.getAssets(), "fonts_adapter_layout/" + fontStyle);
 
         tagsTVParams = new LinearLayout.LayoutParams(android.view.ViewGroup.LayoutParams.WRAP_CONTENT, android.view.ViewGroup.LayoutParams.WRAP_CONTENT);
         tagsTVParams.setMargins(0, 0, 45, 0);

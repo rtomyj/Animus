@@ -75,8 +75,8 @@ public class MainSettingsFragment extends PreferenceFragment {
         final Context c = this.getActivity();
         
         
-        relationship.setSummary(sp.getString("Relationship", c.getResources().getString(R.string.single)));
-        job.setSummary(sp.getString("Occupation", c.getResources().getString(R.string.unemployed)));
+        relationship.setSummary(sp.getString("Relationship", c.getResources().getString(R.string.SINGLE)));
+        job.setSummary(sp.getString("Occupation", c.getResources().getString(R.string.UNEMPLOYED)));
 
 		resetTags.setOnPreferenceChangeListener(new OnPreferenceChangeListener() {
 			@Override
@@ -111,7 +111,7 @@ public class MainSettingsFragment extends PreferenceFragment {
 
 
 					AlertDialog.Builder builder = new AlertDialog.Builder(c);
-					builder.setTitle("Delete all data?");
+					builder.setTitle("Delete all data_activity_layout?");
 					builder.setMessage("This action cannot be undone.");
 
 					builder.setPositiveButton("Delete", new DialogInterface.OnClickListener() {

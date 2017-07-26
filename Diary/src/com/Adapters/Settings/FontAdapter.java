@@ -51,7 +51,7 @@ public class FontAdapter extends ArrayAdapter<String> {
 
 			TextView tv2 = rowView.findViewById(R.id.textView2);
 
-			tv2.setTextColor(c.getResources().getColor(R.color.UIDarkText));
+			tv2.setTextColor(c.getResources().getColor(R.color.UIDarkNormalText));
 		}
 
 		tv = rowView.findViewById(R.id.textView1);
@@ -60,95 +60,95 @@ public class FontAdapter extends ArrayAdapter<String> {
 		if (position == 1) {
 					tv.setText(fonts.get(position));
 					tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-							"fonts/Ubuntu-Light.ttf"));
+							"fonts_adapter_layout/Ubuntu-Light.ttf"));
 					tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-							"fonts/Ubuntu-Light.ttf"));
+							"fonts_adapter_layout/Ubuntu-Light.ttf"));
 
 		} else if (position == 2) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/bendable.ttf"));
+					"fonts_adapter_layout/bendable.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/bendable.ttf"));
+					"fonts_adapter_layout/bendable.ttf"));
 		} else if (position == 3) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Mercato-Light.ttf"));
+					"fonts_adapter_layout/Mercato-Light.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Mercato-Light.ttf"));
+					"fonts_adapter_layout/Mercato-Light.ttf"));
 
 		} else if (position == 4) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Mercato-Light.ttf"));
+					"fonts_adapter_layout/Mercato-Light.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/ShareTechMono-Regular.ttf"));
+					"fonts_adapter_layout/ShareTechMono-Regular.ttf"));
 		} else if (position == 5) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Plain&SimplyFat.ttf"));
+					"fonts_adapter_layout/Plain&SimplyFat.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Plain&SimplyFat.ttf"));
+					"fonts_adapter_layout/Plain&SimplyFat.ttf"));
 		} else if (position == 6) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/MarckScript-Regular.ttf"));
+					"fonts_adapter_layout/MarckScript-Regular.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/MarckScript-Regular.ttf"));
+					"fonts_adapter_layout/MarckScript-Regular.ttf"));
 		} else if (position == 7) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/TypeWritersSubstitute.ttf"));
+					"fonts_adapter_layout/TypeWritersSubstitute.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/TypeWritersSubstitute.ttf"));
+					"fonts_adapter_layout/TypeWritersSubstitute.ttf"));
 		} else if (position == 8) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Rothenburg Decorative.ttf"));
+					"fonts_adapter_layout/Rothenburg Decorative.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Rothenburg Decorative.ttf"));
+					"fonts_adapter_layout/Rothenburg Decorative.ttf"));
 		}
 		else if (position == 9) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/data-latin.ttf"));
+					"fonts_adapter_layout/data_activity_layout-latin.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/data-latin.ttf"));
+					"fonts_adapter_layout/data_activity_layout-latin.ttf"));
 		}
 	else if (position ==10) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/day_roman.ttf"));
+					"fonts_adapter_layout/day_roman.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/day_roman.ttf"));
+					"fonts_adapter_layout/day_roman.ttf"));
 		}
 		else if (position == 11) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Monoglyceride.ttf"));
+					"fonts_adapter_layout/Monoglyceride.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Monoglyceride.ttf"));
+					"fonts_adapter_layout/Monoglyceride.ttf"));
 		}
 		else if (position == 12) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/always forever.ttf"));
+					"fonts_adapter_layout/always forever.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/always forever.ttf"));
+					"fonts_adapter_layout/always forever.ttf"));
 		}
 		else if (position == 13) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Marker Felt.ttf"));
+					"fonts_adapter_layout/Marker Felt.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/Marker Felt.ttf"));
+					"fonts_adapter_layout/Marker Felt.ttf"));
 		}
 		else if (position == 14) {
 			tv.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/girlnextdoor.ttf"));
+					"fonts_adapter_layout/girlnextdoor.ttf"));
 			tv.setText(fonts.get(position));
 			tv2.setTypeface(Typeface.createFromAsset(c.getAssets(),
-					"fonts/girlnextdoor.ttf"));
+					"fonts_adapter_layout/girlnextdoor.ttf"));
 		}
 		return rowView;
 	}

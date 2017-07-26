@@ -129,7 +129,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         }
 
-        if (previousInstance != null) {     // gets info about last instance from bundle
+        if (previousInstance != null) {     // gets info about_activity_layout last instance from bundle
             // file variables
             filename = previousInstance.getString("FILENAME");
             isSaved = previousInstance.getBoolean("IS_SAVED");
@@ -180,7 +180,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
         setContentView(R.layout.new_entry);
 
-        // animates the toolbar on the bottom as well as the date layout.
+        // animates the toolbar on the bottom as well as the date_selection_layout layout.
         LinearLayout infoLL = (LinearLayout) findViewById(R.id.info_layout);
         LinearLayout  markup = (LinearLayout) findViewById(R.id.markup);
 
@@ -192,7 +192,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
     }
 
-    public void setupEntryData(){       // if there is nothing being loaded from bundle then there needs to be data loaded from SharedPreference or created here.
+    public void setupEntryData(){       // if there is nothing being loaded from bundle then there needs to be data_activity_layout loaded from SharedPreference or created here.
         fileCreationMillis = System.currentTimeMillis();
 
         statuses = sp.getBoolean("Statuses", false);
@@ -210,7 +210,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         darkThemeTextColor = colors[2];
 
 
-        lightTextColor =  ContextCompat.getColor(context,R.color.Peach);
+        lightTextColor =  ContextCompat.getColor(context,R.color.UILightForeground);
         textSize = Float.parseFloat(sp.getString("TextSize", "14"));
         fontStyle = sp.getString("FONTSTYLE", "DEFAULT").trim() + ".ttf";
 
@@ -242,7 +242,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
     }
 
 
-    // places all the right information to the UI such as time and date, location and statuses (if appropriate) and mood from previous instance. Among others.
+    // places all the right information to the UI such as time and date_selection_layout, location and statuses (if appropriate) and mood from previous instance. Among others.
     public void placeInfoToViews(TextView monthTV, TextView dayTV, TextView timeTV, TextView yearTV, TextView currentLocationTV, TextView relationshipTV, TextView occupationTV){
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(fileCreationMillis);
@@ -341,7 +341,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
         // if onStart hasn't run (dataLoaded == false), UI hasn't been updated.
         // changes the UI of the views to match that of what the user wants.
-        // adds time and date to entry
+        // adds time and date_selection_layout to entry
         if(! dataLoaded) {
             TextView monthTV = (TextView) findViewById(R.id.month_for_new_entry);
             TextView dayTV = (TextView) findViewById(R.id.day_for_new_entry);
@@ -353,8 +353,8 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
             enteredTagsLL = (LinearLayout) findViewById(R.id.tags_in_entry);
 
-            if (fileCreationMillis == 0) {      // this data setupViews will only run if fileCreationMillis is 0 and the only time that is true is when it never gets altered before onStart()
-                setupEntryData();       // gets date, time, statuses, location, suggested tags, etc
+            if (fileCreationMillis == 0) {      // this data_activity_layout setupViews will only run if fileCreationMillis is 0 and the only time that is true is when it never gets altered before onStart()
+                setupEntryData();       // gets date_selection_layout, time, statuses, location, suggested tags, etc
                 setupSuggestedTags();       // sets up suggested tags array with contact names and previously used tags.
             }
 
@@ -531,10 +531,10 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
     public void moodButtonClicked(final View mood) {
         AlertDialog.Builder selectMood = new AlertDialog.Builder(context);
-        CharSequence itemsT[] = getResources().getStringArray(R.array.moods);
+        CharSequence itemsT[] = getResources().getStringArray(R.array.moods_arr);
 
         selectMood.setTitle("Select Mood");
-        selectMood.setNeutralButton(R.string.dismiss, null);
+        selectMood.setNeutralButton(R.string.DISMISS, null);
         selectMood.setSingleChoiceItems(itemsT, currMood,
                 new android.content.DialogInterface.OnClickListener() {
                     @Override
@@ -589,15 +589,15 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
             titleWeak.get().setTextColor(darkThemeTextColor);
             textWeak.get().setTextColor(darkThemeTextColor);
 
-            textWeak.get().setHighlightColor(ContextCompat.getColor(context, R.color.Darkblue_green));
+            textWeak.get().setHighlightColor(ContextCompat.getColor(context, R.color.UIDarkBlue_Green));
             contentWeak.get().setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkGray));
-            parentWeak.get().setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkOnyx));
+            parentWeak.get().setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkForeground));
         }
 
 
         if (  !  fontStyle.contains("DEFAULT") ) {
 
-            userSelectedFontTF = Typeface.createFromAsset(this.getAssets(), "fonts/" + fontStyle);
+            userSelectedFontTF = Typeface.createFromAsset(this.getAssets(), "fonts_adapter_layout/" + fontStyle);
 
             titleWeak.get().setTypeface(userSelectedFontTF, Typeface.BOLD);
             textWeak.get().setTypeface(userSelectedFontTF);
@@ -643,7 +643,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
         inputManager.hideSoftInputFromWindow(this.getCurrentFocus().getWindowToken(), InputMethodManager.HIDE_NOT_ALWAYS);
         PopupMenu popup = new PopupMenu(this, m);
         MenuInflater inflater = popup.getMenuInflater();
-        inflater.inflate(R.menu.pic_popup, popup.getMenu());
+        inflater.inflate(R.menu.pic_button_popup, popup.getMenu());
         popup.show();
     }
 
@@ -666,7 +666,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
                         Permissions.permissionNotGranted(context, Permissions.MY_PERMISSIONS_REQUEST_CAMERA);
                     }
                 } else {
-                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {     // if the user has granted permission to access camera app seeks permission to write data to disk
+                    if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {     // if the user has granted permission to access camera app seeks permission to write data_activity_layout to disk
                         // Should we show an explanation?
                         if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                             Permissions. requestDialog(Permissions.MY_PERMISSIONS_REQUEST_WRITE_TO_DISK, context);
@@ -800,11 +800,11 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
 
     public void deleteClicked(View v) {
-        // otherwise data has to be erased.
+        // otherwise data_activity_layout has to be erased.
             AlertDialog.Builder t = new AlertDialog.Builder(this);
-            t.setMessage(R.string.delelte_dialog_message);
+            t.setMessage(R.string.delete_entry_dialog_message_);
             t.setIcon(ContextCompat.getDrawable(this, R.drawable.white_discard));
-            t.setPositiveButton(R.string.delete_confirmation,
+            t.setPositiveButton(R.string.DELETE,
                     new DialogInterface.OnClickListener() {
 
                         @Override

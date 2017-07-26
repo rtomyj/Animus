@@ -83,12 +83,12 @@ public class Audio {
         final View mView;
         AlertDialog.Builder audioPlayer;
         audioPlayer = new AlertDialog.Builder(context);
-        mView = View.inflate(context, R.layout.audio_dialog, null);
+        mView = View.inflate(context, R.layout.audio_dialog_layout, null);
         audioPlayer.setView(mView);
         switchPlayPause = (ImageSwitcher) mView.findViewById(R.id.playPause);
 
 
-        audioPlayer.setPositiveButton(R.string.re_record,
+        audioPlayer.setPositiveButton(R.string.RE_RECORD,
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -99,7 +99,7 @@ public class Audio {
                         }
                     }
                 });
-        audioPlayer.setNeutralButton(R.string.dismiss, new DialogInterface.OnClickListener() {
+        audioPlayer.setNeutralButton(R.string.DISMISS, new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
 
@@ -109,7 +109,7 @@ public class Audio {
         });
 
 
-        audioPlayer.setNegativeButton(context.getResources().getString(R.string.delete_confirmation),
+        audioPlayer.setNegativeButton(context.getResources().getString(R.string.DELETE),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -178,9 +178,9 @@ public class Audio {
         }
         final ProgressDialog audioRecordingProgress = new ProgressDialog(context);
 
-        audioRecordingProgress.setTitle(context.getResources().getString(R.string.recording));
+        audioRecordingProgress.setTitle(context.getResources().getString(R.string.RECORDING));
         audioRecordingProgress.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        audioRecordingProgress.setButton(context.getResources().getString(R.string.stop_recording),
+        audioRecordingProgress.setButton(context.getResources().getString(R.string.STOP),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int whichButton) {

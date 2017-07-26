@@ -63,10 +63,10 @@ import java.lang.ref.SoftReference;
         SwipeRefreshLayout mSwipeRefreshLayout = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
         mSwipeRefreshLayout.setEnabled(false);
 /*
-        //  allows data to get refreshed from whatever backup option user chooses
+        //  allows data_activity_layout to get refreshed from whatever backup option user chooses
         //              !!!!! Backup coming soon !!!!!
 
-        if (!sp.getBoolean("DROPBOXBACKUP", false)) { // there will be a swipeable layout for refreshing data, only if dropbox backup is true in settings.
+        if (!sp.getBoolean("DROPBOXBACKUP", false)) { // there will be a swipeable layout for refreshing data_activity_layout, only if dropbox backup is true in settings.
             mSwipeRefreshLayout.setEnabled(false);
         } else {
             mSwipeRefreshLayout.setColorSchemeColors(
@@ -119,7 +119,7 @@ import java.lang.ref.SoftReference;
             public void run() {
                 switch (item.getItemId()) {
                     case R.id.donation:
-                        donation();       // shows donation popup
+                        donation();       // shows donation_layout popup
                         break;
                     case R.id.feedback:
                         feedback();      // launches feedback operations
@@ -223,7 +223,7 @@ import java.lang.ref.SoftReference;
         }
     }
 
-    // launches the NewEntry activity where the user enters new data.
+    // launches the NewEntry activity where the user enters new data_activity_layout.
     public void newEntry(View view) {
         LauncherMethods.newEntry(this);
     }

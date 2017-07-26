@@ -49,7 +49,7 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 
 		// if bundle isn't empty  it means the activity was recreated, it restores all the previous sessions variables from the bundle
 		if (bundle != null) {
-			// loads data from bundle
+			// loads data_activity_layout from bundle
 			boolean faves[] = bundle.getBooleanArray("FAVES");
 			assert faves != null;
 			ArrayList<Boolean> favArrayList = new ArrayList<>(Collections.nCopies(faves.length, false));
@@ -124,7 +124,7 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 					}
 				}
 			});
-			((TextView) (undoDeleteSnackBar.getView().findViewById(android.support.design.R.id.snackbar_text))).setTextColor(ContextCompat.getColor(this, R.color.Peach));
+			((TextView) (undoDeleteSnackBar.getView().findViewById(android.support.design.R.id.snackbar_text))).setTextColor(ContextCompat.getColor(this, R.color.UILightForeground));
 		}
 
 	}
@@ -143,7 +143,7 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 	public void dropDownMenuForSelectedFile(View threeVerticalDotMenu) {
 		PopupMenu popup = new PopupMenu(this, threeVerticalDotMenu);
 		MenuInflater inflater = popup.getMenuInflater();
-		inflater.inflate(R.menu.long_click_entries, popup.getMenu());
+		inflater.inflate(R.menu.long_click_entries_list_element, popup.getMenu());
 		popup.show();
 
 		indexOfFocusedFile = threeVerticalDotMenu.getId();
@@ -182,11 +182,11 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 
 		AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-		builder.setTitle(R.string.delete_entry_dialog);
-		builder.setMessage(R.string.delelte_dialog_message);
+		builder.setTitle(R.string.delete_entry_dialog_title);
+		builder.setMessage(R.string.delete_entry_dialog_message_);
 		builder.setIcon(ContextCompat.getDrawable(this, R.drawable.white_discard));
 		builder.setNegativeButton(R.string.NO, null);
-		builder.setPositiveButton(R.string.delete_confirmation,
+		builder.setPositiveButton(R.string.DELETE,
 				new DialogInterface.OnClickListener() {
 					@Override
 					public void onClick(DialogInterface dialog, int which) {
@@ -266,7 +266,7 @@ public class Entries extends MainActivity<EntriesBaseAdapter, LinearLayoutManage
 					scrollToX(0);
 
 			/*
-				I use a preference to store new file name and their tags on the NewEntry activity if, for some reason, they don't go back to this activity then the onCreate method will pull in new data from
+				I use a preference to store new file name and their tags on the NewEntry activity if, for some reason, they don't go back to this activity then the onCreate method will pull in new data_activity_layout from
 				their directory (new file is in there) and also attempt to read these preferences later in the onStart method. Removing them preemptive wll remove redundancies.
 		 	*/
 					sp.edit().remove("NEWFILENAME").apply();

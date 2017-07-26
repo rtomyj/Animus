@@ -45,14 +45,14 @@ public class Tags extends MainActivity<TagsAdapter, LinearLayoutManager> {
 	public synchronized void sort(MenuItem m) {
 		if (isAlphaSort == true) {
 			isAlphaSort = false;
-			m.setTitle(getResources().getString(R.string.alph_sort));
+			m.setTitle(getResources().getString(R.string.SORT_ALPHABETICALLY));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort_alph));
 			//tagsAdapter.sortNum(numSortedTagsArrList, numSortedTagNumArrList, numSortedFilenamesArrList);
 			//Log.e("11111111", Integer.toString(alphaSortedFilenamesArrList.size()));
 		} else {
 			isAlphaSort = true;
 
-			m.setTitle(getResources().getString(R.string.value_sort));
+			m.setTitle(getResources().getString(R.string.SORT_NUMERICALLY));
 			m.setIcon(getResources().getDrawable(R.drawable.white_sort));
 			//tagsAdapter.sortAlph(alphaSortedTagsArrList, alphSortedTagNumArrList, alphaSortedFilenamesArrList);
 			//Log.e("eee", Integer.toString(alphaSortedFilenamesArrList.size()));

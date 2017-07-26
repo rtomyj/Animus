@@ -46,12 +46,12 @@ public class PasswordSet extends Activity_Base {
 			hint.setBackgroundColor(getResources().getColor(R.color.UIMaterialOrange));
 		}
 		else if (sp.getString("Theme", "Default").contains("Onyx")){
-			password.setBackgroundColor(getResources().getColor(R.color.DarkWhite_ish));
-			hint.setBackgroundColor(getResources().getColor(R.color.DarkWhite_ish));
+			password.setBackgroundColor(getResources().getColor(R.color.UIDarkBackground));
+			hint.setBackgroundColor(getResources().getColor(R.color.UIDarkBackground));
 
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 			LinearLayout numberPad = (LinearLayout) findViewById(R.id.numberPad);
-			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
+			parent.setBackgroundColor(getResources().getColor(R.color.UIDarkForeground));
 
 			numberPad.setBackgroundColor(getResources().getColor(R.color.UIDarkGray));
 		}
