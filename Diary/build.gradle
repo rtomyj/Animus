@@ -22,7 +22,7 @@ dependencies {
 }
 
 android {
-    lintOptions{
+    lintOptions {
         abortOnError false
     }
     signingConfigs {
@@ -30,9 +30,12 @@ android {
     defaultConfig {
         applicationId "com.rtomyj.Diary"
         minSdkVersion 19
+        maxSdkVersion 26
         compileSdkVersion 26
         targetSdkVersion 26
         buildToolsVersion '25.0.0'
+        versionName 'v2.3'
+        versionCode 2030000
     }
     buildTypes {
         release {
@@ -70,4 +73,5 @@ android {
     buildToolsVersion '25.0.0'
     productFlavors {
     }
+    compileSdkVersion 26
 }

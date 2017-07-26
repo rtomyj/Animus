@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest package="com.rtomyj.Diary"
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:versionCode="02030000"
-          android:versionName="2.3">
+          xmlns:android="http://schemas.android.com/apk/res/android">
 
     <uses-sdk
-        android:maxSdkVersion="23"/>
+        android:maxSdkVersion="26"/>
 
     <supports-screens
         android:anyDensity="true"
@@ -63,8 +61,6 @@
             android:name="com.google.android.maps.v2.API_KEY"
             android:value="AIzaSyB792yPQCwgwG__zEYoPjjrjWdJqn8GMew"/>
 
-
-
         <activity
             android:name="com.SubActivities.SplashScreen"
             android:configChanges="orientation"
@@ -90,17 +86,6 @@
             <meta-data
                 android:name="android.app.default_searchable"
                 android:value=".Search"/>
-        </activity>
-        <activity
-            android:name="com.SubActivities.Notes"
-            android:configChanges="orientation"
-            android:label="@string/notes"
-            android:parentActivityName="com.MainActivities.Entries">
-            <intent-filter>
-                <action android:name="com.diary.notes"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
         </activity>
         <activity
             android:name="com.EntryActivities.ChosenFile"
@@ -178,18 +163,6 @@
             android:windowSoftInputMode="adjustResize">
             <intent-filter>
                 <action android:name="com.diary.new_entry"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.SubActivities.NewNote"
-            android:configChanges="orientation"
-            android:label="@string/new_note"
-            android:parentActivityName="com.MainActivities.Entries"
-            android:windowSoftInputMode="adjustResize">
-            <intent-filter>
-                <action android:name="com.diary.new_note"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
@@ -324,16 +297,6 @@
             android:parentActivityName="com.MainActivities.Entries">
             <intent-filter>
                 <action android:name="com.diary.fonts"/>
-
-                <category android:name="android.intent.category.DEFAULT"/>
-            </intent-filter>
-        </activity>
-        <activity
-            android:name="com.SubActivities.ChosenNote"
-            android:configChanges="orientation"
-            android:parentActivityName="com.SubActivities.Notes">
-            <intent-filter>
-                <action android:name="com.diary.chosen_note"/>
 
                 <category android:name="android.intent.category.DEFAULT"/>
             </intent-filter>
