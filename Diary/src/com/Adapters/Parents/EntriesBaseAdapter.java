@@ -122,6 +122,8 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
             // changes TextColor
             holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
             holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
+            holder.menuTV.setTextColor(userUIPreferences.primaryColor);
+            holder.favTV.setTextColor(userUIPreferences.primaryColor);
 
             // changes background and text color depending whether theme is dark
             switch (userUIPreferences.theme) {
@@ -130,14 +132,9 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
                     holder.cardView.setBackground(userUIPreferences.darkThemeSelectorShader);
                     holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                     holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                    holder.menuTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                     holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                    holder.favTV.setTextColor(userUIPreferences.textColorForDarkThemes);
                     break;
                 default:
-                    holder.menuTV.setTextColor(userUIPreferences.primaryColor);
-                    holder.favTV.setTextColor(userUIPreferences.primaryColor);
-                    break;
             }
 
             // changes text size and number of lines according to user preference

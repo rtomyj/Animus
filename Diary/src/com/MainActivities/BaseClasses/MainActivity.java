@@ -217,8 +217,9 @@ import java.lang.ref.SoftReference;
      private void customizeUI(){
         if (userUIPreferences.theme.contains("Onyx")) {
             TextView welcomeTV = (TextView) findViewById(R.id.welcome_text);
+            LinearLayout anchorLL = (LinearLayout) findViewById(R.id.anchor);
 
-            recyclerView.setBackgroundColor(userUIPreferences.darkThemeBackgroundColor);
+            anchorLL.setBackgroundColor(userUIPreferences.darkThemeBackgroundColor);
             welcomeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
         }
     }

@@ -77,17 +77,21 @@ public  class UI {
                 secondaryColor = ContextCompat.getColor(context, R.color.UIMaterialBrown);
                 break;
             case "Onyx P":
-                secondaryColor = ContextCompat.getColor(context, R.color.UIDark_Pink);
-                darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
-                darkThemeForegroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
-                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkBackground);
+                primaryColor = ContextCompat.getColor(context, R.color.UIDark_Pink);
+                secondaryColor = ContextCompat.getColor(context, R.color.UIDarkGreen);
                 break;
             case "Onyx B":
+                primaryColor = ContextCompat.getColor(context, R.color.UIDarkBlue);
+                secondaryColor = ContextCompat.getColor(context, R.color.UIDarkOrange);
+        }
+        switch (theme){
+            case "Onyx P":
+            case "Onyx B":
                 darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
-                secondaryColor = ContextCompat.getColor(context, R.color.UIDarkBlue);
                 darkThemeForegroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
                 darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkBackground);
                 break;
+
         }
 
         int [] colors = new int[6];
@@ -126,8 +130,10 @@ public  class UI {
                 tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_material_6);
                 break;
             case "Onyx P":
+                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_dark_pink);
+                break;
             case "Onyx B":
-                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.dark_drop_shadow_purple);
+                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_dark_blue);
                 break;
         }
         return tagsBackgroundDrawable;

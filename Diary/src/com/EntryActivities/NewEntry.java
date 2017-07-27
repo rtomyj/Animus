@@ -24,6 +24,7 @@ import android.os.Environment;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -51,6 +52,7 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.MainActivities.BaseClasses.Activity_Base;
 import com.SubActivities.Passcode;
 import com.UtilityClasses.Files;
 import com.UtilityClasses.LauncherMethods;
@@ -72,7 +74,7 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
 
-public class NewEntry extends AppCompatActivity implements LocationListener, Entry {
+public class NewEntry extends Activity_Base implements LocationListener, Entry {
     // Activity Vars
     private SharedPreferences sp;
     private Context context;
@@ -574,16 +576,12 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
 
         if (sp.getString("Theme", "Default").contains("Onyx")) {
-            LinearLayout parent = (LinearLayout) findViewById(R.id.New_Entry_Layout);
+            CoordinatorLayout parent = (CoordinatorLayout) findViewById(R.id.New_Entry_Layout);
             Button mood = (Button) findViewById(R.id.mood);
-
-            WeakReference<LinearLayout> parentWeak = new WeakReference<>(parent);
-            WeakReference<Button> moodWeak = new WeakReference<>(mood);
-
 
             markupWeak.get().setBackgroundColor(secondaryColor);
 
-            moodWeak.get().setTextColor(darkThemeTextColor);
+            mood.setTextColor(darkThemeTextColor);
             monthTV.setTextColor(darkThemeTextColor);
             timeTV.setTextColor(darkThemeTextColor);
             titleWeak.get().setTextColor(darkThemeTextColor);
@@ -591,7 +589,7 @@ public class NewEntry extends AppCompatActivity implements LocationListener, Ent
 
             textWeak.get().setHighlightColor(ContextCompat.getColor(context, R.color.UIDarkBlue_Green));
             contentWeak.get().setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkGray));
-            parentWeak.get().setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkForeground));
+            parent.setBackgroundColor(ContextCompat.getColor(context, R.color.UIDarkForeground));
         }
 
 

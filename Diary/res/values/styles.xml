@@ -15,14 +15,14 @@
         <item name="android:colorAccent">@color/UIDarkGreen</item>
         <item name ="android:textColor">@color/UIDark_Pink</item>
 
-        <item name="android:navigationBarColor">@color/UIDark_Pink</item>
+        <item name="android:navigationBarColor">@color/UIDarkGreen</item>
     </style>
 
     <style name="OnyxB" parent="Theme.AppCompat.NoActionBar">
         <item name="android:colorAccent">@color/UIDarkOrange</item>
         <item name ="android:textColor">@color/UIDarkBlue</item>
 
-        <item name="android:navigationBarColor">@color/UIDarkBlue</item>
+        <item name="android:navigationBarColor">@color/UIDarkOrange</item>
     </style>
 
     <style name="Material" parent="LightBase">

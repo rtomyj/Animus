@@ -190,17 +190,8 @@
                         android:textSize="14sp"
                         android:textColor="@color/UILightNonImportantText"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
+                        android:layout_marginRight="55dp"
                         android:text="C: 0\t W:0 "/>
-                    <Button
-                        android:id="@+id/add_like_button"
-                        android:layout_width="48dp"
-                        android:layout_height="match_parent"
-                        android:background="?android:selectableItemBackground"
-                        android:text="☆"
-                        android:gravity="center"
-                        android:onClick="changeFave"
-                        android:textSize="28sp" />
 
                 </LinearLayout>
 
@@ -236,18 +227,9 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:gravity="start"
-                    android:weightSum="3"
+                    android:weightSum="4"
                     android:layout_height="45dp">
 
-                    <ImageButton
-                        android:id="@+id/tag_button"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:background="?android:selectableItemBackground"
-                        android:src="@drawable/tags"
-                        android:onClick="newTag"
-                        />
                     <Button
                         android:id="@+id/mood"
                         android:layout_width="0dp"
@@ -260,6 +242,16 @@
                         android:layout_marginRight="15dp"
                         android:onClick="moodButtonClicked"
                         android:textSize="22sp" />
+
+                    <ImageButton
+                        android:id="@+id/tag_button"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="?android:selectableItemBackground"
+                        android:src="@drawable/tags"
+                        android:onClick="newTag"
+                        />
                     <ImageSwitcher
                         android:id="@+id/audio"
                         android:layout_width="0dp"
@@ -283,6 +275,17 @@
                             android:onClick="messWithAudio"/>
 
                     </ImageSwitcher>
+
+                    <Button
+                        android:id="@+id/add_like_button"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:layout_height="match_parent"
+                        android:background="?android:selectableItemBackground"
+                        android:text="☆"
+                        android:gravity="center"
+                        android:onClick="changeFave"
+                        android:textSize="28sp" />
 
                 </LinearLayout>
 
