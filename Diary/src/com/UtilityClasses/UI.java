@@ -35,6 +35,9 @@ public  class UI {
             case "Material 5":
                 context.setTheme(R.style.Material5);
                 break;
+            case "Material 6":
+                context.setTheme(R.style.Material6);
+                break;
             default:
                 break;
 
@@ -65,6 +68,14 @@ public  class UI {
                 primaryColor = ContextCompat.getColor(context, R.color.UIMaterialOrange);
                 secondaryColor = ContextCompat.getColor(context, R.color.UIMaterialGreen);
                 break;
+            case "Material 5":
+                primaryColor = ContextCompat.getColor(context, R.color.UIMaterialDeepGreen);
+                secondaryColor = ContextCompat.getColor(context, R.color.UIMaterialRed);
+                break;
+            case "Material 6":
+                primaryColor = ContextCompat.getColor(context, R.color.UIMaterialDarkTeal);
+                secondaryColor = ContextCompat.getColor(context, R.color.UIMaterialBrown);
+                break;
             case "Onyx P":
                 secondaryColor = ContextCompat.getColor(context, R.color.UIDark_Pink);
                 darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
@@ -74,7 +85,8 @@ public  class UI {
             case "Onyx B":
                 darkThemeTextColor = ContextCompat.getColor(context,R.color.UIDarkNormalText);
                 secondaryColor = ContextCompat.getColor(context, R.color.UIDarkBlue);
-                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
+                darkThemeForegroundColor = ContextCompat.getColor(context, R.color.UIDarkForeground);
+                darkThemeBackgroundColor = ContextCompat.getColor(context, R.color.UIDarkBackground);
                 break;
         }
 
@@ -108,11 +120,12 @@ public  class UI {
                 tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_material_4);
                 break;
             case "Material 5":
-                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_material_4);
+                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_material_5);
+                break;
+            case "Material 6":
+                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.tag_background_color_material_6);
                 break;
             case "Onyx P":
-                tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.dark_drop_shadow_purple);
-                break;
             case "Onyx B":
                 tagsBackgroundDrawable = ContextCompat.getDrawable(context, R.drawable.dark_drop_shadow_purple);
                 break;
@@ -121,7 +134,7 @@ public  class UI {
     }
 
 
-    public static Drawable getDarkSelectorDrawable(Context context, String theme){
+     static Drawable getDarkSelectorDrawable(Context context, String theme){
         Drawable selectorDrawable = null;
         switch (theme) {
             case "Onyx P":

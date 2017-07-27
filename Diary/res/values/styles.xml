@@ -84,13 +84,13 @@
 
     <style name="Material6" parent="LightBase">
 
-        <item name="android:colorPrimary">@color/UIMaterialDeepGreen</item>
-        <item name="android:colorPrimaryDark">@color/UIMaterialDeepDarkGreen</item>
-        <item name="android:colorAccent">@color/UIMaterialRed</item>
+        <item name="android:colorPrimary">@color/UIMaterialTeal</item>
+        <item name="android:colorPrimaryDark">@color/UIMaterialDarkTeal</item>
+        <item name="android:colorAccent">@color/UIMaterialBrown</item>
 
-        <item name="android:navigationBarColor">@color/UIMaterialRed</item>
-        <item name="colorPrimary">@color/UIMaterialDeepGreen</item>
-        <item name="colorAccent">@color/UIMaterialRed</item>
+        <item name="android:navigationBarColor">@color/UIMaterialBrown</item>
+        <item name="colorPrimary">@color/UIMaterialTeal</item>
+        <item name="colorAccent">@color/UIMaterialBrown</item>
     </style>
 
     <style name="LightBase" parent="Theme.AppCompat.Light.NoActionBar">
