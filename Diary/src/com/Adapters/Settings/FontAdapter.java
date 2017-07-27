@@ -26,7 +26,7 @@ public class FontAdapter extends ArrayAdapter<String> {
 
 	public FontAdapter(Context context, ArrayList<String> objects) {
 
-		super(context, R.id.fonts, objects);
+		super(context, R.layout.fonts_adapter_layout, objects);
 		fonts.addAll(objects);
 		c = context;
 	}

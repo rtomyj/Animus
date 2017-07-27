@@ -47,7 +47,7 @@ public class FontSelectionActivity extends AppCompatActivity {
 		}else if(sp.getString("Theme", "Default").equals("Material 4")){
 			super.setTheme(R.style.Material4);
 		}
-		setContentView(R.layout.fonts_adapter_layout);
+		setContentView(R.layout.fonts_layout);
 
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -94,9 +94,8 @@ public class FontSelectionActivity extends AppCompatActivity {
 		});
 		
 
-		ListView lv = (ListView) findViewById(R.id.fonts);
 		FontAdapter fa = new FontAdapter(this, list);
-		lv.setAdapter(fa);
+		listview.setAdapter(fa);
 
 
 		if (sp.getString("Theme", "Default").contains("Onyx")) {

@@ -37,15 +37,10 @@ public class SplashScreen extends Activity_Base {
 		checkPassword = sp.getBoolean("Password", false);
 		password = sp.getString("PasswordValue", "0000");
 
-		UI.setTheme(this, userUIPreferences.theme);		// sets theme
-
 		if (checkPassword) 		 // if the user has password enabled the splash_screen_layout screen will be the password input screen instead of regular splash_screen_layout
 			passwordScreen();
-
 		else  		// if no passcode_layout then regular splash_screen_layout layout is used.
 		splashScreen();
-
-		UI.setTheme(this, userUIPreferences.theme);		// sets theme
 
 		}
 
