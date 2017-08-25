@@ -27,7 +27,7 @@ import java.util.Calendar;
 
 
 /*
-		Adapter that displays an Entry that has at least one picture. Displays one picture that corresponds to its entry and the date_selection_layout of the entry as well as its name.
+		Adapter that displays an Entry_Base that has at least one picture. Displays one picture that corresponds to its entry and the date_selection_layout of the entry as well as its name.
  */
 
 public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
