@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.view.View;
 
+import com.EntryActivities.NewEntry;
 import com.MainActivities.BaseClasses.ActivityTypes;
 import com.MainActivities.Domus;
 import com.MainActivities.FaveEntries;
-import com.EntryActivities.NewEntry;
 import com.MainActivities.PicEntries;
-import com.EntryActivities.ChosenFile;
+import com.EntryActivities.ChosenEntry;
 import com.Settings.MainSettingsActivity;
 import com.MainActivities.Tags;
 import com.rtomyj.Diary.R;
@@ -74,7 +74,7 @@ public class LauncherMethods {
     }
 
     public static void chosenFile(Context context, String filename, int position, ArrayList<String> sortedFiles){
-        Intent chosenFile = new Intent(context, ChosenFile.class);
+        Intent chosenFile = new Intent(context, ChosenEntry.class);
         chosenFile.putExtra("FILENAME", filename);
 
         chosenFile.putExtra("FILESARRAY", sortedFiles);

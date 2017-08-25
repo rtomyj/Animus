@@ -13,6 +13,7 @@ public  class UI {
 
     // Changes the base theme to the user selected theme.
     public static void setTheme(Context context, String theme){
+        System.out.println("setting theme: " + theme);
         switch(theme){
             case "Onyx P":
                 context.setTheme(R.style.OnyxP);
