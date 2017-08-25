@@ -148,7 +148,7 @@
 
             </FrameLayout>
             <LinearLayout
-                android:layout_marginTop="18dp"
+                android:layout_marginTop="10dp"
                 android:id="@+id/content"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -162,16 +162,15 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="55dp"
+                    android:layout_height="wrap_content"
                     android:orientation="horizontal"
-                    android:padding="5dp"
                     >
 
                     <EditText
                         android:id="@+id/title_of_entry"
                         android:layout_width="0dp"
                         android:layout_height="match_parent"
-                        android:layout_weight="0.83"
+                        android:layout_weight="1"
                         android:background="#00000000"
                         android:hint="@string/entry_header"
                         android:gravity="center_vertical"
@@ -190,7 +189,7 @@
                         android:textSize="14sp"
                         android:textColor="@color/UILightNonImportantText"
                         android:layout_marginLeft="5dp"
-                        android:layout_marginRight="55dp"
+                        android:layout_marginRight="45dp"
                         android:text="C: 0\t W:0 "/>
 
                 </LinearLayout>
@@ -203,13 +202,9 @@
                     android:hint="@string/new_entry_hint"
                     android:inputType="textCapSentences|textMultiLine"
                     android:lineSpacingExtra="2dp"
-                    android:minLines="5"
+                    android:minLines="7"
                     android:background="#00000000"
                     android:textColor="#333"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:paddingStart="5dp"
-                    android:paddingEnd="5dp"
                     android:paddingTop="15dp"
                     android:paddingBottom="15dp"
                     android:textSize="14sp" />
@@ -228,7 +223,7 @@
                     android:layout_width="match_parent"
                     android:gravity="start"
                     android:weightSum="4"
-                    android:layout_height="45dp">
+                    android:layout_height="40dp">
 
                     <Button
                         android:id="@+id/mood"
@@ -238,8 +233,6 @@
                         android:background="?android:selectableItemBackground"
                         android:text="Mood"
                         android:gravity="center"
-                        android:layout_marginLeft="15dp"
-                        android:layout_marginRight="15dp"
                         android:onClick="moodButtonClicked"
                         android:textSize="22sp" />
 
@@ -250,6 +243,7 @@
                         android:layout_height="match_parent"
                         android:background="?android:selectableItemBackground"
                         android:src="@drawable/tags"
+                        android:gravity="center"
                         android:onClick="newTag"
                         />
                     <ImageSwitcher
@@ -264,6 +258,7 @@
                             android:layout_height="match_parent"
                             android:background="?android:selectableItemBackground"
                             android:src="@drawable/mic"
+                            android:gravity="center"
                             android:tag="access_mic"
                             android:onClick="recordAudio"/>
                         <ImageButton
@@ -271,6 +266,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:src="@drawable/white_audio"
+                            android:gravity="center"
                             android:tag="accessRecording"
                             android:onClick="messWithAudio"/>
 
@@ -285,7 +281,7 @@
                         android:text="☆"
                         android:gravity="center"
                         android:onClick="changeFave"
-                        android:textSize="28sp" />
+                        android:textSize="32sp" />
 
                 </LinearLayout>
 
@@ -324,11 +320,13 @@
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
+        android:layout_marginRight="5dp"
+        android:layout_marginEnd="5dp"
         android:clickable="true"
         android:elevation="6dp"
         android:src="@drawable/camera"
         app:layout_anchor="@id/main_pic"
         android:onClick="addPic"
+        android:cropToPadding="true"
         app:layout_anchorGravity="bottom|right|end"/>
 </android.support.design.widget.CoordinatorLayout>
