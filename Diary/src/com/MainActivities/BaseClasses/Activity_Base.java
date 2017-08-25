@@ -32,7 +32,13 @@ public class Activity_Base extends AppCompatActivity implements ActivityTypes{
     protected void onCreate(Bundle bundle) {
         super.onCreate(bundle);
 
-        if ((getResources().getConfiguration().screenLayout & Configuration.SCREENLAYOUT_SIZE_MASK) == Configuration.SCREENLAYOUT_SIZE_SMALL)   	// blocks orientation change on really small screens
+        final int SCREEN_LAYOUT = getResources().getConfiguration().screenLayout;
+        final int SCREEN_CONFIGS = Configuration.SCREENLAYOUT_SIZE_MASK;
+
+        final int SMALL_SCREEN = Configuration.SCREENLAYOUT_SIZE_SMALL;
+        final int NORMAL_SCREEN = Configuration.SCREENLAYOUT_SIZE_NORMAL;
+
+        if ((SCREEN_LAYOUT & SCREEN_CONFIGS)== SMALL_SCREEN || (SCREEN_LAYOUT & SCREEN_CONFIGS) == NORMAL_SCREEN)   	// blocks orientation change on phones
             setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
 
 

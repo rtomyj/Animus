@@ -22,7 +22,7 @@ import com.SubActivities.Passcode;
 >>>>>>> a966f1388bbd459a8aac6ba356fb65af1d7e2e6e
  */
 public class Activity_Password extends Activity_Base {
-    private boolean shouldLaunchPasswordActivity, passWordCheckedSuccessful = false, launchingWithinApp = false;
+    protected boolean shouldLaunchPasswordActivity, passWordCheckedSuccessful = false, launchingWithinApp = false;
 
     @Override
     protected void onResume() {
