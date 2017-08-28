@@ -14,7 +14,7 @@
     <string name="DEBUG_MENU">Debug Menu</string>
     <string name="DEBUG_YO">Debug, yo</string>
 
-    <!--     Entry strings   -->
+    <!--     Entry_Base strings   -->
     <string name="NEW_ENTRY">New Entry</string>
     <string name="NEW_PICTURE">New Picture</string>
     <string name="TAKE_PICTURE">Take Picture</string>
