@@ -36,8 +36,6 @@ captures/
 *.iml
 .idea/
 
-#profiling
-*.alloc
 
 # Keystore files
 *.jks
@@ -65,6 +63,9 @@ freeline_project_description.json
  #Eclicpse Settings
  *.settings
  
+#profiling
+*.alloc
+ 
  #Other Android files
  project.xml
  lint.xml
@@ -73,5 +74,4 @@ freeline_project_description.json
  project.properties
  gradlew
  gradlew.bat
- *.idea*
 >>>>>>> v2.3
