@@ -36,7 +36,7 @@ public class DomusAdapter extends EntriesBaseAdapter {
 
 
     private void loadAllEntries(){
-        final ArrayList<File> filesArrayList = new ArrayList<>(Files.getAllFilesWithExtension(context.getFilesDir(), ".txt"));
+        final ArrayList<File> filesArrayList = new ArrayList<>(Files.getAllFilesWithExtension(getContext().getFilesDir(), ".txt"));
 
         initSize = filesArrayList.size();
         sortedFilesArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
@@ -55,7 +55,7 @@ public class DomusAdapter extends EntriesBaseAdapter {
                 }
                 filesArrayList.clear();
 
-                XML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+                XML.getEntriesAdapterInfo(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, getContext().getFilesDir());
             }
         }).start();
 

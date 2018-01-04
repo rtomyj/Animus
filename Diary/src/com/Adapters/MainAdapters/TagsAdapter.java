@@ -92,36 +92,36 @@ public class TagsAdapter extends AdapterSummaryCache<TagsAdapter.ViewHolder> {
 			@Override
 			public void onClick(View view) {
 				int position = view.getId();
-				Intent selectedTag = new Intent(context, ChosenTag.class);
+				Intent selectedTag = new Intent(getContext(), ChosenTag.class);
 				selectedTag.putExtra("TAG_NAME", tagsArrList.get(position));
 				selectedTag.putExtra("TAG_NUM", (byte) tagAmountArrList.get(position));
 
-				context.startActivity(selectedTag);
+				getContext().startActivity(selectedTag);
 			}
 		});
 	}
 	private void customizeUI(TagsAdapter.ViewHolder holder){
-		if (userUIPreferences.theme.contains("Onyx")) {
-			holder.parentCardView.setBackground(userUIPreferences.darkThemeSelectorShader);
-			holder.amountTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-			holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+		if (getUserUIPreferences().theme.contains("Onyx")) {
+			holder.parentCardView.setBackground(getUserUIPreferences().darkThemeSelectorShader);
+			holder.amountTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
+			holder.summaryTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
 
 		}
-		holder.tagTV.setTextColor(userUIPreferences.secondaryColor);
+		holder.tagTV.setTextColor(getUserUIPreferences().secondaryColor);
 
-		holder.summaryTV.setTextSize(userUIPreferences.textSize);
-		holder.tagTV.setTextSize(userUIPreferences.mediumTextSize);
-		holder.amountTV.setTextSize(userUIPreferences.textSize);
+		holder.summaryTV.setTextSize(getUserUIPreferences().textSize);
+		holder.tagTV.setTextSize(getUserUIPreferences().mediumTextSize);
+		holder.amountTV.setTextSize(getUserUIPreferences().textSize);
 
 
-		if ( userUIPreferences.userSelectedFontTF != null ) {
+		if ( getUserUIPreferences().userSelectedFontTF != null ) {
 
-			holder.tagTV.setTypeface(userUIPreferences.userSelectedFontTF);
-			holder.amountTV.setTypeface(userUIPreferences.userSelectedFontTF);
-			holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
+			holder.tagTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+			holder.amountTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+			holder.summaryTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
 		}
-		holder.summaryTV.setMaxLines(userUIPreferences.numLines);
-		holder.summaryTV.setMinLines(userUIPreferences.numLines);
+		holder.summaryTV.setMaxLines(getUserUIPreferences().numLines);
+		holder.summaryTV.setMinLines(getUserUIPreferences().numLines);
 	}
 
 	@Override

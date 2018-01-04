@@ -6,7 +6,8 @@
     <color name="UIForegroundTransparent">#bbf7f7f7</color>
     <color name="UILightBackground">#e6e6e6</color>
     <color name="UILightNormalText">#373737</color>
-    <color name="UILightNonImportantText">#535354</color>
+    <color name="UILightNonImportantText">#666</color>
+    <color name="UILightTextColor">#444</color>
 
     <!--        colors for dark themes     -->
     <color name="UIDarkForeground">#3b3b3b</color>

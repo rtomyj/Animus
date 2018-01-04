@@ -53,15 +53,6 @@
                 tools:ignore="HardcodedText" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/file_year"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:clickable="false"
-            android:text="time"
-            android:textColor="@color/UILightNonImportantText"
-            android:textSize="14sp"
-            tools:ignore="HardcodedText" />
     </LinearLayout>
 
     <LinearLayout

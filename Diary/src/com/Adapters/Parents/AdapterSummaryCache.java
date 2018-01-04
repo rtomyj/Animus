@@ -49,7 +49,7 @@ import java.io.IOException;
 
         if (summaryString == null) {
             try {
-                summaryString = Files.getTextFromFile(context, identifier, summaryLength);
+                summaryString = Files.getTextFromFile(getContext(), identifier, summaryLength);
             } catch (IOException e) {
                 Log.e("Err loading text", e.toString());
                 summaryString = "";
@@ -62,7 +62,7 @@ import java.io.IOException;
 
         if (summaryString.isEmpty()) { // if the entry was empty, places a text informing the user and changes the gravity to center.
             summaryTV.setGravity(Gravity.CENTER );
-            summaryTV.setText(context.getResources().getString(R.string.text));
+            summaryTV.setText(getContext().getResources().getString(R.string.text));
 
         } else { // else sets the first couple of bytes of the entry to the summary view and change the font style if applicable.
             summaryTV.setText(MiscMethods.getHTMLStringVersion(summaryString));

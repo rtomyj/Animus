@@ -37,6 +37,6 @@ public class ChosenTagAdapter extends EntriesBaseAdapter {
         tag3ArrList = new ArrayList<>(Collections.nCopies(initSize, ""));
         favArrList = new ArrayList<>(Collections.nCopies(initSize, false));
 
-        XML.getChosenTagEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir(), tagName);
+        XML.getChosenTagEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, getContext().getFilesDir(), tagName);
     }
 }

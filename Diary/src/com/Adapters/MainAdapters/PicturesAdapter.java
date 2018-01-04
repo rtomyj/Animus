@@ -58,7 +58,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 
 	// makes a cache instance that uses a portion of the Devices ram
 	private void setupCache(){
-		ActivityManager am = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
+		ActivityManager am = (ActivityManager) getContext().getSystemService(Context.ACTIVITY_SERVICE);
 		int memory = am.getMemoryClass() * 1024 * 1024 / 20;		// dividing resources up
 		cache = new Pictures.LRUBitmapCache(memory);
 
@@ -70,7 +70,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 	 Only stores their filename with no etension or pic number (eg tempFile(2).png becomes tempFile). Only one entry is stored, only entries with at least on pic entry is stored, and later only one pic per entry is displayed.
 	  */
 	private void getPicFiles(){
-		final ArrayList<File> files = Files.getFilesWithExtension(context.getFilesDir(), ".png");
+		final ArrayList<File> files = Files.getFilesWithExtension(getContext().getFilesDir(), ".png");
 		int estimatedInitPicCount = files.size() / 2;
 
 		picturesArrList = new ArrayList<>(estimatedInitPicCount);
@@ -111,7 +111,7 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 	private void addPicFileToList(File file){
 		StringBuilder filename = new StringBuilder(file.getName());
 		filename.delete(filename.indexOf("("), filename.length() );
-		File f = new File(context.getFilesDir(), filename.toString() + ".txt");
+		File f = new File(getContext().getFilesDir(), filename.toString() + ".txt");
 
 		if ( !picturesArrList.contains(filename.toString()) && f.exists()) {
 			picturesArrList.add(filename.toString());
@@ -169,9 +169,9 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 		calendar.setTimeInMillis(lastModifiedArrList.get(position));
 		//Log.e(String.valueOf(position), picturesArrList.get(position));
 
-		monthTV.setText(String.format(locale, "%ta", calendar));
-		dayTV.setText(String.format(locale,"%tm", calendar));
-		yearTV.setText(String.format(locale,"%ty", calendar));
+		monthTV.setText(String.format(getLocale(), "%ta", calendar));
+		dayTV.setText(String.format(getLocale(),"%tm", calendar));
+		yearTV.setText(String.format(getLocale(),"%ty", calendar));
 	}
 
 	private void setOnClick(LinearLayout parent, int position){
@@ -181,42 +181,42 @@ public class PicturesAdapter extends AdapterBase<PicturesAdapter.ViewHolder > {
 			@Override
 			public void onClick(View parent) {
 				int position = parent.getId();
-				LauncherMethods.chosenFile(context, picturesArrList.get(position)  + ".txt", position, picturesArrList);
+				LauncherMethods.chosenFile(getContext(), picturesArrList.get(position)  + ".txt", position, picturesArrList);
 
 			}
 		});
 	}
 
 	private void customizeUI(ViewHolder holder){
-		if (!userUIPreferences.fontStyle.contains("DEFAULT")) {
-			holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
-			holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
-			holder.yearTV.setTypeface(userUIPreferences.userSelectedFontTF);
-			holder.dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
+		if (!getUserUIPreferences().fontStyle.contains("DEFAULT")) {
+			holder.titleTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+			holder.monthTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+			holder.yearTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+			holder.dayTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
 		}
 
-		if (userUIPreferences.theme.contains("Onyx")) {
-			holder.titleTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-			holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-			holder.yearTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-			holder.parent.setBackground(ContextCompat.getDrawable(context, R.drawable.onyx_selector));
+		if (getUserUIPreferences().theme.contains("Onyx")) {
+			holder.titleTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
+			holder.monthTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
+			holder.yearTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
+			holder.parent.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.onyx_selector));
 		}
 
 
-		holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
-		holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
+		holder.dayTV.setTextColor(getUserUIPreferences().secondaryColor);
+		holder.titleTV.setTextColor(getUserUIPreferences().secondaryColor);
 
-		holder.titleTV.setTextSize(userUIPreferences.mediumTextSize);
-		holder.monthTV.setTextSize(userUIPreferences.textSize);
-		holder.dayTV.setTextSize(userUIPreferences.largeTextSize);
-		holder.yearTV.setTextSize(userUIPreferences.textSize);
+		holder.titleTV.setTextSize(getUserUIPreferences().mediumTextSize);
+		holder.monthTV.setTextSize(getUserUIPreferences().textSize);
+		holder.dayTV.setTextSize(getUserUIPreferences().largeTextSize);
+		holder.yearTV.setTextSize(getUserUIPreferences().textSize);
 	}
 
 	private void setBitmap(int position, ImageView pictureView) {
-		File f =new File(context.getFilesDir(), picturesArrList.get(position) + "(1).png");
+		File f =new File(getContext().getFilesDir(), picturesArrList.get(position) + "(1).png");
 		int num = 2;
 		while ( ! f.exists()){
-			f = new File(context.getFilesDir(), picturesArrList.get(position) + "(" + Integer.toString(num) + ").png");
+			f = new File(getContext().getFilesDir(), picturesArrList.get(position) + "(" + Integer.toString(num) + ").png");
 			num++;
 		}
 

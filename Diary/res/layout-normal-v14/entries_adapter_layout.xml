@@ -44,11 +44,12 @@ file_frag:cardBackgroundColor="@color/UILightForeground"
                 android:layout_height="wrap_content"
                 android:clickable="false"
                 android:gravity="top"
-                android:paddingRight="5dp"
-                android:paddingEnd="5dp"
+                android:paddingRight="3dp"
+                android:paddingEnd="3dp"
                 android:text="Month"
-                android:textColor="#333"
+                android:textColor="@color/UILightNonImportantText"
                 android:textSize="14sp"
+                android:textStyle="bold"
                 tools:ignore="HardcodedText" />
 
             <TextView
@@ -65,15 +66,6 @@ file_frag:cardBackgroundColor="@color/UILightForeground"
                 android:textColor="@color/UIBlue"
                 tools:ignore="HardcodedText" />
 
-            <TextView
-                android:id="@+id/file_year"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:clickable="false"
-                android:text="time"
-                android:textColor="#333"
-                android:textSize="14sp"
-                tools:ignore="HardcodedText" />
         </LinearLayout>
 
         <TextView
@@ -83,6 +75,7 @@ file_frag:cardBackgroundColor="@color/UILightForeground"
             android:layout_weight="6"
             android:clickable="false"
             android:gravity="end|center_vertical"
+            android:textStyle="bold"
             android:text="TextView"
             android:textColor="@color/UIBlue"
             android:textSize="14sp" />
@@ -105,7 +98,7 @@ file_frag:cardBackgroundColor="@color/UILightForeground"
             android:paddingLeft="5dp"
             android:paddingRight="5dp"
             android:text="Summary of entry"
-            android:textColor="#333"
+            android:textColor="@color/UILightTextColor"
             android:lineSpacingExtra="2dp"
             android:paddingTop="4dp"
             android:paddingBottom="4dp"

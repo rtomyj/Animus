@@ -67,7 +67,7 @@ public class Data extends AppCompatActivity {
 		context = this;
 		String theme = sp.getString("Theme", "Default");
 		UI.setTheme(context, theme);
-			
+
 		setContentView(R.layout.data_activity_layout);
 
 		Toolbar actionbar = (Toolbar) findViewById(R.id.toolbar);
@@ -80,14 +80,14 @@ public class Data extends AppCompatActivity {
 		if(sp.getString("Theme", "Default").equals("Material 2")){
 			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIMaterialBlue));
 		}
-		
+
 		else if(sp.getString("Theme", "Default").equals("Material 3")){
 			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIMaterialPurple));
 		}
 		else if(sp.getString("Theme", "Default").equals("Material")){
 			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIMaterialPink));
 		}
-		
+
 		else if(sp.getString("Theme", "Default").equals("Material 4")){
 			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIMaterialOrange));
 		}
@@ -96,7 +96,7 @@ public class Data extends AppCompatActivity {
 			backupRestoreTV.setBackgroundColor(this.getResources().getColor(R.color.UIDarkBackground));
 			backupRestoreTV.setTextColor(this.getResources().getColor(R.color.UIDarkNormalText));
 			backupRestoreInfo.setTextColor(getResources().getColor(R.color.UIDarkNormalText));
-			
+
 			LinearLayout parent = (LinearLayout) findViewById(R.id.parent);
 
 			CardView subParentCV = (CardView) findViewById(R.id.subParent);
@@ -104,9 +104,9 @@ public class Data extends AppCompatActivity {
 
 			subParentCV.setRadius(2);
 			fileConsolidationCV.setRadius(2);
-			
+
 			//parentSV.setBackgroundColor(getResources().getColor(R.color.UIDarkOnyx));
-			
+
 
 			TextView child2 = (TextView) findViewById(R.id.child2);
 			TextView consolidateExplanationTV = (TextView) findViewById(R.id.consolidate_explanation);
@@ -172,7 +172,7 @@ public class Data extends AppCompatActivity {
 				.getDefaultSharedPreferences(this);
 		if (dropboxSwitch.isChecked() == true) {
 			sp.edit().putBoolean("DROPBOXBACKUP", true).commit();
-			
+
 		}
 		else{
 			Toast.makeText(getApplicationContext(),

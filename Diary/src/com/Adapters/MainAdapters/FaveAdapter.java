@@ -48,7 +48,7 @@ public class FaveAdapter extends EntriesBaseAdapter {
         tag3ArrList = new ArrayList<>();
         favArrList = new ArrayList<>();
         try {
-            XML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, context.getFilesDir());
+            XML.getFaveEntries(sortedFilesArrList, tag1ArrList, tag2ArrList, tag3ArrList, favArrList, getContext().getFilesDir());
         }catch (ParserConfigurationException | SAXException | IOException exception){
             Log.e("Err parsing faves ", exception.toString());
         }

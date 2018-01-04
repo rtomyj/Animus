@@ -50,7 +50,6 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         private View parent;
         private TextView summaryTV;
         private TextView titleTV;
-        private TextView timeTV;
         private TextView dayTV;
         private TextView monthTV;
         private LinearLayout tagsLL;
@@ -64,7 +63,6 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
             this.parent = parent;
             summaryTV = parent.findViewById(R.id.summary_of_entry);
             titleTV = parent.findViewById((R.id.title));
-            timeTV = parent.findViewById(R.id.file_year);
             dayTV = parent.findViewById(R.id.file_day);
             monthTV = parent.findViewById(R.id.file_month);
             tagsLL = parent.findViewById(R.id.tags_file_adapter);
@@ -78,8 +76,8 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
 
     // there are two constructors and they both require the same data_activity_layout setupViews, this takes care of it
     private void setupData() {
-        locale = Locale.getDefault();
-        userUIPreferences.setAnimation(AnimationUtils.loadAnimation(context, R.anim.fadein));
+        setLocale(Locale.getDefault());
+        getUserUIPreferences().setAnimation(AnimationUtils.loadAnimation(getContext(), R.anim.fadein));
 
     }
 
@@ -120,41 +118,38 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
             holder.alreadyCustomized = true;
 
             // changes TextColor
-            holder.dayTV.setTextColor(userUIPreferences.secondaryColor);
-            holder.titleTV.setTextColor(userUIPreferences.secondaryColor);
-            holder.menuTV.setTextColor(userUIPreferences.primaryColor);
-            holder.favTV.setTextColor(userUIPreferences.primaryColor);
+            holder.dayTV.setTextColor(getUserUIPreferences().secondaryColor);
+            holder.titleTV.setTextColor(getUserUIPreferences().secondaryColor);
+            holder.menuTV.setTextColor(getUserUIPreferences().primaryColor);
+            holder.favTV.setTextColor(getUserUIPreferences().primaryColor);
 
             // changes background and text color depending whether theme is dark
-            switch (userUIPreferences.theme) {
+            switch (getUserUIPreferences().theme) {
                 case "Onyx P":
                 case "Onyx B":
-                    holder.cardView.setBackground(userUIPreferences.darkThemeSelectorShader);
-                    holder.monthTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                    holder.summaryTV.setTextColor(userUIPreferences.textColorForDarkThemes);
-                    holder.timeTV.setTextColor(userUIPreferences.textColorForDarkThemes);
+                    holder.cardView.setBackground(getUserUIPreferences().darkThemeSelectorShader);
+                    holder.monthTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
+                    holder.summaryTV.setTextColor(getUserUIPreferences().textColorForDarkThemes);
                     break;
                 default:
             }
 
             // changes text size and number of lines according to user preference
-            holder.summaryTV.setMaxLines(userUIPreferences.numLines);
-            holder.summaryTV.setMinLines(userUIPreferences.numLines);
+            holder.summaryTV.setMaxLines(getUserUIPreferences().numLines);
+            holder.summaryTV.setMinLines(getUserUIPreferences().numLines);
 
             // changes text size
-            holder.summaryTV.setTextSize(userUIPreferences.textSize);
-            holder.dayTV.setTextSize(userUIPreferences.largeTextSize);
-            holder.monthTV.setTextSize(userUIPreferences.textSize);
-            holder.titleTV.setTextSize(userUIPreferences.mediumTextSize);
-            holder.timeTV.setTextSize(userUIPreferences.textSize);
+            holder.summaryTV.setTextSize(getUserUIPreferences().textSize);
+            holder.dayTV.setTextSize(getUserUIPreferences().largeTextSize);
+            holder.monthTV.setTextSize(getUserUIPreferences().textSize);
+            holder.titleTV.setTextSize(getUserUIPreferences().textSize);
 
             // changes font if applicable
-            if (userUIPreferences.userSelectedFontTF != null) {
-                holder.summaryTV.setTypeface(userUIPreferences.userSelectedFontTF);
-                holder.monthTV.setTypeface(userUIPreferences.userSelectedFontTF);
-                holder.titleTV.setTypeface(userUIPreferences.userSelectedFontTF);
-                holder.dayTV.setTypeface(userUIPreferences.userSelectedFontTF);
-                holder.timeTV.setTypeface(userUIPreferences.userSelectedFontTF);
+            if (getUserUIPreferences().userSelectedFontTF != null) {
+                holder.summaryTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+                holder.monthTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+                holder.titleTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
+                holder.dayTV.setTypeface(getUserUIPreferences().userSelectedFontTF);
             }
 
 
@@ -171,7 +166,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         tags(holder, position);
 
         if (position > maxPosition && position > 2) {
-            holder.parent.startAnimation(userUIPreferences.animation);
+            holder.parent.startAnimation(getUserUIPreferences().animation);
             maxPosition = (short) position;
         }
 
@@ -183,7 +178,7 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
             @Override
             public void onClick(View parent) {
                 int position = parent.getId();
-                LauncherMethods.chosenFile(context, sortedFilesArrList.get(position), position, sortedFilesArrList);
+                LauncherMethods.chosenFile(getContext(), sortedFilesArrList.get(position), position, sortedFilesArrList);
 
             }
         });
@@ -228,16 +223,13 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
         Calendar calendar = Calendar.getInstance();
 
         // gets a calendar instance and changes views text to corresponding info.
-        File file = new File(context.getFilesDir(), sortedFilesArrList.get(position));
+        File file = new File(getContext().getFilesDir(), sortedFilesArrList.get(position));
         calendar.setTimeInMillis(file.lastModified());
 
-        holder.timeTV.setText(MiscMethods.getLocalizedTime(calendar));
-
         // uses string builder to append info about_activity_layout the day of month.
-        StringBuilder dayBuilder = new StringBuilder(String.format(locale, "%1$td", calendar));
-        dayBuilder.append(",");
+        StringBuilder dayBuilder = new StringBuilder(String.format(getLocale(), "%1$td", calendar));
         holder.dayTV.setText(dayBuilder.toString());
-        holder.monthTV.setText(String.format(locale, "%1$tB", calendar));
+        holder.monthTV.setText(String.format(getLocale(), "%1$tB", calendar));
 
 
         // sets the faves view to the corresponding emoticon
@@ -273,8 +265,8 @@ public class EntriesBaseAdapter extends AdapterSummaryCache<EntriesBaseAdapter.V
                         break;
                 }
             if (! tagName.equals("")) {
-                    final TextView tagTV = Tags.newTagView(context, userUIPreferences.textSize, userUIPreferences.tagsTextColor, userUIPreferences.tagsTVParams, userUIPreferences.tagsBackgroundDrawable,
-                            userUIPreferences.fontStyle, userUIPreferences.userSelectedFontTF);
+                    final TextView tagTV = Tags.newTagView(getContext(), getUserUIPreferences().textSize, getUserUIPreferences().tagsTextColor, getUserUIPreferences().tagsTVParams, getUserUIPreferences().tagsBackgroundDrawable,
+                            getUserUIPreferences().fontStyle, getUserUIPreferences().userSelectedFontTF);
                     tagTV.setText(tagName.replaceAll("_", " "));
                     holder.tagsLL.addView(tagTV);
                 }
